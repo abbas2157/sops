@@ -14,18 +14,13 @@ Route::group(['middleware' => ['guest']], function() {
 });
 Route::group(['middleware' => ['auth']], function() {
     Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'destroy'])->name('logout');
-
-    Route::get('admin', function(){
-        // Session::flush();
-        // Auth::logout();
-        // return Redirect('login');
-        return view('welcome');
-    })->name('admin');
     Route::group(['prefix' => 'admin'], function(){
+        Route::get('/', function(){return view('welcome');})->name('admin');
         Route::group(['prefix' => 'profile'], function(){
             Route::get('/', [App\Http\Controllers\Admin\ProfileController::class, 'create'])->name('admin.profile');
             Route::post('perform', [App\Http\Controllers\Admin\ProfileController::class, 'store'])->name('admin.profile.perform');
         });
+        Route::resource('courses', App\Http\Controllers\Admin\CourseController::class);
     });
     
 });
