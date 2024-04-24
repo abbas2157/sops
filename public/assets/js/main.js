@@ -380,9 +380,9 @@
     }
 
     // Add event listener to the "Add another barcode" paragraph
-    document.getElementById('addBarcode').addEventListener('click', function () {
-        createBarcodeSection();
-    });
+    // document.getElementById('addBarcode').addEventListener('click', function () {
+    //     createBarcodeSection();
+    // });
     // End Create Product on Click Create Barcode section
 
 })(jQuery);
