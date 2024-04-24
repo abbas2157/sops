@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Sign in - SOPS - School of Professional Skills</title>
+        <title>Forgot Password - SOPS - School of Professional Skills</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <meta content="" name="keywords" />
         <meta content="" name="description" />
@@ -27,21 +27,14 @@
                     <div class="col-md-6 col-12 py-5 px-4">
                         <div class="signup-form text-white my-5">
                             <div class="mb-4">
-                                <h2>Sign in</h2>
+                                <h2>Forgot Password</h2>
                                 <p>SOPS - School of Professional Skills</p>
                             </div>
                             @if ($errors->has('emailPassword'))
                                 <span class="text-danger text-left">{{ $errors->first('emailPassword') }}</span>
                             @endif
-                            <form class="signup-input" method="post" action="{{ route('login.perform') }}">
+                            <form class="signup-input" method="post" action="{{ route('forgot-password.send-email') }}">
                                 @csrf
-                                <div class="password-container">
-                                    <input type="email" name="email" class="form-control" placeholder="Email" required />
-                                    <img src="{{ asset('assets/img/mail.svg') }}" class="password-toggle pe-2" alt=""/>
-                                    @if ($errors->has('email'))
-                                        <span class="text-danger text-left">{{ $errors->first('email') }}</span>
-                                    @endif
-                                </div>
                                 <div class="password-container">
                                     <input type="password" id="password" name="password" class="password-input form-control subheading" required placeholder="Password" />
                                     <img src="{{ asset('assets/img/lock.svg') }}" class="password-toggle pe-2" onclick="togglePasswordVisibility('password')" alt="" />
@@ -55,12 +48,12 @@
                                         <span>Keep me singed in</span> -->
                                     </div>
                                     <div class="col-md-6 mt-3 forget-password text-end">
-                                        <a href="{{ route('forgot-password') }}" class="text-decoration-none text-white">
-                                            Forget Password?
+                                        <a href="{{ route('login') }}" class="text-decoration-none text-white">
+                                            Sign In 
                                         </a>
                                     </div>
                                 </div>
-                                <button class="btn save-btn text-white p-3 w-100 mt-4 mb-2"> Sign Up </button>
+                                <button class="btn save-btn text-white p-3 w-100 mt-4 mb-2"> Send Mail </button>
                                 @if ($errors->has('success'))
                                     <span class="text-success text-left">{{ $errors->first('success') }}</span>
                                 @endif
