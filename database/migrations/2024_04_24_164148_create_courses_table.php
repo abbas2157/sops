@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid');
             $table->string('name');
             $table->string('slug');
             $table->integer('created_by');

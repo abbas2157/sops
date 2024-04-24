@@ -22,5 +22,4 @@ Route::group(['middleware' => ['auth']], function() {
         });
         Route::resource('courses', App\Http\Controllers\Admin\CourseController::class);
     });
-    
 });
