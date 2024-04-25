@@ -73,7 +73,7 @@
                     <div class="col-md-4 text-end">
                         <form enctype="multipart/form-data" id="profile_picture_form" method="post" action="{{ route('change-profile.picture') }}">
                         @csrf
-                            <input type="file" name="profile_picture" id="profile_picture" onchange="form.submit()" class="fileInput" style="display: none"  required/>
+                            <input type="file" name="profile_picture" id="profile_picture" accept="images/*" onchange="form.submit()" class="fileInput" style="display: none"  required/>
                             <button id="change-picture-btn" class="change-picture-btn btn create-btn" type="button">
                                 Change Profile Picture
                             </button>

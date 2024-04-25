@@ -9,7 +9,7 @@
                 <i class="bi bi-grid"></i>
                 <p class="pt-1 mb-0">Dashboard</p>
             </a>
-            <div id="navbar-toggler" class="nav-item nav-link text-center {{ request()->is('admin/trainers') ? 'active' : '' }}">
+            <div id="navbar-toggler" class="nav-item nav-link text-center {{ request()->is('admin/trainers*') ? 'active' : '' }}">
                 <i class="bi bi-person"></i>
                 <p class="pt-1 mb-0">Trainer</p>
             </div>
