@@ -78,6 +78,9 @@ class TrainerController extends Controller
         $trainer->created_by = Auth::user()->id;
         $trainer->course_id = $request->course_id;
         $trainer->save();
+        
+        $validator['success'] = 'Profile Picture Updated.';
+        return back()->withErrors($validator);
     }
 
     /**

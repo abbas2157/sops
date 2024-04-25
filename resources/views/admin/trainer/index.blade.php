@@ -22,7 +22,7 @@
                 <a href="#" class="btn create-btn rounded-3 mt-2">Filter <i class="bi bi-funnel"></i></a>
                 <a href="#" class="btn rounded-3 mt-2 excel-btn">Excel <i class="bi bi-file-earmark-text"></i></a>
                 <a href="#" class="btn pdf rounded-3 mt-2">Pdf <i class="bi bi-file-earmark"></i></a>
-                <a href="{{ route('trainers.create') }}" class="btn create-btn rounded-3 mt-2">Create Trainer<i class="bi bi-plus-lg"></i></a>
+                <a href="{{ route('trainers.create') }}" class="btn create-btn rounded-3 mt-2">Create Trainer <i class="bi bi-plus-lg"></i></a>
             </div>
         </div>
     </div>
@@ -65,6 +65,10 @@
                                     <i class="fa-solid fa-ellipsis-v"></i>
                                 </a>
                                 <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="{{ asset('trainer/cv/'.$train->trainer->curriculum_vitae) }}">
+                                        <img src="{{ asset('assets/img/eye.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt=""/>
+                                        View CV
+                                    </a>
                                     <a class="dropdown-item" href="#">
                                         <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt=""/>
                                         Edit Trainer
