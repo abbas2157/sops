@@ -28,6 +28,11 @@
                     <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />All Trainers
                 </a>
             </li>
+            <li>
+                <a href="{{ route('trainers.create') }}" class="text-decoration-none nav-item nav-link ">
+                    <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />Create Trainer
+                </a>
+            </li>
         </ul>
     </div>
 </div>

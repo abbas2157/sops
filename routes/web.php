@@ -31,5 +31,6 @@ Route::group(['middleware' => ['auth']], function() {
         });
         Route::resource('courses', App\Http\Controllers\Admin\CourseController::class);
         Route::resource('trainers', App\Http\Controllers\Admin\TrainerController::class);
+        Route::resource('trainees', App\Http\Controllers\Admin\TraineeController::class);
     });
 });

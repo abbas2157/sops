@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Course;
 
 class TrainerController extends Controller
 {
@@ -20,7 +21,8 @@ class TrainerController extends Controller
      */
     public function create()
     {
-        //
+        $courses = Course::get();
+        return view('admin.trainer.create',compact('courses'));
     }
 
     /**

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('curriculum_vitae')->nullable();
             $table->string('date_of_birth')->nullable();
             $table->string('gender')->nullable();
+            $table->text('description');
             $table->integer('created_by');
             $table->softDeletes();
             $table->timestamps();
