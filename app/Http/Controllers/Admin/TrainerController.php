@@ -18,7 +18,9 @@ class TrainerController extends Controller
      */
     public function index()
     {
-        //
+        $trainers = User::with('trainer')->where('type','trainer')->paginate(10);
+        // dd($trainers->toArray());
+        return view('admin.trainer.index',compact('trainers'));
     }
 
     /**

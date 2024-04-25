@@ -9,4 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Trainer extends Model
 {
     use HasFactory, SoftDeletes;
+    public function course()
+    {
+        return $this->belongsTo(Course::class,'course_id','id');
+    }
 }

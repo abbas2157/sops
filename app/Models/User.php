@@ -45,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function trainer()
+    {
+        return $this->belongsTo(Trainer::class,'id','user_id');
+    }
+    public function getFullNameAttribute()
+    {
+        return $this->name . " " . $this->last_name;
+    }
 }

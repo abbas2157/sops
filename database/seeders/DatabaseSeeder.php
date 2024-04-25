@@ -26,23 +26,5 @@ class DatabaseSeeder extends Seeder
             'type' => 'admin',
             'remember_token' => Str::random(10),
         ]);
-        User::factory()->create([
-            'uuid' => Str::uuid(),
-            'name' => 'Trainer',
-            'email' => 'trainer@example.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('trainer'),
-            'type' => 'trainer',
-            'remember_token' => Str::random(10),
-        ]);
-        User::factory()->create([
-            'uuid' => Str::uuid(),
-            'name' => 'Trainee',
-            'email' => 'trainee@example.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('trainee'),
-            'type' => 'trainee',
-            'remember_token' => Str::random(10),
-        ]);
     }
 }
