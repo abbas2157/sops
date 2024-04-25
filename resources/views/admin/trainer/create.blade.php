@@ -42,12 +42,23 @@
                     <div class="row mt-2">
                         <div class="col-md-6">
                             <div class="form-group fw-bold">
+                            <label for="exampleFormControlSelect1">Gender <span class="text-danger">*</span></label>
+                                <select class="form-control form-select subheading mt-2" aria-label="Default select example" id="exampleFormControlSelect1">
+                                    <option value="male">Mail</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group fw-bold">
                             <label for="exampleFormControlSelect1">Assign Course <span class="text-danger">*</span></label>
                                 <select class="form-control form-select subheading mt-2" aria-label="Default select example" id="exampleFormControlSelect1">
-                                    <option>Select Category</option>
-                                    <option>Category 1</option>
-                                    <option>Category 2</option>
-                                    <option>Category 3</option>
+                                    <option selected disabled>Select Course</option>
+                                    @if($courses->isNotEmpty())
+                                        @foreach($courses as $course)
+                                            <option value="{{ $course->id ?? '' }}">{{ $course->name ?? '' }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
