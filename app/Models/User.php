@@ -49,6 +49,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Trainer::class,'id','user_id');
     }
+    public function trainee()
+    {
+        return $this->belongsTo(Trainee::class,'id','user_id');
+    }
     public function getFullNameAttribute()
     {
         return $this->name . " " . $this->last_name;

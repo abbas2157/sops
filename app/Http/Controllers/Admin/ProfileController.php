@@ -35,7 +35,7 @@ class ProfileController extends Controller
         $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
         $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
         $file->move(public_path('profile_pictures'),$filename);
-        
+
         $user = Auth::user();
         $user->profile_picture = $filename;
         $user->save();
@@ -55,19 +55,19 @@ class ProfileController extends Controller
         ]);
         $auth = Auth::user();
         // The passwords matches
-        if (!Hash::check($request->get('current_password'), $auth->password)) 
+        if (!Hash::check($request->get('current_password'), $auth->password))
         {
             $validator['current_password'] = 'Current Password is Invalid';
             return back()->withErrors($validator);
         }
  
         // Current password and new password same
-        if (strcmp($request->get('current_password'), $request->new_password) == 0) 
+        if (strcmp($request->get('current_password'), $request->new_password) == 0)
         {
             $validator['new_password'] = 'New Password cannot be same as your current password.';
             return back()->withErrors($validator);
         }
- 
+
         $user =  User::find($auth->id);
         $user->password =  Hash::make($request->new_password);
         $user->save();
