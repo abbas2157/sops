@@ -44,10 +44,7 @@
                 Profile Info
                 <img src="{{ asset('assets/img/profile-info.svg') }}" alt="" />
             </button>
-            <button
-                class="tablinks d-flex justify-content-between mt-2"
-                onclick="openCity(event, 'Change-password')"
-            >
+            <button class="tablinks d-flex justify-content-between mt-2" onclick="openCity(event, 'Change-password')">
                 Change Password
                 <img src="{{ asset('assets/img/change-password.svg') }}" alt="" />
             </button>
@@ -61,200 +58,133 @@
             <div class="card-body">
                 <div class="row personal-info-row">
                     <div class="col-md-3 col-xxl-2">
-                    <img src="{{ asset('assets/img/profile-img.png') }}" class="img-fluid w-100 change-picture-btn profile-img" alt=""/>
+                        @if(is_null(Auth::user()->profile_picture))
+                            <img src="{{ asset('assets/img/profile-img.png') }}" class="img-fluid w-100 change-picture-btn profile-img" alt=""/>
+                        @else
+                            <img src="{{ asset('profile_pictures/'.Auth::user()->profile_picture) }}" class="img-fluid w-100 change-picture-btn profile-img" style="border-radius: 50%" alt=""/>
+                        @endif
                     </div>
                     <div class="col-md-5 py-4">
-                    <h4 class="mb-3 all-adjustment w-100 border-0">
-                        {{ Auth::user()->name ?? '' }}
-                    </h4>
-                    <p class="mb-0">{{ Auth::user()->email ?? '' }}</p>
+                        <h4 class="mb-3 all-adjustment w-100 border-0">
+                            {{ Auth::user()->name ?? '' }}
+                        </h4>
+                        <p class="mb-0">{{ Auth::user()->email ?? '' }}</p>
                     </div>
                     <div class="col-md-4 text-end">
-                    <!-- <button class="btn create-btn">
-                        Change Profile Picture
-                    </button>
-                    <p class="text-danger mt-2" style="cursor: pointer">
-                        Remove Profile Picture
-                    </p> -->
-                    <input type="file" class="fileInput" style="display: none"  />
-                    <button class="change-picture-btn btn create-btn">
-                        Change Profile Picture
-                    </button>
-                    <p class="remove-picture text-danger mt-2" style="cursor: pointer" >
-                        Remove Profile Picture
-                    </p>
+                        <form enctype="multipart/form-data" id="profile_picture_form" method="post" action="{{ route('change-profile.picture') }}">
+                        @csrf
+                            <input type="file" name="profile_picture" id="profile_picture" onchange="form.submit()" class="fileInput" style="display: none"  required/>
+                            <button id="change-picture-btn" class="change-picture-btn btn create-btn" type="button">
+                                Change Profile Picture
+                            </button>
+                        </form>
+                        <p class="remove-picture text-danger mt-2" style="cursor: pointer" >
+                            Remove Profile Picture
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card rounded-3 border-0 card-shadow h-100 p-3 mt-4">
-            <div class="card-body h-100">
-                <h4 class="all-adjustment border-0 m-0">Personal Info</h4>
-                <p>Provide your personal info</p>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group fw-bold">
-                            <label for="exampleFormControlSelect1" >First Name
-                            <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control subheading mt-2" value="{{ Auth::user()->name ?? '' }}" placeholder="Mona" id="exampleFormControlInput1"/>
+            <form method="POST" action="{{ route('admin.profile.perform') }}">
+                @csrf
+                <div class="card rounded-3 border-0 card-shadow h-100 p-3 mt-4">
+                    <div class="card-body h-100">
+                        <h4 class="all-adjustment border-0 m-0">Personal Info</h4>
+                        <p>Provide your personal info</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group fw-bold">
+                                    <label for="exampleFormControlSelect1" >First Name
+                                    <span class="text-danger">*</span></label>
+                                    <input type="text" name="name" class="form-control subheading mt-2" value="{{ Auth::user()->name ?? '' }}" placeholder="Name" required/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group fw-bold">
+                                    <label for="exampleFormControlSelect1" >Last Name</label>
+                                    <input type="text" class="form-control subheading mt-2" placeholder="Last Name" name="last_name"  value="{{ Auth::user()->last_name ?? '' }}"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                </div>
+                <div class="card rounded-3 border-0 card-shadow h-100 p-3 mt-4">
+                    <div class="card-body h-100">
+                    <h4 class="all-adjustment border-0 m-0">Contact Info</h4>
+                    <p>Provide your Contact info</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group fw-bold">
+                                <label for="exampleFormControlSelect1">Email <span class="text-danger">*</span></label>
+                                <input type="email" disabled class="form-control subheading mt-2" value="{{ Auth::user()->email ?? '' }}" placeholder="MonaLissa@mail.com" 
+                                />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                         <div class="form-group fw-bold">
-                            <label for="exampleFormControlSelect1" >Last Name
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" class="form-control subheading mt-2" placeholder="coming soon" readonly id="exampleFormControlInput1"/>
+                            <label for="exampleFormControlSelect1">Phone No</label>
+                            <input type="text" name="phone" class="form-control subheading mt-2" placeholder="Phone No" value="{{ Auth::user()->phone ?? '' }}"/>
+                        </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="card rounded-3 border-0 card-shadow h-100 p-3 mt-4">
-            <div class="card-body h-100">
-            <h4 class="all-adjustment border-0 m-0">Contact Info</h4>
-            <p>Provide your Contact info</p>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group fw-bold">
-                        <label for="exampleFormControlSelect1">Email <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control subheading mt-2" value="{{ Auth::user()->email ?? '' }}" placeholder="MonaLissa@mail.com" id="exampleFormControlInput1"
-                        />
                     </div>
                 </div>
-                <div class="col-md-6">
-                <div class="form-group fw-bold">
-                    <label for="exampleFormControlSelect1">Phone No <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control subheading mt-2" placeholder="coming soon" readonly id="exampleFormControlInput1"/>
-                </div>
-                </div>
-            </div>
-            </div>
+                <button type="submit" class="btn save-btn text-white mt-3">Update Profile</button>
+            </form>
         </div>
-
-        <button class="btn save-btn text-white mt-3">Save</button>
-        </div>
-
         <div id="Change-password" class="tabcontent">
-        <div class="card rounded-3 border-0 card-shadow h-100">
-            <div class="card-body">
-            <div class="row personal-info-row">
-                <div class="col-md-3 col-xxl-2">
-                <img
-                    src="{{ asset('assets/img/profile-img.png') }}"
-                    class="img-fluid rounded-circle w-100 change-picture-btn profile-img"
-                    style="max-height: 180px; cursor: pointer"
-                    alt=""
-                />
-                </div>
-                <div class="col-md-5 py-4">
-                <h4 class="mb-3 all-adjustment border-0 w-100">
-                    Mona Lissa
-                </h4>
-                <p class="mb-1">@monalissa</p>
-                <p class="mb-1">+1 234 345 3456</p>
-                <p class="mb-0">Monalissa@mail.com</p>
-                </div>
-                <div class="col-md-4 text-end">
-                <!-- <button class="btn create-btn">
-                    Change Profile Picture
-                </button>
-                <p class="text-danger mt-2" style="cursor: pointer">
-                    Remove Profile Picture
-                </p> -->
-                <input
-                    type="file"
-                    class="fileInput"
-                    style="display: none"
-                />
-                <button class="change-picture-btn btn create-btn">
-                    Change Profile Picture
-                </button>
-                <p
-                    class="remove-picture text-danger mt-2"
-                    style="cursor: pointer"
-                >
-                    Remove Profile Picture
-                </p>
-                </div>
-            </div>
-            </div>
-        </div>
-
-        <div class="card rounded-3 border-0 card-shadow h-100 p-3 mt-4">
-            <div class="card-body h-100">
-            <h4 class="all-adjustment border-0 m-0 w-100">
-                Change Password
-            </h4>
-            <p>Update your password for enhanced security</p>
-            <div class="row">
-                <div class="col-md-6">
-                <div class="form-group fw-bold">
-                    <label for="exampleFormControlSelect1"
-                    >Current Password</label
-                    >
-                    <div class="password-container">
-                    <input
-                        type="password"
-                        class="form-control subheading"
-                        placeholder="********"
-                    />
-                    <img
-                        src="{{ asset('assets/img/profile-changed-password.svg') }}"
-                        class="password-toggle pe-2"
-                        onclick="togglePasswordVisibility(this)"
-                        alt=""
-                    />
+            <form method="POST" action="{{ route('admin.profile.change.password') }}">
+            @csrf
+                <div class="card rounded-3 border-0 card-shadow h-100 p-3">
+                    <div class="card-body h-100">
+                    <h4 class="all-adjustment border-0 m-0 w-100">
+                        Change Password
+                    </h4>
+                    <p>Update your password for enhanced security</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group fw-bold">
+                                <label for="exampleFormControlSelect1" >Current Password</label >
+                                <div class="password-container">
+                                    <input type="password" name="current_password" class="form-control subheading" placeholder="********"/>
+                                    <img src="{{ asset('assets/img/profile-changed-password.svg') }}" class="password-toggle pe-2" onclick="togglePasswordVisibility(this)" alt="" />
+                                    @if ($errors->has('current_password'))
+                                        <span class="text-danger text-left">{{ $errors->first('current_password') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <div class="form-group fw-bold">
+                                <label for="exampleFormControlSelect1" >New Password</label>
+                                <div class="password-container">
+                                    <input type="password" name="new_password" class="form-control subheading" placeholder="********"/>
+                                    <img src="{{ asset('assets/img/profile-changed-password.svg') }}" class="password-toggle pe-2" onclick="togglePasswordVisibility(this)" alt=""/>
+                                    @if ($errors->has('new_password'))
+                                        <span class="text-danger text-left">{{ $errors->first('new_password') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group fw-bold">
+                                <label for="exampleFormControlSelect1">Retype New Password</label>
+                                <div class="password-container">
+                                    <input type="password" name="confirm_new_password" class="form-control subheading" placeholder="********" />
+                                    <img src="{{ asset('assets/img/profile-changed-password.svg') }}" class="password-toggle pe-2" onclick="togglePasswordVisibility(this)" alt=""/>
+                                    @if ($errors->has('confirm_new_password'))
+                                        <span class="text-danger text-left">{{ $errors->first('confirm_new_password') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-md-6">
-                <div class="form-group fw-bold">
-                    <label for="exampleFormControlSelect1"
-                    >New Password</label
-                    >
-                    <div class="password-container">
-                    <input
-                        type="password"
-                        class="form-control subheading"
-                        placeholder="********"
-                    />
-                    <img
-                        src="{{ asset('assets/img/profile-changed-password.svg') }}"
-                        class="password-toggle pe-2"
-                        onclick="togglePasswordVisibility(this)"
-                        alt=""
-                    />
-                    </div>
-                </div>
-                </div>
-                <div class="col-md-6">
-                <div class="form-group fw-bold">
-                    <label for="exampleFormControlSelect1"
-                    >Retype New Password</label
-                    >
-                    <div class="password-container">
-                    <input
-                        type="password"
-                        class="form-control subheading"
-                        placeholder="********"
-                    />
-                    <img
-                        src="{{ asset('assets/img/profile-changed-password.svg') }}"
-                        class="password-toggle pe-2"
-                        onclick="togglePasswordVisibility(this)"
-                        alt=""
-                    />
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-
-        <button class="btn save-btn text-white mt-3">Update</button>
+                <button type="submit" class="btn save-btn text-white mt-3">Change Password</button>
+            </form>
         </div>
     </div>
     </div>
@@ -291,40 +221,11 @@
       }
     </script>
     <script>
-      // JavaScript to handle image upload and remove picture for multiple profiles
-      var changePictureButtons = document.querySelectorAll(
-        ".change-picture-btn"
-      );
-      var removePictureButtons = document.querySelectorAll(".remove-picture");
-      var fileInputs = document.querySelectorAll(".fileInput");
-      var profileImages = document.querySelectorAll(".profile-img");
-
-      // Event listener for change picture buttons
-      changePictureButtons.forEach(function (button, index) {
-        button.addEventListener("click", function () {
-          fileInputs[index].click();
-        });
-      });
-
-      // Event listener for file inputs
-      fileInputs.forEach(function (fileInput, index) {
-        fileInput.addEventListener("change", function () {
-          var file = this.files[0];
-          if (file) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              profileImages[index].src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-          }
-        });
-      });
-
-      // Event listener for remove picture buttons
-      removePictureButtons.forEach(function (removeButton, index) {
-        removeButton.addEventListener("click", function () {
-          profileImages[index].src = "{{ asset('assets/img/profile-img.png') }}"; // Replace with default image source
-        });
-      });
+        document.getElementById("profile_picture").onchange = function() {
+            document.getElementById("profile_picture_form").submit();
+        };
+        document.getElementById("change-picture-btn").onclick = function() {
+            $('#profile_picture').trigger('click');
+        };
     </script>
 @stop

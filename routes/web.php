@@ -20,11 +20,14 @@ Route::group(['middleware' => ['guest']], function() {
 });
 Route::group(['middleware' => ['auth']], function() {
     Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'destroy'])->name('logout');
+    Route::get('/', function(){return view('welcome');})->name('admin');
     Route::group(['prefix' => 'admin'], function(){
         Route::get('/', function(){return view('welcome');})->name('admin');
         Route::group(['prefix' => 'profile'], function(){
             Route::get('/', [App\Http\Controllers\Admin\ProfileController::class, 'create'])->name('admin.profile');
-            Route::post('perform', [App\Http\Controllers\Admin\ProfileController::class, 'store'])->name('admin.profile.perform');
+            Route::post('perform', [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('admin.profile.perform');
+            Route::post('change/password', [App\Http\Controllers\Admin\ProfileController::class, 'show'])->name('admin.profile.change.password');
+            Route::post('picture/update', [App\Http\Controllers\Admin\ProfileController::class, 'picture_update'])->name('change-profile.picture');
         });
         Route::resource('courses', App\Http\Controllers\Admin\CourseController::class);
     });

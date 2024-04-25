@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
+            'uuid' => Str::uuid(),
             'name' => 'Super Admin',
             'email' => 'admin@example.com',
             'email_verified_at' => now(),
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
         User::factory()->create([
+            'uuid' => Str::uuid(),
             'name' => 'Trainer',
             'email' => 'trainer@example.com',
             'email_verified_at' => now(),
@@ -34,6 +36,7 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
         User::factory()->create([
+            'uuid' => Str::uuid(),
             'name' => 'Trainee',
             'email' => 'trainee@example.com',
             'email_verified_at' => now(),

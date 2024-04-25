@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Mail\ForgotPaswordMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
-
 use App\Models\User;
 
 class LoginController extends Controller

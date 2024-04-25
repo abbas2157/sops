@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->string('uuid')->nullable();
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->integer('created_by');
             $table->softDeletes();
             $table->timestamps();
