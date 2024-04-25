@@ -66,284 +66,55 @@
                     <div class="row mt-2">
                         <div class="col-md-12">
                             <div class="form-group fw-bold">
-                                <label for="exampleFormControlSelect1">Trainer Description</label>
+                                <label for="exampleFormControlSelect1">Trainer Description </label>
                                 <textarea class="form-control subheading mt-1" id="exampleFormControlTextarea1" placeholder="Trainer Description (optinal)" rows="5"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="card rounded-3 mt-4 border-0 card-shadow">
-            <div class="card-body">
-                <div class="row fw-bold">
-                <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleFormControlSelect1">Type</label>
-                    <select
-                        class="form-control form-select subheading mt-1"
-                        aria-label="Default select example"
-                        id="exampleFormControlSelect1"
-                    >
-                        <option>Standard Product</option>
-                        <option>Variable Product</option>
-                        <option>Service Product</option>
-                    </select>
+                <div class="card-body">
+                    <div class="row fw-bold">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="highest_qualification">Highest Qualification <span class="text-danger">*</span></label>
+                                <select name="highest_qualification" id="highest_qualification" class="form-control form-select subheading mt-1" required="">
+                                    <option value="bsc">BSc</option>
+                                    <option value="msc">MSc</option>
+                                    <option value="phd">PhD</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="areas_of_expertise">Areas of Expertise <span class="text-danger">*</span></label>
+                                <select name="areas_of_expertise" id="areas_of_expertise" class="form-control form-select subheading mt-1" required="">
+                                    <option value="Web Development">Web Development</option>
+                                    <option value="Mobile Development">Mobile Development</option>
+                                    <option value="Data Science">Data Science</option>
+                                    <option value="Digital Marketing">Digital Marketing</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleFormControlSelect1"
-                        >Product Unit</label
-                    >
-                    <select
-                        class="form-control form-select subheading mt-1"
-                        aria-label="Default select example"
-                        id="exampleFormControlSelect1"
-                    >
-                        <option>Select Product Unit</option>
-                        <option>Product Unit 1</option>
-                        <option>Product Unit 2</option>
-                        <option>Product Unit 3</option>
-                    </select>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <div class="form-group fw-bold">
+                                <label for="exampleFormControlSelect3">Years of Experience <span class="text-danger">*</span></label>
+                                <input type="text" name="email" class="form-control subheading mt-2" placeholder="Email" id="exampleFormControlSelect3" required/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group fw-bold">
+                                <label for="exampleFormControlSelect4">Phone </label>
+                                <input type="text" name="phone" class="form-control subheading mt-2" placeholder="Phone Number (optinal)" id="exampleFormControlSelect4"/>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                </div>
-                <div class="row fw-bold mt-2">
-                <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleFormControlSelect1"
-                        >Purchase Price
-                        <span class="text-danger">*</span></label
-                    >
-                    <input
-                        type="text"
-                        class="form-control subheading mt-2"
-                        placeholder="Purchase Price"
-                        id="exampleFormControlInput1"
-                    />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleFormControlSelect1"
-                        >Profit Margin <span class="text-danger">*</span></label
-                    >
-                    <input
-                        type="text"
-                        class="form-control subheading mt-2"
-                        placeholder="30%"
-                        id="exampleFormControlInput1"
-                    />
-                    </div>
-                </div>
-                </div>
-                <div class="row mt-2 fw-bold">
-                <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleFormControlSelect1"
-                        >Sale Price <span class="text-danger">*</span></label
-                    >
-                    <input
-                        type="text"
-                        class="form-control subheading mt-2"
-                        placeholder="Stock Alert"
-                        id="exampleFormControlInput1"
-                    />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleFormControlSelect1"
-                        >Stock Alert</label
-                    >
-                    <input
-                        type="text"
-                        class="form-control subheading mt-2"
-                        placeholder="Stock Alert"
-                        id="exampleFormControlInput1"
-                    />
-                    </div>
-                </div>
-                </div>
-                <div class="row mt-2 fw-bold">
-                <label for="exampleFormControlSelect1" class="mt-1"
-                    >Varient Name</label
-                >
-                <div class="col-md-10">
-                    <div class="form-group">
-                    <input
-                        type="text"
-                        class="form-control subheading mt-2"
-                        placeholder="Stock Alert"
-                        id="exampleFormControlInput1"
-                    />
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <button class="btn create-btn w-100 mt-2">
-                    Create <i class="fa-solid fa-plus ms-2"></i>
-                    </button>
-                </div>
-                </div>
-                <div class="d-flex mt-3 gap-1 varient-product fw-bold">
-                <div class="form-group w-100">
-                    <label for="exampleFormControlSelect1"
-                    >Variant Name</label
-                    >
-                    <input
-                    type="text"
-                    class="form-control subheading mt-2 w-100"
-                    placeholder="Varient Name"
-                    id="exampleFormControlInput1"
-                    />
-                </div>
-                <div class="form-group w-100">
-                    <label for="exampleFormControlSelect1"
-                    >Variant Code</label
-                    >
-                    <input
-                    type="text"
-                    class="form-control subheading mt-2"
-                    placeholder="Varient Code"
-                    id="exampleFormControlInput1"
-                    />
-                </div>
-                <div class="form-group w-100">
-                    <label for="exampleFormControlSelect1"
-                    >Purchase Price</label
-                    >
-                    <input
-                    type="text"
-                    class="form-control subheading mt-2"
-                    placeholder="Purchase Price"
-                    id="exampleFormControlInput1"
-                    />
-                </div>
-                <div class="form-group w-100">
-                    <label for="exampleFormControlSelect1"
-                    >Sale Price</label
-                    >
-                    <input
-                    type="text"
-                    class="form-control subheading mt-2"
-                    placeholder="Sale Price"
-                    id="exampleFormControlInput1"
-                    />
-                </div>
-                <div class="w-100">
-                    <p></p>
-                    <button class="btn rounded-3 mt-3 excel-btn w-100">
-                    <i class="bi bi-trash3" style="font-size: 15px"></i>
-                    </button>
-                </div>
                 </div>
             </div>
-            </div>
-
-            <div class="card rounded-3 mt-4 border-0 card-shadow">
-            <div class="card-body">
-                <div class="row fw-bold">
-                <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleFormControlSelect1">Order Tax</label>
-                    <input
-                        type="text"
-                        class="form-control subheading mt-2"
-                        placeholder="0%"
-                        id="exampleFormControlInput1"
-                    />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleFormControlSelect1">Tax Type</label>
-                    <select
-                        class="form-control form-select subheading mt-2"
-                        aria-label="Default select example"
-                        id="exampleFormControlSelect1"
-                    >
-                        <option>Select Tax Type</option>
-                        <option>Exclusive 1</option>
-                        <option>Exclusive 2</option>
-                        <option>Exclusive 3</option>
-                    </select>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="card rounded-3 mt-4 border-0 card-shadow">
-            <div class="card-body" id="barcodeSection">
-                <div class="row border-bottom mt-2 fw-bold" id="barcode1">
-                <div class="col-md-5">
-                    <div class="form-group">
-                    <label for="barcodeSymbology1"
-                        >Barcode Symbology <span class="text-danger">*</span></label
-                    >
-                    <select
-                        class="form-control form-select subheading mt-1"
-                        aria-label="Default select example"
-                        id="barcodeSymbology1"
-                    >
-                        <option>Code 128</option>
-                        <option>Code 128</option>
-                        <option>Code 128</option>
-                    </select>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <label for="productCode1">Product Code</label>
-                    <div class="input-group mt-1 subheading">
-                    <input
-                        type="text"
-                        class="form-control subheading"
-                        placeholder="Barcode"
-                        aria-label="Recipient's username"
-                        aria-describedby="basic-addon2"
-                        id="productCode1"
-                    />
-                    <span
-                        class="input-group-text subheading"
-                        id="basic-addon2"
-                        ><i class="bi bi-upc-scan"></i
-                    ></span>
-                    </div>
-                    <p>Scan the barcode or symbology</p>
-                </div>
-                <div class="col-md-2 pt-1">
-                    <button
-                    class="btn text-danger border-danger w-100 subheading mt-4"
-                    >
-                    <i class="bi bi-trash3"></i>
-                    </button>
-                </div>
-                </div>
-
-                <div
-                class="row mt-4 bg-light align-middle p-3 rounded-3 mx-1"
-                id="barcodeButtonSection"
-                >
-                <div class="col-md-6">
-                    <p class="m-0">
-                    You can scan more than one barcode for a product.
-                    </p>
-                </div>
-                <div class="col-md-6 text-end">
-                    <p
-                    id="addBarcode"
-                    class="text-primary m-0"
-                    style="cursor: pointer"
-                    >
-                    Add another barcode
-                    </p>
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <button class="btn save-btn text-white mt-3">Submit</button>
         </div>
         <div class="col-md-4">
             <div class="card border-0 rounded-3 card-shadow">

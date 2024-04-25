@@ -60,7 +60,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <button class="btn save-btn text-white p-3 w-100 mt-4 mb-2"> Sign Up </button>
+                                <button class="btn save-btn text-white p-3 w-100 mt-4 mb-2"> Sign In </button>
                                 @if ($errors->has('success'))
                                     <span class="text-success text-left">{{ $errors->first('success') }}</span>
                                 @endif
