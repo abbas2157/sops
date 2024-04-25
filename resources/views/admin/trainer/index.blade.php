@@ -66,11 +66,11 @@
                                 </a>
                                 <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="#">
-                                        <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-1" alt=""/>
+                                        <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt=""/>
                                         Edit Trainer
                                     </a>
                                     <a class="dropdown-item" href="#">
-                                        <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-1" alt=""/>
+                                        <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt=""/>
                                         Delete Trainer
                                     </a>
                                 </div>
