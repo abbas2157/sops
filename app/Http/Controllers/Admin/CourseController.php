@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Course;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CourseController extends Controller
 {
@@ -12,7 +15,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('admin.courses.index');
+        $courses = Course::get();
+        return view('admin.courses.index',compact('courses'));
     }
 
     /**
@@ -28,7 +32,26 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:courses'
+        ]);
+        $course = new Course;
+        $course->uuid = Str::uuid();
+        $course->name = $request->name;
+        $course->description = $request->description;
+        if($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+            $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
+            $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+            $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
+            $file->move(public_path('images/course'),$filename);
+            $course->image = $filename;
+        }
+        $course->created_by = Auth::user()->id;
+        $course->save();
+        $validator['success'] = 'Course Created Successfully';
+        return back()->withErrors($validator);
     }
 
     /**
@@ -60,6 +83,8 @@ class CourseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $course = Course::find($id)->delete();
+        $validator['success'] = 'Course Delete Successfully';
+        return back()->withErrors($validator);
     }
 }

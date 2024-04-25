@@ -56,39 +56,39 @@
         var sidebar = document.querySelector(".sidebar");
         var sidebarElements = [
             document.getElementById("product"),
-            document.getElementById("sale"),
-            document.getElementById("purchase"),
-            document.getElementById("inventory"),
-            document.getElementById("transfer"),
-            document.getElementById("accounting"),
-            document.getElementById("customer"),
-            document.getElementById("vendor"),
-            document.getElementById("report"),
-            document.getElementById("setting"),
+            // document.getElementById("sale"),
+            // document.getElementById("purchase"),
+            // document.getElementById("inventory"),
+            // document.getElementById("transfer"),
+            // document.getElementById("accounting"),
+            // document.getElementById("customer"),
+            // document.getElementById("vendor"),
+            // document.getElementById("report"),
+            // document.getElementById("setting"),
         ];
 
         var navbarTogglers = [
             document.getElementById("navbar-toggler"),
-            document.getElementById("navbar-toggler2"),
-            document.getElementById("navbar-toggler3"),
-            document.getElementById("navbar-toggler4"),
-            document.getElementById("navbar-toggler5"),
-            document.getElementById("navbar-toggler6"),
-            document.getElementById("navbar-toggler7"),
-            document.getElementById("navbar-toggler8"),
-            document.getElementById("navbar-toggler9"),
-            document.getElementById("navbar-toggler10"),
+            // document.getElementById("navbar-toggler2"),
+            // document.getElementById("navbar-toggler3"),
+            // document.getElementById("navbar-toggler4"),
+            // document.getElementById("navbar-toggler5"),
+            // document.getElementById("navbar-toggler6"),
+            // document.getElementById("navbar-toggler7"),
+            // document.getElementById("navbar-toggler8"),
+            // document.getElementById("navbar-toggler9"),
+            // document.getElementById("navbar-toggler10"),
         ];
 
         var productDropdown = document.getElementById("product"); // Dropdown element
-        var saleDropdown = document.getElementById("sale"); // Dropdown element
-        var purchaseDropdown = document.getElementById("purchase"); // Dropdown element
-        var inventoryDropdown = document.getElementById("inventory"); // Dropdown element
-        var transferDropdown = document.getElementById("transfer"); // Dropdown element
-        var accountingDropdown = document.getElementById("accounting"); // Dropdown element
-        var customerDropdown = document.getElementById("customer"); // Dropdown element
-        var vendorDropdown = document.getElementById("vendor"); // Dropdown element
-        var reportDropdown = document.getElementById("report"); // Dropdown element
+        // var saleDropdown = document.getElementById("sale"); // Dropdown element
+        // var purchaseDropdown = document.getElementById("purchase"); // Dropdown element
+        // var inventoryDropdown = document.getElementById("inventory"); // Dropdown element
+        // var transferDropdown = document.getElementById("transfer"); // Dropdown element
+        // var accountingDropdown = document.getElementById("accounting"); // Dropdown element
+        // var customerDropdown = document.getElementById("customer"); // Dropdown element
+        // var vendorDropdown = document.getElementById("vendor"); // Dropdown element
+        // var reportDropdown = document.getElementById("report"); // Dropdown element
         // var settingDropdown = document.getElementById("setting"); // Dropdown element
         var isDropdownOpen = false; // Flag to track dropdown state
 
