@@ -9,14 +9,14 @@
                 <i class="bi bi-grid"></i>
                 <p class="pt-1 mb-0">Dashboard</p>
             </a>
+            <div id="navbar-toggler" class="nav-item nav-link text-center {{ request()->is('admin/trainers') ? 'active' : '' }}">
+                <i class="bi bi-person"></i>
+                <p class="pt-1 mb-0">Trainer</p>
+            </div>
             <a href="{{ route('courses.index') }}" class="nav-item nav-link {{ request()->is('admin/courses') ? 'active' : '' }} text-center border-top">
                 <i class="bi bi-file-earmark-text"></i>
                 <p class="pt-1 mb-0">Courses</p>
             </a>
-            <div style="display: none" id="navbar-toggler" class="nav-item nav-link text-center {{ request()->is('admin/courses') ? 'active' : '' }}">
-                <i class="bi bi-box-seam"></i>
-                <p class="pt-1 mb-0">Courses</p>
-            </div>
         </div>
     </nav>
 </div>
@@ -24,8 +24,8 @@
     <div id="product" style="display: none">
         <ul class="list-unstyled m-0 rounded-5">
             <li>
-                <a href="{{ route('courses.index') }}" class="text-decoration-none nav-item nav-link ">
-                    <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />All Courses
+                <a href="{{ route('trainers.index') }}" class="text-decoration-none nav-item nav-link ">
+                    <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />All Trainers
                 </a>
             </li>
         </ul>

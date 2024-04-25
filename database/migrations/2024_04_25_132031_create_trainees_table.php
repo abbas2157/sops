@@ -11,15 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trainers', function (Blueprint $table) {
+        Schema::create('trainees', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('highest_qualification')->nullable();
-            $table->string('years_of_experience')->nullable();
-            $table->string('areas_of_expertise')->nullable();
-            $table->string('curriculum_vitae')->nullable();
             $table->string('date_of_birth')->nullable();
             $table->string('gender')->nullable();
+            $table->string('available_on_whatsapp')->nullable();
+            $table->string('city_from')->nullable();
+            $table->string('city_currently_living_in')->nullable();
+            $table->string('employed_status')->nullable();
+            $table->string('study_status')->nullable();
+            $table->string('has_computer_and_internet')->nullable();
+            $table->string('skill_experience')->nullable();
             $table->integer('created_by');
             $table->softDeletes();
             $table->timestamps();
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('trainers');
+        Schema::dropIfExists('trainees');
     }
 };
