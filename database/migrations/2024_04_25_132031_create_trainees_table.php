@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('study_status')->nullable();
             $table->string('has_computer_and_internet')->nullable();
             $table->string('skill_experience')->nullable();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('created_by');
             $table->softDeletes();
             $table->timestamps();

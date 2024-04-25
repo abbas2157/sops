@@ -47,22 +47,15 @@
                                 <div class="form-group fw-bold">
                                 <label for="gender">Gender <span class="text-danger">*</span></label>
                                     <select class="form-control form-select subheading mt-2" required name="gender" id="gender">
-                                        <option value="male">Mail</option>
+                                        <option value="male">Male</option>
                                         <option value="female">Female</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group fw-bold">
-                                <label for="course_id">Assign Course <span class="text-danger">*</span></label>
-                                    <select class="form-control form-select subheading mt-2" name="course_id" id="course_id" required>
-                                        <option selected disabled>Select Course</option>
-                                        @if($courses->isNotEmpty())
-                                            @foreach($courses as $course)
-                                                <option value="{{ $course->id ?? '' }}">{{ $course->name ?? '' }}</option>
-                                            @endforeach
-                                        @endif
-                                    </select>
+                                    <label for="date_of_birth" >Date of Birth <span class="text-danger">*</span></label>
+                                    <input type="date" name="date_of_birth" class="form-control subheading mt-2" id="date_of_birth" />
                                 </div>
                             </div>
                         </div>
@@ -70,7 +63,7 @@
                             <div class="col-md-12">
                                 <div class="form-group fw-bold">
                                     <label for="exampleFormControlSelect1">Trainer Description </label>
-                                    <textarea class="form-control subheading mt-1" id="exampleFormControlTextarea1" placeholder="Trainer Description (optinal)" rows="5"></textarea>
+                                    <textarea name="description" class="form-control subheading mt-1" id="exampleFormControlTextarea1" placeholder="Trainer Description (optinal)" rows="5"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -105,14 +98,20 @@
                         <div class="row mt-2">
                             <div class="col-md-6">
                                 <div class="form-group fw-bold">
-                                    <label for="exampleFormControlSelect3">Years of Experience <span class="text-danger">*</span></label>
-                                    <input type="text" name="email" class="form-control subheading mt-2" placeholder="Email" id="exampleFormControlSelect3" required/>
+                                    <label for="years_of_experience">Years of Experience <span class="text-danger">*</span></label>
+                                    <input type="number" name="years_of_experience" class="form-control subheading mt-2" placeholder="Years of Experience" id="years_of_experience" required/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group fw-bold">
-                                    <label for="date_of_birth" cl>Date of Birth <span class="text-danger">*</span></label>
-                                    <input type="date" name="date_of_birth" class="form-control subheading mt-2" id="date_of_birth" />
+                                    <label for="course_id">Assign Course <span class="text-danger">*</span></label>
+                                    <select class="form-control form-select subheading mt-2" name="course_id" id="course_id" required>
+                                        @if($courses->isNotEmpty())
+                                            @foreach($courses as $course)
+                                                <option value="{{ $course->id ?? '' }}">{{ $course->name ?? '' }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +125,7 @@
                     </div>
                     <div class="card-body">
                         <div class="file-upload">
-                            <input class="file-input" type="file" accept="images/*"/>
+                            <input class="file-input" name="profile_picture" type="file" accept="images/*" />
                             <img src="{{ asset('assets/img/upload-btn.svg') }}" class="img-fluid" alt=""/>
                             <div class="mt-2 subheading">
                                 Drag and Drop to upload or
