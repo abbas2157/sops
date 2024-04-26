@@ -30,8 +30,8 @@
         <thead>
             <tr>
                 <th class="align-middle">Course Name</th>
-                <th class="align-middle">Course UUID</th>
                 <th class="align-middle">Course Description</th>
+                <th class="align-middle">Course Steps</th>
                 <th class="align-middle">Action</th>
             </tr>
         </thead>
@@ -39,17 +39,28 @@
             @if($courses->isNotEmpty())
                 @foreach($courses as $course)
                     <tr>
-                        <td>{{ $course->name ?? '' }}</td>
-                        <td>{{ $course->uuid ?? '' }} </td>
-                        <td>{{ $course->description ?? '' }}</td>
-                        <td>
-                            <div class="d-flex gap-1 justify-content-start">
-                                <!-- <img src="{{ asset('assets/img/edit-2.svg') }}" class="btn p-0 me-2 ms-0" alt="" /> -->
-                                <img title="Delete Course" src="{{ asset('assets/img/plus-circle.svg') }}" onclick="$('#courses_destroy').submit();" class="btn p-0 m-0" alt=""/>
-                                <form id="courses_destroy" action="{{ route('courses.destroy',$course->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
+                        <td class="align-middle">{{ $course->name ?? '' }}</td>
+                        <td class="align-middle">{{ $course->description ?? '' }}</td>
+                        <td></td>
+                        <td class="align-middle">
+                            <div>
+                                <a class="btn btn-secondary bg-transparent border-0 text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa-solid fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#">
+                                        <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt=""/>
+                                        Edit Trainer
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" onclick="$('#courses_destroy').submit();"/>
+                                        Delete Course
+                                    </a>
+                                    <form id="courses_destroy" action="{{ route('courses.destroy',$course->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </div>
                             </div>
                         </td>
                     </tr>

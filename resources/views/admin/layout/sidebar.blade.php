@@ -13,6 +13,10 @@
                 <i class="bi bi-person"></i>
                 <p class="pt-1 mb-0">Trainer</p>
             </div>
+            <div id="navbar-toggler2" class="nav-item nav-link text-center {{ request()->is('admin/trainees*') ? 'active' : '' }}">
+                <i class="bi bi-person"></i>
+                <p class="pt-1 mb-0">Trainee</p>
+            </div>
             <a href="{{ route('courses.index') }}" class="nav-item nav-link {{ request()->is('admin/courses') ? 'active' : '' }} text-center border-top">
                 <i class="bi bi-file-earmark-text"></i>
                 <p class="pt-1 mb-0">Courses</p>
@@ -31,6 +35,20 @@
             <li>
                 <a href="{{ route('trainers.create') }}" class="text-decoration-none nav-item nav-link ">
                     <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />Create Trainer
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="sale" style="display: none">
+        <ul class="list-unstyled m-0 rounded-5">
+            <li>
+                <a href="{{ route('trainees.index') }}" class="text-decoration-none nav-item nav-link ">
+                    <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />All Trainees
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('trainees.create') }}" class="text-decoration-none nav-item nav-link ">
+                    <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />Create Trainee
                 </a>
             </li>
         </ul>

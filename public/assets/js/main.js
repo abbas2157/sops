@@ -56,7 +56,7 @@
         var sidebar = document.querySelector(".sidebar");
         var sidebarElements = [
             document.getElementById("product"),
-            // document.getElementById("sale"),
+            document.getElementById("sale"),
             // document.getElementById("purchase"),
             // document.getElementById("inventory"),
             // document.getElementById("transfer"),
@@ -69,7 +69,7 @@
 
         var navbarTogglers = [
             document.getElementById("navbar-toggler"),
-            // document.getElementById("navbar-toggler2"),
+            document.getElementById("navbar-toggler2"),
             // document.getElementById("navbar-toggler3"),
             // document.getElementById("navbar-toggler4"),
             // document.getElementById("navbar-toggler5"),
@@ -81,7 +81,7 @@
         ];
 
         var productDropdown = document.getElementById("product"); // Dropdown element
-        // var saleDropdown = document.getElementById("sale"); // Dropdown element
+        var saleDropdown = document.getElementById("sale"); // Dropdown element
         // var purchaseDropdown = document.getElementById("purchase"); // Dropdown element
         // var inventoryDropdown = document.getElementById("inventory"); // Dropdown element
         // var transferDropdown = document.getElementById("transfer"); // Dropdown element
