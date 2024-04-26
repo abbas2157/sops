@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('picture/update', [App\Http\Controllers\Admin\ProfileController::class, 'picture_update'])->name('change-profile.picture');
         });
         Route::resource('courses', App\Http\Controllers\Admin\CourseController::class);
+        Route::resource('intro-modules', App\Http\Controllers\Admin\Modules\IntroController::class);
         Route::resource('trainers', App\Http\Controllers\Admin\TrainerController::class);
         Route::resource('trainees', App\Http\Controllers\Admin\TraineeController::class);
     });
