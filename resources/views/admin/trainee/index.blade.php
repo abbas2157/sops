@@ -1,64 +1,93 @@
 @extends('admin.layout.app')
 @section('title')
-    <title>Courses | SOPS - School of Professional Skills</title>
+    <title>Trainees | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
 @stop
 @section('content')
 <div class="container-fluid pt-4 px-4 mb-5">
     <div class="border-bottom">
-        <h3 class="all-adjustment text-center pb-2 mb-0">Courses</h3>
+        <h3 class="all-adjustment text-center pb-2 mb-0">All Trainees</h3>
     </div>
-    <div class="card card-shadow border-0 mt-4 rounded-3">
-    <div class="card-header bg-white border-0 rounded-3">
+    <div class="card border-0 card-shadow rounded-3 p-2 mt-4">
+    <div class="card-header border-0 bg-white">
         <div class="row my-3">
-        <div class="col-md-4 col-12">
-            <div class="input-search position-relative">
-                <input type="text" id="search" placeholder="Search Table" class="form-control rounded-3 subheading"/>
-                <span class="fa fa-search search-icon text-secondary"></span>
+            <div class="col-md-3 col-12 mt-2">
+                <div class="input-search position-relative">
+                    <input type="text" placeholder="Search Table" class="form-control rounded-3 subheading"/>
+                    <span class="fa fa-search search-icon text-secondary"></span>
+                </div>
+            </div>
+            <div class="col-md-9 col-12 text-end">
+                <a href="#" class="btn create-btn rounded-3 mt-2">Filter <i class="bi bi-funnel"></i></a>
+                <a href="#" class="btn rounded-3 mt-2 excel-btn">Excel <i class="bi bi-file-earmark-text"></i></a>
+                <a href="#" class="btn pdf rounded-3 mt-2">Pdf <i class="bi bi-file-earmark"></i></a>
+                <a href="{{ route('trainees.create') }}" class="btn create-btn rounded-3 mt-2">Create Trainee<i class="bi bi-plus-lg"></i></a>
             </div>
         </div>
-        <div class="col-md-8 col-12 text-end">
-            <button class="btn create-btn rounded-3 mt-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"> 
-                Create Course <i class="bi bi-plus-lg"></i>
-            </button>
-        </div>
-        </div>
     </div>
-    <div class="table-responsive p-2">
-        <table class="table">
-        <thead>
-            <tr>
-                <th class="align-middle">Course Name</th>
-                <th class="align-middle">Course UUID</th>
-                <th class="align-middle">Course Description</th>
-                <th class="align-middle">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-secondary">Full Name</th>
+                    <th class="text-secondary">Email</th>
+                    <th class="text-secondary">Phone No</th>
+                    <th class="text-secondary">City</th>
+                    <th class="text-secondary">Skills of Experience</th>
+                    <th class="text-secondary">Status</th>
+                    <th class="text-secondary">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if($trainees->isNotEmpty())
+                    @foreach($trainees as $trainee)
+                    <tr>
+                        <td class="align-middle">{{ $trainee->full_name ?? '' }}</td>
+                        <td class="align-middle"><a href="mailto:{{ $trainee->email ?? '' }}" class="text-decoration-none">{{ $trainee->email ?? '' }}</a></td>
+                        <td class="align-middle"><a href="tel:{{ $trainee->phone ?? '' }}" class="text-decoration-none">{{ $trainee->phone ?? '' }}</a></td>
+
+                        <td class="align-middle">{{ $trainee->trainee->city_from ?? '' }}</td>
+                        <td class="align-middle">{{ $trainee->trainee->skill_experience ?? '' }}</td>
+                        <td class="align-middle">
+                            @if(is_null($trainee->email_verified_at))
+                                <span class="btn create-btn rounded-3 text-center">Pending</span>
+                            @else
+                                <span class="badges green-border text-center">Verified</span>
+                            @endif
+                        </td>
+                        <td class="align-middle">
+                            <div>
+                                <a class="btn btn-secondary bg-transparent border-0 text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa-solid fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
+
+                                    <a class="dropdown-item" href="#">
+                                        <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt=""/>
+                                        Edit Trainer
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt=""/>
+                                        Delete Trainer
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td colspan="6" class="align-middle text-center">
+                        No Trainee Found
+                    </td>
+                </tr>
+            @endif
+            </tbody>
         </table>
     </div>
     </div>
 </div>
-@include('admin.courses.create')
 @stop
 @section('js')
-<script>
-    $("#search").on("keyup paste change", function() {
-    var value = $(this).val().toLowerCase();
-    $("table tr").each(function(index) {
-        if (index != 0) {
-            $row = $(this);
-            var id = $row.find("td:first").text();
-            if (id.toLowerCase().indexOf(value) != 0) {
-                $(this).hide();
-            }
-            else {
-                $(this).show();
-            }
-        }
-    });
-});
-    </script>
 @stop

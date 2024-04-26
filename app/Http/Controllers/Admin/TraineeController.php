@@ -4,7 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\{User,Course,Trainee};
+use Exception;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 class TraineeController extends Controller
 {
     /**
@@ -12,7 +17,9 @@ class TraineeController extends Controller
      */
     public function index()
     {
-        //
+        $trainees = User::with('trainee')->where('type','trainee')->paginate(10);
+        // dd($trainers->toArray());
+        return view('admin.trainee.index',compact('trainees'));
     }
 
     /**
@@ -20,7 +27,8 @@ class TraineeController extends Controller
      */
     public function create()
     {
-        //
+        $courses = Course::get();
+        return view('admin.trainee.create',compact('courses'));
     }
 
     /**
@@ -28,7 +36,53 @@ class TraineeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            DB::beginTransaction();
+            $uuid = Str::uuid();
+            $user = new User;
+            $user->uuid = $uuid;
+            $user->name = $request->name;
+            $user->last_name = $request->last_name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->password = Hash::make($uuid);
+            if($request->hasFile('profile_picture'))
+            {
+                $file = $request->file('profile_picture');
+                $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
+                $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+                $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
+                $file->move(public_path('profile_pictures'),$filename);
+                $user->profile_picture = $filename;
+            }
+            $user->type = 'trainee';
+            $user->save();
+
+            $trainee = new Trainee;
+            $trainee->user_id = $user->id;
+            $trainee->gender = $request->gender;
+            $trainee->description = $request->description;
+            $trainee->city_from = $request->city_from;
+            $trainee->city_currently_living_in = $request->city_currently_living_in;
+            $trainee->skill_experience = $request->skill_experience;
+            $trainee->date_of_birth = $request->date_of_birth;
+            $trainee->available_on_whatsapp = isset($request->available_on_whatsapp) ? $request->available_on_whatsapp : 'no';
+            $trainee->employed_status = isset($request->employed_status) ? $request->employed_status : 'no';
+            $trainee->study_status = isset($request->study_status) ? $request->study_status : 'no';
+            $trainee->has_computer_and_internet = isset($request->has_computer_and_internet) ? $request->has_computer_and_internet : 'no';
+            $trainee->created_by = Auth::user()->id;
+            $trainee->save();
+
+            DB::commit();
+            return back();
+        } catch (Exception $e) {
+            // Rollback the transaction if an error occurs
+            DB::rollBack();
+            echo $e->getMessage();
+            // Return or throw an exception to stop execution
+
+        }
+
     }
 
     /**
