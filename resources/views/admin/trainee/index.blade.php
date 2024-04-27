@@ -63,14 +63,18 @@
                                 </a>
                                 <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
 
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="{{route('trainees.edit',$trainee->id)}}">
                                         <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt=""/>
                                         Edit Trainer
                                     </a>
-                                    <a class="dropdown-item" href="#">
-                                        <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt=""/>
-                                        Delete Trainer
-                                    </a>
+                                    <form action="{{ route('trainees.destroy', $trainee->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="dropdown-item">
+                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            Delete Trainee
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </td>
