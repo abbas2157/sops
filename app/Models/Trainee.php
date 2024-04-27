@@ -9,4 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Trainee extends Model
 {
     use HasFactory, SoftDeletes;
+    public function getSmallAttribute()
+    {
+        return strtolower($this->city_from);
+    }
 }

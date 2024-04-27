@@ -57,4 +57,8 @@ class User extends Authenticatable
     {
         return $this->name . " " . $this->last_name;
     }
+    public function getSmallAttribute()
+    {
+        return strtolower($this->city_from);
+    }
 }
