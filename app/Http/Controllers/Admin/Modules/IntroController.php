@@ -23,16 +23,24 @@ class IntroController extends Controller
         if(is_null($course))
         abort(404);
 
-        $intros = IntroModule::where('course_id')->get();
+        $intros = IntroModule::where('course_id',$course->id)->get();
         return view('admin.module.intro.index',compact('intros','course'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if(!$request->has('id') || empty($request->id))
+        abort(404);
+
+        $course = Course::where('uuid',$request->id)->select('id','uuid','name')->first();
+        if(is_null($course))
+        abort(404);
+    
+        $intros = IntroModule::where('course_id',$course)->count();
+        return view('admin.module.intro.create',compact('intros','course'));
     }
 
     /**
