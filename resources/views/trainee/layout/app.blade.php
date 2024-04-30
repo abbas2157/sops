@@ -40,13 +40,13 @@
       <!-- Spinner End -->
 
       <!-- Sidebar Start -->
-      @include('admin.layout.sidebar')
+      @include('trainee.layout.sidebar')
       <!-- Sidebar End -->
 
       <!-- Content Start -->
       <div class="content">
         <!-- Navbar Start -->
-        @include('admin.layout.navbar')
+        @include('trainee.layout.navbar')
         <!-- Navbar End -->
         @yield('content')
         <div class="container-fluid pt-4 px-4 mb-5 main-footer">
@@ -139,7 +139,7 @@
     <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <!-- Template Javascript -->
-    <script src="{{ asset('assets/js/admin-main.js') }}"></script>
+    <script src="{{ asset('assets/js/trainee-main.js') }}"></script>
     @yield('js')
   </body>
 </html>

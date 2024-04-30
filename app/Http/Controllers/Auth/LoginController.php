@@ -68,9 +68,14 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+            // dd($user->type);
             if($user->type == 'admin')
             {
                 return redirect()->intended('admin');
+            }
+            if($user->type == 'trainee')
+            {
+                return redirect()->intended('trainee');
             }
             return redirect()->intended('/')->withSuccess('Signed in');
         }

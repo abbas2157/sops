@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('trainee.layout.app')
 @section('title')
     <title>Profile | SOPS - School of Professional Skills</title>
 @stop
@@ -40,14 +40,14 @@
         <div class="card border-0 rounded-3 card-shadow h-100">
         <div class="card-body h-100">
             <div class="tab">
-            <button class="tablinks d-flex justify-content-between" id="defaultOpen" onclick="openCity(event, 'Personal-Info')">
-                Profile Info
-                <img src="{{ asset('assets/img/profile-info.svg') }}" alt="" />
-            </button>
-            <button class="tablinks d-flex justify-content-between mt-2" id="passwordOpen" onclick="openCity(event, 'Change-password')">
-                Change Password
-                <img src="{{ asset('assets/img/change-password.svg') }}" alt="" />
-            </button>
+                <button class="tablinks d-flex justify-content-between" id="defaultOpen"  onclick="openCity(event, 'Personal-Info')">
+                    Profile Info
+                    <img src="{{ asset('assets/img/profile-info.svg') }}" alt="" />
+                </button>
+                <button class="tablinks d-flex justify-content-between mt-2" id="passwordOpen" onclick="openCity(event, 'Change-password')">
+                    Change Password
+                    <img src="{{ asset('assets/img/change-password.svg') }}" alt="" />
+                </button>
             </div>
         </div>
         </div>
@@ -64,14 +64,15 @@
                             <img src="{{ asset('profile_pictures/'.Auth::user()->profile_picture) }}" class="img-fluid w-100 change-picture-btn profile-img" style="border-radius: 50%" alt=""/>
                         @endif
                     </div>
-                    <div class="col-md-5 py-4">
+                    <div class="col-md-5 py-2">
                         <h4 class="mb-3 all-adjustment w-100 border-0">
                             {{ Auth::user()->name ?? '' }}
                         </h4>
                         <p class="mb-0">{{ Auth::user()->email ?? '' }}</p>
+                        <p class="mb-0">{{ Auth::user()->phone ?? '' }}</p>
                     </div>
                     <div class="col-md-4 text-end">
-                        <form enctype="multipart/form-data" id="profile_picture_form" method="post" action="{{ route('change-profile.picture') }}">
+                        <form enctype="multipart/form-data" id="profile_picture_form" method="post" action="{{ route('trainee.change-profile.picture') }}">
                         @csrf
                             <input type="file" name="profile_picture" id="profile_picture" accept="images/*" onchange="form.submit()" class="fileInput" style="display: none"  required/>
                             <button id="change-picture-btn" class="change-picture-btn btn create-btn" type="button">
@@ -146,7 +147,7 @@
                             <div class="form-group fw-bold">
                                 <label for="exampleFormControlSelect1" >Current Password</label >
                                 <div class="password-container">
-                                    <input type="password" name="current_password" class="form-control subheading" placeholder="********" required />
+                                    <input type="password" name="current_password" class="form-control subheading" placeholder="********"/>
                                     <img src="{{ asset('assets/img/profile-changed-password.svg') }}" class="password-toggle pe-2" onclick="togglePasswordVisibility(this)" alt="" />
                                     @if ($errors->has('current_password'))
                                         <span class="text-danger text-left">{{ $errors->first('current_password') }}</span>
@@ -160,7 +161,7 @@
                             <div class="form-group fw-bold">
                                 <label for="exampleFormControlSelect1" >New Password</label>
                                 <div class="password-container">
-                                    <input type="password" name="new_password" class="form-control subheading" placeholder="********" required />
+                                    <input type="password" name="new_password" class="form-control subheading" placeholder="********"/>
                                     <img src="{{ asset('assets/img/profile-changed-password.svg') }}" class="password-toggle pe-2" onclick="togglePasswordVisibility(this)" alt=""/>
                                     @if ($errors->has('new_password'))
                                         <span class="text-danger text-left">{{ $errors->first('new_password') }}</span>
@@ -172,7 +173,7 @@
                             <div class="form-group fw-bold">
                                 <label for="exampleFormControlSelect1">Retype New Password</label>
                                 <div class="password-container">
-                                    <input type="password" name="confirm_new_password" class="form-control subheading" placeholder="********" required />
+                                    <input type="password" name="confirm_new_password" class="form-control subheading" placeholder="********" />
                                     <img src="{{ asset('assets/img/profile-changed-password.svg') }}" class="password-toggle pe-2" onclick="togglePasswordVisibility(this)" alt=""/>
                                     @if ($errors->has('confirm_new_password'))
                                         <span class="text-danger text-left">{{ $errors->first('confirm_new_password') }}</span>
@@ -205,6 +206,7 @@
         document.getElementById(cityName).style.display = "block";
         evt.currentTarget.className += " active";
       }
+
         @if(request()->has('password'))
             document.getElementById("passwordOpen").click();
         @else

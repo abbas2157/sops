@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-    <title>Dashboard | SOPS - School of Professional Skills</title>
+    <title>Admin Dashboard | SOPS - School of Professional Skills</title>
 @stop
 @section('content')
 <!-- Sale & Revenue Start -->
