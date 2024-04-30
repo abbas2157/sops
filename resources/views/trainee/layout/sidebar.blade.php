@@ -9,7 +9,7 @@
                 <i class="bi bi-grid"></i>
                 <p class="pt-1 mb-0">Dashboard</p>
             </a>
-            <a href="{{ route('courses.index') }}" class="nav-item nav-link {{ request()->is('admin/courses') ? 'active' : '' }} text-center border-top">
+            <a href="{{ route('trainee.courses') }}" class="nav-item nav-link {{ request()->is('admin/courses') ? 'active' : '' }} text-center border-top">
                 <i class="bi bi-file-earmark-text"></i>
                 <p class="pt-1 mb-0">Courses</p>
             </a>

@@ -61,7 +61,7 @@
                         @if(is_null(Auth::user()->profile_picture))
                             <img src="{{ asset('assets/img/profile-img.png') }}" class="img-fluid w-100 change-picture-btn profile-img" alt=""/>
                         @else
-                            <img src="{{ asset('profile_pictures/'.Auth::user()->profile_picture) }}" class="img-fluid w-100 change-picture-btn profile-img" style="border-radius: 50%" alt=""/>
+                            <img src="{{ asset('profile_pictures/'.Auth::user()->profile_picture) }}" class="img-fluid w-100 change-picture-btn profile-img" style="border-radius: 50%;height: 100px;width: 100px !important;" alt=""/>
                         @endif
                     </div>
                     <div class="col-md-5 py-2">
