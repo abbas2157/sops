@@ -13,4 +13,8 @@ class Trainer extends Model
     {
         return $this->belongsTo(Course::class,'course_id','id');
     }
+    public function createdby()
+    {
+        return $this->belongsTo(User::class,'created_by','id')->select('id','name');
+    }
 }

@@ -13,4 +13,8 @@ class Trainee extends Model
     {
         return strtolower($this->city_from);
     }
+    public function createdby()
+    {
+        return $this->belongsTo(User::class,'created_by','id');
+    }
 }

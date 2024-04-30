@@ -23,7 +23,8 @@ class IntroController extends Controller
         if(is_null($course))
         abort(404);
 
-        $intros = IntroModule::where('course_id',$course->id)->get();
+        $intros = IntroModule::where('course_id',$course->id)->with('createdby')->get();
+        // dd($intros->toArray());
         return view('admin.module.intro.index',compact('intros','course'));
     }
 
@@ -48,7 +49,26 @@ class IntroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $uuid = Str::uuid();
+        $intro = new IntroModule;
+        $intro->uuid = $uuid;
+        $intro->steps_no = $request->steps_no;
+        $intro->title = $request->title;
+        $intro->video = $request->video;
+        $intro->course_id = $request->course_id;
+        $trainer->created_by = Auth::user()->id;
+        $intro->short_description = $request->short_description;
+        $intro->description = $request->description;
+        if($request->hasFile('assignment'))
+        {
+            $file = $request->file('assignment');
+            $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
+            $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+            $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
+            $file->move(public_path('course/intro/assignments'),$filename);
+            $intro->assignment = $filename;
+        }
+        $intro->save();
     }
 
     /**

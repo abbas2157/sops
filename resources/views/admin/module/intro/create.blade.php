@@ -10,9 +10,10 @@
         <div class="border-bottom">
             <h3 class="all-adjustment text-center pb-2 mb-0" style="width: 30%;">Create {{ $course->name ?? '' }}'s Intro</h3>
         </div>
-        <form enctype="multipart/form-data" id="" method="post" action="{{ route('trainees.store') }}">
+        <form enctype="multipart/form-data" id="" method="post" action="{{ route('intro-modules.store') }}">
             @csrf
             @method('POST')
+            <input type="hidden" value="{{ $course->id ?? '' }}" name="course_id">
             <div class="row mt-4">
                 <div class="col-md-9">
                     <div class="card rounded-3 border-0 card-shadow">
@@ -49,13 +50,10 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-12">
+                                    <textarea style="display:none" id="description" name="description"></textarea>
                                     <div class="form-group fw-bold">
                                         <label for="description">Description </label>
-                                        <div id="editor">
-                                            <p>Hello World!</p>
-                                            <p>Some initial <strong>bold</strong> text</p>
-                                            <p><br /></p>
-                                        </div>
+                                        <div id="editor" style="height: 250px"></div>
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +61,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card rounded-3 border-0 mt-3 card-shadow">
+                    <div class="card rounded-3 border-0 card-shadow">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -105,11 +103,15 @@
 
   ['clean']                                         // remove formatting button
 ];
-  const quill = new Quill('#editor', {
-    modules: {
-    toolbar: toolbarOptions
-  },
-    theme: 'snow'
-  });
+    const quill = new Quill('#editor', {
+        modules: {
+        toolbar: toolbarOptions
+    },
+        theme: 'snow'
+    });
+    quill.on('text-change', () => {
+        const delta = quill.getSemanticHTML();
+        $('#description').html(delta);
+    });
 </script>
 @stop

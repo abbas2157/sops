@@ -9,4 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class IntroModule extends Model
 {
     use HasFactory, SoftDeletes;
+    public function createdby()
+    {
+        return $this->belongsTo(User::class,'created_by','id');
+    }
 }

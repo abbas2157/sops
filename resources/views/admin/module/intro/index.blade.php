@@ -27,12 +27,11 @@
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table">
+        <table class="table table-bordered">
             <thead class="fw-bold">
                 <tr>
                     <th>Step No</th>
                     <th>Title</th>
-                    <th>Short Description</th>
                     <th>Created By</th>
                     <th>Created at</th>
                     <th>Status</th>
@@ -43,11 +42,10 @@
                 @if($intros->isNotEmpty())
                     @foreach($intros as $intro)
                         <tr>
-                            <td class="align-middle"><span class="badges tier-one-bg text-center rounded-3">Step 1</span></td>
-                            <td class="align-middle">Thomas M. Martin</td>
-                            <td class="align-middle">+1 234 234 2344</td>
-                            <td class="align-middle">Thomas@Mail.com</td>
-                            <td class="align-middle">837464738</td>
+                            <td class="align-middle"><span class="badges tier-one-bg text-center rounded-3">{{ $intro->steps_no ?? '' }}</span></td>
+                            <td class="align-middle">{{ $intro->title ?? '' }}</td>
+                            <td class="align-middle">{{ $intro->createdby->name ?? '' }}</td>
+                            <td class="align-middle">{{ $intro->created_at ?? '' }}</td>
                             <td class="align-middle">
                                 <span class="badges green-border text-center">Open</span>
                             </td>
