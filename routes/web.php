@@ -20,7 +20,7 @@ Route::group(['middleware' => ['guest']], function() {
 });
 Route::group(['middleware' => ['auth']], function() {
     Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'destroy'])->name('logout');
-    Route::get('/', function(){return view('welcome');})->name('admin');
+    Route::get('/', function(){return view('frontend.index');})->name('admin');
     Route::group(['prefix' => 'admin'], function(){
         Route::get('/', function(){return view('welcome');})->name('admin');
         Route::group(['prefix' => 'profile'], function(){
