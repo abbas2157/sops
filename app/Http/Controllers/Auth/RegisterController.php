@@ -57,7 +57,7 @@ class RegisterController extends Controller
             }
             if($user->type == 'trainee')
             {
-                return redirect()->intended('trainee');
+                return redirect('trainee/profile?details');
             }
         }
         $validator['emailPassword'] = 'Something Went Wrong.';
