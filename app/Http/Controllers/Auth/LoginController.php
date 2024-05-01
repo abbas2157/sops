@@ -36,8 +36,9 @@ class LoginController extends Controller
     }
     public function reset_password(string $id)
     {
-        $id = decrypt($id);
-        $user = User::findOrFail($id);
+        $user = User::where('uuid',$id)->first();
+        if(is_null($user))
+            abort(404);
         return view('auth.reset-password',compact('user'));
     }
     public function change_password(Request $request)
@@ -77,7 +78,7 @@ class LoginController extends Controller
             {
                 return redirect()->intended('trainee');
             }
-            return redirect()->intended('/')->withSuccess('Signed in');
+            // return redirect()->intended('/')->withSuccess('Signed in');
         }
         $validator['emailPassword'] = 'Email address or password is incorrect.';
         return redirect("login")->withErrors($validator);

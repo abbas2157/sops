@@ -36,10 +36,10 @@
                             <form class="signup-input" method="post" action="{{ route('forgot-password.send-email') }}">
                                 @csrf
                                 <div class="password-container">
-                                    <input type="password" id="password" name="password" class="password-input form-control subheading" required placeholder="Password" />
-                                    <img src="{{ asset('assets/img/lock.svg') }}" class="password-toggle pe-2" onclick="togglePasswordVisibility('password')" alt="" />
-                                    @if ($errors->has('password'))
-                                        <span class="text-danger text-left">{{ $errors->first('password') }}</span>
+                                    <input type="email" id="email" name="email" class="password-input form-control subheading" required placeholder="Enter Email" />
+                                    <img src="{{ asset('assets/img/mail.svg') }}" class="password-toggle pe-2"  alt="" />
+                                    @if ($errors->has('email'))
+                                        <span class="text-danger text-left">{{ $errors->first('email') }}</span>
                                     @endif
                                 </div>
                                 <div class="row text-white keep-me-logged">
