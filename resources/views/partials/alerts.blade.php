@@ -1,0 +1,5 @@
+@if(is_null(Auth::user()->trainee))
+    <div class="alert alert-warning" role="alert">
+        This is a warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+    </div>
+@endif

@@ -220,7 +220,7 @@
                 </div>
             </div>
         </div>
-        <button class="btn save-btn text-white mt-3">Submit</button>
+        <button class="btn save-btn text-white mt-3">Update Trainee</button>
         </form>
     </div>
 @stop

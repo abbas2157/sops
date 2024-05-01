@@ -14,8 +14,8 @@ Route::group(['middleware' => ['guest']], function() {
         Route::post('perform', [App\Http\Controllers\Auth\LoginController::class, 'store'])->name('login.perform');
     });
     Route::group(['prefix' => 'register'], function(){
-        // Route::get('/', [App\Http\Controllers\Frontend\Auth\RegisterController::class, 'create'])->name('register');
-        // Route::post('perform', [App\Http\Controllers\Frontend\Auth\RegisterController::class, 'store'])->name('register.perform');
+        Route::get('trainee', [App\Http\Controllers\Auth\RegisterController::class, 'trainee'])->name('register.trainee');
+        Route::post('perform', [App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('register.perform');
     });
 });
 Route::group(['middleware' => ['auth']], function() {
@@ -36,7 +36,6 @@ Route::group(['middleware' => ['auth']], function() {
             Route::resource('trainees', App\Http\Controllers\Admin\TraineeController::class);
         });
     });
-
     Route::middleware([App\Http\Middleware\EnsureUserIsTrainee::class])->group(function () {
         Route::get('/', function(){return view('frontend.index');})->name('frontend');
         Route::group(['prefix' => 'trainee'], function(){
