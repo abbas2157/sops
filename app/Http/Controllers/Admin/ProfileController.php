@@ -66,7 +66,7 @@ class ProfileController extends Controller
             $validator['current_password'] = 'Current Password is Invalid';
             return redirect('admin/profile?password')->withErrors($validator);
         }
- 
+
         // Current password and new password same
         if (strcmp($request->get('current_password'), $request->new_password) == 0)
         {

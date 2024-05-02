@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Setting;
 
 class SettingController extends Controller
 {
@@ -20,7 +21,8 @@ class SettingController extends Controller
      */
     public function create()
     {
-        //
+        $setting = Setting::first();
+        return view('admin.setting.index',compact('setting'));
     }
 
     /**
@@ -28,9 +30,52 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
+    }
+    public function email_settings(Request $request)
+    {
+
+        $id = $request->input('id');
+       $data = json_encode($request->except(['_token','id']));
+       if(is_null($id)){
+        $setting = new Setting();
+       }else{
+        $setting = Setting::findorfail($id);
+       }
+
+       $setting->email_detail = $data;
+       $setting->save();
+       $validator['success'] = 'Email setting Updated.';
+        return back()->withErrors($validator);
+    }
+    public function trainee_settings(Request $request)
+    {
+        $id = $request->input('id');
+       $data = json_encode($request->except(['_token','id']));
+       if(is_null($id)){
+        $setting = new Setting();
+       }else{
+        $setting = Setting::findorfail($id);
+       }
+       $setting->trainee_detail = $data;
+       $setting->save();
+       $validator['success'] = 'Email setting Updated.';
+       return back()->withErrors($validator);
+    }
+    public function trainer_settings(Request $request)
+    {
+        $id = $request->input('id');
+       $data = json_encode($request->except(['_token','id']));
+       if(is_null($id)){
+        $setting = new Setting();
+       }else{
+        $setting = Setting::findorfail($id);
+       }
+       $setting->trainer_detail = $data;
+       $setting->save();
+       $validator['success'] = 'Email setting Updated.';
+       return back()->withErrors($validator);
+    }
     /**
      * Display the specified resource.
      */
