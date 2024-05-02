@@ -11,9 +11,17 @@ class IntroController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if(!$request->has('uuid') || empty($request->uuid))
+            abort(404);
+
+        $course = Course::where('uuid',$request->uuid)->select('id','uuid','name')->first();
+        if(is_null($course))
+            abort(404);
+
+        $intros = IntroModule::where('course_id',$course->id)->with('createdby')->get();
+        return view('frontend.module.intro.index',compact('intros','course'));
     }
 
     /**

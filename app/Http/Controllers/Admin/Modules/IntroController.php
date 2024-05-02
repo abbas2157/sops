@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use App\Models\IntroModule;
-use App\Models\Course;
+use App\Models\{Course,IntroModule};
 
 class IntroController extends Controller
 {
