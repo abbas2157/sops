@@ -181,7 +181,7 @@
                 <p style="margin: 0;"> If you want to login in our System please use these creadentials. </p>
                 <p style="margin: 0;"> <strong>Login Page </strong> : <a href="{{ route('login') }}"> {{ route('login') }} </a> </p>
                 <p style="margin: 0;"> <strong> Email </strong> : <a href="mail:{{ $data->email }}"> {{ $data->email }} </a> </p>
-                <p style="margin: 0;"> <strong> Password </strong> : {{ $data->uuid }} </p>
+                <p style="margin: 0;"> <strong> Password </strong> : {{ (isset($data->register)) ? $data->password : $data->uuid }} </p>
                 <br>
                 <p style="margin: 0;">If you have any questions, send us an email.<p style="margin: 0;">
                  

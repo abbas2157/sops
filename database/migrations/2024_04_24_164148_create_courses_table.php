@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->text('description');
             $table->string('image')->nullable();
+            $table->tinyInteger('list')->default(0);
             $table->integer('created_by');
             $table->softDeletes();
             $table->timestamps();

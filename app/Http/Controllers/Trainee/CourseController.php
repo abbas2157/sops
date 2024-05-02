@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Trainee;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Course;
 
 class CourseController extends Controller
 {
@@ -12,7 +13,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('trainee.courses.index');
+        $courses = Course::with('createdby')->where('list',1)->paginate(20);
+        return view('trainee.courses.index',compact('courses'));
     }
 
     /**
