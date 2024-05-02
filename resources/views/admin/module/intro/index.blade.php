@@ -47,7 +47,11 @@
                             <td class="align-middle">{{ $intro->createdby->name ?? '' }}</td>
                             <td class="align-middle">{{ $intro->created_at ?? '' }}</td>
                             <td class="align-middle">
-                                <span class="badges green-border text-center">Open</span>
+                                @if($intro->lock == 1)
+                                    <span class="badges green-border text-center">Open</span>
+                                @else
+                                    <span class="badges red-border text-center">Lock</span>
+                                @endif
                             </td>
                             <td class="align-middle">
                             </td>

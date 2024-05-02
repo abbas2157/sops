@@ -85,7 +85,7 @@ class TrainerController extends Controller
 
             Mail::to('abbas8156@gmail.com')->send(new WelcomeEmail($user));
 
-            $validator['success'] = 'Profile Picture Updated.';
+            $validator['success'] = 'Trainer has been Updated.';
             return back()->withErrors($validator);
         } catch (Exception $e) {
             DB::rollBack();
