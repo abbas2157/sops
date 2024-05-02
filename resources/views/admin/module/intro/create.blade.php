@@ -16,6 +16,7 @@
             <input type="hidden" value="{{ $course->id ?? '' }}" name="course_id">
             <div class="row mt-4">
                 <div class="col-md-9">
+                    @include('partials.alerts')
                     <div class="card rounded-3 border-0 card-shadow">
                         <div class="card-body">
                             <div class="row">
@@ -69,6 +70,26 @@
                                         <label for="assignment">Assignment <span class="text-danger">*</span></label>
                                         <input type="file" name="assignment" class="form-control subheading mt-2" id="assignment" required/>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card rounded-3 border-0 mt-3 card-shadow">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-1">
+                                    <label for="myCheckbox09" class="checkbox d-flex mt-1">
+                                        <input class="checkbox__input" type="checkbox" id="lock" name="lock" value="0"/>
+                                        <svg class="checkbox__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+                                            <rect width="21" height="21" x=".5" y=".5" fill="#FFF"
+                                                stroke="rgba(76, 73, 227, 1)" rx="3" />
+                                            <path class="tick" stroke="rgba(76, 73, 227, 1)" fill="none"
+                                                stroke-linecap="round" stroke-width="3" d="M4 10l5 5 9-9" />
+                                        </svg>
+                                    </label>
+                                </div>
+                                <div class="col-10">
+                                    <label for="employment">By Default Lock?</label>
                                 </div>
                             </div>
                         </div>

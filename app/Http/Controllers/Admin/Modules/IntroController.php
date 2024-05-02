@@ -55,7 +55,8 @@ class IntroController extends Controller
         $intro->title = $request->title;
         $intro->video = $request->video;
         $intro->course_id = $request->course_id;
-        $trainer->created_by = Auth::user()->id;
+        $intro->lock = isset($request->lock) ? 0 : 1;
+        $intro->created_by = Auth::user()->id;
         $intro->short_description = $request->short_description;
         $intro->description = $request->description;
         if($request->hasFile('assignment'))
@@ -68,6 +69,8 @@ class IntroController extends Controller
             $intro->assignment = $filename;
         }
         $intro->save();
+        $validator['success'] = 'Step has been Created Successfully';
+        return back()->withErrors($validator);
     }
 
     /**
