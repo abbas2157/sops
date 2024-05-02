@@ -14,6 +14,7 @@
             @method('PUT')
             <div class="row mt-4">
                 <div class="col-md-8">
+                    @include('partials.alerts')
                     <div class="card rounded-3 border-0 card-shadow">
                         <div class="card-body">
                             <div class="row">
@@ -165,10 +166,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group fw-bold">
-                                        <label for="curriculum_vitae" cl>Curriculum Vitae <span
-                                                class="text-danger">*</span></label>
+                                        <label for="curriculum_vitae" cl>Curriculum Vitae </label>
                                         <input type="file" name="curriculum_vitae"
-                                            class="form-control subheading mt-2" id="curriculum_vitae" required />
+                                            class="form-control subheading mt-2" id="curriculum_vitae"  />
                                     </div>
                                 </div>
                             </div>

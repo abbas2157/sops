@@ -9,11 +9,13 @@
         <div class="border-bottom">
             <h3 class="all-adjustment text-center pb-2 mb-0">Create Trainee</h3>
         </div>
+        @include('partials.alerts')
         <form enctype="multipart/form-data" id="" method="post" action="{{ route('trainees.store') }}">
             @csrf
             @method('POST')
             <div class="row mt-4">
                 <div class="col-md-8">
+                    @include('partials.alerts')
                     <div class="card rounded-3 border-0 card-shadow">
                         <div class="card-body">
                             <div class="row">

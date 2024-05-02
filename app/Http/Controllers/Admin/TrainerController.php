@@ -168,7 +168,7 @@ class TrainerController extends Controller
         $trainer->course_id = isset($request->course_id) ?? $trainer->course_id;
         $trainer->save();
         DB::commit();
-        $validator['success'] = 'Profile Picture Updated.';
+        $validator['success'] = 'Trainer has been Updated.';
         return back()->withErrors($validator);
     }
     catch(Exception $e){
@@ -196,9 +196,8 @@ class TrainerController extends Controller
 
             $user->delete();
         }
-        $validate['success'] = 'Trainee Deleted Successfully';
+        $validate['success'] = 'Trainer Deleted Successfully';
         return back()->withErrors($validate);
-        // return redirect(route('trainers.index'));
 
     }
 }

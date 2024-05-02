@@ -26,6 +26,7 @@
             </div>
         </div>
     </div>
+    @include('partials.alerts')
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>

@@ -12,6 +12,7 @@
         @method('POST')
         <div class="row mt-4">
             <div class="col-md-8">
+                @include('partials.alerts')
                 <div class="card rounded-3 border-0 card-shadow">
                     <div class="card-body">
                         <div class="row">

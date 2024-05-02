@@ -54,37 +54,38 @@
     </div>
     <div class="col-md-9">
         <div id="Personal-Info" class="tabcontent">
-        <div class="card rounded-3 border-0 card-shadow h-100">
-            <div class="card-body">
-                <div class="row personal-info-row">
-                    <div class="col-md-3 col-xxl-2">
-                        @if(is_null(Auth::user()->profile_picture))
-                            <img src="{{ asset('assets/img/profile-img.png') }}" class="img-fluid w-100 change-picture-btn profile-img" alt=""/>
-                        @else
-                            <img src="{{ asset('profile_pictures/'.Auth::user()->profile_picture) }}" class="img-fluid w-100 change-picture-btn profile-img" style="border-radius: 50%;height: 100px;width: 100px !important;" alt=""/>
-                        @endif
-                    </div>
-                    <div class="col-md-5 py-4">
-                        <h4 class="mb-3 all-adjustment w-100 border-0">
-                            {{ Auth::user()->name ?? '' }}
-                        </h4>
-                        <p class="mb-0">{{ Auth::user()->email ?? '' }}</p>
-                    </div>
-                    <div class="col-md-4 text-end">
-                        <form enctype="multipart/form-data" id="profile_picture_form" method="post" action="{{ route('change-profile.picture') }}">
-                        @csrf
-                            <input type="file" name="profile_picture" id="profile_picture" accept="images/*" onchange="form.submit()" class="fileInput" style="display: none"  required/>
-                            <button id="change-picture-btn" class="change-picture-btn btn create-btn" type="button">
-                                Change Profile Picture
-                            </button>
-                        </form>
-                        <p class="remove-picture text-danger mt-2" style="cursor: pointer" >
-                            Remove Profile Picture
-                        </p>
+            @include('partials.alerts')
+            <div class="card rounded-3 border-0 card-shadow h-100">
+                <div class="card-body">
+                    <div class="row personal-info-row">
+                        <div class="col-md-3 col-xxl-2">
+                            @if(is_null(Auth::user()->profile_picture))
+                                <img src="{{ asset('assets/img/profile-img.png') }}" class="img-fluid w-100 change-picture-btn profile-img" alt=""/>
+                            @else
+                                <img src="{{ asset('profile_pictures/'.Auth::user()->profile_picture) }}" class="img-fluid w-100 change-picture-btn profile-img" style="border-radius: 50%;height: 100px;width: 100px !important;" alt=""/>
+                            @endif
+                        </div>
+                        <div class="col-md-5 py-4">
+                            <h4 class="mb-3 all-adjustment w-100 border-0">
+                                {{ Auth::user()->name ?? '' }}
+                            </h4>
+                            <p class="mb-0">{{ Auth::user()->email ?? '' }}</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <form enctype="multipart/form-data" id="profile_picture_form" method="post" action="{{ route('change-profile.picture') }}">
+                            @csrf
+                                <input type="file" name="profile_picture" id="profile_picture" accept="images/*" onchange="form.submit()" class="fileInput" style="display: none"  required/>
+                                <button id="change-picture-btn" class="change-picture-btn btn create-btn" type="button">
+                                    Change Profile Picture
+                                </button>
+                            </form>
+                            <p class="remove-picture text-danger mt-2" style="cursor: pointer" >
+                                Remove Profile Picture
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
             <form method="POST" action="{{ route('admin.profile.perform') }}">
                 @csrf
                 <div class="card rounded-3 border-0 card-shadow h-100 p-3 mt-4">

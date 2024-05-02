@@ -77,13 +77,14 @@ class TraineeController extends Controller
             $trainee->save();
 
             DB::commit();
-            return back();
-        } catch (Exception $e) {
-            // Rollback the transaction if an error occurs
-            DB::rollBack();
-            echo $e->getMessage();
-            // Return or throw an exception to stop execution
 
+            $validator['success'] = 'Trainee has been Created.';
+            return back()->withErrors($validator);
+        } catch (Exception $e) {
+
+            DB::rollBack();
+            $validator['error'] = $e->getMessage();
+            return back()->withErrors($validator);
         }
 
     }
@@ -114,9 +115,9 @@ class TraineeController extends Controller
         try{
             DB::beginTransaction();
             $user = User::findorfail($id);
-            $user->name = isset($request->name) ?? $user->name;
-            $user->last_name = isset($request->last_name) ?? $user->last_name;
-            $user->phone = isset($request->phone) ?? $user->phone;
+            $user->name = $request->name;
+            $user->last_name = $request->last_name;
+            $user->phone = $request->phone;
             if($request->hasFile('profile_picture'))
             {
                 if ($user->profile_picture && file_exists(public_path('profile_pictures/' . $user->profile_picture))) {
@@ -137,12 +138,12 @@ class TraineeController extends Controller
                 $trainee->user_id = $user->id;
                 $trainee->created_by = Auth::user()->id;
             }
-            $trainee->gender = isset($request->gender) ?? '';
-            $trainee->description = isset($request->description) ?? $trainee->description;
-            $trainee->city_from = isset($request->city_from) ?? $trainee->city_from;
-            $trainee->city_currently_living_in = isset($request->city_currently_living_in) ?? $trainee->city_currently_living_in;
-            $trainee->skill_experience = isset($request->skill_experience) ?? $trainee->skill_experience;
-            $trainee->date_of_birth = isset($request->date_of_birth) ?? $trainee->date_of_birth;
+            $trainee->gender = $request->gender;
+            $trainee->description = $request->description;
+            $trainee->city_from = $request->city_from;
+            $trainee->city_currently_living_in = $request->city_currently_living_in;
+            $trainee->skill_experience = $request->skill_experience;
+            $trainee->date_of_birth = $request->date_of_birth;
             $trainee->available_on_whatsapp = isset($request->available_on_whatsapp) ? $request->available_on_whatsapp : 'no';
             $trainee->employed_status = isset($request->employed_status) ? $request->employed_status : 'no';
             $trainee->study_status = isset($request->study_status) ? $request->study_status : 'no';
@@ -150,13 +151,12 @@ class TraineeController extends Controller
             $trainee->save();
 
             DB::commit();
-            return redirect(route('trainees.index'));
+            $validator['success'] = 'Trainee has been Updated.';
+            return back()->withErrors($validator);
         } catch (Exception $e) {
-            // Rollback the transaction if an error occurs
             DB::rollBack();
-            echo $e->getMessage();
-            // Return or throw an exception to stop execution
-
+            $validator['error'] = $e->getMessage();
+            return back()->withErrors($validator);
         }
     }
 
@@ -180,6 +180,5 @@ class TraineeController extends Controller
         }
         $validate['success'] = 'Trainee Deleted Successfully';
         return back()->withErrors($validate);
-        // return redirect(route('trainees.index'));
     }
 }
