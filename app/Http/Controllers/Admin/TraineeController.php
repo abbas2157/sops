@@ -6,9 +6,10 @@ use App\Models\{User,Course,Trainee,IntroModule,Trainer};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Exception;
+use App\Mail\ForgotPaswordMail;
 use Illuminate\Support\Str;
 use App\Mail\WelcomeEmail;
-use Exception;
 
 use function PHPUnit\Framework\fileExists;
 
@@ -74,7 +75,6 @@ class TraineeController extends Controller
             $trainee->has_computer_and_internet = isset($request->has_computer_and_internet) ? $request->has_computer_and_internet : 'no';
             $trainee->created_by = Auth::user()->id;
             $trainee->save();
-            
             DB::commit();
 
             Mail::to('abbas8156@gmail.com')->send(new WelcomeEmail($user));
@@ -98,6 +98,17 @@ class TraineeController extends Controller
         //
     }
 
+    public function send_email($email)
+    {
+
+        $user = User::where("email",$email)->first();
+        if(!is_null($user))
+        {
+        Mail::to('abbas8156@gmail.com')->send(new ForgotPaswordMail($user));
+        }
+        $validator['success'] = 'We have sent verification mail on your email. Please check your mailbox and follow instructions.';
+        return back()->withErrors($validator);
+    }
     /**
      * Show the form for editing the specified resource.
      */
