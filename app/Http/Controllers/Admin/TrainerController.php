@@ -40,50 +40,62 @@ class TrainerController extends Controller
      */
     public function store(Request $request)
     {
-        $uuid = Str::uuid();
-
-        $user = new User;
-        $user->uuid = $uuid;
-        $user->name = $request->name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->password = Hash::make($uuid);
-        if($request->hasFile('profile_picture'))
+        try
         {
-            $file = $request->file('profile_picture');
-            $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
-            $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
-            $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
-            $file->move(public_path('profile_pictures'),$filename);
-            $user->profile_picture = $filename;
-        }
-        $user->type = 'trainer';
-        $user->save();
+            DB::beginTransaction();
+            $uuid = Str::uuid();
 
-        $trainer = new Trainer;
-        $trainer->user_id = $user->id;
-        $trainer->gender = $request->gender;
-        $trainer->description = $request->description;
-        $trainer->highest_qualification = $request->highest_qualification;
-        $trainer->areas_of_expertise = $request->areas_of_expertise;
-        $trainer->years_of_experience = $request->years_of_experience;
-        $trainer->date_of_birth = $request->date_of_birth;
-        if($request->hasFile('curriculum_vitae'))
-        {
-            $file = $request->file('curriculum_vitae');
-            $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
-            $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
-            $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
-            $file->move(public_path('trainer/cv'),$filename);
-            $trainer->curriculum_vitae = $filename;
-        }
-        $trainer->created_by = Auth::user()->id;
-        $trainer->course_id = $request->course_id;
-        $trainer->save();
+            $user = new User;
+            $user->uuid = $uuid;
+            $user->name = $request->name;
+            $user->last_name = $request->last_name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->password = Hash::make($uuid);
+            if($request->hasFile('profile_picture'))
+            {
+                $file = $request->file('profile_picture');
+                $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
+                $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+                $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
+                $file->move(public_path('profile_pictures'),$filename);
+                $user->profile_picture = $filename;
+            }
+            $user->type = 'trainer';
+            $user->save();
 
-        $validator['success'] = 'Profile Picture Updated.';
-        return back()->withErrors($validator);
+            $trainer = new Trainer;
+            $trainer->user_id = $user->id;
+            $trainer->gender = $request->gender;
+            $trainer->description = $request->description;
+            $trainer->highest_qualification = $request->highest_qualification;
+            $trainer->areas_of_expertise = $request->areas_of_expertise;
+            $trainer->years_of_experience = $request->years_of_experience;
+            $trainer->date_of_birth = $request->date_of_birth;
+            if($request->hasFile('curriculum_vitae'))
+            {
+                $file = $request->file('curriculum_vitae');
+                $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
+                $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+                $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
+                $file->move(public_path('trainer/cv'),$filename);
+                $trainer->curriculum_vitae = $filename;
+            }
+            $trainer->created_by = Auth::user()->id;
+            $trainer->course_id = $request->course_id;
+            $trainer->save();
+
+            DB::commit();
+
+            $validator['success'] = 'Profile Picture Updated.';
+            return back()->withErrors($validator);
+        } catch (Exception $e) {
+            DB::rollBack();
+            $validator['error'] = $e->getMessage();
+            return back()->withErrors($validator);
+
+        }
+
     }
 
     /**

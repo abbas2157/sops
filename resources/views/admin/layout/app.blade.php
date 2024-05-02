@@ -20,6 +20,12 @@
     <!-- Template Stylesheet -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
     @yield('css')
+    <style>
+      .align-middle, .text-secondary
+        {
+            white-space:nowrap;
+        }
+    </style>
   </head>
 
   <body>

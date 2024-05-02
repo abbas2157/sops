@@ -47,8 +47,8 @@
                                 <div class="form-group fw-bold">
                                 <label for="gender">Gender <span class="text-danger">*</span></label>
                                     <select class="form-control form-select subheading mt-2" required name="gender" id="gender">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
                                     </select>
                                 </div>
                             </div>

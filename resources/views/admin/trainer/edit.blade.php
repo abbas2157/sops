@@ -1,13 +1,13 @@
 @extends('admin.layout.app')
 @section('title')
-    <title>Create Trainer | SOPS - School of Professional Skills</title>
+    <title>Update Trainer | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
 @stop
 @section('content')
     <div class="container-fluid py-5 px-4">
         <div class="border-bottom">
-            <h3 class="all-adjustment text-center pb-2 mb-0">Create Trainer</h3>
+            <h3 class="all-adjustment text-center pb-2 mb-0">Update Trainer</h3>
         </div>
         <form enctype="multipart/form-data" id="" method="post" action="{{ route('trainers.update',$trainer->id) }}">
             @csrf
@@ -58,16 +58,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group fw-bold">
                                         <label for="gender">Gender <span class="text-danger">*</span></label>
-                                        <select class="form-control form-select subheading mt-2" required name="gender"
-                                            id="gender">
-
-                                                <option value="male"
-                                                    {{ optional($trainer->trainer)->gender == 'male' ? 'selected' : '' }}>Male
-                                                </option>
-                                                <option value="female"
-                                                    {{ optional($trainer->trainer)->gender == 'female' ? 'selected' : '' }}>Female
-                                                </option>
-
+                                        <select class="form-control form-select subheading mt-2" required name="gender" id="gender">
+                                            <option value="Male" {{ optional($trainer->trainer)->gender == 'Male' ? 'selected' : '' }}>Male
+                                            </option>
+                                            <option value="Female" {{ optional($trainer->trainer)->gender == 'Female' ? 'selected' : '' }}>Female
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -83,12 +78,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect1">Trainer Description </label>
-                                        <textarea name="description" class="form-control subheading mt-1" id="exampleFormControlTextarea1"
-                                            placeholder="Trainer Description (optinal)" rows="5">
-                                            @if($trainer->trainer && $trainer->trainer->description)
-                                                {{ $trainer->trainer->description }}
-                                            @endif
-                                        </textarea>
+                                        <textarea name="description" class="form-control subheading mt-1" id="exampleFormControlTextarea1" placeholder="Trainer Description (optinal)" rows="5">{{ $trainer->trainer->description ?? '' }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -184,7 +174,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn save-btn text-white mt-3">Create Trainer</button>
+                    <button type="submit" class="btn save-btn text-white mt-3">Update Trainer</button>
                 </div>
             </div>
         </form>

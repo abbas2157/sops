@@ -3,6 +3,12 @@
     <title>Trainers | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
+<style>
+    .align-middle, .text-secondary
+    {
+        white-space:nowrap;
+    }
+</style>
 @stop
 @section('content')
     <div class="container-fluid pt-4 px-4 mb-5">
@@ -33,12 +39,13 @@
                     <thead>
                         <tr>
                             <th class="text-secondary">Full Name</th>
+                            <th class="text-secondary">Gender</th>
                             <th class="text-secondary">Email</th>
                             <th class="text-secondary">Phone No</th>
-                            <th class="text-secondary">Highest Qualification</th>
                             <th class="text-secondary">Areas of Expertise</th>
-                            <th class="text-secondary">Years of Experience</th>
                             <th class="text-secondary">Assigned Course</th>
+                            <th class="text-secondary">Created By</th>
+                            <th class="text-secondary">Created at</th>
                             <th class="text-secondary">Status</th>
                             <th class="text-secondary">Action</th>
                         </tr>
@@ -48,19 +55,23 @@
                             @foreach ($trainers as $train)
                                 <tr>
                                     <td class="align-middle">{{ $train->full_name ?? '' }}</td>
+                                    <td class="align-middle">{{ $train->trainer->gender ?? '' }}</td>
                                     <td class="align-middle"><a href="mailto:{{ $train->email ?? '' }}"
                                             class="text-decoration-none">{{ $train->email ?? '' }}</a></td>
-                                    <td class="align-middle"><a href="tel:{{ $train->phone ?? '' }}"
-                                            class="text-decoration-none">{{ $train->phone ?? '' }}</a></td>
-                                    <td class="align-middle">{{ $train->trainer->highest_qualification ?? '' }}</td>
+                                    <td class="align-middle" style="white-space:nowrap;"><a href="tel:{{ $train->phone ?? '' }}" class="text-decoration-none">{{ $train->phone ?? '' }}</a></td>
                                     <td class="align-middle">{{ $train->trainer->areas_of_expertise ?? '' }}</td>
-                                    <td class="align-middle">{{ $train->trainer->years_of_experience ?? '' }}</td>
                                     <td class="align-middle">{{ $train->trainer->course->name ?? '' }}</td>
+                                    <td class="align-middle">{{ $train->trainer->createdby->full_name ?? '' }}</td>
+                                    <td class="align-middle">{{ $train->created_at->format('M d, Y') ?? '' }}</td>
                                     <td class="align-middle">
                                         @if (is_null($train->email_verified_at))
                                             <span class="btn create-btn rounded-3 text-center">Pending</span>
                                         @else
-                                            <span class="badges green-border text-center">Verified</span>
+                                            @if($train->status == 'Active')
+                                                <span class="badges green-border text-center">Active</span>
+                                            @else
+                                                <span class="btn rounded-3 mt-2 excel-btn  text-center">BLOCKED</span>
+                                            @endif
                                         @endif
                                     </td>
                                     <td class="align-middle">
@@ -100,8 +111,8 @@
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="6" class="align-middle text-center">
-                                    No Course Found
+                                <td colspan="12" class="align-middle text-center">
+                                    No Trainer Found
                                 </td>
                             </tr>
                         @endif

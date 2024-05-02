@@ -31,10 +31,13 @@
             <thead>
                 <tr>
                     <th class="text-secondary">Full Name</th>
+                    <th class="text-secondary">Gender</th>
                     <th class="text-secondary">Email</th>
                     <th class="text-secondary">Phone No</th>
-                    <th class="text-secondary">City</th>
+                    <th class="text-secondary">City Name</th>
                     <th class="text-secondary">Skills of Experience</th>
+                    <th class="text-secondary">Created By</th>
+                    <th class="text-secondary">Created at</th>
                     <th class="text-secondary">Status</th>
                     <th class="text-secondary">Action</th>
                 </tr>
@@ -44,16 +47,23 @@
                     @foreach($trainees as $trainee)
                     <tr>
                         <td class="align-middle">{{ $trainee->full_name ?? '' }}</td>
+                        <td class="align-middle">{{ $trainee->trainee->gender ?? '' }}</td>
                         <td class="align-middle"><a href="mailto:{{ $trainee->email ?? '' }}" class="text-decoration-none">{{ $trainee->email ?? '' }}</a></td>
                         <td class="align-middle"><a href="tel:{{ $trainee->phone ?? '' }}" class="text-decoration-none">{{ $trainee->phone ?? '' }}</a></td>
 
                         <td class="align-middle">{{ $trainee->trainee->city_from ?? '' }}</td>
                         <td class="align-middle">{{ $trainee->trainee->skill_experience ?? '' }}</td>
+                        <td class="align-middle">{{ $trainee->trainee->createdby->full_name ?? '' }}</td>
+                        <td class="align-middle">{{ $trainee->created_at->format('M d, Y') ?? '' }}</td>
                         <td class="align-middle">
                             @if(is_null($trainee->email_verified_at))
                                 <span class="btn create-btn rounded-3 text-center">Pending</span>
                             @else
-                                <span class="badges green-border text-center">Verified</span>
+                                @if($trainee->status == 'Active')
+                                    <span class="badges green-border text-center">Active</span>
+                                @else
+                                    <span class="btn rounded-3 mt-2 excel-btn  text-center">BLOCKED</span>
+                                @endif
                             @endif
                         </td>
                         <td class="align-middle">
@@ -82,7 +92,7 @@
                 @endforeach
             @else
                 <tr>
-                    <td colspan="6" class="align-middle text-center">
+                    <td colspan="10" class="align-middle text-center">
                         No Trainee Found
                     </td>
                 </tr>

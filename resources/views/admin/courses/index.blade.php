@@ -26,12 +26,14 @@
         </div>
     </div>
     <div class="table-responsive p-2">
-        <table class="table">
+        <table class="table table-bordered">
         <thead>
             <tr>
                 <th class="align-middle">Course Name</th>
                 <th class="align-middle">Course Description</th>
                 <th class="align-middle">Course Steps</th>
+                <th class="align-middle">Created By</th>
+                <th class="align-middle">Created at</th>
                 <th class="align-middle">Action</th>
             </tr>
         </thead>
@@ -42,6 +44,8 @@
                         <td class="align-middle">{{ $course->name ?? '' }}</td>
                         <td class="align-middle">{{ $course->description ?? '' }}</td>
                         <td> <span class="btn create-btn rounded-3 text-center">Intro Module</span> </td>
+                        <td class="align-middle">{{ $course->createdby->full_name ?? '' }}</td>
+                        <td class="align-middle">{{ $course->created_at->format('M d, Y') ?? '' }}</td>
                         <td class="align-middle">
                             <div>
                                 <a class="btn btn-secondary bg-transparent border-0 text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

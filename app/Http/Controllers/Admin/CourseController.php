@@ -15,7 +15,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::get();
+        $courses = Course::with('createdby')->paginate(20);
         return view('admin.courses.index',compact('courses'));
     }
 

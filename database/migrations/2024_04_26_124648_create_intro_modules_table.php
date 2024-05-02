@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('assignment')->nullable();
             $table->integer('created_by')->nullable();
+            $table->tinyInteger('lock')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

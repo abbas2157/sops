@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('profile_picture')->nullable();
             $table->enum('type',['trainee','trainer','admin'])->nullable();
+            $table->enum('status',['active','support','trainer','block'])->default('active');
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
