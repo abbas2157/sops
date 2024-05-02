@@ -2,27 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
-
+use App\Models\{User,Course,Trainee,IntroModule,Trainer};
+use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Http\Controllers\Controller;
-use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use App\Models\Course;
-use App\Models\Trainer;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use App\Mail\WelcomeEmail;
+use Exception;
 
 class TrainerController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *   dd($trainers->toArray());
      */
     public function index()
     {
         $trainers = User::with('trainer')->where('type','trainer')->paginate(10);
-        // dd($trainers->toArray());
         return view('admin.trainer.index',compact('trainers'));
     }
 
@@ -87,13 +83,14 @@ class TrainerController extends Controller
 
             DB::commit();
 
+            Mail::to('abbas8156@gmail.com')->send(new WelcomeEmail($user));
+
             $validator['success'] = 'Profile Picture Updated.';
             return back()->withErrors($validator);
         } catch (Exception $e) {
             DB::rollBack();
             $validator['error'] = $e->getMessage();
             return back()->withErrors($validator);
-
         }
 
     }
@@ -122,59 +119,62 @@ class TrainerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        try{
+        try
+        {
             DB::beginTransaction();
-        $user = User::findorfail($id);
-        $user->name = isset($request->name) ?? $user->name;
-        $user->last_name = isset($request->last_name) ?? $user->last_name;
-        $user->phone = isset($request->phone) ?? $user->phone;
-        if($request->hasFile('profile_picture'))
-        {
-            if ($user->profile_picture && file_exists(public_path('profile_pictures/' . $user->profile_picture))) {
-                unlink(public_path('profile_pictures/' . $user->profile_picture));
+            $user = User::findorfail($id);
+            $user->name = $request->name;
+            $user->last_name = $request->last_name;
+            $user->phone = $request->phone;
+            if($request->hasFile('profile_picture'))
+            {
+                if ($user->profile_picture && file_exists(public_path('profile_pictures/' . $user->profile_picture))) {
+                    unlink(public_path('profile_pictures/' . $user->profile_picture));
+                }
+                $file = $request->file('profile_picture');
+                $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
+                $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+                $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
+                $file->move(public_path('profile_pictures'),$filename);
+                $user->profile_picture = $filename;
             }
-            $file = $request->file('profile_picture');
-            $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
-            $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
-            $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
-            $file->move(public_path('profile_pictures'),$filename);
-            $user->profile_picture = $filename;
-        }
-        $user->save();
-        $trainer = Trainer::where('user_id',$id)->first();
-        if(is_null($trainer)){
-            $trainer = new Trainer();
-            $trainer->user_id = $user->id;
-            $trainer->created_by = Auth::user()->id;
-        }
-        $trainer->gender = isset($request->gender) ?? $trainer->gender;
-        $trainer->description = isset($request->description) ?? $trainer->descriptio;
-        $trainer->highest_qualification = isset($request->highest_qualification) ?? $trainer->highest_qualification;
-        $trainer->areas_of_expertise = isset($request->areas_of_expertise) ?? $trainer->areas_of_expertise;
-        $trainer->years_of_experience = isset($request->years_of_experience) ?? $trainer->years_of_experience;
-        $trainer->date_of_birth = isset($request->date_of_birth) ?? $trainer->date_of_birth;
-        if($request->hasFile('curriculum_vitae'))
-        {
-            if ($trainer->curriculum_vitae && file_exists(public_path('trainer/cv/' . $trainer->curriculum_vitae))) {
-                unlink(public_path('trainer/cv/' . $user->curriculum_vitae));
+            $user->save();
+            $trainer = Trainer::where('user_id',$id)->first();
+            if(is_null($trainer)){
+                $trainer = new Trainer();
+                $trainer->user_id = $user->id;
+                $trainer->created_by = Auth::user()->id;
             }
-            $file = $request->file('curriculum_vitae');
-            $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
-            $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
-            $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
-            $file->move(public_path('trainer/cv'),$filename);
-            $trainer->curriculum_vitae = $filename;
+            $trainer->gender = $request->gender;
+            $trainer->description = $request->description;
+            $trainer->highest_qualification = $request->highest_qualification;
+            $trainer->areas_of_expertise = $request->areas_of_expertise;
+            $trainer->years_of_experience = $request->years_of_experience;
+            $trainer->date_of_birth = $request->date_of_birth;
+            if($request->hasFile('curriculum_vitae'))
+            {
+                if ($trainer->curriculum_vitae && file_exists(public_path('trainer/cv/' . $trainer->curriculum_vitae))) {
+                    unlink(public_path('trainer/cv/' . $user->curriculum_vitae));
+                }
+                $file = $request->file('curriculum_vitae');
+                $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
+                $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+                $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
+                $file->move(public_path('trainer/cv'),$filename);
+                $trainer->curriculum_vitae = $filename;
+            }
+            $trainer->course_id = $request->course_id;
+            $trainer->save();
+
+            DB::commit();
+            
+            $validator['success'] = 'Trainer has been Updated.';
+            return back()->withErrors($validator);
         }
-        $trainer->course_id = isset($request->course_id) ?? $trainer->course_id;
-        $trainer->save();
-        DB::commit();
-        $validator['success'] = 'Trainer has been Updated.';
-        return back()->withErrors($validator);
-    }
-    catch(Exception $e){
-        DB::rollBack();
-        echo $e->getMessage();
-    }
+        catch(Exception $e){
+            DB::rollBack();
+            echo $e->getMessage();
+        }
     }
     /**
      * Remove the specified resource from storage.

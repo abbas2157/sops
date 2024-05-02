@@ -89,9 +89,14 @@ class LoginController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function verify(string $id)
     {
-        //
+        $user = User::where("uuid",$id)->first();
+        if(is_null($user))
+            abort(404);
+        $user->markEmailAsVerified();
+        $validator['success'] = 'Your Account has been verified. Login Now';
+        return redirect('login')->withErrors($validator);
     }
 
     /**

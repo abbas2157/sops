@@ -7,7 +7,7 @@ Route::group(['middleware' => ['guest']], function() {
     Route::post('forgot-password/send-email', [App\Http\Controllers\Auth\LoginController::class, 'send_email'])->name('forgot-password.send-email');
     Route::get('reset-password/{id}', [App\Http\Controllers\Auth\LoginController::class, 'reset_password']);
     Route::post('reset-password/perform', [App\Http\Controllers\Auth\LoginController::class, 'change_password'])->name('reset-password.perform');
-    Route::get('verify/{id}', [App\Http\Controllers\Auth\LoginController::class, 'verify']);
+    Route::get('verify-account/{id}', [App\Http\Controllers\Auth\LoginController::class, 'verify']);
     
     Route::group(['prefix' => 'login'], function(){
         Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'create'])->name('login');

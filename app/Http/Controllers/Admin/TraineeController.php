@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\{User,Course,Trainee,IntroModule,Trainer};
+use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{User,Course,Trainee};
-use Exception;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
+use App\Mail\WelcomeEmail;
+use Exception;
 
 use function PHPUnit\Framework\fileExists;
 
@@ -75,8 +74,10 @@ class TraineeController extends Controller
             $trainee->has_computer_and_internet = isset($request->has_computer_and_internet) ? $request->has_computer_and_internet : 'no';
             $trainee->created_by = Auth::user()->id;
             $trainee->save();
-
+            
             DB::commit();
+
+            Mail::to('abbas8156@gmail.com')->send(new WelcomeEmail($user));
 
             $validator['success'] = 'Trainee has been Created.';
             return back()->withErrors($validator);

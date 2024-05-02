@@ -68,7 +68,7 @@
                                         @if (is_null($train->email_verified_at))
                                             <span class="btn create-btn rounded-3 text-center">Pending</span>
                                         @else
-                                            @if($train->status == 'Active')
+                                            @if($train->status == 'active')
                                                 <span class="badges green-border text-center">Active</span>
                                             @else
                                                 <span class="btn rounded-3 mt-2 excel-btn  text-center">BLOCKED</span>
