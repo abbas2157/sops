@@ -34,6 +34,9 @@ Route::group(['middleware' => ['auth']], function() {
             Route::resource('intro-modules', App\Http\Controllers\Admin\Modules\IntroController::class);
             Route::resource('trainers', App\Http\Controllers\Admin\TrainerController::class);
             Route::resource('trainees', App\Http\Controllers\Admin\TraineeController::class);
+            Route::group(['prefix' => 'setting'], function(){
+                Route::get('/', [App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin.setting');
+            });
         });
     });
     Route::middleware([App\Http\Middleware\EnsureUserIsTrainee::class])->group(function () {

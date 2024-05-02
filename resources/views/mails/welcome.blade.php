@@ -140,7 +140,7 @@
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
-              <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Hi {{ $data->name ?? ''}}</h1>
+              <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Hi {{ $data->name ?? ''}},</h1>
             </td>
           </tr>
         </table>
@@ -171,39 +171,25 @@
                 our whole company for chosing us. We believe SOPS - School of Professional Skills 
                 will help you.</p>
                 <br> 
+                <p style="margin: 0;">First, you must complete your registration by clicking on the button below:</p>
+                <br> 
                     <a href="{{ url('verify-account', $data->uuid) }}" target="_blank"style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px;text-align: center; background-color: #19255b; color: #ffffff; text-decoration: none; border-radius: 6px;">Verify Account</a>
-                <br>  
-                 <br>         
+                <br>
+                <br> 
+                <p style="margin: 0;">This link will verify your email address, and then you’ll officially be a part of the SOPS community.</p>
+                <br>         
                 <p style="margin: 0;"> If you want to login in our System please use these creadentials. </p>
                 <p style="margin: 0;"> <strong>Login Page </strong> : <a href="{{ route('login') }}"> {{ route('login') }} </a> </p>
                 <p style="margin: 0;"> <strong> Email </strong> : <a href="mail:{{ $data->email }}"> {{ $data->email }} </a> </p>
                 <p style="margin: 0;"> <strong> Password </strong> : {{ $data->uuid }} </p>
+                <br>
+                <p style="margin: 0;">If you have any questions, send us an email.<p style="margin: 0;">
+                 
+                <p style="margin: 0;">We're glad you're here! <br>
+                The SOPS team </p>
             </td>
           </tr>
           <!-- end copy -->
-
-          <!-- start button -->
-          <tr>
-            <td align="left" bgcolor="#ffffff">
-              <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                <tr>
-                  <td align="center" bgcolor="#ffffff" style="padding: 12px;">
-                    <table border="0" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td align="center" bgcolor="#19255b" style="border-radius: 6px;">
-                                <a href="{{ url('reset-password', $data->uuid) }}" target="_blank" 
-                                style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">
-                                Reset Password</a>
-                            </td>
-                        </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <!-- end button -->
-
           <tr>
             <td align="center" valign="top" style="padding: 36px 24px;">
             </td>

@@ -6,7 +6,7 @@
         <a href="#" class="nav-link" data-bs-toggle="dropdown">
             <i class="fa fa-bell align-items-center d-inline-flex"></i>
         </a>
-        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0" >
+        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0" style="width: 400px;">
             <a href="#" class="dropdown-item">
                 <h6 class="fw-normal mb-0">Password changed</h6>
                 <small>15 minutes ago</small>
@@ -24,9 +24,8 @@
             @endif
         </a>
         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-            <a href="{{ route('trainee.profile') }}" class="dropdown-item">My Profile</a>
-            <a href="javascrip:;" class="dropdown-item">Settings</a>
-            <a href="{{ route('logout') }}" class="dropdown-item">Log Out</a>
+        <a href="{{ route('trainee.profile') }}" class="dropdown-item"><i class="fa-regular fa-user me-2"></i> My Profile</a>
+            <a href="{{ route('logout') }}" class="dropdown-item"><i class="fa-solid fa-right-from-bracket me-2"></i> Log Out</a>
         </div>
     </div>
     </div>

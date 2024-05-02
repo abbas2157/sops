@@ -37,8 +37,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body">
-                                <ul class="navbar-nav mx-auto">
-                                
+                                <ul class="navbar-nav mx-auto"></ul>
                             </div>
                         </div>
                         <div class="header-right ms-auto">
