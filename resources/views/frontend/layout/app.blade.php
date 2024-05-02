@@ -9,6 +9,7 @@
       <meta name="description" content="">
       @yield('title')
       <link rel="shortcut icon" href="https://whitesprout.com.ng/img/SOPS.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
       <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
    </head>
    <body>
@@ -24,7 +25,12 @@
             <header class="main-header main-header-01 headroom navbar-light bg-white header-height fixed-top">
                 <nav class="navbar navbar-expand-lg">
                     <div class="container">
-                        <!-- Logo --> <a class="navbar-brand header-navbar-brand" href="index.html"><img class="logo-dark" src="https://whitesprout.com.ng/img/SOPS.png" style="width:10%" title="" alt=""> <img class="logo-light" src="assets/img/logo-light.svg" title="" alt=""></a><!-- Logo -->
+                        <!-- Logo --> 
+                        <a class="navbar-brand header-navbar-brand" href="index.html">
+                            <img class="logo-dark" src="https://whitesprout.com.ng/img/SOPS.png" style="width:10%" title="" alt=""> 
+                            <img class="logo-light" src="https://whitesprout.com.ng/img/SOPS.png" title="" alt="">
+                        </a>
+                        <!-- Logo -->
                         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
                             <div class="offcanvas-header">
                                 <div class="offcanvas-title" id="offcanvasNavbar2Label"><img class="logo-dark" src="https://whitesprout.com.ng/img/SOPS.png" style="width:10%" title="" alt=""></div>
@@ -36,17 +42,16 @@
                             </div>
                         </div>
                         <div class="header-right ms-auto">
-                            <div class="hr-nav-item h-search"><a data-bs-toggle="collapse" href="#header_search" role="button" aria-expanded="false" aria-controls="header_search"><i class="fi-search"></i></a></div>
                             <!-- <div class="hr-nav-item h-btn">
                                 <a href="#" class="header-btn">Sign In</a>
                                 </div> -->
                             <div class="hr-nav-item h-user dropdown">
-                                <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-user"></i></a>
+                                <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                 <!-- <span class="dropdown-header">Welcome Tatiana </span> -->
-                                <li><a class="dropdown-item" href="account-profile.html"><i class="bi-person me-2"></i> Profile</a></li>
-                                <li><a class="dropdown-item" href="account-edit-profile.html"><i class="bi-pencil me-2"></i> Edit Profile</a></li>
-                                <li><a class="dropdown-item" href="account-login.html"><i class="bi-power me-2"></i> Sign Out</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('trainee.profile') }}"><i class="fa-regular fa-user me-2"></i> Profile</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('trainee.profile') }}"><i class="fa-regular fa-pen-to-square me-2"></i> Edit Profile</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket me-2"></i> Sign Out</a></li>
                                 </ul>
                             </div>
                         </div>

@@ -52,7 +52,7 @@
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                             </p>
                                         </div>
-                                        <a class="btn btn-success" type="submit">Go to Step 2</a>
+                                        <a href="{{ route('course.detail',['uuid'=> '9ea9e638-c92b-46f5-97c2-60c04139de72']) }}" class="btn btn-success" type="submit">Go to Step 2</a>
                                     </div>
                                 </div>
                             </div>

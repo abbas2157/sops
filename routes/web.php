@@ -37,7 +37,10 @@ Route::group(['middleware' => ['auth']], function() {
         });
     });
     Route::middleware([App\Http\Middleware\EnsureUserIsTrainee::class])->group(function () {
-        Route::get('/', function(){return view('frontend.index');})->name('frontend');
+        Route::get('/', function(){return view('frontend.module.intro.index');})->name('frontend');
+        Route::group(['prefix' => 'frontend'], function(){
+            Route::get('details', [App\Http\Controllers\Frontend\IntroController::class, 'show'])->name('course.detail');
+        });
         Route::group(['prefix' => 'trainee'], function(){
             Route::get('/', function(){return view('trainee.index');})->name('trainee');
             Route::group(['prefix' => 'profile'], function(){

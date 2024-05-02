@@ -13,4 +13,8 @@ class IntroModule extends Model
     {
         return $this->belongsTo(User::class,'created_by','id');
     }
+    public function course()
+    {
+        return $this->belongsTo(Course::class,'course_id','id');
+    }
 }
