@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::post('perform', [App\Http\Controllers\Trainee\ProfileController::class, 'update'])->name('trainee.profile.perform');
                 Route::post('change/password', [App\Http\Controllers\Trainee\ProfileController::class, 'show'])->name('trainee.profile.change.password');
                 Route::post('picture/update', [App\Http\Controllers\Trainee\ProfileController::class, 'picture_update'])->name('trainee.change-profile.picture');
+                Route::post('detail/update', [App\Http\Controllers\Trainee\ProfileController::class, 'detail_update'])->name('trainee.profile.detail.update');
             });
             Route::group(['prefix' => 'courses'], function(){
                 Route::get('/', [App\Http\Controllers\Trainee\CourseController::class, 'index'])->name('trainee.courses');

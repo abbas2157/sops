@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\{User,Course,Trainee};
 
 class ProfileController extends Controller
 {
@@ -42,7 +43,29 @@ class ProfileController extends Controller
         $validator['success'] = 'Profile Picture Updated.';
         return back()->withErrors($validator);
     }
-
+    public function detail_update(Request $request)
+    {
+        $trainee = Trainee::where('user_id',Auth::user()->id)->first();
+        if(is_null($trainee))
+        {
+            $trainee = new Trainee();
+            $trainee->user_id = Auth::user()->id;
+            $trainee->created_by = Auth::user()->id;
+        }
+        $trainee->gender = $request->gender;
+        $trainee->description = $request->description ;
+        $trainee->city_from = $request->city_from;
+        $trainee->city_currently_living_in = $request->city_currently_living_in;
+        $trainee->skill_experience = $request->skill_experience;
+        $trainee->date_of_birth = $request->date_of_birth;
+        $trainee->available_on_whatsapp = isset($request->available_on_whatsapp) ? $request->available_on_whatsapp : 'no';
+        $trainee->employed_status = isset($request->employed_status) ? $request->employed_status : 'no';
+        $trainee->study_status = isset($request->study_status) ? $request->study_status : 'no';
+        $trainee->has_computer_and_internet = isset($request->has_computer_and_internet) ? $request->has_computer_and_internet : 'no';
+        $trainee->save();
+        $validator['success'] = 'Profile Details has been Updated.';
+        return redirect('trainee/profile')->withErrors($validator);
+    }
     /**
      * Display the specified resource.
      */

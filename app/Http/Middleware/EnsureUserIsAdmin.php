@@ -20,6 +20,7 @@ class EnsureUserIsAdmin
         {
             return $next($request);
         }
-        return back();
+        Auth::logout();
+        return redirect('login');
     }
 }

@@ -1,5 +1,8 @@
 @if(is_null(Auth::user()->trainee))
     <div class="alert alert-warning" role="alert">
-        This is a warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+        Please add these detail before make any changes and get your dashboard with full details.
     </div>
+@endif
+@if ($errors->has('success'))
+    <div class="alert alert-success" role="alert">{{ $errors->first('success') }}</div>
 @endif

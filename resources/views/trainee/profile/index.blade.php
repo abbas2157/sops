@@ -61,6 +61,7 @@ $trainee = Auth::user();
         </div>
         <div class="col-md-9">
             <div id="Personal-Info" class="tabcontent">
+                @include('partials.alerts')
                 <div class="card rounded-3 border-0 card-shadow h-100">
                     <div class="card-body">
                         <div class="row personal-info-row">
@@ -93,7 +94,7 @@ $trainee = Auth::user();
                         </div>
                     </div>
                 </div>
-                <form method="POST" action="{{ route('admin.profile.perform') }}">
+                <form method="POST" action="{{ route('trainee.profile.perform') }}">
                     @csrf
                     <div class="card rounded-3 border-0 card-shadow h-100 p-3 mt-4">
                         <div class="card-body h-100">
@@ -141,7 +142,8 @@ $trainee = Auth::user();
                 </form>
             </div>
             <div id="Change-password" class="tabcontent">
-                <form method="POST" action="{{ route('admin.profile.change.password') }}">
+                @include('partials.alerts')
+                <form method="POST" action="{{ route('trainee.profile.change.password') }}">
                 @csrf
                     <div class="card rounded-3 border-0 card-shadow h-100 p-3">
                         <div class="card-body h-100">
@@ -196,8 +198,8 @@ $trainee = Auth::user();
             </div>
             <div id="Edit-Detail" class="tabcontent">
                 @include('partials.alerts')
-                <form method="POST" action="{{ route('admin.profile.change.password') }}">
-                @csrf
+                <form method="POST" action="{{ route('trainee.profile.detail.update',['details' => '']) }}">
+                    @csrf
                     <div class="card rounded-3 border-0 card-shadow h-100 p-3">
                         <div class="card-body h-100">
                             <h4 class="all-adjustment border-0 m-0 w-100">
@@ -245,6 +247,7 @@ $trainee = Auth::user();
                                                         <label for="exampleFormControlSelect1">Which city are you from? <span class="text-danger">*</span></label>
                                                         <select class="form-control form-select subheading mt-1"
                                                             aria-label="Default select example" id="exampleFormControlSelect1" name="city_from">
+                                                            <option value="Lahore" {{ (!is_null($trainee->trainee) && $trainee->trainee->city_from == 'Lahore') ? 'selected' : '' }}>Lahore</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -253,6 +256,7 @@ $trainee = Auth::user();
                                                         <label for="exampleFormControlSelect1">Which city do you currently live in? <span class="text-danger">*</span></label>
                                                         <select class="form-control form-select subheading mt-1"
                                                             aria-label="Default select example" id="exampleFormControlSelect1" name="city_currently_living_in">
+                                                            <option value="Lahore" {{ (!is_null($trainee->trainee) && $trainee->trainee->city_currently_living_in == 'Lahore') ? 'selected' : '' }}>Lahore</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -261,15 +265,17 @@ $trainee = Auth::user();
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="exampleFormControlSelect1"> Skill of Interest Experience? <span class="text-danger">*</span></label>
-                                                        <select class="form-control form-select subheading mt-2"
-                                                            aria-label="Default select example" id="exampleFormControlSelect1" name="skill_experience">
+                                                        <select class="form-control form-select subheading mt-2"aria-label="Default select example" id="exampleFormControlSelect1" name="skill_experience">
+                                                            <option value="None" {{ (!is_null($trainee->trainee) && $trainee->trainee->skill_experience == 'None') ? 'selected' : '' }}>None</option>
+                                                            <option value="Basic" {{ (!is_null($trainee->trainee) && $trainee->trainee->skill_experience == 'Basic') ? 'selected' : '' }}>Basic</option>
+                                                            <option value="Intermediate" {{ (!is_null($trainee->trainee) && $trainee->trainee->skill_experience == 'Intermediate') ? 'selected' : '' }}>Intermediate</option>
+                                                            <option value="Advance" {{ (!is_null($trainee->trainee) && $trainee->trainee->skill_experience == 'Advance') ? 'selected' : '' }}>Advance</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="col-md-4">
                                     <div class="card border-0 rounded-3 card-shadow">
@@ -279,7 +285,7 @@ $trainee = Auth::user();
                                         <div class="card-body">
                                             <div class="file-upload" style="margin:0px">
                                                 <input class="file-input" type="file" multiple name="profile_picture" />
-                                                <img src="dasheets/img/upload-btn.svg" class="img-fluid" alt="" />
+                                                <img src="{{ asset('assets/img/upload-btn.svg') }}" class="img-fluid" alt="" />
                                                 <div class="mt-2 subheading">
                                                     Drag and Drop to upload or
                                                 </div>
@@ -293,7 +299,7 @@ $trainee = Auth::user();
                                             <div class="row">
                                                 <div class="col-1">
                                                     <label for="myCheckbox09" class="checkbox d-flex mt-1">
-                                                        <input class="checkbox__input" type="checkbox" id="whatsapp" name="available_on_whatsapp" value="yes"/>
+                                                        <input class="checkbox__input" type="checkbox" id="whatsapp" name="available_on_whatsapp" value="yes" {{ (!is_null($trainee->trainee) && $trainee->trainee->available_on_whatsapp == 'yes') ? 'checked' : ''}}/>
                                                         <svg class="checkbox__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
                                                             <rect width="21" height="21" x=".5" y=".5" fill="#FFF"
                                                                 stroke="rgba(76, 73, 227, 1)" rx="3" />
@@ -310,7 +316,7 @@ $trainee = Auth::user();
                                             <div class="row">
                                                 <div class="col-1">
                                                     <label for="myCheckbox09" class="checkbox d-flex mt-1">
-                                                        <input class="checkbox__input" type="checkbox" id="employment" name="employed_status" value="yes"/>
+                                                        <input class="checkbox__input" type="checkbox" id="employment" name="employed_status" value="yes" {{ (!is_null($trainee->trainee) && $trainee->trainee->employed_status == 'yes') ? 'checked' : ''}}/>
                                                         <svg class="checkbox__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
                                                             <rect width="21" height="21" x=".5" y=".5" fill="#FFF"
                                                                 stroke="rgba(76, 73, 227, 1)" rx="3" />
@@ -331,7 +337,7 @@ $trainee = Auth::user();
                                             <div class="row">
                                                 <div class="col-1">
                                                     <label for="myCheckbox09" class="checkbox d-flex mt-1">
-                                                        <input class="checkbox__input" type="checkbox" id="currently_studying" name="study_status" value="yes" />
+                                                        <input class="checkbox__input" type="checkbox" id="currently_studying" name="study_status" value="yes" {{ (!is_null($trainee->trainee) && $trainee->trainee->study_status == 'yes') ? 'checked' : ''}}/>
                                                         <svg class="checkbox__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
                                                             <rect width="21" height="21" x=".5" y=".5" fill="#FFF"
                                                                 stroke="rgba(76, 73, 227, 1)" rx="3" />
@@ -349,7 +355,7 @@ $trainee = Auth::user();
                                                 <div class="col-1">
                                                     <!-- <input type="checkbox" name="" id="" /> -->
                                                     <label for="myCheckbox09" class="checkbox d-flex mt-1">
-                                                        <input class="checkbox__input" type="checkbox" id="internet_access" name="has_computer_and_internet" value="yes"/>
+                                                        <input class="checkbox__input" type="checkbox" id="internet_access" name="has_computer_and_internet" value="yes" {{ (!is_null($trainee->trainee) && $trainee->trainee->has_computer_and_internet == 'yes') ? 'checked' : ''}}/>
                                                         <svg class="checkbox__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
                                                             <rect width="21" height="21" x=".5" y=".5" fill="#FFF"
                                                                 stroke="rgba(76, 73, 227, 1)" rx="3" />
@@ -364,6 +370,7 @@ $trainee = Auth::user();
                                             </div>
                                         </div>
                                     </div>
+                                    <button class="btn save-btn text-white mt-3">Update Detail</button>
                                 </div>
                             </div>
                         </div>

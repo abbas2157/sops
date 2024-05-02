@@ -18,8 +18,13 @@ class EnsureUserIsTrainee
     {
         if(Auth::user()->type == 'trainee')
         {
+            if(is_null(Auth::user()->trainee) && (!$request->has('details')))
+            {
+                return redirect('trainee/profile?details');
+            }
             return $next($request);
         }
-        return back();
+        Auth::logout();
+        return redirect('login');
     }
 }

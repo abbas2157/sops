@@ -76,7 +76,9 @@ class LoginController extends Controller
             }
             if($user->type == 'trainee')
             {
-                return redirect()->intended('trainee');
+                if(is_null($user->trainee))
+                    return redirect('trainee/profile?details');
+                return redirect('trainee');
             }
             // return redirect()->intended('/')->withSuccess('Signed in');
         }
