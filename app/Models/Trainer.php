@@ -13,6 +13,10 @@ class Trainer extends Model
     {
         return $this->belongsTo(Course::class,'course_id','id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id','id')->select('id','name','last_name','phone','email');
+    }
     public function createdby()
     {
         return $this->belongsTo(User::class,'created_by','id');

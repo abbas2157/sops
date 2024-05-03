@@ -19,6 +19,11 @@ return new class extends Migration
             $table->text('description');
             $table->string('image')->nullable();
             $table->tinyInteger('list')->default(0);
+            $table->string('duration')->nullable();
+            $table->string('lectures')->nullable();
+            $table->string('skill_level')->nullable();
+            $table->string('language')->nullable();
+            $table->string('certificate')->nullable();
             $table->integer('created_by');
             $table->softDeletes();
             $table->timestamps();

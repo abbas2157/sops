@@ -51,7 +51,7 @@ class IntroController extends Controller
         $intro = IntroModule::where('uuid',$request->uuid)->with('createdby','course')->first();
         if(is_null($intro))
             abort(404);
-        // dd($intros->toArray());
+        // dd($intro->toArray());
         return view('frontend.module.intro.detail',compact('intro'));
     }
 

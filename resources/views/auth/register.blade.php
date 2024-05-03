@@ -34,24 +34,24 @@
                             @if ($errors->has('emailPassword'))
                                 <span class="text-danger text-left">{{ $errors->first('emailPassword') }}</span>
                             @endif
-                            <form class="signup-input" method="post" action="{{ route('register.perform') }}">
+                            <form class="signup-input" method="post" action="{{ route('register.perform') }}" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="type" value="{{ $type ?? '' }}" />
                                 <div class="password-container">
-                                    <input type="text" name="name" class="form-control" placeholder="Name" required value="{{old('name')}}"/>
+                                    <input type="text" name="name" class="form-control" placeholder="Name" required value="{{old('name')}}" autocomplete="off"/>
                                     @if ($errors->has('name'))
                                         <span class="text-danger text-left">{{ $errors->first('name') }}</span>
                                     @endif
                                 </div>
                                 <div class="password-container">
-                                    <input type="email" name="email" class="form-control" placeholder="Email" required value="{{old('email')}}"/>
+                                    <input type="email" name="email" class="form-control" placeholder="Email" required value="{{old('email')}}" autocomplete="off"/>
                                     <img src="{{ asset('assets/img/mail.svg') }}" class="password-toggle pe-2" alt=""/>
                                     @if ($errors->has('email'))
                                         <span class="text-danger text-left">{{ $errors->first('email') }}</span>
                                     @endif
                                 </div>
                                 <div class="password-container">
-                                    <input type="password" id="password" name="password" value="{{old('password')}}" class="password-input form-control subheading" required placeholder="Password" />
+                                    <input type="password" id="password" name="password" value="{{old('password')}}" class="password-input form-control subheading" autocomplete="new-password" required placeholder="Password" />
                                     <img src="{{ asset('assets/img/lock.svg') }}" class="password-toggle pe-2" onclick="togglePasswordVisibility('password')" alt="" />
                                     @if ($errors->has('password'))
                                         <span class="text-danger text-left">{{ $errors->first('password') }}</span>

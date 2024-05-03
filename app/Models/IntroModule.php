@@ -15,6 +15,6 @@ class IntroModule extends Model
     }
     public function course()
     {
-        return $this->belongsTo(Course::class,'course_id','id');
+        return $this->belongsTo(Course::class,'course_id','id')->with('trainer');
     }
 }
