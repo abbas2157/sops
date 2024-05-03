@@ -8,7 +8,7 @@ Route::group(['middleware' => ['guest']], function() {
     Route::post('forgot-password/send-email', [App\Http\Controllers\Auth\LoginController::class, 'send_email'])->name('forgot-password.send-email');
     Route::get('reset-password/{id}', [App\Http\Controllers\Auth\LoginController::class, 'reset_password']);
     Route::post('reset-password/perform', [App\Http\Controllers\Auth\LoginController::class, 'change_password'])->name('reset-password.perform');
-    
+
     Route::group(['prefix' => 'login'], function(){
         Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'create'])->name('login');
         Route::post('perform', [App\Http\Controllers\Auth\LoginController::class, 'store'])->name('login.perform');
@@ -34,8 +34,13 @@ Route::group(['middleware' => ['auth']], function() {
             Route::resource('intro-modules', App\Http\Controllers\Admin\Modules\IntroController::class);
             Route::resource('trainers', App\Http\Controllers\Admin\TrainerController::class);
             Route::resource('trainees', App\Http\Controllers\Admin\TraineeController::class);
+            Route::resource('users', App\Http\Controllers\Admin\UserController::class);
             Route::group(['prefix' => 'setting'], function(){
-                Route::get('/', [App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin.setting');
+                Route::get('/', [App\Http\Controllers\Admin\SettingController::class, 'create'])->name('admin.setting');
+                Route::post('email-settings', [App\Http\Controllers\Admin\SettingController::class, 'email_settings'])->name('admin.email.setting');
+                Route::post('trainee-settings', [App\Http\Controllers\Admin\SettingController::class, 'trainee_settings'])->name('admin.trainee.setting');
+                Route::post('trainer-settings', [App\Http\Controllers\Admin\SettingController::class, 'trainer_settings'])->name('admin.trainer.setting');
+
             });
         });
     });
