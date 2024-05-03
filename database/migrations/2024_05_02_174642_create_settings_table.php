@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->text('email_detail')->nullable();
-            $table->text('trainee_detail')->nullable();
-            $table->text('trainer_detail')->nullable();
+            $table->text('alerts')->nullable();
+            $table->text('email_settings')->nullable();
+            $table->text('trainee_settings')->nullable();
+            $table->text('trainer_settings')->nullable();
             $table->timestamps();
         });
     }

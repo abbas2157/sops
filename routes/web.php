@@ -37,9 +37,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::resource('users', App\Http\Controllers\Admin\UserController::class);
             Route::group(['prefix' => 'setting'], function(){
                 Route::get('/', [App\Http\Controllers\Admin\SettingController::class, 'create'])->name('admin.setting');
-                Route::post('email-settings', [App\Http\Controllers\Admin\SettingController::class, 'email_settings'])->name('admin.email.setting');
-                Route::post('trainee-settings', [App\Http\Controllers\Admin\SettingController::class, 'trainee_settings'])->name('admin.trainee.setting');
-                Route::post('trainer-settings', [App\Http\Controllers\Admin\SettingController::class, 'trainer_settings'])->name('admin.trainer.setting');
+                Route::post('perform', [App\Http\Controllers\Admin\SettingController::class, 'store'])->name('admin.setting.perform');
 
             });
         });

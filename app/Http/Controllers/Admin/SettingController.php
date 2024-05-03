@@ -30,52 +30,16 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
+        $setting = Setting::first();
+        if(is_null($setting))
+            $setting = new Setting();
 
+        $setting->alerts = json_encode($request->alerts);
+        $setting->save();
+        $validator['success'] = 'Email setting Updated.';
+         return back()->withErrors($validator);
     }
-    public function email_settings(Request $request)
-    {
-
-        $id = $request->input('id');
-       $data = json_encode($request->except(['_token','id']));
-       if(is_null($id)){
-        $setting = new Setting();
-       }else{
-        $setting = Setting::findorfail($id);
-       }
-
-       $setting->email_detail = $data;
-       $setting->save();
-       $validator['success'] = 'Email setting Updated.';
-        return back()->withErrors($validator);
-    }
-    public function trainee_settings(Request $request)
-    {
-        $id = $request->input('id');
-       $data = json_encode($request->except(['_token','id']));
-       if(is_null($id)){
-        $setting = new Setting();
-       }else{
-        $setting = Setting::findorfail($id);
-       }
-       $setting->trainee_detail = $data;
-       $setting->save();
-       $validator['success'] = 'Email setting Updated.';
-       return back()->withErrors($validator);
-    }
-    public function trainer_settings(Request $request)
-    {
-        $id = $request->input('id');
-       $data = json_encode($request->except(['_token','id']));
-       if(is_null($id)){
-        $setting = new Setting();
-       }else{
-        $setting = Setting::findorfail($id);
-       }
-       $setting->trainer_detail = $data;
-       $setting->save();
-       $validator['success'] = 'Email setting Updated.';
-       return back()->withErrors($validator);
-    }
+    
     /**
      * Display the specified resource.
      */
