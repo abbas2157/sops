@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('intro_modules', function (Blueprint $table) {
+        Schema::create('module_steps', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->nullable();
             $table->integer('course_id');
@@ -21,8 +21,9 @@ return new class extends Migration
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();
             $table->text('assignment')->nullable();
-            $table->integer('created_by')->nullable();
             $table->tinyInteger('lock')->default(0);
+            $table->integer('created_by')->nullable();
+            $table->enum('type',['Intro','Fundamental','Full Skill'])->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('intro_modules');
+        Schema::dropIfExists('module_steps');
     }
 };

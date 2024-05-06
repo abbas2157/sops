@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="col-md-8 col-12 text-end">
-                <a href="{{ route('intro-modules.create',['id' => $course->uuid]) }}" class="btn create-btn rounded-3 mt-2" >Create Step <i class="bi bi-plus-lg"></i></a>
+                <a href="{{ route('steps.create',['id' => $course->uuid]) }}" class="btn create-btn rounded-3 mt-2" >Create Step <i class="bi bi-plus-lg"></i></a>
             </div>
         </div>
     </div>

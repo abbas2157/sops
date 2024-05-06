@@ -53,7 +53,7 @@
                                         <i class="fa-solid fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="{{ route('intro-modules.index',['id' => $course->uuid ]) }}">
+                                        <a class="dropdown-item" href="{{ route('steps.index',['id' => $course->uuid ]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Intro Module
                                         </a>

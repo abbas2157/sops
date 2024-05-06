@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{User,Course,Trainee,IntroModule,Trainer};
+use App\Models\{User,Course,Trainee,ModuleStep,Trainer,JoinedCourse};
 
-class IntroController extends Controller
+class StepController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +20,8 @@ class IntroController extends Controller
         if(is_null($course))
             abort(404);
 
-        $intros = IntroModule::where('course_id',$course->id)->with('createdby')->get();
-        return view('frontend.module.intro.index',compact('intros','course'));
+        $intros = ModuleStep::where('course_id',$course->id)->with('createdby')->get();
+        return view('frontend.steps.index',compact('intros','course'));
     }
 
     /**
@@ -29,7 +29,7 @@ class IntroController extends Controller
      */
     public function create(Request $request)
     {
-        
+        //
     }
 
     /**
@@ -48,11 +48,15 @@ class IntroController extends Controller
         if(!$request->has('uuid') || empty($request->uuid))
         abort(404);
 
-        $intro = IntroModule::where('uuid',$request->uuid)->with('createdby','course')->first();
+        $intro = ModuleStep::where('uuid',$request->uuid)->with('createdby','course')->first();
         if(is_null($intro))
             abort(404);
+        
+        $course = Course::where('id',$intro->course_id)->first();
+        if(is_null($course))
+            abort(404);
         // dd($intro->toArray());
-        return view('frontend.module.intro.detail',compact('intro'));
+        return view('frontend.steps.detail',compact('intro','course'));
     }
 
     /**

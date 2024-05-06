@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="d-flex flex-column pt-3">
                                     <a class="btn btn-primary" href="#">Buy Now</a> 
-                                    <a class="btn btn-outline-primary mt-2" href="#">Enroll Now</a>
+                                    <a class="btn btn-outline-primary mt-2" href="{{ route('trainee.courses.join',['uuid'=> $course->uuid]) }}">Enroll Now</a>
                                 </div>
                                 <ul class="list-group list-group-flush pt-3">
                                     <li class="list-group-item d-flex align-items-center px-0">

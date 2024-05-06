@@ -10,7 +10,7 @@
         <div class="border-bottom">
             <h3 class="all-adjustment text-center pb-2 mb-0" style="width: 30%;">Create {{ $course->name ?? '' }}'s Intro</h3>
         </div>
-        <form enctype="multipart/form-data" id="" method="post" action="{{ route('intro-modules.store') }}">
+        <form enctype="multipart/form-data" id="" method="post" action="{{ route('steps.store') }}">
             @csrf
             @method('POST')
             <input type="hidden" value="{{ $course->id ?? '' }}" name="course_id">
@@ -65,6 +65,23 @@
                     <div class="card rounded-3 border-0 card-shadow">
                         <div class="card-body">
                             <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group fw-bold">
+                                        <label for="exampleFormControlSelect1">Select Module</label>
+                                        <select class="form-control form-select subheading mt-1"
+                                            aria-label="Default select example" id="exampleFormControlSelect1" name="type">
+                                            <option>Intro</option>
+                                            <option>Fundamental</option>
+                                            <option>Full Skill</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card rounded-3 border-0 card-shadow mt-3">
+                        <div class="card-body">
+                            <div class="row ">
                                 <div class="col-md-12">
                                     <div class="form-group fw-bold">
                                         <label for="assignment">Assignment <span class="text-danger">*</span></label>

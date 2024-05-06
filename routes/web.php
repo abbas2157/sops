@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::post('picture/update', [App\Http\Controllers\Admin\ProfileController::class, 'picture_update'])->name('change-profile.picture');
             });
             Route::resource('courses', App\Http\Controllers\Admin\CourseController::class);
-            Route::resource('intro-modules', App\Http\Controllers\Admin\Modules\IntroController::class);
+            Route::resource('steps', App\Http\Controllers\Admin\StepController::class);
             Route::resource('trainers', App\Http\Controllers\Admin\TrainerController::class);
             Route::resource('trainees', App\Http\Controllers\Admin\TraineeController::class);
             Route::resource('users', App\Http\Controllers\Admin\UserController::class);
@@ -43,13 +43,13 @@ Route::group(['middleware' => ['auth']], function() {
         });
     });
     Route::middleware([App\Http\Middleware\EnsureUserIsTrainee::class])->group(function () {
-        Route::get('/', function(){return view('frontend.module.intro.index');})->name('frontend');
+        Route::get('/', function(){return view('trainee.index');})->name('frontend');
         Route::group(['prefix' => 'course'], function(){
-            Route::get('course', [App\Http\Controllers\Frontend\IntroController::class, 'index'])->name('course');
-            Route::get('details', [App\Http\Controllers\Frontend\IntroController::class, 'show'])->name('course.detail');
+            Route::get('course', [App\Http\Controllers\Frontend\StepController::class, 'index'])->name('course');
+            Route::get('details', [App\Http\Controllers\Frontend\StepController::class, 'show'])->name('course.detail');
         });
         Route::group(['prefix' => 'trainee'], function(){
-            Route::get('/', function(){return view('trainee.index');})->name('trainee');
+            Route::get('/', [App\Http\Controllers\Trainee\DashboardController::class, 'index'])->name('trainee');
             Route::group(['prefix' => 'profile'], function(){
                 Route::get('/', [App\Http\Controllers\Trainee\ProfileController::class, 'create'])->name('trainee.profile');
                 Route::post('perform', [App\Http\Controllers\Trainee\ProfileController::class, 'update'])->name('trainee.profile.perform');
@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth']], function() {
             });
             Route::group(['prefix' => 'courses'], function(){
                 Route::get('/', [App\Http\Controllers\Trainee\CourseController::class, 'index'])->name('trainee.courses');
+                Route::get('join', [App\Http\Controllers\Trainee\CourseController::class, 'create'])->name('trainee.courses.join');
             });
         });
     });

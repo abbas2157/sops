@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Modules;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use App\Models\{Course,IntroModule};
+use App\Models\{Course,ModuleStep};
 
-class IntroController extends Controller
+class StepController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,9 +22,9 @@ class IntroController extends Controller
         if(is_null($course))
         abort(404);
 
-        $intros = IntroModule::where('course_id',$course->id)->with('createdby')->get();
+        $intros = ModuleStep::where('course_id',$course->id)->with('createdby')->get();
         // dd($intros->toArray());
-        return view('admin.module.intro.index',compact('intros','course'));
+        return view('admin.steps.index',compact('intros','course'));
     }
 
     /**
@@ -39,8 +39,8 @@ class IntroController extends Controller
         if(is_null($course))
         abort(404);
     
-        $intros = IntroModule::where('course_id',$course)->count();
-        return view('admin.module.intro.create',compact('intros','course'));
+        $intros = ModuleStep::where('course_id',$course)->count();
+        return view('admin.steps.create',compact('intros','course'));
     }
 
     /**
@@ -49,12 +49,13 @@ class IntroController extends Controller
     public function store(Request $request)
     {
         $uuid = Str::uuid();
-        $intro = new IntroModule;
+        $intro = new ModuleStep;
         $intro->uuid = $uuid;
         $intro->steps_no = $request->steps_no;
         $intro->title = $request->title;
         $intro->video = $request->video;
         $intro->course_id = $request->course_id;
+        $intro->type = $request->type;
         $intro->lock = isset($request->lock) ? 0 : 1;
         $intro->created_by = Auth::user()->id;
         $intro->short_description = $request->short_description;

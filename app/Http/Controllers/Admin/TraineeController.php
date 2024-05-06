@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\{User,Course,Trainee,IntroModule,Trainer};
+use App\Models\{User,Course,Trainee,ModuleStep,Trainer};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

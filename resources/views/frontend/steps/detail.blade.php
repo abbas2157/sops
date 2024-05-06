@@ -40,20 +40,20 @@
                                     <a class="btn btn-outline-primary mt-2" href="#">Enroll Now</a>
                                 </div>
                                 <ul class="list-group list-group-flush pt-3">
-                                    <li class="list-group-item d-flex align-items-center px-0">
+                                <li class="list-group-item d-flex align-items-center px-0">
                                         <i class="fa-regular fa-clock text-primary me-2"></i>
                                         <h6 class="m-0">Duration</h6>
-                                        <span class="fs-sm ms-auto">3 Months</span>
+                                        <span class="fs-sm ms-auto">{{ $course->duration ?? '' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center px-0">
                                         <i class="fa-solid fa-book text-primary me-2"></i>
                                         <h6 class="m-0">Lectures</h6>
-                                        <span class="fs-sm ms-auto">0</span>
+                                        <span class="fs-sm ms-auto">{{ $course->lectures ?? '' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center px-0">
                                         <i class="fa-solid fa-sliders text-primary me-2"></i>
                                         <h6 class="m-0">Skill level</h6>
-                                        <span class="fs-sm ms-auto">Beginner</span>
+                                        <span class="fs-sm ms-auto">{{ $course->skill_level ?? '' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center px-0">
                                         <i class="fa-solid fa-users text-primary me-2"></i>
@@ -63,12 +63,12 @@
                                     <li class="list-group-item d-flex align-items-center px-0">
                                     <i class="fa-solid fa-microphone-lines text-primary me-2"></i>
                                         <h6 class="m-0">Language</h6>
-                                        <span class="fs-sm ms-auto">English</span>
+                                        <span class="fs-sm ms-auto">{{ $course->language ?? '' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center px-0">
                                         <i class="fa-solid fa-award text-primary me-2"></i>
                                         <h6 class="m-0">Certificate</h6>
-                                        <span class="fs-sm ms-auto">Yes</span>
+                                        <span class="fs-sm ms-auto">{{ $course->certificate ?? '' }}</span>
                                     </li>
                                 </ul>
                             </div>
