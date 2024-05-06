@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="col-md-8 col-12 text-end">
-                    <button class="btn create-btn rounded-3 mt-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"> 
+                    <button class="btn create-btn rounded-3 mt-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
                         Create Course <i class="bi bi-plus-lg"></i>
                     </button>
                 </div>
@@ -55,6 +55,11 @@
                                         <i class="fa-solid fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="{{ route('courses.edit', $course->id) }}">
+                                            <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1"
+                                                style="    width: 17%;" alt="" />
+                                            Edit Course
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Intro']) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Intro Module
@@ -79,7 +84,7 @@
                         </td>
                     </tr>
                 @endif
-                
+
             </tbody>
             </table>
         </div>
