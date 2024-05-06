@@ -175,6 +175,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn save-btn text-white mt-3">Update Trainer</button>
+                    <a href="{{ route('trainers.index') }}" class="btn rounded-3 mt-3 excel-btn"> Back to Listing</a>
                 </div>
             </div>
         </form>

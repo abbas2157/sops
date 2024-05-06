@@ -218,6 +218,7 @@
                         </div>
                     </div>
                     <button class="btn save-btn text-white mt-3">Update Trainee</button>
+                    <a href="{{ route('trainees.index') }}" class="btn rounded-3 mt-3 excel-btn"> Back to Listing</a>
                 </div>
             </div>
             

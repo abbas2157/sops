@@ -30,6 +30,7 @@
             <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th style="width:10%" class="align-middle">Image</th>
                     <th class="align-middle">Course Name</th>
                     <th class="align-middle">Course Description</th>
                     <th class="align-middle">Course Steps</th>
@@ -42,9 +43,10 @@
                 @if($courses->isNotEmpty())
                     @foreach($courses as $course)
                         <tr>
+                            <td style="width:10%" class="align-middle"><img src="{{ asset('images/courses/'.$course->image) }}" style="width: 50%;" alt=""></td>
                             <td class="align-middle">{{ $course->name ?? '' }}</td>
                             <td class="align-middle" style="white-space: normal;">{{ $course->description ?? '' }}</td>
-                            <td class="align-middle"> <span class="btn create-btn rounded-3 text-center">Intro Module</span> </td>
+                            <td class="align-middle"> <a href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Intro']) }}" class="btn create-btn rounded-3 text-center">Intro Module</a> </td>
                             <td class="align-middle">{{ $course->createdby->full_name ?? '' }}</td>
                             <td class="align-middle">{{ $course->created_at->format('M d, Y') ?? '' }}</td>
                             <td class="align-middle" >
@@ -53,7 +55,7 @@
                                         <i class="fa-solid fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="{{ route('steps.index',['id' => $course->uuid ]) }}">
+                                        <a class="dropdown-item" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Intro']) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Intro Module
                                         </a>

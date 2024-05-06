@@ -22,9 +22,9 @@ class StepController extends Controller
         if(is_null($course))
         abort(404);
 
-        $intros = ModuleStep::where('course_id',$course->id)->with('createdby')->get();
+        $steps = ModuleStep::where('course_id',$course->id)->where('type',$request->type)->with('createdby')->get();
         // dd($intros->toArray());
-        return view('admin.steps.index',compact('intros','course'));
+        return view('admin.steps.index',compact('steps','course'));
     }
 
     /**
