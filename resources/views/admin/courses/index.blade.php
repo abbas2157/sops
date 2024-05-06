@@ -43,11 +43,11 @@
                     @foreach($courses as $course)
                         <tr>
                             <td class="align-middle">{{ $course->name ?? '' }}</td>
-                            <td class="align-middle">{{ $course->description ?? '' }}</td>
-                            <td> <span class="btn create-btn rounded-3 text-center">Intro Module</span> </td>
+                            <td class="align-middle" style="white-space: normal;">{{ $course->description ?? '' }}</td>
+                            <td class="align-middle"> <span class="btn create-btn rounded-3 text-center">Intro Module</span> </td>
                             <td class="align-middle">{{ $course->createdby->full_name ?? '' }}</td>
                             <td class="align-middle">{{ $course->created_at->format('M d, Y') ?? '' }}</td>
-                            <td class="align-middle">
+                            <td class="align-middle" >
                                 <div>
                                     <a class="btn btn-secondary bg-transparent border-0 text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa-solid fa-ellipsis-v"></i>

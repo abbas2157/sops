@@ -16,7 +16,7 @@ class IntroController extends Controller
         if(!$request->has('uuid') || empty($request->uuid))
             abort(404);
 
-        $course = Course::where('uuid',$request->uuid)->select('id','uuid','name')->first();
+        $course = Course::where('uuid',$request->uuid)->first();
         if(is_null($course))
             abort(404);
 
