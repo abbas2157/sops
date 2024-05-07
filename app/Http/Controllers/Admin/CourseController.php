@@ -38,9 +38,12 @@ class CourseController extends Controller
         $course = new Course;
         $course->uuid = Str::uuid();
         $course->name = $request->name;
+        $slug = Str::slug($request->name, '-');
+        $course->slug = $slug;
         $course->description = $request->description;
         if($request->hasFile('image'))
         {
+
             $file = $request->file('image');
             $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
             $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
@@ -67,7 +70,8 @@ class CourseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $course = Course::findorfail($id);
+        return view('admin.courses.edit',compact('course'));
     }
 
     /**
@@ -75,7 +79,36 @@ class CourseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:courses',
+        ]);
+        $course = Course::findorfail($id);
+        $course->name = $request->name;
+        $course->description = $request->description;
+        $course->lectures = $request->lectures;
+        $course->skill_level = $request->skill_level;
+        $course->language = $request->language;
+        $course->certificate = $request->certificate;
+        $course->duration = $request->duration;
+        $course->list = isset($request->list) ? $request->list : '0';
+        if($request->hasFile('image'))
+        {
+            if ($course->image && file_exists(public_path('images/courses' . $course->image))) {
+                unlink(public_path('images/courses' . $course->image));
+            }
+            $file = $request->file('image');
+            $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
+            $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+            $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
+            $file->move(public_path('images/courses'),$filename);
+            $course->image = $filename;
+        }
+        $course->created_by = Auth::user()->id;
+        $course->save();
+        $validator['success'] = 'Course Created Successfully';
+        return back()->withErrors($validator);
+
+
     }
 
     /**
@@ -83,7 +116,11 @@ class CourseController extends Controller
      */
     public function destroy(string $id)
     {
-        $course = Course::find($id)->delete();
+        $course = Course::find($id);
+        if ($course->image && file_exists(public_path('images/courses' . $course->image))) {
+            unlink(public_path('images/courses' . $course->image));
+        }
+        $course->delete();
         $validator['success'] = 'Course Delete Successfully';
         return back()->withErrors($validator);
     }
