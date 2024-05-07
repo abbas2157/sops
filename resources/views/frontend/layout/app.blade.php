@@ -83,6 +83,6 @@
          <script src="{{ asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
          <script src="{{ asset('frontend/js/theme.js') }}"></script>
          <script src="{{ asset('frontend/js/jquery-3.5.1.min.js') }}"></script>
-         <script src="{{ asset('frontend/js/theme-jquery.js') }}"></script><!-- End script start -->
+         <script src="{{ asset('frontend/js/theme-jquery.js') }}"></script>
    </body>
 </html>

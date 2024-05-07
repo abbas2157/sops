@@ -79,9 +79,9 @@
                 <div class="col-lg-9">
                     <div class="course-detail-tab bg-white shadow-sm rounded border border-gray-100">
                         <ul class="nav nav-tabs course-nav-tabs" id="course_detail_tab" role="tablist">
-                            <li class="nav-item" role="presentation"><button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview-tab-pane" type="button" role="tab" aria-controls="overview-tab-pane" aria-selected="true">Overview</button></li>
-                            <li class="nav-item" role="presentation"><button class="nav-link" id="instructor-tab" data-bs-toggle="tab" data-bs-target="#instructor-tab-pane" type="button" role="tab" aria-controls="instructor-tab-pane" aria-selected="false">Instructor</button></li>
-                            <li class="nav-item" role="presentation"><button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false">Reviews</button></li>
+                            <li class="nav-item" role="presentation"><button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview-tab-pane" type="button" role="tab" aria-controls="overview-tab-pane" aria-selected="true">Overview & Video</button></li>
+                            <li class="nav-item" role="presentation"><button class="nav-link" id="instructor-tab" data-bs-toggle="tab" data-bs-target="#instructor-tab-pane" type="button" role="tab" aria-controls="instructor-tab-pane" aria-selected="false">Instructors</button></li>
+                            <li class="nav-item" role="presentation"><button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false">Student Reviews</button></li>
                         </ul>
                         <div class="tab-content" id="course_detail_tabContent">
                             <!-- Tab 1 -->
@@ -95,110 +95,177 @@
                             </div>
                             <!-- Tab 3 -->
                             <div class="tab-pane fade" id="instructor-tab-pane" role="tabpanel" aria-labelledby="instructor-tab" tabindex="0">
-                                <h5 class="mb-4">About the instructor</h5>
-                                <div class="d-flex align-items-center">
-                                <div class="avatar-xxl shadow p-1 rounded-circle"><img src="{{ asset('frontend/img/team-8.jpg') }}" title="" alt="" class="rounded-circle"></div>
-                                <div class="ps-3">
-                                    <h6 class="mb-1">{{ $intro->course->trainer[0]->user->name ?? '' }} {{ $intro->course->trainer[0]->user->last_name ?? '' }}</h6>
-                                    <span>{{ $intro->course->trainer[0]->areas_of_expertise ?? '' }}, {{ $intro->course->trainer[0]->years_of_experience ?? '' }} Years</span>
+                                <h5 class="mb-4">About the instructors</h5>
+                                @foreach($intro->course->trainer as $trainer)
+                                <div class="align-items-center">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="avatar-xxl shadow p-1 rounded-circle">
+                                                @if(is_null($trainer->user->profile_picture))
+                                                    <img src="{{ asset('frontend/img/team-8.jpg') }}" title="" alt="" class="rounded-circle">
+                                                @else
+                                                    <img src="{{ asset('profile_pictures/'.$trainer->user->profile_picture) }}" title="" alt="" class="rounded-circle">
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="">
+                                                        <h6 class="mb-1">{{ $trainer->user->name ?? '' }} {{ $trainer->user->last_name ?? '' }}</h6>
+                                                        <span>{{ $trainer->areas_of_expertise ?? '' }}, {{ $trainer->years_of_experience ?? '' }} Years</span>
+                                                    </div>
+                                                    <div class="nav small py-1">
+                                                        <div>
+                                                            <i class="fa-solid fa-star text-primary"></i> 0 Instructor rating
+                                                        </div>
+                                                        <div class="vr mx-3 my-1"></div>
+                                                        <div>
+                                                            <i class="fa-regular fa-comment text-primary"></i> 0 reviews
+                                                        </div>
+                                                        <div class="vr mx-3 my-1"></div>
+                                                        <div>
+                                                            <i class="fa fa-users text-primary"></i> 0 students
+                                                        </div>
+                                                        <div class="vr mx-3 my-1"></div>
+                                                        <div>
+                                                            <i class="fa fa-file text-primary"></i> 1 courses
+                                                        </div>
+                                                    </div>
+                                                    <p>{{ $trainer->description ?? '' }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                </div>
-                                <div class="nav small py-4">
-                                <div><i class="fa-solid fa-star text-primary"></i> 4.55 Instructor rating</div>
-                                <div class="vr mx-3 my-1"></div>
-                                <div><i class="fa-regular fa-comment text-primary"></i> 1,533 reviews</div>
-                                <div class="vr mx-3 my-1"></div>
-                                <div><i class="fa fa-users text-primary"></i> 912 students</div>
-                                <div class="vr mx-3 my-1"></div>
-                                <div><i class="fa fa-file text-primary"></i> 19 courses</div>
-                                </div>
-                                <p>{{ $intro->course->trainer[0]->description ?? '' }}</p>
+                                @endforeach
                             </div>
                             <!-- Tab 4 -->
                             <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
                                 <h5 class="mb-4">Student Feedback</h5>
+                                @php
+                                    $count = $reviews->count();
+                                @endphp
                                 <div class="row gy-4 pb-4">
-                                <div class="col-sm-5">
-                                    <div class="bg-primary px-3 py-4 d-flex flex-column align-items-center justify-content-center rounded">
-                                        <div class="display-4 text-white">0</div>
-                                        <div class="d-flex text-warning">
-                                            <i class="mx-1 fa-regular fa-star"></i>
-                                            <i class="mx-1 fa-regular fa-star"></i>
-                                            <i class="mx-1 fa-regular fa-star"></i>
-                                            <i class="mx-1 fa-regular fa-star"></i>
-                                            <i class="mx-1 fa-regular fa-star"></i>
+                                    <div class="col-sm-5">
+                                        <div class="bg-primary px-3 py-4 d-flex flex-column align-items-center justify-content-center rounded">
+                                            <div class="display-4 text-white">{{ $count ?? 0 }}</div>
+                                            <div class="d-flex text-warning">
+                                                <i class="mx-1 {{ ($count >= 1) ? 'fa-solid' : 'fa-regular'  }} fa-star"></i>
+                                                <i class="mx-1 {{ ($count >= 2) ? 'fa-solid' : 'fa-regular'  }} fa-star"></i>
+                                                <i class="mx-1 {{ ($count >= 3) ? 'fa-solid' : 'fa-regular'  }} fa-star"></i>
+                                                <i class="mx-1 {{ ($count >= 4) ? 'fa-solid' : 'fa-regular'  }} fa-star"></i>
+                                                <i class="mx-1 {{ ($count >= 5) ? 'fa-solid' : 'fa-regular'  }} fa-star"></i>
+                                            </div>
+                                            <span class="text-white text-opacity-75">{{ $count ?? 0 }} REVIEWS</span>
                                         </div>
-                                        <span class="text-white text-opacity-75">0 REVIEWS</span>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <ul class="list-unstyled m-0">
+                                            <li class="d-flex align-items-center pb-3">
+                                                <h6 class="m-0 col-4 col-sm-3 fw-400">Excellent</h6>
+                                                <div class="px-1 px-sm-3 col">
+                                                <div class="progress w-100" style="height: 5px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                </div>
+                                                <h6 class="m-0 col-2 text-end fw-400 col-sm-1">0%</h6>
+                                            </li>
+                                            <li class="d-flex align-items-center pb-3">
+                                                <h6 class="m-0 col-4 col-sm-3 fw-400">Very Good</h6>
+                                                <div class="px-1 px-sm-3 col">
+                                                <div class="progress w-100" style="height: 5px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                </div>
+                                                <h6 class="m-0 col-2 text-end fw-400 col-sm-1">0%</h6>
+                                            </li>
+                                            <li class="d-flex align-items-center pb-3">
+                                                <h6 class="m-0 col-4 col-sm-3 fw-400">Good</h6>
+                                                <div class="px-1 px-sm-3 col">
+                                                <div class="progress w-100" style="height: 5px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                </div>
+                                                <h6 class="m-0 col-2 text-end fw-400 col-sm-1">0%</h6>
+                                            </li>
+                                            <li class="d-flex align-items-center pb-3">
+                                                <h6 class="m-0 col-4 col-sm-3 fw-400">Poor</h6>
+                                                <div class="px-1 px-sm-3 col">
+                                                <div class="progress w-100" style="height: 5px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                </div>
+                                                <h6 class="m-0 col-2 text-end fw-400 col-sm-1">0%</h6>
+                                            </li>
+                                            <li class="d-flex align-items-center">
+                                                <h6 class="m-0 col-4 col-sm-3 fw-400">Very Poor</h6>
+                                                <div class="px-1 px-sm-3 col">
+                                                <div class="progress w-100" style="height: 5px;">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                </div>
+                                                <h6 class="m-0 col-2 text-end fw-400 col-sm-1">0%</h6>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
-                                <div class="col-sm-7">
-                                    <ul class="list-unstyled m-0">
-                                        <li class="d-flex align-items-center pb-3">
-                                            <h6 class="m-0 col-4 col-sm-3 fw-400">Excellent</h6>
-                                            <div class="px-1 px-sm-3 col">
-                                            <div class="progress w-100" style="height: 5px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            </div>
-                                            <h6 class="m-0 col-2 text-end fw-400 col-sm-1">0%</h6>
-                                        </li>
-                                        <li class="d-flex align-items-center pb-3">
-                                            <h6 class="m-0 col-4 col-sm-3 fw-400">Very Good</h6>
-                                            <div class="px-1 px-sm-3 col">
-                                            <div class="progress w-100" style="height: 5px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            </div>
-                                            <h6 class="m-0 col-2 text-end fw-400 col-sm-1">0%</h6>
-                                        </li>
-                                        <li class="d-flex align-items-center pb-3">
-                                            <h6 class="m-0 col-4 col-sm-3 fw-400">Good</h6>
-                                            <div class="px-1 px-sm-3 col">
-                                            <div class="progress w-100" style="height: 5px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            </div>
-                                            <h6 class="m-0 col-2 text-end fw-400 col-sm-1">0%</h6>
-                                        </li>
-                                        <li class="d-flex align-items-center pb-3">
-                                            <h6 class="m-0 col-4 col-sm-3 fw-400">Poor</h6>
-                                            <div class="px-1 px-sm-3 col">
-                                            <div class="progress w-100" style="height: 5px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            </div>
-                                            <h6 class="m-0 col-2 text-end fw-400 col-sm-1">0%</h6>
-                                        </li>
-                                        <li class="d-flex align-items-center">
-                                            <h6 class="m-0 col-4 col-sm-3 fw-400">Very Poor</h6>
-                                            <div class="px-1 px-sm-3 col">
-                                            <div class="progress w-100" style="height: 5px;">
-                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            </div>
-                                            <h6 class="m-0 col-2 text-end fw-400 col-sm-1">0%</h6>
-                                        </li>
-                                    </ul>
-                                </div>
-                                </div>
                                 <ul class="list-group list-group-flush">
+                                    @foreach($reviews as $review)
                                     <li class="list-group-item px-0 text-body">
-                                        <div class="d-flex align-items-center">
-                                            <div class="avatar-lg shadow p-1 rounded-circle"><img src="{{ asset('frontend/img/team-8.jpg') }}" title="" alt="" class="rounded-circle"></div>
-                                            <div class="ps-3">
-                                                <h6 class="mb-1 fw-500">Tatiana Maslany</h6>
-                                                <div class="d-flex text-warning small">
-                                                    <i class="mx-1 fa-solid fa-star"></i>
-                                                    <i class="mx-1 fa-solid fa-star"></i>
-                                                    <i class="mx-1 fa-solid fa-star"></i>
-                                                    <i class="mx-1 fa-solid fa-star"></i>
-                                                    <i class="mx-1 fa-regular fa-star"></i>
+                                        <div class="align-items-center">
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <div class="avatar-lg shadow p-1 rounded-circle">
+                                                        <img src="{{ asset('frontend/img/team-8.jpg') }}" title="{{ $review->reviewer_name ?? '' }}" alt="" class="rounded-circle">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11">
+                                                    <div class="">
+                                                        <h6 class="mb-1 fw-500">{{ $review->reviewer_name ?? '' }}</h6>
+                                                        <div class="d-flex text-warning small">
+                                                            <i class="mx-1 {{ ($review->rating >= 1) ? 'fa-solid' : 'fa-regular'  }} fa-star"></i>
+                                                            <i class="mx-1 {{ ($review->rating >= 2) ? 'fa-solid' : 'fa-regular'  }} fa-star"></i>
+                                                            <i class="mx-1 {{ ($review->rating >= 3) ? 'fa-solid' : 'fa-regular'  }} fa-star"></i>
+                                                            <i class="mx-1 {{ ($review->rating >= 4) ? 'fa-solid' : 'fa-regular'  }} fa-star"></i>
+                                                            <i class="mx-1 {{ ($review->rating >= 5) ? 'fa-solid' : 'fa-regular'  }} fa-star"></i>
+                                                        </div>
+                                                    </div>
+                                                    <p class="m-0">{{ $review->review_text ?? '' }}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="m-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
                                     </li>
+                                    @endforeach
                                 </ul>
+                                <form method="POST" action="{{ route('reviews.store') }}">
+                                    @csrf
+                                    <input type="hidden" name="type" value="Course">
+                                    <input type="hidden" name="course_id" value="{{ $course->id ?? '' }}">
+                                    <div class="row mt-5">
+                                        <div class="col-md-12">
+                                            <h3 class="h1">Write Review</h3>
+                                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+                                        </div>
+                                        <div class="col-sm-6 mb-3">
+                                            <label class="form-label">Add Rating</label> 
+                                            <select class="form-select" name="rating" required>   
+                                                <option value="5">Excellent</option>
+                                                <option value="4">Very Good</option>
+                                                <option value="3">Good</option>
+                                                <option value="2">Poor</option>
+                                                <option value="1">Very Poor</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-floating mb-3">
+                                                <textarea class="form-control" name="review_text" id="review_text" style="height: 100px" placeholder="Comments"></textarea> 
+                                                <label for="review_text">Write Review</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12"><button class="btn btn-primary w-100">Write Review</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

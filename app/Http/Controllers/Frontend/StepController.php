@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{User,Course,Trainee,ModuleStep,Trainer,JoinedCourse};
+use App\Models\{User,Course,Trainee,ModuleStep,Trainer,JoinedCourse,Review};
 
 class StepController extends Controller
 {
@@ -55,8 +55,9 @@ class StepController extends Controller
         $course = Course::where('id',$intro->course_id)->first();
         if(is_null($course))
             abort(404);
-        // dd($intro->toArray());
-        return view('frontend.steps.detail',compact('intro','course'));
+        
+        $reviews = Review::where('id',$intro->course_id)->get();
+        return view('frontend.steps.detail',compact('intro','course','reviews'));
     }
 
     /**

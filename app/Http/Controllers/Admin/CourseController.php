@@ -80,7 +80,7 @@ class CourseController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => 'required|unique:courses',
+            'name' => 'required',
         ]);
         $course = Course::findorfail($id);
         $course->name = $request->name;
@@ -105,7 +105,7 @@ class CourseController extends Controller
         }
         $course->created_by = Auth::user()->id;
         $course->save();
-        $validator['success'] = 'Course Created Successfully';
+        $validator['success'] = 'Course Updated Successfully';
         return back()->withErrors($validator);
 
 

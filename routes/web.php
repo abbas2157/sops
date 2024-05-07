@@ -20,7 +20,7 @@ Route::group(['middleware' => ['guest']], function() {
 });
 Route::group(['middleware' => ['auth']], function() {
     Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'destroy'])->name('logout');
-
+    Route::resource('reviews', App\Http\Controllers\Frontend\ReviewController::class);
     Route::middleware([App\Http\Middleware\EnsureUserIsAdmin::class])->group(function () {
         Route::group(['prefix' => 'admin'], function(){
             Route::get('/', function(){return view('welcome');})->name('admin');

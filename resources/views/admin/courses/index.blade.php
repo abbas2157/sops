@@ -55,14 +55,14 @@
                                         <i class="fa-solid fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Intro']) }}">
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            Intro Module
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('courses.edit', $course->id) }}">
                                             <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1"
                                                 style="    width: 17%;" alt="" />
                                             Edit Course
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Intro']) }}">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
-                                            Intro Module
                                         </a>
                                         <a class="dropdown-item" href="javascript:;">
                                             <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" onclick="$('#courses_destroy').submit();"/>
