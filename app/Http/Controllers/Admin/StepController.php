@@ -66,7 +66,7 @@ class StepController extends Controller
             $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
             $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
             $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
-            $file->move(public_path('course/intro/assignments'),$filename);
+            $file->move(public_path('course/steps/assignments'),$filename);
             $intro->assignment = $filename;
         }
         $intro->save();

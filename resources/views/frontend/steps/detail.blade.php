@@ -80,6 +80,7 @@
                     <div class="course-detail-tab bg-white shadow-sm rounded border border-gray-100">
                         <ul class="nav nav-tabs course-nav-tabs" id="course_detail_tab" role="tablist">
                             <li class="nav-item" role="presentation"><button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview-tab-pane" type="button" role="tab" aria-controls="overview-tab-pane" aria-selected="true">Overview & Video</button></li>
+                            <li class="nav-item" role="presentation"><button class="nav-link" id="assignment-tab" data-bs-toggle="tab" data-bs-target="#assignment-tab-pane" type="button" role="tab" aria-controls="assignment-tab-pane" aria-selected="false">Submit Assignment</button></li>
                             <li class="nav-item" role="presentation"><button class="nav-link" id="instructor-tab" data-bs-toggle="tab" data-bs-target="#instructor-tab-pane" type="button" role="tab" aria-controls="instructor-tab-pane" aria-selected="false">Instructors</button></li>
                             <li class="nav-item" role="presentation"><button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false">Student Reviews</button></li>
                         </ul>
@@ -92,6 +93,33 @@
                                 </div>
                                 <h2 class="mb-4">{{ $intro->steps_no ?? '' }} : {{ $intro->title ?? '' }}</h2>
                                 {!! $intro->description ?? '' !!}
+                            </div>
+                            <!-- Tab 2 -->
+                            <div class="tab-pane fade" id="assignment-tab-pane" role="tabpanel" aria-labelledby="assignment-tab" tabindex="0">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img src="{{ asset('frontend/img/file.png') }}" style="width: 100%;" alt="" class="me-3">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="mt-5">
+                                            <h5 class="mb-0 h6">{{ $intro->assignment ?? '' }}</h5>
+                                            <p class="mb-0 fs-xs">Download this Assigment</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="mt-5">
+                                            <a href="{{ asset('course/steps/assignments/'.$intro->assignment) }}" class="text-muted text-decoration-none mt-3" target="_blank"  role="button" >
+                                                <i class="fa fa-download"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <h3 class="h3">Upload Your Task</h3>
+                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+                                    </div>
+                                </div>
                             </div>
                             <!-- Tab 3 -->
                             <div class="tab-pane fade" id="instructor-tab-pane" role="tabpanel" aria-labelledby="instructor-tab" tabindex="0">

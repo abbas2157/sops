@@ -26,7 +26,7 @@
                 <nav class="navbar navbar-expand-lg">
                     <div class="container">
                         <!-- Logo --> 
-                        <a class="navbar-brand header-navbar-brand" href="{{ url('/') }}">
+                        <a class="navbar-brand header-navbar-brand" href="{{ url('trainee') }}">
                             <img class="logo-dark" src="https://whitesprout.com.ng/img/SOPS.png" style="width:10%" title="" alt=""> 
                             <img class="logo-light" src="https://whitesprout.com.ng/img/SOPS.png" title="" alt="">
                         </a>

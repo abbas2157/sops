@@ -61,7 +61,6 @@
                                         aria-expanded="false">
                                         <i class="fa-solid fa-ellipsis-v"></i>
                                     </a>
-
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item"
                                             href="{{ route('course.detail',['uuid'=> $step->uuid]) }}">
