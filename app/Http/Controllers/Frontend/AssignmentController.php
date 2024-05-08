@@ -47,6 +47,7 @@ class AssignmentController extends Controller
         $assignment->user_name = Auth::user()->full_name;
         $assignment->type = $request->type;
         $assignment->course_id = $request->course_id;
+        $assignment->step_id = $request->step_id;
         $assignment->user_id = $request->user_id;
         $assignment->save();
 

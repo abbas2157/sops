@@ -178,6 +178,7 @@
                                                         @method('POST')
                                                         <input type="hidden" name="type" value="Course">
                                                         <input type="hidden" name="course_id" value="{{ $course->id ?? '' }}">
+                                                        <input type="hidden" name="step_id" value="{{ $intro->id ?? '' }}">
                                                         <input type="hidden" name="user_id" value="{{ Auth::user()->id ?? '' }}">
                                                         <input style="display:none" type="file" name="assignment" id="assignment" accept="application/*"/>
                                                         <div class="text-center" id="upload-file" style="cursor: pointer;">
@@ -342,6 +343,7 @@
                                     @csrf
                                     <input type="hidden" name="type" value="Course">
                                     <input type="hidden" name="course_id" value="{{ $course->id ?? '' }}">
+                                    <input type="hidden" name="step_id" value="{{ $intro->id ?? '' }}">
                                     <div class="row mt-5">
                                         <div class="col-md-12">
                                             <h3 class="h1">Write Review</h3>

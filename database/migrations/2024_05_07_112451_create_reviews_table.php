@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('review_text')->nullable();
             $table->string('reviewer_name')->nullable();
             $table->integer('course_id')->nullable();
+            $table->integer('step_id')->nullable();
             $table->integer('user_id')->nullable();
             $table->enum('type',['Course','Trainer','Other'])->default('Other');
             $table->softDeletes();

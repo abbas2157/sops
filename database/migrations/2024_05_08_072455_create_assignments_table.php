@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('file')->nullable();
             $table->string('user_name')->nullable();
             $table->integer('course_id')->nullable();
+            $table->integer('step_id')->nullable();
             $table->integer('user_id')->nullable();
             $table->enum('type',['Course','Trainer','Other'])->default('Other');
             $table->softDeletes();

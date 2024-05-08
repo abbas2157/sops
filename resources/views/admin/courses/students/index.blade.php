@@ -63,7 +63,7 @@
                                         <i class="fa-solid fa-xmark"></i> Remove Student
                                     </a>
                                     <a class="dropdown-item" href="">
-                                        <i class="fa-solid fa-eye"></i> Complete Steps
+                                        <i class="fa-solid fa-eye"></i> View Steps
                                     </a>
                                 </div>
                             </div>
