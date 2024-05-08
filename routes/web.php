@@ -40,7 +40,9 @@ Route::group(['middleware' => ['auth']], function() {
             Route::group(['prefix' => 'setting'], function(){
                 Route::get('/', [App\Http\Controllers\Admin\SettingController::class, 'create'])->name('admin.setting');
                 Route::post('perform', [App\Http\Controllers\Admin\SettingController::class, 'store'])->name('admin.setting.perform');
-
+            });
+            Route::group(['prefix' => 'students'], function(){
+                Route::get('/', [App\Http\Controllers\Admin\CourseDetailController::class, 'index'])->name('admin.students');
             });
         });
     });

@@ -59,6 +59,10 @@
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Intro Module
                                         </a>
+                                        <a class="dropdown-item" href="{{ route('admin.students',['uuid' => $course->uuid]) }}">
+                                            <img src="{{ asset('assets/img/eye.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            Enroll Students
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('courses.edit', $course->id) }}">
                                             <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1"
                                                 style="    width: 17%;" alt="" />

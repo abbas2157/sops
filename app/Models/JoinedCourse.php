@@ -17,5 +17,9 @@ class JoinedCourse extends Model
     {
         return $this->belongsTo(User::class,'user_id','id')->select('id','name','last_name','phone','email');
     }
+    public function trainee()
+    {
+        return $this->belongsTo(Trainee::class,'trainee_id','id')->select('id','date_of_birth','gender','city_from','city_currently_living_in','employed_status','study_status','skill_experience');
+    }
     
 }
