@@ -14,8 +14,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::with('createdby')->where('list',1)->paginate(20);
-        $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->paginate(20);
+        $courses = Course::with('createdby')->where('list',1)->get();
+        $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->get();
         return view('trainee.courses.index',compact('courses','my_courses'));
     }
 

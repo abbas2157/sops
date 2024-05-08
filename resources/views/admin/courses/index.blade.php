@@ -9,7 +9,7 @@
     <div class="border-bottom">
         <h3 class="all-adjustment text-center pb-2 mb-0">Courses</h3>
     </div>
-    <div class="card card-shadow border-0 mt-4 rounded-3">
+    <div class="card card-shadow border-0 mt-4 rounded-3 mb-3">
         <div class="card-header bg-white border-0 rounded-3">
             <div class="row my-3">
                 <div class="col-md-4 col-12">
@@ -93,6 +93,7 @@
             </table>
         </div>
     </div>
+    {!! $courses->withQueryString()->links('pagination::bootstrap-5') !!}
 </div>
 @include('admin.courses.create')
 @stop

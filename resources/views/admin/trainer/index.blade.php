@@ -15,7 +15,7 @@
         <div class="border-bottom">
             <h3 class="all-adjustment text-center pb-2 mb-0">All Trainers</h3>
         </div>
-        <div class="card border-0 card-shadow rounded-3 p-2 mt-4">
+        <div class="card border-0 card-shadow rounded-3 p-2 mt-4 mb-3">
             <div class="card-header border-0 bg-white">
                 <div class="row my-3">
                     <div class="col-md-3 col-12 mt-2">
@@ -121,6 +121,7 @@
                 </table>
             </div>
         </div>
+        {!! $trainers->withQueryString()->links('pagination::bootstrap-5') !!}
     </div>
 @stop
 @section('js')
