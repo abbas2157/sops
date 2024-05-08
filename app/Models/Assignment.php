@@ -9,4 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Assignment extends Model
 {
     use HasFactory, SoftDeletes;
+    public function step()
+    {
+        return $this->belongsTo(ModuleStep::class,'step_id','id')->select('id','type','steps_no','title','video','assignment');
+    }
 }

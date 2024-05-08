@@ -19,9 +19,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-12 text-end">
-                <a href="#" class="btn create-btn rounded-3 mt-2">Filter <i class="bi bi-funnel"></i></a>
-                <a href="#" class="btn rounded-3 mt-2 excel-btn">Excel <i class="bi bi-file-earmark-text"></i></a>
-                <a href="#" class="btn pdf rounded-3 mt-2">Pdf <i class="bi bi-file-earmark"></i></a>
+                <a href="{{ route('courses.index') }}" class="btn create-btn rounded-3 mt-2"><i class="fa-solid fa-backward"></i> Back To Courses</a>
             </div>
         </div>
     </div>
@@ -62,7 +60,7 @@
                                     <a class="dropdown-item" href="">
                                         <i class="fa-solid fa-xmark"></i> Remove Student
                                     </a>
-                                    <a class="dropdown-item" href="">
+                                    <a class="dropdown-item" href="{{ route('admin.students.steps',['uuid' => $course->uuid,'id' => $student->user_id]) }}">
                                         <i class="fa-solid fa-eye"></i> View Steps
                                     </a>
                                 </div>

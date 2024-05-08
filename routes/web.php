@@ -42,7 +42,8 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::post('perform', [App\Http\Controllers\Admin\SettingController::class, 'store'])->name('admin.setting.perform');
             });
             Route::group(['prefix' => 'students'], function(){
-                Route::get('/', [App\Http\Controllers\Admin\CourseDetailController::class, 'index'])->name('admin.students');
+                Route::get('/', [App\Http\Controllers\Admin\StudentController::class, 'index'])->name('admin.students');
+                Route::get('steps', [App\Http\Controllers\Admin\StudentController::class, 'show'])->name('admin.students.steps');
             });
         });
     });

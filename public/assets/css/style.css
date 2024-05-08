@@ -620,7 +620,10 @@ table {
     border: 1px solid rgba(244, 99, 99, 1);
     color: rgba(244, 99, 99, 1);
 }
-
+.badges.yellow-border {
+    border: 1px solid rgba(191, 136, 44, 1);
+    color: rgba(191, 136, 44, 1);
+}
 .badges.blue-border {
     border: 1px solid rgba(76, 73, 227, 1);
     color: rgba(76, 73, 227, 1);

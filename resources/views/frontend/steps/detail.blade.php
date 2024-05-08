@@ -163,36 +163,38 @@
                                     </div>
                                 </div>
                                 @endforeach
-                                <div class="row">
-                                    <div class="col-md-12 text-center">
-                                        <h3 class="h3">Upload Your Task</h3>
-                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-4"></div>
-                                            <div class="col-md-4">
-                                                <div class="card shadow-sm px-3 py-3 mb-4">
-                                                    <form enctype="multipart/form-data" id="assignment_form" method="post" action="{{ route('assignments.store') }}">
-                                                        @csrf
-                                                        @method('POST')
-                                                        <input type="hidden" name="type" value="Course">
-                                                        <input type="hidden" name="course_id" value="{{ $course->id ?? '' }}">
-                                                        <input type="hidden" name="step_id" value="{{ $intro->id ?? '' }}">
-                                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id ?? '' }}">
-                                                        <input style="display:none" type="file" name="assignment" id="assignment" accept="application/*"/>
-                                                        <div class="text-center" id="upload-file" style="cursor: pointer;">
-                                                            <div class="subheading">Select File</div>
-                                                            <i class="fa fa-upload"></i>
-                                                            <div class="mt-2 subheading"> Upload your Assignment</div>
-                                                        </div>
-                                                    </form>
+                                @if(!$assignments->isNotEmpty())
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <h3 class="h3">Upload Your Task</h3>
+                                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-4"></div>
+                                                <div class="col-md-4">
+                                                    <div class="card shadow-sm px-3 py-3 mb-4">
+                                                        <form enctype="multipart/form-data" id="assignment_form" method="post" action="{{ route('assignments.store') }}">
+                                                            @csrf
+                                                            @method('POST')
+                                                            <input type="hidden" name="type" value="Course">
+                                                            <input type="hidden" name="course_id" value="{{ $course->id ?? '' }}">
+                                                            <input type="hidden" name="step_id" value="{{ $intro->id ?? '' }}">
+                                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id ?? '' }}">
+                                                            <input style="display:none" type="file" name="assignment" id="assignment" accept="application/*"/>
+                                                            <div class="text-center" id="upload-file" style="cursor: pointer;">
+                                                                <div class="subheading">Select File</div>
+                                                                <i class="fa fa-upload"></i>
+                                                                <div class="mt-2 subheading"> Upload your Assignment</div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            
                                         </div>
-                                        
                                     </div>
-                                </div>
+                                @endif
                             </div>
                             <!-- Tab 3 -->
                             <div class="tab-pane fade" id="instructor-tab-pane" role="tabpanel" aria-labelledby="instructor-tab" tabindex="0">

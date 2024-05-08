@@ -18,6 +18,9 @@ yarn-error.log
 /.idea
 /.vscode
 /public/course
+/public/course/steps
+/public/course/steps/assignments
 /public/profile_pictures
 /public/images/courses
 /public/trainer/cv
+/public/trainee/tasks
