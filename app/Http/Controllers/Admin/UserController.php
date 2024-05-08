@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::whereIn('type', ['trainee', 'trainer'])->get();
+        $users = User::whereIn('type', ['trainee', 'trainer'])->paginate(20);
         return view('admin.user.index',compact('users'));
     }
 
