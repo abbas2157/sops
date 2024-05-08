@@ -17,6 +17,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/public/course
 /public/profile_pictures
 /public/images/courses
 /public/trainer/cv
