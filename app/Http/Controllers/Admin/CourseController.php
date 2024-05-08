@@ -43,7 +43,6 @@ class CourseController extends Controller
         $course->description = $request->description;
         if($request->hasFile('image'))
         {
-
             $file = $request->file('image');
             $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
             $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);

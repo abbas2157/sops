@@ -134,7 +134,7 @@
                         <div class="card-body">
                             <div class="file-upload">
                                 <input class="file-input" type="file" multiple name="profile_picture" />
-                                <img src="dasheets/img/upload-btn.svg" class="img-fluid" alt="" />
+                                <img src="{{ asset('assets/img/upload-btn.svg') }}" class="img-fluid" alt="" />
                                 <div class="mt-2 subheading">
                                     Drag and Drop to upload or
                                 </div>

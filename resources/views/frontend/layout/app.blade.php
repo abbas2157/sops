@@ -84,5 +84,6 @@
          <script src="{{ asset('frontend/js/theme.js') }}"></script>
          <script src="{{ asset('frontend/js/jquery-3.5.1.min.js') }}"></script>
          <script src="{{ asset('frontend/js/theme-jquery.js') }}"></script>
+         @yield('js')
    </body>
 </html>
