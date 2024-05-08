@@ -40,13 +40,13 @@
       <!-- Spinner End -->
 
       <!-- Sidebar Start -->
-      @include('trainee.layout.sidebar')
+      @include('trainer.layout.sidebar')
       <!-- Sidebar End -->
 
       <!-- Content Start -->
       <div class="content">
         <!-- Navbar Start -->
-        @include('trainee.layout.navbar')
+        @include('trainer.layout.navbar')
         <!-- Navbar End -->
         @yield('content')
         <div class="container-fluid pt-4 px-4 mb-5 main-footer">

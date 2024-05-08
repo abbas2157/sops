@@ -1,4 +1,4 @@
-@extends('trainee.layout.app')
+@extends('trainer.layout.app')
 @section('title')
     <title>Profile | SOPS - School of Professional Skills</title>
 @stop
@@ -31,7 +31,7 @@
 @stop
 @section('content')
 @php 
-$trainee = Auth::user();
+$trainer = Auth::user();
 @endphp
 <div class="container-fluid px-4">
     <div class="row mb-5">
@@ -80,7 +80,7 @@ $trainee = Auth::user();
                                 <p class="mb-0">{{ Auth::user()->phone ?? '' }}</p>
                             </div>
                             <div class="col-md-4 text-end">
-                                <form enctype="multipart/form-data" id="profile_picture_form" method="post" action="{{ route('trainee.change-profile.picture') }}">
+                                <form enctype="multipart/form-data" id="profile_picture_form" method="post" action="{{ route('trainer.change-profile.picture') }}">
                                 @csrf
                                     <input type="file" name="profile_picture" id="profile_picture" accept="images/*" onchange="form.submit()" class="fileInput" style="display: none"  required/>
                                     <button id="change-picture-btn" class="change-picture-btn btn create-btn" type="button">
@@ -94,7 +94,7 @@ $trainee = Auth::user();
                         </div>
                     </div>
                 </div>
-                <form method="POST" action="{{ route('trainee.profile.perform') }}">
+                <form method="POST" action="{{ route('trainer.profile.perform') }}">
                     @csrf
                     <div class="card rounded-3 border-0 card-shadow h-100 p-3 mt-4">
                         <div class="card-body h-100">
@@ -143,7 +143,7 @@ $trainee = Auth::user();
             </div>
             <div id="Change-password" class="tabcontent">
                 @include('partials.alerts')
-                <form method="POST" action="{{ route('trainee.profile.change.password') }}">
+                <form method="POST" action="{{ route('trainer.profile.change.password') }}">
                 @csrf
                     <div class="card rounded-3 border-0 card-shadow h-100 p-3">
                         <div class="card-body h-100">
@@ -198,7 +198,7 @@ $trainee = Auth::user();
             </div>
             <div id="Edit-Detail" class="tabcontent">
                 @include('partials.alerts')
-                <form method="POST" action="{{ route('trainee.profile.detail.update',['details' => '']) }}">
+                <form method="POST" action="{{ route('trainer.profile.detail.update',['details' => '']) }}">
                     @csrf
                     <div class="card rounded-3 border-0 card-shadow h-100 p-3">
                         <div class="card-body h-100">
@@ -215,15 +215,15 @@ $trainee = Auth::user();
                                                     <div class="form-group fw-bold">
                                                         <label for="exampleFormControlSelect5">Gender <span class="text-danger">*</span></label>
                                                         <select class="form-control form-select subheading mt-2" aria-label="Default select example" id="exampleFormControlSelect5" name="gender">
-                                                            <option value="male" {{ (!is_null($trainee->trainee) && $trainee->trainee->gender == 'male') ? 'selected' : '' }}>Male</option>
-                                                            <option value="female" {{ (!is_null($trainee->trainee) && $trainee->trainee->gender == 'female') ? 'selected' : '' }}>Female</option>
+                                                            <option value="Male" {{ (!is_null($trainer->trainer) && $trainer->trainer->gender == 'Male') ? 'selected' : '' }}>Male</option>
+                                                            <option value="Female" {{ (!is_null($trainer->trainer) && $trainer->trainer->gender == 'Female') ? 'selected' : '' }}>Female</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group fw-bold">
                                                         <label for="exampleFormControlSelect6">Date of Birth <span class="text-danger">*</span></label>
-                                                        <input type="date" name="date_of_birth" class="form-control subheading mt-2" value="{{ $trainee->trainee->date_of_birth ?? '' }}"
+                                                        <input type="date" name="date_of_birth" class="form-control subheading mt-2" value="{{ $trainer->trainer->date_of_birth ?? '' }}"
                                                             id="exampleFormControlSelect6" />
                                                     </div>
                                                 </div>
@@ -231,9 +231,9 @@ $trainee = Auth::user();
                                             <div class="row mt-2">
                                                 <div class="col-md-12">
                                                     <div class="form-group fw-bold">
-                                                        <label for="exampleFormControlSelect7">Trainee Description</label>
+                                                        <label for="exampleFormControlSelect7">Trainer Description</label>
                                                         <textarea class="form-control subheading mt-1" id="exampleFormControlTextarea7"
-                                                            placeholder="Trainee Description (optinal)" rows="5" name="description">{{$trainee->trainee->description ?? ''}}</textarea>
+                                                            placeholder="Trainer Description (optinal)" rows="5" name="description">{{$trainer->trainer->description ?? ''}}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -244,33 +244,32 @@ $trainee = Auth::user();
                                             <div class="row fw-bold">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="exampleFormControlSelect1">Which city are you from? <span class="text-danger">*</span></label>
-                                                        <select class="form-control form-select subheading mt-1"
-                                                            aria-label="Default select example" id="exampleFormControlSelect1" name="city_from">
-                                                            <option value="Lahore" {{ (!is_null($trainee->trainee) && $trainee->trainee->city_from == 'Lahore') ? 'selected' : '' }}>Lahore</option>
+                                                        <label for="highest_qualification">Highest Qualification <span class="text-danger">*</span></label>
+                                                        <select name="highest_qualification" id="highest_qualification" class="form-control form-select subheading mt-1" required="">
+                                                            <option value="bsc" {{ optional($trainer->trainer)->highest_qualification == 'bsc' ? 'selected' : '' }}>BSc</option>
+                                                            <option value="msc" {{ optional($trainer->trainer)->highest_qualification == 'msc' ? 'selected' : '' }}>MSc</option>
+                                                            <option value="phd" {{ optional($trainer->trainer)->highest_qualification == 'phd' ? 'selected' : '' }}>PhD</option>
+                                                            <option value="other" {{ optional($trainer->trainer)->highest_qualification == 'other' ? 'selected' : '' }}>Other</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="exampleFormControlSelect1">Which city do you currently live in? <span class="text-danger">*</span></label>
-                                                        <select class="form-control form-select subheading mt-1"
-                                                            aria-label="Default select example" id="exampleFormControlSelect1" name="city_currently_living_in">
-                                                            <option value="Lahore" {{ (!is_null($trainee->trainee) && $trainee->trainee->city_currently_living_in == 'Lahore') ? 'selected' : '' }}>Lahore</option>
+                                                        <label for="areas_of_expertise">Areas of Expertise <span class="text-danger">*</span></label>
+                                                        <select name="areas_of_expertise" id="areas_of_expertise" class="form-control form-select subheading mt-1" required="">
+                                                            <option value="Web Development" {{ optional($trainer->trainer)->areas_of_expertise == 'Web Development' ? 'selected' : '' }}>Web Development</option>
+                                                            <option value="Mobile Development" {{ optional($trainer->trainer)->areas_of_expertise == 'Mobile Development' ? 'selected' : '' }}>Mobile Development</option>
+                                                            <option value="Data Science" {{ optional($trainer->trainer)->areas_of_expertise == 'Data Science' ? 'selected' : '' }}>Data Science</option>
+                                                            <option value="Digital Marketing" {{ optional($trainer->trainer)->areas_of_expertise == 'Digital Marketing' ? 'selected' : '' }}>Digital Marketing</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row fw-bold mt-2">
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="exampleFormControlSelect1"> Skill of Interest Experience? <span class="text-danger">*</span></label>
-                                                        <select class="form-control form-select subheading mt-2"aria-label="Default select example" id="exampleFormControlSelect1" name="skill_experience">
-                                                            <option value="None" {{ (!is_null($trainee->trainee) && $trainee->trainee->skill_experience == 'None') ? 'selected' : '' }}>None</option>
-                                                            <option value="Basic" {{ (!is_null($trainee->trainee) && $trainee->trainee->skill_experience == 'Basic') ? 'selected' : '' }}>Basic</option>
-                                                            <option value="Intermediate" {{ (!is_null($trainee->trainee) && $trainee->trainee->skill_experience == 'Intermediate') ? 'selected' : '' }}>Intermediate</option>
-                                                            <option value="Advance" {{ (!is_null($trainee->trainee) && $trainee->trainee->skill_experience == 'Advance') ? 'selected' : '' }}>Advance</option>
-                                                        </select>
+                                                    <div class="form-group fw-bold">
+                                                        <label for="years_of_experience">Years of Experience <span class="text-danger">*</span></label>
+                                                        <input type="number" name="years_of_experience" class="form-control subheading mt-2" id="years_of_experience" value="{{ $trainer->trainer->years_of_experience ?? '' }}" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -293,79 +292,14 @@ $trainee = Auth::user();
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="card rounded-3 border-0 mt-3 card-shadow">
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-1">
-                                                    <label for="myCheckbox09" class="checkbox d-flex mt-1">
-                                                        <input class="checkbox__input" type="checkbox" id="whatsapp" name="available_on_whatsapp" value="yes" {{ (!is_null($trainee->trainee) && $trainee->trainee->available_on_whatsapp == 'yes') ? 'checked' : ''}}/>
-                                                        <svg class="checkbox__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                                                            <rect width="21" height="21" x=".5" y=".5" fill="#FFF"
-                                                                stroke="rgba(76, 73, 227, 1)" rx="3" />
-                                                            <path class="tick" stroke="rgba(76, 73, 227, 1)" fill="none"
-                                                                stroke-linecap="round" stroke-width="3" d="M4 10l5 5 9-9" />
-                                                        </svg>
-                                                    </label>
-                                                </div>
-                                                <div class="col-10">
-                                                    <label for="whatsapp">Available on WhatsApp?</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-1">
-                                                    <label for="myCheckbox09" class="checkbox d-flex mt-1">
-                                                        <input class="checkbox__input" type="checkbox" id="employment" name="employed_status" value="yes" {{ (!is_null($trainee->trainee) && $trainee->trainee->employed_status == 'yes') ? 'checked' : ''}}/>
-                                                        <svg class="checkbox__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                                                            <rect width="21" height="21" x=".5" y=".5" fill="#FFF"
-                                                                stroke="rgba(76, 73, 227, 1)" rx="3" />
-                                                            <path class="tick" stroke="rgba(76, 73, 227, 1)" fill="none"
-                                                                stroke-linecap="round" stroke-width="3" d="M4 10l5 5 9-9" />
-                                                        </svg>
-                                                    </label>
-                                                </div>
-                                                <div class="col-10">
-                                                    <label for="employment">Are you currently employed?</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card rounded-3 border-0 mt-3 card-shadow">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-1">
-                                                    <label for="myCheckbox09" class="checkbox d-flex mt-1">
-                                                        <input class="checkbox__input" type="checkbox" id="currently_studying" name="study_status" value="yes" {{ (!is_null($trainee->trainee) && $trainee->trainee->study_status == 'yes') ? 'checked' : ''}}/>
-                                                        <svg class="checkbox__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                                                            <rect width="21" height="21" x=".5" y=".5" fill="#FFF"
-                                                                stroke="rgba(76, 73, 227, 1)" rx="3" />
-                                                            <path class="tick" stroke="rgba(76, 73, 227, 1)" fill="none"
-                                                                stroke-linecap="round" stroke-width="3" d="M4 10l5 5 9-9" />
-                                                        </svg>
-                                                    </label>
-                                                    <!-- <input type="checkbox" name="" id=""/> -->
-                                                </div>
-                                                <div class="col-10">
-                                                    <label for="currently_studying">Are you currently studying?</label>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-1">
-                                                    <!-- <input type="checkbox" name="" id="" /> -->
-                                                    <label for="myCheckbox09" class="checkbox d-flex mt-1">
-                                                        <input class="checkbox__input" type="checkbox" id="internet_access" name="has_computer_and_internet" value="yes" {{ (!is_null($trainee->trainee) && $trainee->trainee->has_computer_and_internet == 'yes') ? 'checked' : ''}}/>
-                                                        <svg class="checkbox__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                                                            <rect width="21" height="21" x=".5" y=".5" fill="#FFF"
-                                                                stroke="rgba(76, 73, 227, 1)" rx="3" />
-                                                            <path class="tick" stroke="rgba(76, 73, 227, 1)" fill="none"
-                                                                stroke-linecap="round" stroke-width="3" d="M4 10l5 5 9-9" />
-                                                        </svg>
-                                                    </label>
-                                                </div>
-                                                <div class="col-10">
-                                                    <label for="internet_access">Do you have access to a computer and the internet?</label>
+                                                <div class="col-md-12">
+                                                    <div class="form-group fw-bold">
+                                                        <label for="curriculum_vitae" >Curriculum Vitae </label>
+                                                        <input type="file" name="curriculum_vitae" class="form-control subheading mt-2" id="curriculum_vitae"  />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

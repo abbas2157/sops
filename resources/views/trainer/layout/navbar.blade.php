@@ -24,7 +24,7 @@
             @endif
         </a>
         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-        <a href="{{ route('trainee.profile') }}" class="dropdown-item"><i class="fa-regular fa-user me-2"></i> My Profile</a>
+        <a href="{{ route('trainer.profile') }}" class="dropdown-item"><i class="fa-regular fa-user me-2"></i> My Profile</a>
             <a href="{{ route('logout') }}" class="dropdown-item"><i class="fa-solid fa-right-from-bracket me-2"></i> Log Out</a>
         </div>
     </div>

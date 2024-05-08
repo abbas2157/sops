@@ -27,6 +27,11 @@ class RegisterController extends Controller
         $data = array('type' => 'trainee','title' => 'Student');
         return view('auth.register',$data);
     }
+    public function trainer()
+    {
+        $data = array('type' => 'trainer','title' => 'Instructor');
+        return view('auth.register',$data);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -62,6 +67,10 @@ class RegisterController extends Controller
             if($user->type == 'trainee')
             {
                 return redirect('trainee/profile?details');
+            }
+            if($user->type == 'trainer')
+            {
+                return redirect('trainer/profile?details');
             }
         }
         $validator['emailPassword'] = 'Something Went Wrong.';

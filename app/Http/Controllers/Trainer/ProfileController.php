@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Trainee;
+namespace App\Http\Controllers\Trainer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{User,Course,Trainee};
+use App\Models\{User,Course,Trainer};
 
 class ProfileController extends Controller
 {
@@ -23,7 +23,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('trainee.profile.index');
+        return view('trainer.profile.index');
     }
 
     /**
@@ -45,26 +45,36 @@ class ProfileController extends Controller
     }
     public function detail_update(Request $request)
     {
-        $trainee = Trainee::where('user_id',Auth::user()->id)->first();
-        if(is_null($trainee))
+        $trainer = Trainer::where('user_id',Auth::user()->id)->first();
+        if(is_null($trainer))
         {
-            $trainee = new Trainee();
-            $trainee->user_id = Auth::user()->id;
-            $trainee->created_by = Auth::user()->id;
+            $trainer = new Trainer();
+            $trainer->user_id = Auth::user()->id;
+            $trainer->created_by = Auth::user()->id;
         }
-        $trainee->gender = $request->gender;
-        $trainee->description = $request->description ;
-        $trainee->city_from = $request->city_from;
-        $trainee->city_currently_living_in = $request->city_currently_living_in;
-        $trainee->skill_experience = $request->skill_experience;
-        $trainee->date_of_birth = $request->date_of_birth;
-        $trainee->available_on_whatsapp = isset($request->available_on_whatsapp) ? $request->available_on_whatsapp : 'no';
-        $trainee->employed_status = isset($request->employed_status) ? $request->employed_status : 'no';
-        $trainee->study_status = isset($request->study_status) ? $request->study_status : 'no';
-        $trainee->has_computer_and_internet = isset($request->has_computer_and_internet) ? $request->has_computer_and_internet : 'no';
-        $trainee->save();
+        $trainer->gender = $request->gender;
+        $trainer->description = $request->description;
+        $trainer->date_of_birth = $request->date_of_birth;
+        $trainer->highest_qualification = $request->highest_qualification;
+        $trainer->areas_of_expertise = $request->areas_of_expertise;
+        $trainer->years_of_experience = $request->years_of_experience;
+        
+        if($request->hasFile('curriculum_vitae'))
+            {
+                if ($trainer->curriculum_vitae && file_exists(public_path('trainer/cv/' . $trainer->curriculum_vitae))) {
+                    unlink(public_path('trainer/cv/' . $user->curriculum_vitae));
+                }
+                $file = $request->file('curriculum_vitae');
+                $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
+                $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+                $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
+                $file->move(public_path('trainer/cv'),$filename);
+                $trainer->curriculum_vitae = $filename;
+            }
+        $trainer->highest_qualification = $request->highest_qualification;
+        $trainer->save();
         $validator['success'] = 'Profile Details has been Updated.';
-        return redirect('trainee/profile')->withErrors($validator);
+        return redirect('trainer/profile')->withErrors($validator);
     }
     /**
      * Display the specified resource.

@@ -1,9 +1,19 @@
-@if((Auth::user()->type != 'admin') && is_null(Auth::user()->email_verified_at))
+@if((Auth::user()->type != 'admin' && Auth::user()->type != 'trainee') && is_null(Auth::user()->email_verified_at))
     <div class="alert alert-warning" role="alert">
         First, you must complete your registration by verifing your email address, and then you’ll officially be a part of the SOPS community
     </div>
 @endif
-@if((Auth::user()->type != 'admin') && is_null(Auth::user()->trainee))
+@if((Auth::user()->type != 'admin' && Auth::user()->type != 'trainee') && is_null(Auth::user()->trainer))
+    <div class="alert alert-warning" role="alert">
+        Please add these detail before make any changes and get your dashboard with full details.
+    </div>
+@endif
+@if((Auth::user()->type != 'admin' && Auth::user()->type != 'trainer') && is_null(Auth::user()->email_verified_at))
+    <div class="alert alert-warning" role="alert">
+        First, you must complete your registration by verifing your email address, and then you’ll officially be a part of the SOPS community
+    </div>
+@endif
+@if((Auth::user()->type != 'admin' && Auth::user()->type != 'trainer') && is_null(Auth::user()->trainee))
     <div class="alert alert-warning" role="alert">
         Please add these detail before make any changes and get your dashboard with full details.
     </div>

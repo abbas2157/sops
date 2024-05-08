@@ -16,6 +16,7 @@ Route::group(['middleware' => ['guest']], function() {
     Route::group(['prefix' => 'register'], function(){
         Route::get('trainee', [App\Http\Controllers\Auth\RegisterController::class, 'trainee'])->name('register.trainee');
         Route::post('perform', [App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('register.perform');
+        Route::get('trainer', [App\Http\Controllers\Auth\RegisterController::class, 'trainer'])->name('register.trainer');
     });
 });
 Route::group(['middleware' => ['auth']], function() {
@@ -46,7 +47,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::middleware([App\Http\Middleware\EnsureUserIsTrainee::class])->group(function () {
         Route::get('/', function(){return view('trainee.index');})->name('frontend');
         Route::group(['prefix' => 'course'], function(){
-            Route::get('course', [App\Http\Controllers\Frontend\StepController::class, 'index'])->name('course');
+            Route::get('/', [App\Http\Controllers\Frontend\StepController::class, 'index'])->name('course');
             Route::get('details', [App\Http\Controllers\Frontend\StepController::class, 'show'])->name('course.detail');
         });
         Route::group(['prefix' => 'trainee'], function(){
@@ -61,6 +62,19 @@ Route::group(['middleware' => ['auth']], function() {
             Route::group(['prefix' => 'courses'], function(){
                 Route::get('/', [App\Http\Controllers\Trainee\CourseController::class, 'index'])->name('trainee.courses');
                 Route::get('join', [App\Http\Controllers\Trainee\CourseController::class, 'create'])->name('trainee.courses.join');
+            });
+        });
+    });
+
+    Route::middleware([App\Http\Middleware\EnsureUserIsTrainer::class])->group(function () {
+        Route::group(['prefix' => 'trainer'], function(){
+            Route::get('/', [App\Http\Controllers\Trainer\DashboardController::class, 'index'])->name('trainer');
+            Route::group(['prefix' => 'profile'], function(){
+                Route::get('/', [App\Http\Controllers\Trainer\ProfileController::class, 'create'])->name('trainer.profile');
+                Route::post('perform', [App\Http\Controllers\Trainer\ProfileController::class, 'update'])->name('trainer.profile.perform');
+                Route::post('change/password', [App\Http\Controllers\Trainer\ProfileController::class, 'show'])->name('trainer.profile.change.password');
+                Route::post('picture/update', [App\Http\Controllers\Trainer\ProfileController::class, 'picture_update'])->name('trainer.change-profile.picture');
+                Route::post('detail/update', [App\Http\Controllers\Trainer\ProfileController::class, 'detail_update'])->name('trainer.profile.detail.update');
             });
         });
     });

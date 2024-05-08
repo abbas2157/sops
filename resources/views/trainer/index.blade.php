@@ -1,6 +1,6 @@
-@extends('trainee.layout.app')
+@extends('trainer.layout.app')
 @section('title')
-    <title>Trainee Dashboard | SOPS - School of Professional Skills</title>
+    <title>Trainer Dashboard | SOPS - School of Professional Skills</title>
 @stop
 @section('content')
 <!-- Sale & Revenue Start -->

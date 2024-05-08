@@ -90,29 +90,24 @@
                             <div class="row fw-bold">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="highest_qualification">Highest Qualification <span
-                                                class="text-danger">*</span></label>
-                                        <select name="highest_qualification" id="highest_qualification"
-                                            class="form-control form-select subheading mt-1" required="">
-
-                                                <option value="bsc" {{ optional($trainer->trainer)->highest_qualification == 'bsc' ? 'selected' : '' }}>BSc</option>
-                                                <option value="msc" {{ optional($trainer->trainer)->highest_qualification == 'msc' ? 'selected' : '' }}>MSc</option>
-                                                <option value="phd" {{ optional($trainer->trainer)->highest_qualification == 'phd' ? 'selected' : '' }}>PhD</option>
-                                                <option value="other" {{ optional($trainer->trainer)->highest_qualification == 'other' ? 'selected' : '' }}>Other</option>
-
+                                        <label for="highest_qualification">Highest Qualification <span class="text-danger">*</span></label>
+                                        <select name="highest_qualification" id="highest_qualification" class="form-control form-select subheading mt-1" required="">
+                                            <option value="bsc" {{ optional($trainer->trainer)->highest_qualification == 'bsc' ? 'selected' : '' }}>BSc</option>
+                                            <option value="msc" {{ optional($trainer->trainer)->highest_qualification == 'msc' ? 'selected' : '' }}>MSc</option>
+                                            <option value="phd" {{ optional($trainer->trainer)->highest_qualification == 'phd' ? 'selected' : '' }}>PhD</option>
+                                            <option value="other" {{ optional($trainer->trainer)->highest_qualification == 'other' ? 'selected' : '' }}>Other</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="areas_of_expertise">Areas of Expertise <span
-                                                class="text-danger">*</span></label>
-                                                <select name="areas_of_expertise" id="areas_of_expertise" class="form-control form-select subheading mt-1" required="">
-                                                    <option value="web development" {{ optional($trainer->trainer)->areas_of_expertise == 'web development' ? 'selected' : '' }}>Web Development</option>
-                                                    <option value="mobile development" {{ optional($trainer->trainer)->areas_of_expertise == 'mobile development' ? 'selected' : '' }}>Mobile Development</option>
-                                                    <option value="data science" {{ optional($trainer->trainer)->areas_of_expertise == 'data science' ? 'selected' : '' }}>Data Science</option>
-                                                    <option value="digital marketing" {{ optional($trainer->trainer)->areas_of_expertise == 'digital marketing' ? 'selected' : '' }}>Digital Marketing</option>
-                                                </select>
+                                        <label for="areas_of_expertise">Areas of Expertise <span class="text-danger">*</span></label>
+                                        <select name="areas_of_expertise" id="areas_of_expertise" class="form-control form-select subheading mt-1" required="">
+                                            <option value="web development" {{ optional($trainer->trainer)->areas_of_expertise == 'web development' ? 'selected' : '' }}>Web Development</option>
+                                            <option value="mobile development" {{ optional($trainer->trainer)->areas_of_expertise == 'mobile development' ? 'selected' : '' }}>Mobile Development</option>
+                                            <option value="data science" {{ optional($trainer->trainer)->areas_of_expertise == 'data science' ? 'selected' : '' }}>Data Science</option>
+                                            <option value="digital marketing" {{ optional($trainer->trainer)->areas_of_expertise == 'digital marketing' ? 'selected' : '' }}>Digital Marketing</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Trainee;
+namespace App\Http\Controllers\Trainer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class DashboardController extends Controller
     {
         $courses = Course::with('createdby')->where('list',1)->get();
         $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->get();
-        return view('trainee.index',compact('courses','my_courses'));
+        return view('trainer.index',compact('courses','my_courses'));
     }
 
     /**

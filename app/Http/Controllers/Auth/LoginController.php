@@ -69,7 +69,6 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            // dd($user->type);
             if($user->type == 'admin')
             {
                 return redirect()->intended('admin');
@@ -79,6 +78,12 @@ class LoginController extends Controller
                 if(is_null($user->trainee))
                     return redirect('trainee/profile?details');
                 return redirect('trainee');
+            }
+            if($user->type == 'trainer')
+            {
+                if(is_null($user->trainer))
+                    return redirect('trainer/profile?details');
+                return redirect('trainer');
             }
             // return redirect()->intended('/')->withSuccess('Signed in');
         }
