@@ -48,10 +48,12 @@
                                     <td class="align-middle">{{ $user->created_at->format('M d, Y') ?? '' }}</td>
 
                             <td class="align-middle">
-                                @if($user->type == 'trainer')
-                                    <span class="badges blue-border text-center">Trainer</span> 
+                                @if($user->type == 'admin')
+                                    <span class="badges red-border text-center">Admin</span> 
+                                @elseif($user->type == 'trainer')
+                                    <span class="badges yellow-border text-center">Trainer</span> 
                                 @else
-                                    <span class="badges red-border text-center">Trainee</span>
+                                    <span class="badges blue-border text-center">Trainee</span>
                                 @endif
                             </td>
                             <td class="align-middle">
