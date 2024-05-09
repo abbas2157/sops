@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -28,7 +29,20 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'text' => 'required',
+        ]);
+        $comment = new Comment();
+        $comment->user_name = $request->user_name;
+        $comment->user_id = $request->user_id;
+        $comment->course_id = $request->course_id;
+        $comment->step_id = $request->step_id;
+        $comment->text = $request->text;
+        $comment->show = '0';
+        $comment->save();
+        $validator['success'] = 'Your Comment will show after approvel';
+        return back()->withErrors($validator);
+
     }
 
     /**
