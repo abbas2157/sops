@@ -34,7 +34,7 @@
                             <div class="card shadow">
                                 <div class="card-body">
                                     <div class="d-flex align-items-start pb-2">
-                                        <h3 class="m-0">Rs. 0.0<del class="text-muted fs-lg ps-2">Rs. 0.0</del></h3>
+                                        <h3 class="m-  m-00">Rs. 0.0<del class="text-muted fs-lg ps-2">Rs. 0.0</del></h3>
                                         <span class="px-2 py-2 lh-1 ms-auto bg-primary text-white rounded fs-xs">0%
                                             off</span>
                                     </div>
@@ -101,37 +101,21 @@
                             </ul>
                             <div class="tab-content" id="course_detail_tabContent">
                                 <!-- Tab 1 -->
-                                <div class="tab-pane fade show active" id="overview-tab-pane" role="tabpanel"
-                                    aria-labelledby="overview-tab" tabindex="0">
+                                <div class="tab-pane fade show active" id="overview-tab-pane" role="tabpanel" aria-labelledby="overview-tab" tabindex="0">
                                     <div class="row mt-3 mb-4">
-                                        <!-- <div class="col-md-1"></div> -->
-                                        <div class="col-md-12"><iframe style="width:100%" height="445"
-                                                src="{{ $intro->video ?? '' }}"></iframe></div>
+                                        <div class="col-md-12">
+                                            <iframe style="width:100%" height="445" src="{{ $intro->video ?? '' }}"></iframe>
+                                        </div>
                                     </div>
                                     <h2 class="mb-4">{{ $intro->steps_no ?? '' }} : {{ $intro->title ?? '' }}</h2>
                                     {!! $intro->description ?? '' !!}
-                                    <form method="POST" action="{{ route('comments.store') }}">
-                                        @csrf
-                                        <input type="hidden" name="type" value="Course">
-                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id ?? '' }}">
-                                        <input type="hidden" name="user_name" value="{{ Auth::user()->name ?? '' }}">
-                                        <input type="hidden" name="course_id" value="{{ $course->id ?? '' }}">
-                                        <input type="hidden" name="step_id" value="{{ $intro->id ?? '' }}">
-                                        <div class="mt-2">
-                                            <input type="text" name="text" class="form-control" placeholder="Write Comment">
-                                            <div class="col-md-4 mt-3 mb-2">
-                                            <button class="btn btn-primary">Add Comment</button>
-                                        </div>
-                                        </div>
-
-                                    </form>
                                 </div>
                                 <!-- Tab 2 -->
                                 <div class="tab-pane fade" id="assignment-tab-pane" role="tabpanel"
                                     aria-labelledby="assignment-tab" tabindex="0">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h5 class="h5">Your Assignment for this Class</h5>
+                                            <h5 class="h5 m-0">Your Assignment for this Class</h5>
                                             <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
                                         </div>
                                     </div>
@@ -143,7 +127,7 @@
                                             </div>
                                             <div class="col-xs-8 col-sm-8 col-md-9">
                                                 <div class="mt-2">
-                                                    <h5 class="mb-0 h6">{{ $intro->assignment ?? '' }}</h5>
+                                                    <h5 class="mb m-0-0 h6">{{ $intro->assignment ?? '' }}</h5>
                                                     <p class="mb-0 fs-xs">Download this Assigment</p>
                                                 </div>
                                             </div>
@@ -161,7 +145,7 @@
                                     @if ($assignments->isNotEmpty())
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <h5 class="h5">Your Submitted Tasks</h5>
+                                                <h5 class="h5 m-0">Your Submitted Tasks</h5>
                                                 <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
                                             </div>
                                         </div>
@@ -175,8 +159,8 @@
                                                 </div>
                                                 <div class="col-xs-8 col-sm-8 col-md-9">
                                                     <div class="mt-2">
-                                                        <h5 class="mb-0 h6">{{ $assign->file ?? '' }}</h5>
-                                                        <p class="mb-0 fs-xs">Your Submitted Task</p>
+                                                        <h5 class="mb m-0-0 h6">{{ $assign->file ?? '' }}</h5>
+                                                        <p class="mb-0 fs-xs">Your Submitted Task (Status : {{ $assign->status ?? '' }})</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-1 col-sm-1 col-md-1">
@@ -208,7 +192,7 @@
                                     @if (!$assignments->isNotEmpty())
                                         <div class="row">
                                             <div class="col-md-12 text-center">
-                                                <h3 class="h3">Upload Your Task</h3>
+                                                <h3 class="h3  m-0">Upload Your Task</h3>
                                                 <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
                                             </div>
                                             <div class="col-md-12">
@@ -249,7 +233,7 @@
                                 <!-- Tab 3 -->
                                 <div class="tab-pane fade" id="instructor-tab-pane" role="tabpanel"
                                     aria-labelledby="instructor-tab" tabindex="0">
-                                    <h5 class="mb-4">About the instructors</h5>
+                                    <h5 class="mb m-0-4">About the instructors</h5>
                                     @foreach ($intro->course->trainer as $trainer)
                                         <div class="align-items-center">
                                             <div class="row">
@@ -303,7 +287,7 @@
                                 <!-- Tab 4 -->
                                 <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel"
                                     aria-labelledby="reviews-tab" tabindex="0">
-                                    <h5 class="mb-4">Student Feedback</h5>
+                                    <h5 class="mb m-0-4">Student Feedback</h5>
                                     @php
                                         $count = $reviews->count();
                                     @endphp
@@ -431,7 +415,7 @@
                                         <input type="hidden" name="step_id" value="{{ $intro->id ?? '' }}">
                                         <div class="row mt-5">
                                             <div class="col-md-12">
-                                                <h3 class="h1">Write Review</h3>
+                                                <h3 class="h1  m-0">Write Review</h3>
                                                 <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
                                             </div>
                                             <div class="col-sm-6 mb-3">
@@ -450,15 +434,72 @@
                                                     <label for="review_text">Write Review</label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12"><button class="btn btn-primary w-100">Write
-                                                    Review</button>
+                                            <div class="col-md-12">
+                                                <button class="btn btn-primary w-100">Write  Review</button>
                                             </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- End Tabbar -->
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-9">
+                        <div class="card shadow mt-2">
+                            <div class="card-body"> 
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="h5 m-0">Write Comments</h3>
+                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+                                        <form method="POST" action="{{ route('comments.store') }}">
+                                            @csrf
+                                            <input type="hidden" name="type" value="Course">
+                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id ?? '' }}">
+                                            <input type="hidden" name="user_name" value="{{ Auth::user()->full_name ?? '' }}">
+                                            <input type="hidden" name="course_id" value="{{ $course->id ?? '' }}">
+                                            <input type="hidden" name="step_id" value="{{ $intro->id ?? '' }}">
+                                            <div class="mt-2">
+                                            <textarea class="form-control" name="text" id="text" style="height: 100px" placeholder="Write Comments"></textarea>
+                                                <div class="col-md-4 mt-3 mb-2">
+                                                    <button class="btn btn-primary">Add Comment</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="col-md-12 mt-2 text-center" >
+                                        <h3 class="h5  m-0 m-0">All Comments</h3>
+                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <ul class="list-group list-group-flush">
+                                            @foreach ($comments as $comment)
+                                                <li class="list-group-item px-0 text-body">
+                                                    <div class="card shadow-sm px-3 py-3 mb-1"> 
+                                                        <div class="align-items-center">
+                                                            <div class="row">
+                                                                <div class="col-md-1 text-center ps-3 py-1">
+                                                                    <div class="avatar-lg shadow p-1 rounded-circle">
+                                                                        <img src="{{ asset('frontend/img/team-8.jpg') }}" title="{{ $review->reviewer_name ?? '' }}" alt="" class="rounded-circle">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-10 ps-5 py-1">
+                                                                    <div class="">
+                                                                        <h6 class="mb-1 fw-500">{{ $comment->user_name ?? '' }} </h6>
+                                                                    </div>
+                                                                    <p class="m-0">{{ $comment->text ?? '' }}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -467,11 +508,33 @@
 @stop
 @section('js')
     <script>
-        document.getElementById("assignment").onchange = function() {
-            document.getElementById("assignment_form").submit();
-        };
-        document.getElementById("upload-file").onclick = function() {
-            $('#assignment').trigger('click');
-        };
+        @if ($errors->has('success'))
+            $.toast({
+                position: 'bottom-right', 
+                heading: 'Note !',
+                text: "{{ $errors->first('success') }}",
+                icon: 'info',
+                loader: true,
+                loaderBg: '#9EC600',
+                showHideTransition: 'fade', 
+                allowToastClose: true, 
+                hideAfter: 8000, 
+                stack: 5, 
+            });
+        @endif
+        @if ($errors->has('error'))
+            $.toast({
+                position: 'bottom-right', 
+                heading: 'Note !',
+                text: "{{ $errors->first('error') }}",
+                icon: 'warning',
+                loader: true,
+                loaderBg: '#9EC600',
+                showHideTransition: 'fade', 
+                allowToastClose: true, 
+                hideAfter: 3000, 
+                stack: 5, 
+            });
+        @endif
     </script>
 @stop

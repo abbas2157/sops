@@ -3,6 +3,7 @@
     <title>Course | SOPS - School of Professional Skills</title>
 @stop
 @section('content')
+
 <main>
     <div class="py-3 bg-dark">
         <div class="container">
@@ -117,4 +118,15 @@
         </div>
     </section>
 </main>
+
+@stop
+@section('js')
+    <script>
+        document.getElementById("assignment").onchange = function() {
+            document.getElementById("assignment_form").submit();
+        };
+        document.getElementById("upload-file").onclick = function() {
+            $('#assignment').trigger('click');
+        };
+    </script>
 @stop

@@ -11,6 +11,8 @@
       <link rel="shortcut icon" href="https://whitesprout.com.ng/img/SOPS.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
       <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
+      <link rel="stylesheet" href="{{ asset('toast/css/jquery.toast.css') }}">
+      <!-- https://kamranahmed.info/toast -->
    </head>
    <body>
       <a id="skippy" class="skippy visually-hidden-focusable overflow-hidden" href="#content">
@@ -80,10 +82,12 @@
                 </div>
             </footer>
       </div>
+      
          <script src="{{ asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
          <script src="{{ asset('frontend/js/theme.js') }}"></script>
          <script src="{{ asset('frontend/js/jquery-3.5.1.min.js') }}"></script>
          <script src="{{ asset('frontend/js/theme-jquery.js') }}"></script>
+         <script type="text/javascript" src="{{ asset('toast/js/jquery.toast.js') }}"></script>
          @yield('js')
    </body>
 </html>
