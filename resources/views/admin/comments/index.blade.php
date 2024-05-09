@@ -1,13 +1,13 @@
 @extends('admin.layout.app')
 @section('title')
-    <title>Courses | SOPS - School of Professional Skills</title>
+    <title>Comments | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
 @stop
 @section('content')
 <div class="container-fluid pt-4 px-4 mb-5">
     <div class="border-bottom">
-        <h3 class="all-adjustment text-center pb-2 mb-0">Courses</h3>
+        <h3 class="all-adjustment text-center pb-2 mb-0">Comments</h3>
     </div>
     <div class="card card-shadow border-0 mt-4 rounded-3 mb-3">
         <div class="card-header bg-white border-0 rounded-3">
@@ -19,9 +19,6 @@
                     </div>
                 </div>
                 <div class="col-md-8 col-12 text-end">
-                    <button class="btn create-btn rounded-3 mt-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
-                        Create Course <i class="bi bi-plus-lg"></i>
-                    </button>
                 </div>
             </div>
         </div>
@@ -40,8 +37,8 @@
                 </tr>
             </thead>
             <tbody>
-                @if($courses->isNotEmpty())
-                    @foreach($courses as $course)
+                @if($comments->isNotEmpty())
+                    @foreach($comments as $course)
                         <tr>
                             <td style="width:10%" class="align-middle"><img src="{{ asset('images/courses/'.$course->image) }}" style="width: 50%;" alt=""></td>
                             <td class="align-middle">{{ $course->name ?? '' }}</td>
@@ -63,7 +60,7 @@
                                         <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Enroll Students
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('admin.comments.index',['id' => $course->id]) }}">
+                                        <a class="dropdown-item" href="{{ route('admin.comments.index',['uuid' => $course->uuid]) }}">
                                         <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             See Comments
                                         </a>
@@ -97,26 +94,8 @@
             </table>
         </div>
     </div>
-    {!! $courses->withQueryString()->links('pagination::bootstrap-5') !!}
+    {!! $comments->withQueryString()->links('pagination::bootstrap-5') !!}
 </div>
-@include('admin.courses.create')
 @stop
 @section('js')
-<script>
-    $("#search").on("keyup paste change", function() {
-    var value = $(this).val().toLowerCase();
-    $("table tr").each(function(index) {
-        if (index != 0) {
-            $row = $(this);
-            var id = $row.find("td:first").text();
-            if (id.toLowerCase().indexOf(value) != 0) {
-                $(this).hide();
-            }
-            else {
-                $(this).show();
-            }
-        }
-    });
-});
-    </script>
 @stop
