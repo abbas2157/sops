@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::group(['prefix' => 'course'], function(){
             Route::get('/', [App\Http\Controllers\Frontend\StepController::class, 'index'])->name('course');
             Route::get('details', [App\Http\Controllers\Frontend\StepController::class, 'show'])->name('course.detail');
+            Route::resource('comments',App\Http\Controllers\Frontend\CommentsController::class);
         });
         Route::group(['prefix' => 'trainee'], function(){
             Route::get('/', [App\Http\Controllers\Trainee\DashboardController::class, 'index'])->name('trainee');
