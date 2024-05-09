@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function() {
             Route::resource('trainers', App\Http\Controllers\Admin\TrainerController::class);
             Route::resource('trainees', App\Http\Controllers\Admin\TraineeController::class);
             Route::resource('users', App\Http\Controllers\Admin\UserController::class);
+            Route::resource('comments', App\Http\Controllers\Admin\CommentsController::class,['as' => 'admin']);
+            Route::resource('reviews', App\Http\Controllers\Admin\ReviewsController::class,['as' => 'admin']);
             Route::group(['prefix' => 'setting'], function(){
                 Route::get('/', [App\Http\Controllers\Admin\SettingController::class, 'create'])->name('admin.setting');
                 Route::post('perform', [App\Http\Controllers\Admin\SettingController::class, 'store'])->name('admin.setting.perform');
@@ -52,8 +54,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::group(['prefix' => 'course'], function(){
             Route::get('/', [App\Http\Controllers\Frontend\StepController::class, 'index'])->name('course');
             Route::get('details', [App\Http\Controllers\Frontend\StepController::class, 'show'])->name('course.detail');
-            Route::resource('comments',App\Http\Controllers\Frontend\CommentsController::class);
         });
+        Route::resource('comments',App\Http\Controllers\Frontend\CommentsController::class);
         Route::group(['prefix' => 'trainee'], function(){
             Route::get('/', [App\Http\Controllers\Trainee\DashboardController::class, 'index'])->name('trainee');
             Route::group(['prefix' => 'profile'], function(){
