@@ -9,4 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Review extends Model
 {
     use HasFactory, SoftDeletes;
+    public function course(){
+        return $this->belongsTo(Course::class,'course_id','id');
+    }
+    public function module_step()
+    {
+        return $this->belongsTo(ModuleStep::class,'step_id','id')->with('course');
+    }
 }

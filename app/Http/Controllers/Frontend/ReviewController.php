@@ -40,7 +40,7 @@ class ReviewController extends Controller
         $reating->review_text = $request->review_text;
         $reating->type = $request->type;
         $reating->course_id = $request->course_id;
-        $assignment->step_id = $request->step_id;
+        $reating->step_id = $request->step_id;
         $reating->user_id = Auth::user()->id;
         $reating->save();
 

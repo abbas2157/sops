@@ -22,7 +22,6 @@ class CommentsController extends Controller
         {
             $comments = Comment::with('course')->where('course_id',$request->id)->paginate(20);
         }
-
         return view('admin.comments.index',compact('comments'));
     }
 
@@ -45,9 +44,20 @@ class CommentsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, Request $request)
     {
-        //
+        $comment = Comment::findorfail($id);
+        $comment->show = $request->show;
+        $comment->save();
+        if($request->show == 1)
+        {
+            $validator['success'] = 'Comment Published Successfully';
+        }
+        else
+        {
+            $validator['success'] = 'Comment Hide Successfully';
+        }
+        return back()->withErrors($validator);
     }
 
     /**
@@ -64,10 +74,7 @@ class CommentsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $comment = Comment::findorfail($id);
-        $comment->show = $request->show;
-        $comment->save();
-        return back();
+        
     }
 
     /**

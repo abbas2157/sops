@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('course_id')->nullable();
             $table->integer('step_id')->nullable();
             $table->integer('user_id')->nullable();
+            $table->enum('show',[0,1])->default(0);
             $table->enum('type',['Course','Trainer','Other'])->default('Other');
             $table->softDeletes();
             $table->timestamps();

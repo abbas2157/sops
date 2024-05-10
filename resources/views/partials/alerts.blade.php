@@ -18,8 +18,8 @@
         Please add these detail before make any changes and get your dashboard with full details.
     </div>
 @endif
-@if ($errors->has('success'))
+<!-- @if ($errors->has('success'))
     <div class="container">
         <div class="alert alert-success" role="alert">{{ $errors->first('success') }}</div>
     </div>
-@endif
+@endif -->
