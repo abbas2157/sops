@@ -16,12 +16,13 @@ class CommentsController extends Controller
     {
         if(!$request->has('id') || empty($request->id))
         {
-            $comments = Comment::paginate(20);
+            $comments = Comment::with('module_step')->paginate(20);
         }
         else
         {
-            $comments = Comment::where('course_id',$request->id)->paginate(20);
+            $comments = Comment::with('course')->where('course_id',$request->id)->paginate(20);
         }
+
         return view('admin.comments.index',compact('comments'));
     }
 
@@ -54,7 +55,8 @@ class CommentsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $comment = Comment::firstorfail($id);
+
     }
 
     /**
@@ -62,7 +64,10 @@ class CommentsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $comment = Comment::findorfail($id);
+        $comment->show = $request->show;
+        $comment->save();
+        return back();
     }
 
     /**
@@ -70,6 +75,10 @@ class CommentsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $comment = Comment::findorfail($id);
+        if(isset($comment)){
+            $comment->delete();
+        }
+
     }
 }
