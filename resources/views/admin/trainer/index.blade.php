@@ -15,6 +15,38 @@
         <div class="border-bottom">
             <h3 class="all-adjustment text-center pb-2 mb-0">All Trainers</h3>
         </div>
+        <div class="card card-shadow border-0 mt-4 rounded-3 mb-3 p-3">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group fw-bold">
+                        <label for="course">Select Course</label>
+                        <select class="form-control form-select subheading mt-2" name="course" id="course" required>
+                            @if($courses->isNotEmpty())
+                                <option disabled selected> Select Course</option>
+                                @foreach($courses as $course)
+                                    <option value="{{ $course->id ?? '' }}" {{ ($course->id == request()->course) ? 'selected' : '' }}>{{ $course->name ?? '' }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group fw-bold">
+                        <label for="course">Select Status</label>
+                        <select class="form-control form-select subheading mt-2" name="status" id="status" required>
+                            <option disabled selected> Select Status</option>
+                            <option value="0">Blocked</option>
+                            <option value="1">Pending</option>
+                            <option value="2">Active</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2 pt-3">
+                    <button id="search" class="btn save-btn text-white mt-3">Search</button>
+                    <button id="clear" class="btn warning-btn text-white mt-3">Clear</button>
+                </div>
+            </div>
+        </div>
         <div class="card border-0 card-shadow rounded-3 p-2 mt-4 mb-3">
             <div class="card-header border-0 bg-white">
                 <div class="row my-3">
@@ -25,12 +57,9 @@
                         </div>
                     </div>
                     <div class="col-md-9 col-12 text-end">
-                        <a href="#" class="btn create-btn rounded-3 mt-2">Filter <i class="bi bi-funnel"></i></a>
-                        <a href="#" class="btn rounded-3 mt-2 excel-btn">Excel <i
-                                class="bi bi-file-earmark-text"></i></a>
+                        <a href="#" class="btn rounded-3 mt-2 excel-btn">Excel <i class="bi bi-file-earmark-text"></i></a>
                         <a href="#" class="btn pdf rounded-3 mt-2">Pdf <i class="bi bi-file-earmark"></i></a>
-                        <a href="{{ route('trainers.create') }}" class="btn create-btn rounded-3 mt-2">Create Trainer <i
-                                class="bi bi-plus-lg"></i></a>
+                        <a href="{{ route('trainers.create') }}" class="btn create-btn rounded-3 mt-2">Create Trainer <i class="bi bi-plus-lg"></i></a>
                     </div>
                 </div>
             </div>
@@ -66,12 +95,12 @@
                                     <td class="align-middle">{{ $train->created_at->format('M d, Y') ?? '' }}</td>
                                     <td class="align-middle">
                                         @if (is_null($train->email_verified_at))
-                                            <span class="btn create-btn rounded-3 text-center">Pending</span>
+                                            <span class="badges blue-border text-center">Pending</span>
                                         @else
                                             @if($train->status == 'active')
                                                 <span class="badges green-border text-center">Active</span>
                                             @else
-                                                <span class="btn rounded-3 mt-2 excel-btn  text-center">BLOCKED</span>
+                                                <span class="badges red-border text-center">BLOCKED</span>
                                             @endif
                                         @endif
                                     </td>
@@ -125,4 +154,21 @@
     </div>
 @stop
 @section('js')
+<script>
+    $( document ).ready(function() {
+        $('#search').click(function(){
+            var url = '?';
+            if ($('#course').val() != '' &&  $('#course').val() != undefined) {
+                url += 'course='+$('#course').val();
+            }
+            if ($('#status').val() != '' &&  $('#status').val() != undefined) {
+                url += 'status='+$('#status').val();
+            }
+            window.location.replace('{{ route("trainers.index") }}' +  url);
+        })
+    });
+    $(document).on("click", "#clear", function (e) {
+        window.location.replace('{{ route("trainers.index") }}');
+    });
+</script>
 @stop

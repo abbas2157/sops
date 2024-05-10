@@ -26,6 +26,13 @@
     font-size: 13.008px;
     font-weight: 400;
 }
+.warning-btn {
+    background: rgba(226, 166, 64, 1);
+    font-family: "Nunito", sans-serif;
+    /* font-size: 11.382px; */
+    font-size: 13.008px;
+    font-weight: 400;
+}
 
 .green-btn {
     background: rgba(53, 166, 91, 1);
@@ -69,6 +76,9 @@
 
 .save-btn:hover {
     background: rgba(76, 73, 227, 1);
+}
+.warning-btn:hover {
+    background: rgba(226, 166, 64, 1);
 }
 
 .pdf {
@@ -399,7 +409,7 @@ li {
 #product {
     position: fixed;
     left: 120px;
-    top: 200px;
+    top: 165px;
     background-color: rgba(248, 248, 248, 1);
     z-index: 9999;
 }
@@ -407,7 +417,7 @@ li {
 #sale {
     position: fixed;
     left: 120px;
-    top: 310px;
+    top: 258px;
     background-color: rgba(248, 248, 248, 1);
     z-index: 9999;
 }
@@ -415,7 +425,7 @@ li {
 #purchase {
     position: fixed;
     left: 120px;
-    top: 432px;
+    top: 441px;
     background-color: rgba(248, 248, 248, 1);
     z-index: 9999;
 }
@@ -532,7 +542,7 @@ li {
 /*** Navbar ***/
 .sidebar .navbar .navbar-nav .nav-link {
     color: #111827;
-    padding: 26px 0;
+    padding: 10px 0;
     width: 120px;
     border-bottom: 1px solid grey;
     cursor: pointer;

@@ -21,6 +21,10 @@
                 <i class="bi bi-file-earmark-text"></i>
                 <p class="pt-1 mb-0">Courses</p>
             </a>
+            <div id="navbar-toggler3" class="nav-item nav-link text-center {{ (request()->is('admin/comments*') || request()->is('admin/reviews*')) ? 'active' : '' }}">
+                <i class="fa-solid fa-bars"></i>
+                <p class="pt-1 mb-0">Others</p>
+            </div>
         </div>
     </nav>
 </div>
@@ -49,6 +53,20 @@
             <li>
                 <a href="{{ route('trainees.create') }}" class="text-decoration-none nav-item nav-link ">
                     <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />Create Trainee
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="purchase" style="display: none">
+        <ul class="list-unstyled m-0 rounded-5">
+            <li>
+                <a href="{{ route('admin.comments.index') }}" class="text-decoration-none nav-item nav-link ">
+                    <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />All Comments
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.reviews.index') }}" class="text-decoration-none nav-item nav-link ">
+                    <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />All Reviews
                 </a>
             </li>
         </ul>

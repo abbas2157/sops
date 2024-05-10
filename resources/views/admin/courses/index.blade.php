@@ -46,7 +46,9 @@
                             <td style="width:10%" class="align-middle"><img src="{{ asset('images/courses/'.$course->image) }}" style="width: 50%;" alt=""></td>
                             <td class="align-middle">{{ $course->name ?? '' }}</td>
                             <td class="align-middle" style="white-space: normal;">{{ $course->description ?? '' }}</td>
-                            <td class="align-middle"> <a href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Intro']) }}" class="btn create-btn rounded-3 text-center">Intro Module</a> </td>
+                            <td class="align-middle">
+                                <a class="badges blue-border text-center text-decoration-none p-1" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Intro']) }}" >Intro Module</a>
+                             </td>
                             <td class="align-middle">{{ $course->createdby->full_name ?? '' }}</td>
                             <td class="align-middle">{{ $course->created_at->format('M d, Y') ?? '' }}</td>
                             <td class="align-middle" >

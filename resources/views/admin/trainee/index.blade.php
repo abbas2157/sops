@@ -58,12 +58,12 @@
                             <td class="align-middle">{{ $trainee->created_at->format('M d, Y') ?? '' }}</td>
                             <td class="align-middle">
                                 @if(is_null($trainee->email_verified_at))
-                                    <span class="btn create-btn rounded-3 text-center">Pending</span>
+                                    <span class="badges blue-border text-center">Pending</span>
                                 @else
                                     @if($trainee->status == 'active')
                                         <span class="badges green-border text-center">Active</span>
                                     @else
-                                        <span class="btn rounded-3 mt-2 excel-btn  text-center">BLOCKED</span>
+                                        <span class="badges red-border text-center">BLOCKED</span>
                                     @endif
                                 @endif
                             </td>
