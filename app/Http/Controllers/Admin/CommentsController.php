@@ -14,7 +14,16 @@ class CommentsController extends Controller
      */
     public function index(Request $request)
     {
-        if(!$request->has('id') || empty($request->id))
+
+        if($request->has('course') || $request->has('trainee')){
+            if($request->has('course') && $request->has('trainee')){
+                $comments = Comment::with('module_step')->where('course_id',$request->course)->Where('user_id',$request->trainee)->paginate(20);
+            }elseif($request->has('course')){
+                $comments = Comment::with('module_step')->where('course_id',$request->course)->paginate(20);
+            }elseif($request->has('trainee')){
+                $comments = Comment::with('module_step')->Where('user_id',$request->trainee)->paginate(20);
+            }
+        }elseif(!$request->has('id') || empty($request->id))
         {
             $comments = Comment::with('module_step')->paginate(20);
         }
@@ -22,7 +31,9 @@ class CommentsController extends Controller
         {
             $comments = Comment::with('course')->where('course_id',$request->id)->paginate(20);
         }
-        return view('admin.comments.index',compact('comments'));
+        $courses = Course::get();
+        $trainees = User::where('type','trainee')->get();
+        return view('admin.comments.index',compact('comments','courses','trainees'));
     }
 
     /**
@@ -74,7 +85,7 @@ class CommentsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+
     }
 
     /**

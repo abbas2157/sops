@@ -14,7 +14,16 @@ class ReviewsController extends Controller
      */
     public function index(Request $request)
     {
-        if(!$request->has('id') || empty($request->id))
+
+        if($request->has('course') || $request->has('rating')){
+            if($request->has('course') && $request->has('rating')){
+                $reviews = Review::with('module_step')->where('course_id',$request->course)->Where('rating',$request->rating)->paginate(20);
+            }elseif($request->has('course')){
+                $reviews = Review::with('module_step')->where('course_id',$request->course)->paginate(20);
+            }elseif($request->has('rating')){
+                $reviews = Review::with('module_step')->Where('rating',$request->rating)->paginate(20);
+            }
+        }elseif(!$request->has('id') || empty($request->id))
         {
             $reviews = Review::with('module_step')->paginate(20);
         }
@@ -22,7 +31,8 @@ class ReviewsController extends Controller
         {
             $reviews = Review::with('course')->where('course_id',$request->id)->paginate(20);
         }
-        return view('admin.reviews.index',compact('reviews'));
+        $courses = Course::get();
+        return view('admin.reviews.index',compact('reviews','courses'));
     }
 
     /**
