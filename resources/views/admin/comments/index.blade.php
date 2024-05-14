@@ -100,7 +100,7 @@
                                             </a>
                                             <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
                                                 <a class="dropdown-item" >
-                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/> Reply
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" data-bs-target="#commentReply" data-bs-toggle="modal"/> Reply
                                                 </a>
                                                 @if ($comment->show == '1')
                                                     <a class="dropdown-item" href="{{ route('admin.comments.show', $comment->id) }}?show=0">
@@ -119,6 +119,29 @@
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="commentReply" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                <div class="modal-header border-0">
+                                                    <h3 class="all-adjustment text-center pb-2 mb-0" style="width: 50%">Comment Reply</h3>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form enctype="multipart/form-data" id="" method="post" action="{{ route('admin.replies.store') }}">
+                                                        @csrf
+                                                        @method('POST')
+                                                        <div class="form-group">
+                                                            <input type="hidden" name="type" id="" value="comment">
+                                                            <input type="hidden" name="type_id" id="" value="{{$comment->id}}">
+                                                            <label for="commentReply" class="mb-1">Course Name <span class="text-danger">*</span></label>
+                                                            <input type="text" name="text" class="form-control subheading" id="commentReply" placeholder="Reply Text" required/>
+                                                        </div>
+                                                        <button type="submit" class="btn save-btn text-white mt-4">post</button>
+                                                    </form>
+                                                </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
