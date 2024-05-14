@@ -99,6 +99,9 @@
                                                 <i class="fa-solid fa-ellipsis-v"></i>
                                             </a>
                                             <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" >
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/> Reply
+                                                </a>
                                                 @if ($comment->show == '1')
                                                     <a class="dropdown-item" href="{{ route('admin.comments.show', $comment->id) }}?show=0">
                                                         <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/> Hide

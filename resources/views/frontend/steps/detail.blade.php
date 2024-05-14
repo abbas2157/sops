@@ -485,7 +485,7 @@
                                                                 </div>
                                                                 <div class="col-md-10 ps-5 py-1">
                                                                     <div class="">
-                                                                        <h6 class="mb-1 fw-500">{{ $comment->user_name ?? '' }} </h6>
+                                                                        <h6 class="mb-1 fw-500">{{ $comment->user_name ?? '' }}  <span class="text-warning small">({{ $comment->created_at->format('M d, Y') ?? '' }})</span></h6>
                                                                     </div>
                                                                     <p class="m-0">{{ $comment->text ?? '' }}</p>
                                                                 </div>
@@ -493,6 +493,34 @@
                                                         </div>
                                                     </div>
                                                 </li>
+                                                @foreach ($comment->replies as $reply)
+                                                    <li class="list-group-item px-0 text-body ps-5">
+                                                        <div class="row">
+                                                            <div class="col-md-1 ps-3 py-1">
+                                                                <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-vert pull-right"  alt="">
+                                                            </div>
+                                                            <div class="col-md-11">
+                                                                <div class="card shadow-sm px-3 py-3 mb-1"> 
+                                                                    <div class="align-items-center">
+                                                                        <div class="row">
+                                                                            <div class="col-md-1 text-center ps-3 py-1">
+                                                                                <div class="avatar-lg shadow p-1 rounded-circle">
+                                                                                    <img src="{{ asset('frontend/img/team-8.jpg') }}" title="{{ $reply->user_name ?? '' }}" alt="" class="rounded-circle">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-10 ps-5 py-1">
+                                                                                <div class="">
+                                                                                    <h6 class="mb-1 fw-500">{{ $reply->user_name ?? '' }}  <span class="text-warning small">({{ $reply->created_at->format('M d, Y') ?? '' }})</span></h6>
+                                                                                </div>
+                                                                                <p class="m-0">{{ $reply->text ?? '' }}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                @endforeach
                                             @endforeach
                                         </ul>
                                     </div>

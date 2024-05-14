@@ -16,4 +16,8 @@ class Comment extends Model
     {
         return $this->belongsTo(ModuleStep::class,'step_id','id')->with('course');
     }
+    public function replies()
+    {
+        return $this->hasMany(Reply::class,'type_id','id')->where('type','comment')->where('show','1');
+    }
 }
