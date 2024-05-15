@@ -106,6 +106,9 @@
                                                 <i class="fa-solid fa-ellipsis-v"></i>
                                             </a>
                                             <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" >
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" data-bs-target="#reviewReply" data-bs-toggle="modal"/> Reply
+                                                </a>
                                                 @if ($review->show == '1')
                                                     <a class="dropdown-item" href="{{ route('admin.reviews.show', $review->id) }}?show=0">
                                                         <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/> Hide
@@ -123,6 +126,29 @@
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="reviewReply" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                <div class="modal-header border-0">
+                                                    <h3 class="all-adjustment text-center pb-2 mb-0" style="width: 50%">Review Reply</h3>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form enctype="multipart/form-data" id="" method="post" action="{{ route('admin.replies.store') }}">
+                                                        @csrf
+                                                        @method('POST')
+                                                        <div class="form-group">
+                                                            <input type="hidden" name="type" id="" value="review">
+                                                            <input type="hidden" name="type_id" id="" value="{{$review->id}}">
+                                                            <label for="reviewReply" class="mb-1">Reply<span class="text-danger">*</span></label>
+                                                            <input type="text" name="text" class="form-control subheading" id="reviewReply" placeholder="Reply Text" required/>
+                                                        </div>
+                                                        <button type="submit" class="btn save-btn text-white mt-4">post</button>
+                                                    </form>
+                                                </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
