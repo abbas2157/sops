@@ -30,9 +30,9 @@ class LoginController extends Controller
             $validator['emailPassword'] = 'Your Email is not registered.';
             return back()->withErrors($validator);
         }
-        Mail::to('abbas8156@gmail.com')->send(new ForgotPaswordMail($user));
+        Mail::to()->send(new ForgotPaswordMail($user));
         $validator['success'] = 'We have sent verification mail on your email. Please check your mailbox and follow instructions.';
-        return back()->withErrors($validator);
+        return back($request->email)->withErrors($validator);
     }
     public function reset_password(string $id)
     {

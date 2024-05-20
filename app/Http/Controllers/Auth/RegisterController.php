@@ -55,7 +55,7 @@ class RegisterController extends Controller
         $user->password = $request->password;
         $user->register = 1;
         
-        Mail::to('abbas8156@gmail.com')->send(new WelcomeEmail($user));
+        Mail::to($request->email)->send(new WelcomeEmail($user));
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
