@@ -17,10 +17,11 @@ class LoginController extends Controller
      */
     public function forgot_password()
     {
-        return view('auth.forgot-password'); 
+        return view('auth.forgot-password');
     }
     public function send_email(Request $request)
     {
+
         $request->validate([
             'email' => 'required|email'
         ]);
@@ -30,9 +31,9 @@ class LoginController extends Controller
             $validator['emailPassword'] = 'Your Email is not registered.';
             return back()->withErrors($validator);
         }
-        Mail::to()->send(new ForgotPaswordMail($user));
+        Mail::to($user->email)->send(new ForgotPaswordMail($user));
         $validator['success'] = 'We have sent verification mail on your email. Please check your mailbox and follow instructions.';
-        return back($request->email)->withErrors($validator);
+        return back()->withErrors($validator);
     }
     public function reset_password(string $id)
     {

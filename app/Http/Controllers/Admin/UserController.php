@@ -54,7 +54,11 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findorfail($id);
+        $user->status = $request->status;
+        $user->save();
+        $validator['success'] = 'Status Updated Successfully';
+        return back()->withErrors($validator);
     }
 
     /**
