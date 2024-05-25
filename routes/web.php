@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('assignments', App\Http\Controllers\Frontend\AssignmentController::class);
     Route::middleware([App\Http\Middleware\EnsureUserIsAdmin::class])->group(function () {
         Route::group(['prefix' => 'admin'], function(){
+            Route::post('forgot-password/send-email', [App\Http\Controllers\Auth\LoginController::class, 'send_email'])->name('admin.forgot-password.email');
             Route::get('/', function(){return view('welcome');})->name('admin');
             Route::group(['prefix' => 'profile'], function(){
                 Route::get('/', [App\Http\Controllers\Admin\ProfileController::class, 'create'])->name('admin.profile');
