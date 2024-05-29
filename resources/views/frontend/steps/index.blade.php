@@ -22,8 +22,10 @@
                 <div class="col-md-9">
                     <h1 class="mb-4 h2 text-center text-lg-start">Your steps</h1>
                     @if($intros->isNotEmpty())
+                        @php $next = 0; @endphp 
                         @foreach($intros as $intro)
-                            @if($intro->lock == 1)  
+                            @if($intro->trainee_assignment_count == 1 || $next == 1)
+                            @php $next = $intro->trainee_assignment_count; @endphp 
                             <div class="row mt-3">
                                 <div class="col">
                                     <div class="card shadow row g-0 flex-sm-row overflow-hidden">
@@ -34,6 +36,11 @@
                                             <div class="d-flex lh-sm mb-2">
                                                 <p class="fs-sm mb-2"> {{ $intro->short_description ?? '' }}</p>
                                             </div>
+                                            @if($intro->trainee_assignment_count == 1)
+                                                <div class="mb-2">
+                                                    <p class="text-success fs-sm mb-2"> Work submitted. We will check your work as soon as we can.</p>
+                                                </div>
+                                            @endif
                                             <a href="{{ route('course.detail',['uuid'=> $intro->uuid]) }}" class="btn btn-success" type="submit">Go to {{ $intro->steps_no ?? '' }}</a>
                                         </div>
                                     </div>
@@ -61,7 +68,7 @@
                     @else
                         <tr>
                             <td colspan="7" class="align-middle text-center">
-                                No Intro Module Found
+                                No Module Found
                             </td>
                         </tr>
                     @endif
@@ -71,28 +78,28 @@
                         <div class="card shadow">
                             <div class="card-body">
                                 <div class="d-flex align-items-start pb-2">
-                                    <h3 class="m-0">Rs. 0.0<del class="text-muted fs-lg ps-2">Rs. 0.0</del></h3>
-                                    <span class="px-2 py-2 lh-1 ms-auto bg-primary text-white rounded fs-xs">0% off</span>
+                                    <h3 class="m-0">Course Details</h3>
                                 </div>
-                                <div class="d-flex flex-column pt-3">
+                                <hr />
+                                {{-- <div class="d-flex flex-column pt-3">
                                     <a class="btn btn-primary" href="#">Buy Now</a> 
                                     <a class="btn btn-outline-primary mt-2" href="{{ route('trainee.courses.join',['uuid'=> $course->uuid]) }}">Enroll Now</a>
-                                </div>
-                                <ul class="list-group list-group-flush pt-3">
+                                </div> --}}
+                                <ul class="list-group list-group-flush pt-1">
                                     <li class="list-group-item d-flex align-items-center px-0">
                                         <i class="fa-regular fa-clock text-primary me-2"></i>
                                         <h6 class="m-0">Duration</h6>
-                                        <span class="fs-sm ms-auto">{{ $course->duration ?? '' }}</span>
+                                        <span class="fs-sm ms-auto">{{ $course->duration ?? '0 Months' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center px-0">
                                         <i class="fa-solid fa-book text-primary me-2"></i>
                                         <h6 class="m-0">Lectures</h6>
-                                        <span class="fs-sm ms-auto">{{ $course->lectures ?? '' }}</span>
+                                        <span class="fs-sm ms-auto">{{ $course->lectures ?? '0' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center px-0">
                                         <i class="fa-solid fa-sliders text-primary me-2"></i>
                                         <h6 class="m-0">Skill level</h6>
-                                        <span class="fs-sm ms-auto">{{ $course->skill_level ?? '' }}</span>
+                                        <span class="fs-sm ms-auto">{{ $course->skill_level ?? 'No Level' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center px-0">
                                         <i class="fa-solid fa-users text-primary me-2"></i>
@@ -102,12 +109,12 @@
                                     <li class="list-group-item d-flex align-items-center px-0">
                                     <i class="fa-solid fa-microphone-lines text-primary me-2"></i>
                                         <h6 class="m-0">Language</h6>
-                                        <span class="fs-sm ms-auto">{{ $course->language ?? '' }}</span>
+                                        <span class="fs-sm ms-auto">{{ $course->language ?? 'No Lang' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center px-0">
                                         <i class="fa-solid fa-award text-primary me-2"></i>
                                         <h6 class="m-0">Certificate</h6>
-                                        <span class="fs-sm ms-auto">{{ $course->certificate ?? '' }}</span>
+                                        <span class="fs-sm ms-auto">{{ $course->certificate ?? 'No Found' }}</span>
                                     </li>
                                 </ul>
                             </div>

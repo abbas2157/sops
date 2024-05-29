@@ -80,24 +80,23 @@
                                             </a>
                                             <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
                                                 <a class="dropdown-item"href="javascript:;" onclick="document.getElementById('forgot_password').submit();">
-                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
-                                                        Send Change Password Email
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 8%;" alt=""/>
+                                                        Send Reset Password Mail
                                                 </a>
                                                 <form id="forgot_password" action="{{ route('admin.forgot-password.email') }}" method="post" style="display:none;">
                                                     @csrf
                                                     @method('POST') <!-- Use PATCH or PUT for updates -->
                                                     <input type="hidden" name="email" value="{{ $user->email}}">
                                                 </form>
-                                                <a class="dropdown-item" href="javascript:;" onclick="document.getElementById('courses_destroy').submit();">
-                                                    <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" />
-
+                                                <a class="dropdown-item" href="javascript:;" onclick="document.getElementById('courses_destroy_{{ $user->id }}').submit();">
+                                                    <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="width: 8%;" alt="" />
                                                     @if ($user->status == 'active')
                                                         BLOCK
                                                     @else
                                                         Active
                                                     @endif
                                                 </a>
-                                                <form id="courses_destroy" action="{{ route('users.update', $user->id) }}" method="post" style="display:none;">
+                                                <form id="courses_destroy_{{ $user->id ?? ''}}" action="{{ route('users.update', $user->id) }}" method="post" style="display:none;">
                                                     @csrf
                                                     @method('PATCH') <!-- Use PATCH or PUT for updates -->
                                                     <input type="hidden" name="status" value="{{ $user->status == 'active' ? 'block' : 'active' }}">

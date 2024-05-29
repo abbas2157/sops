@@ -61,6 +61,14 @@
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Intro Module
                                         </a>
+                                        <a class="dropdown-item" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'fundamental']) }}">
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            Fundamental Module
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'full skill']) }}">
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            Full Skill Module
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('admin.students',['uuid' => $course->uuid]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Enroll Students

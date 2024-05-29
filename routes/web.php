@@ -19,10 +19,7 @@ Route::group(['middleware' => ['guest']], function() {
         Route::get('trainer', [App\Http\Controllers\Auth\RegisterController::class, 'trainer'])->name('register.trainer');
     });
 });
-Route::get('start',function(){ return view('demo.start');});
-Route::get('individual',function(){ return view('demo.individual');});
-Route::get('company',function(){ return view('demo.company');});
-Route::get('start',function(){ return view('demo.start');});
+
 Route::group(['middleware' => ['auth']], function() {
     Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'destroy'])->name('logout');
     Route::resource('reviews', App\Http\Controllers\Frontend\ReviewController::class);

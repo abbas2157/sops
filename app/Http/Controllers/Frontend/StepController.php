@@ -21,7 +21,8 @@ class StepController extends Controller
         if(is_null($course))
             abort(404);
 
-        $intros = ModuleStep::where('course_id',$course->id)->with('createdby')->get();
+        $intros = ModuleStep::where('course_id',$course->id)->with('createdby')->withCount('trainee_assignment')->get();
+        // dd($intros->toArray());
         return view('frontend.steps.index',compact('intros','course'));
     }
 
