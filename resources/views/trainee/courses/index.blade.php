@@ -63,7 +63,8 @@
                                                     <img src="{{ asset('images/courses/' . $course->image) }}"
                                                         style="width: 30%;" alt="">
                                                     <p>20 - Videos</p>
-                                                    <a class="btn save-btn text-white mt-2"> Join Course</a> <a
+                                                    <a class="btn save-btn text-white mt-2"> Join Course</a> 
+                                                    <a
                                                         href="{{ route('course', ['uuid' => $course->uuid]) }}"
                                                         class="btn save-btn text-white mt-2"> View Course</a>
                                                 </div>

@@ -34,12 +34,9 @@
                             <div class="card shadow">
                                 <div class="card-body">
                                     <div class="d-flex align-items-start pb-2">
-                                        <h3 class="m-  m-00">Rs. 0.0<del class="text-muted fs-lg ps-2">Rs. 0.0</del></h3>
-                                        <span class="px-2 py-2 lh-1 ms-auto bg-primary text-white rounded fs-xs">0%
-                                            off</span>
+                                        <h3 class="m-0">Course Details</h3>
                                     </div>
-                                    <div class="d-flex flex-column pt-3">
-                                        <a class="btn btn-primary" href="#">Buy Now</a>
+                                    <div class="d-flex flex-column">
                                         <a class="btn btn-outline-primary mt-2" href="#">Enroll Now</a>
                                     </div>
                                     <ul class="list-group list-group-flush pt-3">

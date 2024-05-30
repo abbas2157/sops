@@ -33,6 +33,8 @@ class CourseController extends Controller
         $join->course_id = $course->id;
         $join->user_id = Auth::user()->id;
         $join->trainee_id = Auth::user()->trainee->id;
+        $join->type = 'Intro';
+        $join->status = 'Processing';
         $join->save();
         return back();
     }
