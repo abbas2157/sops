@@ -123,10 +123,20 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-12 mt-2 text-center">
-                                                    <img src="{{ asset('images/courses/'.$my->course->image) }}" style="width: 30%;" alt="">
-                                                    <p>20% Complete</p>
-                                                    <a href="{{ route('course', ['uuid' => $my->course->uuid]) }}" class="btn save-btn text-white mt-2"> Continue Course</a>
+                                                <div class="col-md-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-md-9 p-3">
+                                                            <a href="{{ route('course', ['uuid' => $my->course->uuid]) }}" class="mt-2 text-decoration-none">1. Continue Intro Module</a><br>
+                                                            <a href="{{ route('course', ['uuid' => $my->course->uuid]) }}" class="mt-2 text-decoration-none">2. Continue Fundamental Module</a><br>
+                                                            <a href="{{ route('course', ['uuid' => $my->course->uuid]) }}" class="mt-2 text-decoration-none">3. Continue Full Skill Module</a>
+                                                        </div>
+                                                        <div class="col-md-3 p-3">
+                                                            <img src="{{ asset('images/courses/'.$my->course->image) }}" style="width: 100%;" alt="">
+                                                        </div>
+                                                        <div class="col-md-12 text-center p-3">
+                                                            <a class="btn save-btn text-white mt-2">See Submitted Assignments</a> 
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
