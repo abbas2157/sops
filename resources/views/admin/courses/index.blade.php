@@ -33,7 +33,7 @@
                     <th style="width:10%" class="align-middle">Image</th>
                     <th class="align-middle">Course Name</th>
                     <th class="align-middle">Course Description</th>
-                    <th class="align-middle">Course Steps</th>
+                    <th class="align-middle">Course Modules</th>
                     <th class="align-middle">Created By</th>
                     <th class="align-middle">Created at</th>
                     <th class="align-middle">Action</th>
@@ -48,6 +48,8 @@
                             <td class="align-middle" style="white-space: normal;">{{ $course->description ?? '' }}</td>
                             <td class="align-middle">
                                 <a class="badges blue-border text-center text-decoration-none p-1" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Intro']) }}" >Intro Module</a>
+                                <a class="badges blue-border text-center text-decoration-none p-1" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Fundamental']) }}" >Fundamental Module</a>
+                                <a class="badges blue-border text-center text-decoration-none p-1" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Full Skill']) }}" >Full Skill Module</a>
                              </td>
                             <td class="align-middle">{{ $course->createdby->full_name ?? '' }}</td>
                             <td class="align-middle">{{ $course->created_at->format('M d, Y') ?? '' }}</td>
@@ -57,18 +59,11 @@
                                         <i class="fa-solid fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Intro']) }}">
+                                        <a class="dropdown-item" href="{{ route('steps.create',['id' => $course->uuid]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
-                                            Intro Module
+                                            Create Module
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'fundamental']) }}">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
-                                            Fundamental Module
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'full skill']) }}">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
-                                            Full Skill Module
-                                        </a>
+                                        
                                         <a class="dropdown-item" href="{{ route('admin.students',['uuid' => $course->uuid]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Enroll Students

@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-    <title>Create Intro Module | SOPS - School of Professional Skills</title>
+    <title>Create Module | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.snow.css" rel="stylesheet" />
@@ -8,7 +8,7 @@
 @section('content')
     <div class="container-fluid py-5 px-4">
         <div class="border-bottom">
-            <h3 class="all-adjustment text-center pb-2 mb-0" style="width: 30%;">Create {{ $course->name ?? '' }}'s Intro</h3>
+            <h3 class="all-adjustment text-center pb-2 mb-0" style="width: 30%;">Create {{ $course->name ?? '' }}'s Module</h3>
         </div>
         <form enctype="multipart/form-data" id="" method="post" action="{{ route('steps.store') }}">
             @csrf
@@ -23,7 +23,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect1">Step No<span class="text-danger">*</span></label>
-                                        <input type="text" name="steps_no" class="form-control subheading mt-2" readonly value="Step {{ $intros+1 }}" id="exampleFormControlSelect1" required />
+                                        <input type="text" name="steps_no" class="form-control subheading mt-2" placeholder="Step 1"  id="exampleFormControlSelect1" required />
                                     </div>
                                 </div>
                                 <div class="col-md-9">
@@ -70,9 +70,9 @@
                                         <label for="exampleFormControlSelect1">Select Module</label>
                                         <select class="form-control form-select subheading mt-1"
                                             aria-label="Default select example" id="exampleFormControlSelect1" name="type">
-                                            <option>Intro</option>
-                                            <option>Fundamental</option>
-                                            <option>Full Skill</option>
+                                            <option {{ (request()->type =='Intro') ? 'selected' : '' }}>Intro</option>
+                                            <option {{ (request()->type =='Fundamental') ? 'selected' : '' }}>Fundamental</option>
+                                            <option {{ (request()->type =='Full Skill') ? 'selected' : '' }}>Full Skill</option>
                                         </select>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn save-btn text-white mt-3">Create Intro</button>
+                    <button type="submit" class="btn save-btn text-white mt-3">Create {{ request()->type }} Module</button>
                 </div>
             </div>
         </form>
