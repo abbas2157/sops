@@ -77,7 +77,7 @@ class TraineeController extends Controller
             $trainee->save();
             DB::commit();
 
-            Mail::to('abbas8156@gmail.com')->send(new WelcomeEmail($user));
+            Mail::to($request->email)->send(new WelcomeEmail($user));
 
             $validator['success'] = 'Trainee has been Created.';
             return back()->withErrors($validator);
@@ -104,7 +104,7 @@ class TraineeController extends Controller
         $user = User::where("email",$email)->first();
         if(!is_null($user))
         {
-        Mail::to('abbas8156@gmail.com')->send(new ForgotPaswordMail($user));
+        Mail::to($request->email)->send(new ForgotPaswordMail($user));
         }
         $validator['success'] = 'We have sent verification mail on your email. Please check your mailbox and follow instructions.';
         return back()->withErrors($validator);

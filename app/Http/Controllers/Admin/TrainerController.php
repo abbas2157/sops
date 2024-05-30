@@ -87,7 +87,7 @@ class TrainerController extends Controller
 
             DB::commit();
 
-            Mail::to('abbas8156@gmail.com')->send(new WelcomeEmail($user));
+            Mail::to($request->email)->send(new WelcomeEmail($user));
 
             $validator['success'] = 'Trainer has been Updated.';
             return back()->withErrors($validator);

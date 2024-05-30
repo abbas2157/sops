@@ -561,5 +561,11 @@
                 stack: 5, 
             });
         @endif
+        $('#upload-file').click(function(){
+            $('#assignment').trigger('click');
+        });
+        $('#assignment').on('change', function(){
+            $(this).closest('form').submit();
+        });
     </script>
 @stop

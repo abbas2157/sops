@@ -4,7 +4,7 @@
 
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Welcome Email</title>
+  <title>Assignment Submission Email</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style type="text/css">
   /**
@@ -96,7 +96,7 @@
 
   <!-- start preheader -->
   <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
-    A Welcome email SOPS - School of Professional Skills
+    Assignment Submission Email From SOPS - School of Professional Skills
   </div>
   <!-- end preheader -->
 
@@ -132,23 +132,13 @@
     <!-- start hero -->
     <tr>
       <td align="center" bgcolor="#e9ecef">
-        <!--[if (gte mso 9)|(IE)]>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
-        <tr>
-        <td align="center" valign="top" width="600">
-        <![endif]-->
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
-              <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Hi {{ $data->name ?? ''}},</h1>
+              <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Hi {{ $data['trainer'] ?? 'NO Trainer' }}</h1>
             </td>
           </tr>
         </table>
-        <!--[if (gte mso 9)|(IE)]>
-        </td>
-        </tr>
-        </table>
-        <![endif]-->
       </td>
     </tr>
     <!-- end hero -->
@@ -156,40 +146,39 @@
     <!-- start copy block -->
     <tr>
       <td align="center" bgcolor="#e9ecef">
-        <!--[if (gte mso 9)|(IE)]>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
-        <tr>
-        <td align="center" valign="top" width="600">
-        <![endif]-->
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
 
           <!-- start copy -->
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                <p style="margin: 0;">Welcome to SOPS - School of Professional Skills - 
-                we're excited to have you on board and we'd love to say thank you on behalf of 
-                our whole company for chosing us. We believe SOPS - School of Professional Skills 
-                will help you.</p>
-                <br> 
-                <p style="margin: 0;">First, you must complete your registration by clicking on the button below:</p>
-                <br> 
-                    <a href="{{ url('verify-account', $data->uuid) }}" target="_blank"style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px;text-align: center; background-color: #19255b; color: #ffffff; text-decoration: none; border-radius: 6px;">Verify Account</a>
-                <br>
-                <br> 
-                <p style="margin: 0;">This link will verify your email address, and then you’ll officially be a part of the SOPS community.</p>
-                <br>         
-                <p style="margin: 0;"> If you want to login in our System please use these creadentials. </p>
-                <p style="margin: 0;"> <strong>Login Page </strong> : <a href="{{ route('login') }}"> {{ route('login') }} </a> </p>
-                <p style="margin: 0;"> <strong> Email </strong> : <a href="mail:{{ $data->email }}"> {{ $data->email }} </a> </p>
-                <p style="margin: 0;"> <strong> Password </strong> : {{ (isset($data->register)) ? $data->password : $data->uuid }} </p>
-                <br>
-                <p style="margin: 0;">If you have any questions, send us an email.<p style="margin: 0;">
-                 
-                <p style="margin: 0;">We're glad you're here! <br>
-                The SOPS team </p>
+                <p style="margin: 0;">This is {{ $data['trainee'] ?? 'NO Trainee' }} from your {{ $data['course'] ?? 'NO course' }} class.</p>
+                <p style="margin: 0;">Kindly find the attached file of assignment {{ $data['step_no'] ?? 'NO step' }} of this {{ $data['course'] ?? 'NO course' }}.</p>
+                 <p style="margin: 0;">Thanks and regards</p>
+              </p>
             </td>
           </tr>
           <!-- end copy -->
+
+          <!-- start button -->
+          <tr>
+            <td align="left" bgcolor="#ffffff">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center" bgcolor="#ffffff" style="padding: 12px;">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center" bgcolor="#19255b" style="border-radius: 6px;">
+                          <a href="{{ asset('course/steps/assignments/' . $data['assignment']) }}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Download Assigment</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <!-- end button -->
+
           <tr>
             <td align="center" valign="top" style="padding: 36px 24px;">
             </td>

@@ -9,7 +9,7 @@
         <div class="col-md-12 mt-4">
             <div class="row">
                 <div class="col-md-3 mt-4">
-                    <a href="{{ route('courses.index') }}" class="text-decoration-none">
+                    <a href="javascript:;" class="text-decoration-none">
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
                         <i class="bi bi-file-earmark-text fs-2"></i>
                         <div class="ms-3">
@@ -20,7 +20,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 mt-4">
-                    <a href="{{ route('trainers.index') }}" class="text-decoration-none">
+                    <a href="javascript:;" class="text-decoration-none">
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
                         <i class="bi bi-file-earmark fs-2"></i>
                         <div class="ms-3">
@@ -31,7 +31,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 mt-4">
-                    <a href="{{ route('trainees.index') }}" class="text-decoration-none">
+                    <a href="javascript:;" class="text-decoration-none">
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
                         <i class="fa-thin fa-check-square fs-2"></i>
                         <div class="ms-3">
@@ -42,7 +42,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 mt-4">
-                    <a href="{{ route('trainees.index') }}" class="text-decoration-none">
+                    <a href="javascript:;" class="text-decoration-none">
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
                         <i class="fa-solid fa-layer-group fs-2"></i>
                         <div class="ms-3">

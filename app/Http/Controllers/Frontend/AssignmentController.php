@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,Review};
-use Illuminate\Support\Facades\Auth;
+use App\Models\{Assignment,Review,User,Course,Trainee,ModuleStep};
+use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
+use App\Mail\AssignmentSubmissionMail;
 
 class AssignmentController extends Controller
 {
@@ -50,6 +51,18 @@ class AssignmentController extends Controller
         $assignment->step_id = $request->step_id;
         $assignment->user_id = $request->user_id;
         $assignment->save();
+
+        $course = Course::with('trainer')->where('id',$request->course_id)->first();
+        $step = ModuleStep::where('id',$request->step_id)->first();
+        
+        $data = array(
+                'trainee' => Auth::user()->full_name,
+                'trainer' => $course->trainer[0]->user->full_name,
+                'course' => $course->name,
+                'step_no' => $step->steps_no,
+                'assignment' => $assignment->file);
+
+        Mail::to($course->trainer[0]->user->email)->send(new AssignmentSubmissionMail($data));
 
         $validator['success'] = 'Assignment Uploaded Successfully';
         return back()->withErrors($validator);

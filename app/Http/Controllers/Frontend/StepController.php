@@ -60,7 +60,8 @@ class StepController extends Controller
         
         $reviews = Review::where('course_id',$intro->course_id)->get();
         $comments = Comment::with('replies')->where('step_id',$intro->id)->where('show','1')->get();
-        $assignments = Assignment::where('course_id',$intro->course_id)->where('user_id',Auth::user()->id)->get();
+        $assignments = Assignment::where('course_id',$intro->course_id)->where('step_id',$intro->id)->where('user_id',Auth::user()->id)->get();
+        // dd($assignments->toArray());
         return view('frontend.steps.detail',compact('intro','course','reviews','assignments','comments'));
     }
 
