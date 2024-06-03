@@ -13,4 +13,12 @@ class Assignment extends Model
     {
         return $this->belongsTo(ModuleStep::class,'step_id','id')->select('id','type','steps_no','title','video','assignment');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id','id')->select('id','name','last_name','phone','email')->with('trainee');
+    }
+    public function course()
+    {
+        return $this->belongsTo(Course::class,'course_id','id')->select('id','name');
+    }
 }

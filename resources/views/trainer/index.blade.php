@@ -13,8 +13,8 @@
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
                         <i class="bi bi-file-earmark-text fs-2"></i>
                         <div class="ms-3">
-                            <p class="mb-1 fs-6 text-muted subheading">ENROLLED COURSES</p>
-                            <h6 class="mb-0 sales-amount"> {{ $my_courses->count() ?? 'N/A' }} </h6>
+                            <p class="mb-1 fs-6 text-muted subheading">ACTIVE COURSES</p>
+                            <h6 class="mb-0 sales-amount"> {{ $courses ?? 'N/A' }} </h6>
                         </div>
                     </div>
                     </a>
@@ -24,8 +24,8 @@
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
                         <i class="bi bi-file-earmark fs-2"></i>
                         <div class="ms-3">
-                            <p class="mb-1 fs-6 text-muted subheading">ACTIVE COURSES</p>
-                            <h6 class="mb-0 sales-amount">{{ $my_courses->count() ?? 'N/A' }}</h6>
+                            <p class="mb-1 fs-6 text-muted subheading">Pending Tasks</p>
+                            <h6 class="mb-0 sales-amount">{{ $tasks->count() ?? 'N/A' }}</h6>
                         </div>
                     </div>
                     </a>
@@ -35,8 +35,8 @@
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
                         <i class="fa-thin fa-check-square fs-2"></i>
                         <div class="ms-3">
-                            <p class="mb-1 fs-6 text-muted subheading">IN-PROGRESS COURSES</p>
-                            <h6 class="mb-0 sales-amount">{{ $my_courses->count() ?? 'N/A' }}</h6>
+                            <p class="mb-1 fs-6 text-muted subheading">Total Students</p>
+                            <h6 class="mb-0 sales-amount">{{ $students ?? 'N/A' }}</h6>
                         </div>
                     </div>
                     </a>
@@ -46,7 +46,7 @@
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
                         <i class="fa-solid fa-layer-group fs-2"></i>
                         <div class="ms-3">
-                            <p class="mb-1 fs-6 text-muted subheading">COMPLETED COURSES</p>
+                            <p class="mb-1 fs-6 text-muted subheading">Today Checked Tasks</p>
                             <h6 class="mb-0 sales-amount">N/A</h6>
                         </div>
                     </div>
@@ -91,56 +91,82 @@
     </div>
     <div class="row mt-3">
         <div class="col-md-12">
-            <div class="card-shadow border rounded align-items-center p-3">
-                <div class="border-bottom mt-4">
-                    <h3 class="all-adjustment pb-2 mb-0">My Courses</h3>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 mt-4">
-                        <ul class="nav nav-pills mb-3 row" id="pills-tab" role="tablist">
-                            <li class="nav-item col-md-2 mt-1" role="presentation">
-                            <button class="shopping-items nav-link active me-2 w-100" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
-                                IN-PROGRESS
-                            </button>
-                            </li>
-                            <li class="nav-item col-md-2 mt-1" role="presentation">
-                            <button class="nav-link shopping-items w-100" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
-                                FININSHED
-                            </button>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-                                @if($my_courses->isNotEmpty())
-                                    @foreach($my_courses as $my)
-                                    <div class="col-md-4 mt-2">
-                                        <div class="card-shadow border rounded align-items-center p-3">
-                                            <div class="row">
-                                                <div class="col-md-12 mt-2">
-                                                    <div class="border-bottom" style="width: 100%;">
-                                                        <h3 class="all-adjustment text-center pb-2 mb-0" style="width: 100%;">{{ $my->course->name ?? '' }}</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12 mt-2 text-center">
-                                                    <img src="{{ asset('images/courses/'.$my->course->image) }}" style="width: 30%;" alt="">
-                                                    <p>20% Complete</p>
-                                                    <a href="{{ route('course', ['uuid' => $my->course->uuid]) }}" class="btn save-btn text-white mt-2"> Continue Course</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                @else
-                                    No Course Found
-                                @endif
-                            </div>
-                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-                                No Course Found
+            <div class="card border-0 card-shadow rounded-3 p-2 mt-4 mb-3">
+                <div class="card-header border-0 bg-white">
+                    <div class="row my-3">
+                        <div class="col-md-3 col-12 mt-2">
+                            <div class="input-search position-relative">
+                                <input type="text" placeholder="Search Table" class="form-control rounded-3 subheading" />
+                                <span class="fa fa-search search-icon text-secondary"></span>
                             </div>
                         </div>
+                        <div class="col-md-9 col-12 text-end">
+                            <a href="#" class="btn create-btn rounded-3 mt-2">Filter <i class="bi bi-funnel"></i></a>
+                            <a href="#" class="btn rounded-3 mt-2 excel-btn">Excel <i
+                                    class="bi bi-file-earmark-text"></i></a>
+                            <a href="#" class="btn pdf rounded-3 mt-2">Pdf <i class="bi bi-file-earmark"></i></a>
+                        </div>
                     </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-secondary">Full Name</th>
+                                <th class="text-secondary">Phone No</th>
+                                <th class="text-secondary">Course Name</th>
+                                <th class="text-secondary">Module</th>
+                                <th class="text-secondary">Step No</th>
+                                <th class="text-secondary">Submission Date</th>
+                                <th class="text-secondary">Task</th>
+                                <th class="text-secondary">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if ($tasks->isNotEmpty())
+                                @foreach ($tasks as $task)
+                                    <tr>
+                                        <td class="align-middle">{{ $task->user->full_name ?? '' }}</td>
+                                        <td class="align-middle">
+                                            <a href="tel:{{ $task->user->phone ?? '' }}" class="text-decoration-none">{{ $task->user->phone ?? '' }}</a>
+                                        </td>
+                                        <td class="align-middle">{{ $task->course->name ?? '' }}</td>
+                                        <td class="align-middle">{{ $task->step->type ?? '' }}</td>
+                                        <td class="align-middle">{{ $task->step->steps_no ?? '' }}</td>
+                                        <td class="align-middle">{{ $task->created_at->format('M d, Y') ?? '' }}</td>
+                                        <td class="align-middle">
+                                            <a href="{{ asset('trainee/tasks/' . $task->file) }}" class="badges yellow-border text-center text-decoration-none" target="_blank">View Task</a>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="btn btn-secondary bg-transparent border-0 text-dark" role="button"
+                                                    id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    <i class="fa-solid fa-ellipsis-v"></i>
+                                                </a>
+                                                <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item" href="javascript:;" >
+                                                        <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 20%;" alt=""/>
+                                                        Fail Task
+                                                    </a>
+                                                    <a class="dropdown-item" href="javascript:;" >
+                                                        <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 20%;" alt=""/>
+                                                        Pass Task
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="10" class="align-middle text-center">
+                                        No user Found
+                                    </td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
