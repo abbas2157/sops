@@ -17,4 +17,8 @@ class Trainee extends Model
     {
         return $this->belongsTo(User::class,'created_by','id');
     }
+    public function trainee_status()
+    {
+        return $this->belongsTo(JoinedCourse::class,'id','trainee_id')->select('id','trainee_id','type','status','course_id')->with('trainee_course');
+    }
 }

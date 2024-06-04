@@ -9,9 +9,9 @@
                 <i class="bi bi-grid"></i>
                 <p class="pt-1 mb-0">Dashboard</p>
             </a>
-            <a href="" class="nav-item nav-link {{ request()->is('admin/courses') ? 'active' : '' }} text-center border-top">
+            <a href="{{ route('trainer.students') }}" class="nav-item nav-link {{ request()->is('trainer/students') ? 'active' : '' }} text-center border-top">
                 <i class="bi bi-file-earmark-text"></i>
-                <p class="pt-1 mb-0">Classes</p>
+                <p class="pt-1 mb-0">Students</p>
             </a>
         </div>
     </nav>

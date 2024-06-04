@@ -51,7 +51,7 @@ class User extends Authenticatable
     }
     public function trainee()
     {
-        return $this->belongsTo(Trainee::class,'id','user_id')->select('id','date_of_birth','gender','city_from','city_currently_living_in','employed_status','study_status','skill_experience','user_id');
+        return $this->belongsTo(Trainee::class,'id','user_id')->with('trainee_status')->select('id','date_of_birth','gender','city_from','city_currently_living_in','employed_status','study_status','skill_experience','user_id');
     }
     public function getFullNameAttribute()
     {

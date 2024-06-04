@@ -22,47 +22,47 @@
                 <div class="col-md-9">
                     <h1 class="mb-4 h2 text-center text-lg-start">Your steps</h1>
                     @if($intros->isNotEmpty())
-                        @php $next = 0; @endphp 
+                        @php $next = 0; $i = 1; @endphp 
                         @foreach($intros as $intro)
-                            @if($intro->trainee_assignment_count == 1 || $next == 1)
-                            @php $next = $intro->trainee_assignment_count; @endphp 
-                            <div class="row mt-3">
-                                <div class="col">
-                                    <div class="card shadow row g-0 flex-sm-row overflow-hidden">
-                                        <div class="card-body">
-                                            <h6 class="mb-2">
-                                                <a class="text-reset" href="{{ route('course.detail',['uuid'=> $intro->uuid]) }}">{{ $intro->steps_no ?? '' }} : {{ $intro->title ?? '' }}</a>
-                                            </h6>
-                                            <div class="d-flex lh-sm mb-2">
-                                                <p class="fs-sm mb-2"> {{ $intro->short_description ?? '' }}</p>
-                                            </div>
-                                            @if($intro->trainee_assignment_count == 1)
-                                                <div class="mb-2">
-                                                    <p class="text-success fs-sm mb-2"> Work submitted. We will check your work as soon as we can.</p>
+                            @if($intro->trainee_assignment_count == 1 || $next == 1 || $i == 1)
+                                @php $next = $intro->trainee_assignment_count; $i++; @endphp 
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <div class="card shadow row g-0 flex-sm-row overflow-hidden">
+                                            <div class="card-body">
+                                                <h6 class="mb-2">
+                                                    <a class="text-reset" href="{{ route('course.detail',['uuid'=> $intro->uuid]) }}">{{ $intro->steps_no ?? '' }} : {{ $intro->title ?? '' }}</a>
+                                                </h6>
+                                                <div class="d-flex lh-sm mb-2">
+                                                    <p class="fs-sm mb-2"> {{ $intro->short_description ?? '' }}</p>
                                                 </div>
-                                            @endif
-                                            <a href="{{ route('course.detail',['uuid'=> $intro->uuid]) }}" class="btn btn-success" type="submit">Go to {{ $intro->steps_no ?? '' }}</a>
+                                                @if($intro->trainee_assignment_count == 1)
+                                                    <div class="mb-2">
+                                                        <p class="text-success fs-sm mb-2"> Work submitted. We will check your work as soon as we can.</p>
+                                                    </div>
+                                                @endif
+                                                <a href="{{ route('course.detail',['uuid'=> $intro->uuid]) }}" class="btn btn-success" type="submit">Go to {{ $intro->steps_no ?? '' }}</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @else
-                            <div class="row mt-3">
-                                <div class="col">
-                                    <div class="card shadow row g-0 flex-sm-row overflow-hidden">
-                                        <div class="card-body" style="opacity: 0.8;">
-                                            <div class="row">
-                                                <div class="col-md-11">
-                                                    <h6 class="mt-1">
-                                                        <a class="text-reset" href="Javascrip:;">{{ $intro->steps_no ?? '' }} : {{ $intro->title ?? '' }}</a>
-                                                    </h6>
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <div class="card shadow row g-0 flex-sm-row overflow-hidden">
+                                            <div class="card-body" style="opacity: 0.8;">
+                                                <div class="row">
+                                                    <div class="col-md-11">
+                                                        <h6 class="mt-1">
+                                                            <a class="text-reset" href="Javascrip:;">{{ $intro->steps_no ?? '' }} : {{ $intro->title ?? '' }}</a>
+                                                        </h6>
+                                                    </div>
+                                                    <div class="col-md-1"><i class="fa-solid fa-lock"></i> </div>
                                                 </div>
-                                                <div class="col-md-1"><i class="fa-solid fa-lock"></i> </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endif
                         @endforeach
                     @else

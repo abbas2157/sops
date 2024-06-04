@@ -74,10 +74,11 @@ Route::group(['middleware' => ['auth']], function() {
             });
         });
     });
-
     Route::middleware([App\Http\Middleware\EnsureUserIsTrainer::class])->group(function () {
         Route::group(['prefix' => 'trainer'], function(){
             Route::get('/', [App\Http\Controllers\Trainer\DashboardController::class, 'index'])->name('trainer');
+            Route::get('students', [App\Http\Controllers\Trainer\StudentController::class, 'index'])->name('trainer.students');
+            Route::get('students/tasks/{id}', [App\Http\Controllers\Trainer\StudentController::class, 'show'])->name('trainer.students.tasks');
             Route::group(['prefix' => 'profile'], function(){
                 Route::get('/', [App\Http\Controllers\Trainer\ProfileController::class, 'create'])->name('trainer.profile');
                 Route::post('perform', [App\Http\Controllers\Trainer\ProfileController::class, 'update'])->name('trainer.profile.perform');

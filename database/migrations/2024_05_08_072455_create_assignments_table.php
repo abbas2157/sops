@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('user_id')->nullable();
             $table->enum('type',['Course','Trainer','Other'])->default('Other');
             $table->enum('status',['Pending','Checking','Fail','Pass'])->default('Pending');
+            $table->text('remarks')->nullable();
+            $table->integer('checked_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
