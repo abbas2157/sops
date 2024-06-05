@@ -145,13 +145,9 @@
                                                     <i class="fa-solid fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="javascript:;" >
+                                                    <a class="dropdown-item" href="{{ route('trainer.tasks.check', $task->id) }}" >
                                                         <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 20%;" alt=""/>
-                                                        Fail Task
-                                                    </a>
-                                                    <a class="dropdown-item" href="javascript:;" >
-                                                        <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 20%;" alt=""/>
-                                                        Pass Task
+                                                        Add Remarks
                                                     </a>
                                                 </div>
                                             </div>

@@ -48,13 +48,13 @@
                         @foreach($trainees as $trainee)
                         <tr>
                             <td class="align-middle">{{ $trainee->full_name ?? '' }}</td>
-                            <td class="align-middle">{{ $trainee->trainee->gender ?? '' }}</td>
+                            <td class="align-middle">{{ $trainee->u_trainee->gender ?? '' }}</td>
                             <td class="align-middle"><a href="mailto:{{ $trainee->email ?? '' }}" class="text-decoration-none">{{ $trainee->email ?? '' }}</a></td>
                             <td class="align-middle"><a href="tel:{{ $trainee->phone ?? '' }}" class="text-decoration-none">{{ $trainee->phone ?? '' }}</a></td>
 
-                            <td class="align-middle">{{ $trainee->trainee->city_from ?? '' }}</td>
-                            <td class="align-middle">{{ $trainee->trainee->skill_experience ?? '' }}</td>
-                            <td class="align-middle">{{ $trainee->trainee->createdby->full_name ?? '' }}</td>
+                            <td class="align-middle">{{ $trainee->u_trainee->city_from ?? '' }}</td>
+                            <td class="align-middle">{{ $trainee->u_trainee->skill_experience ?? '' }}</td>
+                            <td class="align-middle">{{ $trainee->u_trainee->createdby->full_name ?? '' }}</td>
                             <td class="align-middle">{{ $trainee->created_at->format('M d, Y') ?? '' }}</td>
                             <td class="align-middle">
                                 @if(is_null($trainee->email_verified_at))

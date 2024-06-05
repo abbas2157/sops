@@ -90,7 +90,7 @@
                                             class="text-decoration-none">{{ $train->email ?? '' }}</a></td>
                                     <td class="align-middle" style="white-space:nowrap;"><a href="tel:{{ $train->phone ?? '' }}" class="text-decoration-none">{{ $train->phone ?? '' }}</a></td>
                                     <td class="align-middle">{{ $train->trainer->areas_of_expertise ?? '' }}</td>
-                                    <td class="align-middle">{{ $train->trainer->course->name ?? '' }}</td>
+                                    <td class="align-middle">{{ $train->trainer->t_course->name ?? '' }}</td>
                                     <td class="align-middle">{{ $train->trainer->createdby->full_name ?? '' }}</td>
                                     <td class="align-middle">{{ $train->created_at->format('M d, Y') ?? '' }}</td>
                                     <td class="align-middle">

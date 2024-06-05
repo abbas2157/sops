@@ -1,24 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Trainer;
+namespace App\Http\Controllers\trainer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,JoinedCourse};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
+use App\Mail\AssignmentRemarksMail;
 
-class DashboardController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $courses = Course::where('id',Auth::user()->trainer->course_id)->count();
-        $students = JoinedCourse::where('course_id',Auth::user()->trainer->course_id)->count();
-        $tasks = Assignment::with('user','step','course')->where('status','Pending')->where('course_id',Auth::user()->trainer->course_id)->get();
-        // dd($tasks->toArray());
-        return view('trainer.index',compact('courses','students','tasks'));
+        //
     }
 
     /**
@@ -42,7 +39,11 @@ class DashboardController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $task = Assignment::with('user','step','course')->where('id',$id)->first();
+        if(is_null($task))
+        abort(404);
+        // dd($tasks->toArray());
+        return view('trainer.tasks.show',compact('task'));
     }
 
     /**
@@ -58,7 +59,19 @@ class DashboardController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $task = Assignment::with('user')->where('id',$id)->first();
+        if(is_null($task))
+            abort(404);
+        // dd($task);
+        $task->checked_by = Auth::user()->id;
+        $task->status = $request->status;
+        $task->remarks = $request->remarks;
+        $task->save();
+
+        Mail::to($task->user->email)->send(new AssignmentRemarksMail($task));
+
+        $validator['success'] = 'Remarks Added Succefully.';
+        return redirect('trainer')->withErrors($validator);
     }
 
     /**

@@ -171,7 +171,7 @@ class TrainerController extends Controller
             $trainer->save();
 
             DB::commit();
-            
+
             $validator['success'] = 'Trainer has been Updated.';
             return back()->withErrors($validator);
         }

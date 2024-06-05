@@ -11,7 +11,11 @@ class Trainer extends Model
     use HasFactory, SoftDeletes;
     public function course()
     {
-        return $this->hasMany(Course::class,'course_id','id');
+        return $this->hasMany(Course::class,'id','course_id');
+    }
+    public function t_course()
+    {
+        return $this->belongsTo(Course::class,'course_id','id');
     }
     public function user()
     {
