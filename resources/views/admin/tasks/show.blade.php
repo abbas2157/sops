@@ -1,4 +1,4 @@
-@extends('trainer.layout.app')
+@extends('admin.layout.app')
 @section('title')
     <title>Check Task | SOPS - School of Professional Skills</title>
 @stop
@@ -10,7 +10,7 @@
         <div class="border-bottom">
             <h3 class="all-adjustment text-center pb-2 mb-0" style="width: 30%;">Check Task Screen</h3>
         </div>
-        <form enctype="multipart/form-data" method="post" action="{{ route('trainer.tasks.update',$task->id) }}">
+        <form enctype="multipart/form-data" method="post" action="{{ route('admin.tasks.update',$task->id) }}">
             @csrf
             @method('POST')
             <div class="row mt-4">
