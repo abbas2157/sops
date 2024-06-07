@@ -17,19 +17,19 @@
                             @if($my->type == 'Fundamental' || $my->type == 'Full Skill')
                                 <div class="mt-1"><a href="{{ route('course', ['uuid' => $my->course->uuid,'type' => '2']) }}" class="text-decoration-none">2. Continue Fundamental Module</a></div>
                             @else
-                                <div class="mt-1">2. Continue Fundamental Module</div>
+                                <div class="mt-1">2. Continue Fundamental Module <i class="fa-solid fa-lock"></i></div>
                             @endif
                             @if($my->type == 'Full Skill')
                                 <div class="mt-1"><a href="{{ route('course', ['uuid' => $my->course->uuid, 'type' => '3']) }}" class=" text-decoration-none">3. Continue Full Skill Module</a></div>
                             @else
-                                <div class="mt-1">3. Continue Full Skill Module</div>
+                                <div class="mt-1">3. Continue Full Skill Module <i class="fa-solid fa-lock"></i></div>
                             @endif
                         </div>
                         <div class="col-md-3 p-3">
                             <img src="{{ asset('images/courses/'.$my->course->image) }}" style="width: 100%;" alt="">
                         </div>
                         <div class="col-md-12 text-center p-3">
-                            <a href="" class="btn save-btn text-white mt-2">See Submitted Assignments</a> 
+                            <a href="{{ route('trainee.tasks',$my->id) }}" class="btn save-btn text-white mt-2">See Submitted Assignments</a> 
                         </div>
                     </div>
                 </div>

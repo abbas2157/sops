@@ -37,7 +37,7 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                         tabindex="0">
-                        No Course Found
+                        @include('trainee.partials.in-progress-list')
                     </div>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                         tabindex="0">

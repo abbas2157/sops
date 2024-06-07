@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Trainee;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{User,Course,Trainee,ModuleStep,Trainer,JoinedCourse};
+use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,JoinedCourse};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 
 class DashboardController extends Controller
@@ -16,7 +16,8 @@ class DashboardController extends Controller
     {
         $courses = Course::with('createdby')->where('list',1)->get();
         $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->get();
-        return view('trainee.index',compact('courses','my_courses'));
+        $tasks = Assignment::where('user_id',Auth::user()->id)->get();
+        return view('trainee.index',compact('courses','my_courses','tasks'));
     }
 
     /**

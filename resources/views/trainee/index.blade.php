@@ -25,7 +25,7 @@
                         <i class="bi bi-file-earmark fs-2"></i>
                         <div class="ms-3">
                             <p class="mb-1 fs-6 text-muted subheading">PENDING TASKS</p>
-                            <h6 class="mb-0 sales-amount">{{ $my_courses->count() ?? 'N/A' }}</h6>
+                            <h6 class="mb-0 sales-amount">{{ $tasks->where('status','Pending')->count() ?? 'N/A' }}</h6>
                         </div>
                     </div>
                     </a>
@@ -35,8 +35,8 @@
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
                         <i class="fa-thin fa-check-square fs-2"></i>
                         <div class="ms-3">
-                            <p class="mb-1 fs-6 text-muted subheading">COMPLETED TASKS</p>
-                            <h6 class="mb-0 sales-amount">{{ $my_courses->count() ?? 'N/A' }}</h6>
+                            <p class="mb-1 fs-6 text-muted subheading">PASSED TASKS</p>
+                            <h6 class="mb-0 sales-amount">{{ $tasks->where('status','Pass')->count() ?? 'N/A' }}</h6>
                         </div>
                     </div>
                     </a>
@@ -46,8 +46,8 @@
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
                         <i class="fa-solid fa-layer-group fs-2"></i>
                         <div class="ms-3">
-                            <p class="mb-1 fs-6 text-muted subheading">COMPLETED COURSES</p>
-                            <h6 class="mb-0 sales-amount">N/A</h6>
+                            <p class="mb-1 fs-6 text-muted subheading">FAILED TASKS</p>
+                            <h6 class="mb-0 sales-amount">{{ $tasks->where('status','Fail')->count() ?? 'N/A' }}</h6>
                         </div>
                     </div>
                     </a>
