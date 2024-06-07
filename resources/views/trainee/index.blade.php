@@ -24,7 +24,7 @@
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
                         <i class="bi bi-file-earmark fs-2"></i>
                         <div class="ms-3">
-                            <p class="mb-1 fs-6 text-muted subheading">ACTIVE COURSES</p>
+                            <p class="mb-1 fs-6 text-muted subheading">PENDING TASKS</p>
                             <h6 class="mb-0 sales-amount">{{ $my_courses->count() ?? 'N/A' }}</h6>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
                         <i class="fa-thin fa-check-square fs-2"></i>
                         <div class="ms-3">
-                            <p class="mb-1 fs-6 text-muted subheading">IN-PROGRESS COURSES</p>
+                            <p class="mb-1 fs-6 text-muted subheading">COMPLETED TASKS</p>
                             <h6 class="mb-0 sales-amount">{{ $my_courses->count() ?? 'N/A' }}</h6>
                         </div>
                     </div>

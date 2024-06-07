@@ -29,7 +29,7 @@
                             <img src="{{ asset('images/courses/'.$my->course->image) }}" style="width: 100%;" alt="">
                         </div>
                         <div class="col-md-12 text-center p-3">
-                            <a class="btn save-btn text-white mt-2">See Submitted Assignments</a> 
+                            <a href="" class="btn save-btn text-white mt-2">See Submitted Assignments</a> 
                         </div>
                     </div>
                 </div>
