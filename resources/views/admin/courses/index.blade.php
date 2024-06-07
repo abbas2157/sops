@@ -70,7 +70,7 @@
                                         </a>
                                         <a class="dropdown-item" href="{{ route('admin.comments.index',['id' => $course->id]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
-                                                See Comments
+                                            See Comments
                                         </a>
                                         <a class="dropdown-item" href="{{ route('admin.reviews.index',['id' => $course->id]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>

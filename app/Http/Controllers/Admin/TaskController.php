@@ -16,7 +16,12 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Assignment::with('user','step','course')->where('status','Pending')->paginate(20);
+        $tasks = Assignment::with('user','step','course')->where('status','Pending');
+        if(request()->has('user') && !empty(request()->user))
+        {
+            $tasks->where('user_id',request()->user);
+        }
+        $tasks = $tasks->paginate(20);
         return view('admin.tasks.index',compact('tasks'));
     }
 

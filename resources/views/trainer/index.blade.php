@@ -112,14 +112,15 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th class="text-secondary">Full Name</th>
-                                <th class="text-secondary">Phone No</th>
-                                <th class="text-secondary">Course Name</th>
-                                <th class="text-secondary">Module</th>
-                                <th class="text-secondary">Step No</th>
-                                <th class="text-secondary">Submission Date</th>
-                                <th class="text-secondary">Task</th>
-                                <th class="text-secondary">Actions</th>
+                                <th>Full Name</th>
+                                <th>Phone No</th>
+                                <th>Course Name</th>
+                                <th>Module</th>
+                                <th>Step No</th>
+                                <th>Submission Date</th>
+                                <th>Given Assignment</th>
+                                <th>Submitted Assignment</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -134,8 +135,15 @@
                                         <td class="align-middle">{{ $task->step->type ?? '' }}</td>
                                         <td class="align-middle">{{ $task->step->steps_no ?? '' }}</td>
                                         <td class="align-middle">{{ $task->created_at->format('M d, Y') ?? '' }}</td>
-                                        <td class="align-middle">
-                                            <a href="{{ asset('trainee/tasks/' . $task->file) }}" class="badges yellow-border text-center text-decoration-none" target="_blank">View Task</a>
+                                        <td class="align-middle text-center">
+                                            <a href="{{ asset('course/steps/assignments/'.$task->step->assignment ) }}" class="text-muted text-decoration-none mt-3" target="_blank"  role="button" >
+                                                <i class="fa fa-download"></i>
+                                            </a>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <a href="{{ asset('trainee/tasks/'.$task->file) }}" class="text-muted text-decoration-none mt-3" target="_blank"  role="button" >
+                                                <i class="fa fa-download"></i>
+                                            </a>
                                         </td>
                                         <td>
                                             <div>

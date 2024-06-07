@@ -50,7 +50,13 @@
                         <td class="align-middle">{{ $student->trainee->city_from ?? '' }}</td>
                         <td class="align-middle">{{ $student->trainee->skill_experience ?? '' }}</td>
                         <td class="align-middle">{{ $student->created_at->format('M d, Y') ?? '' }}</td>
-                        <td class="align-middle"></td>
+                        <td class="align-middle">
+                            @if ($student->status == 'Processing')
+                                <span class="badges yellow-border text-center p-1">Processing</span>
+                            @else
+                                <span class="badges green-border text-center p-1">Completed</span>
+                            @endif
+                        </td>
                         <td class="align-middle">
                             <div>
                                 <a class="btn btn-secondary bg-transparent border-0 text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -61,7 +67,7 @@
                                         <i class="fa-solid fa-xmark"></i> Remove Student
                                     </a>
                                     <a class="dropdown-item" href="{{ route('admin.students.steps',['uuid' => $course->uuid,'id' => $student->user_id]) }}">
-                                        <i class="fa-solid fa-eye"></i> View Steps
+                                        <i class="fa-solid fa-eye"></i> Check Status
                                     </a>
                                 </div>
                             </div>

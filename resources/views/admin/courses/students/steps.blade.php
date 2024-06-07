@@ -7,7 +7,7 @@
 @section('content')
 <div class="container-fluid pt-4 px-4 mb-5">
     <div class="border-bottom">
-        <h3 class="all-adjustment text-center pb-2 mb-0" style="width: auto;">All {{ $user->full_name ?? '' }}'s Steps (Trainer : {{ $course->tainer->user->full_name ?? '' }})</h3>
+        <h3 class="all-adjustment pb-2 mb-0" style="width: auto;">All {{ $user->full_name ?? '' }}'s Steps (Trainer : {{ $course->tainer->user->full_name ?? '' }})</h3>
     </div>
     <div class="row mt-4">
         <div class="col-md-12 ">
@@ -88,7 +88,10 @@
                                                                 <i class="fa-solid fa-ellipsis-v"></i>
                                                             </a>
                                                             <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-                                                                
+                                                                <a class="dropdown-item" href="{{ route('admin.tasks.check', $stp->id) }}" >
+                                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 20%;" alt=""/>
+                                                                    Add Remarks
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </td>
