@@ -22,6 +22,9 @@ Route::group(['middleware' => ['auth']], function() {
             Route::resource('comments', App\Http\Controllers\Admin\CommentsController::class,['as' => 'admin']);
             Route::resource('reviews', App\Http\Controllers\Admin\ReviewsController::class,['as' => 'admin']);
             Route::resource('replies', App\Http\Controllers\Admin\ReplyController::class,['as' => 'admin']);
+            Route::resource('batches', App\Http\Controllers\Admin\BatchController::class,['as' => 'admin']);
+            Route::resource('batch-students', App\Http\Controllers\Admin\BatchStudentsController::class,['as' => 'admin']);
+            Route::resource('class-schedules', App\Http\Controllers\Admin\ClassScheduleController::class,['as' => 'admin']);
 
             Route::group(['prefix' => 'tasks'], function(){
                 Route::get('/', [App\Http\Controllers\Admin\TaskController::class, 'index'])->name('admin.tasks');
@@ -38,6 +41,7 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::get('/', [App\Http\Controllers\Admin\StudentController::class, 'index'])->name('admin.students');
                 Route::get('steps', [App\Http\Controllers\Admin\StudentController::class, 'show'])->name('admin.students.steps');
             });
+            
         });
     });
 });

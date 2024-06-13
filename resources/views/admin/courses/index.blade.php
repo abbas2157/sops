@@ -48,8 +48,6 @@
                             <td class="align-middle" style="white-space: normal;">{{ $course->description ?? '' }}</td>
                             <td class="align-middle">
                                 <a class="badges blue-border text-center text-decoration-none p-1" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Intro']) }}" >Intro Module</a>
-                                <a class="badges blue-border text-center text-decoration-none p-1" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Fundamental']) }}" >Fundamental Module</a>
-                                <a class="badges blue-border text-center text-decoration-none p-1" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Full Skill']) }}" >Full Skill Module</a>
                              </td>
                             <td class="align-middle">{{ $course->createdby->full_name ?? '' }}</td>
                             <td class="align-middle">{{ $course->created_at->format('M d, Y') ?? '' }}</td>
@@ -63,7 +61,10 @@
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Create Module
                                         </a>
-                                        
+                                        <a class="dropdown-item" href="{{ route('admin.batches.index',['id' => $course->id]) }}">
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            See Batches
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('admin.students',['uuid' => $course->uuid]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Enroll Students

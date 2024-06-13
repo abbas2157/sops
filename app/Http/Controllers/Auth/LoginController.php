@@ -86,7 +86,6 @@ class LoginController extends Controller
                     return redirect('trainer/profile?details');
                 return redirect('trainer');
             }
-            // return redirect()->intended('/')->withSuccess('Signed in');
         }
         $validator['emailPassword'] = 'Email address or password is incorrect.';
         return redirect("login")->withErrors($validator);
