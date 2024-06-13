@@ -30,6 +30,7 @@
                 <tr>
                     <th class="align-middle">Class Title</th>
                     <th class="align-middle">Course Name</th>
+                    <th class="align-middle">Module Type</th>
                     <th class="align-middle">Batch Name</th>
                     <th class="align-middle">Class Date</th>
                     <th class="align-middle">Class Time</th>
@@ -46,7 +47,7 @@
                             <td class="align-middle">{{ $class->title ?? '' }}</td>
                             <td class="align-middle">{{ $class->course->name ?? '' }} </td>
                             <td class="align-middle">{{ $class->type ?? '' }} </td>
-                            <td class="align-middle">{{ $class->batch->name ?? '' }} </td>
+                            <td class="align-middle">{{ $class->batch->title ?? '' }} </td>
                             <td class="align-middle">{{ $class->class_date ?? '' }}</td>
                             <td class="align-middle">{{ $class->class_time ?? '' }}</td>
                             <td class="align-middle">{{ $class->call_link ?? '' }}</td>

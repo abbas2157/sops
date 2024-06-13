@@ -10,10 +10,9 @@
         <div class="border-bottom">
             <h3 class="all-adjustment pb-2 mb-0" style="width: 30%;">Class Schedule </h3>
         </div>
-        <form enctype="multipart/form-data" id="" method="post" action="{{ route('steps.store') }}">
+        <form enctype="multipart/form-data" id="" method="post" action="{{ route('admin.class-schedules.store') }}">
             @csrf
             @method('POST')
-            <input type="hidden" value="{{ $course->id ?? '' }}" name="course_id">
             <div class="row mt-4">
                 <div class="col-md-9">
                     @include('partials.alerts')
@@ -47,6 +46,28 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <div class="form-group fw-bold">
+                                        <label for="exampleFormControlSelect23">Select Course <span class="text-danger">*</span></label>
+                                        <select class="form-control form-select subheading mt-1" name="course_id">
+                                            @foreach($courses as $course)
+                                                <option value="{{ $course->id ?? '' }}" {{ (request()->has('course') && $course->course == request()->course)? 'selected' : ''  }}>{{ $course->name ?? '' }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group fw-bold">
+                                        <label for="exampleFormControlSelect12">Select Batch<span class="text-danger">*</span></label>
+                                        <select class="form-control form-select subheading mt-1" name="batch_id">
+                                            @foreach($batches as $batch)
+                                                <option value="{{ $batch->id ?? '' }}"  {{ (request()->has('btach') && $btach->btach == request()->btach)? 'selected' : ''  }}>{{ $batch->title ?? '' }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -57,8 +78,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect1">Select Module</label>
-                                        <select class="form-control form-select subheading mt-1"
-                                            aria-label="Default select example" id="exampleFormControlSelect1" name="type">
+                                        <select class="form-control form-select subheading mt-1" name="type">
                                             <option>Fundamental</option>
                                             <option>Full Skill</option>
                                         </select>
@@ -67,7 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn save-btn text-white mt-3">Create Module</button>
+                    <button type="submit" class="btn save-btn text-white mt-3">Schedule Class</button>
                 </div>
             </div>
         </form>

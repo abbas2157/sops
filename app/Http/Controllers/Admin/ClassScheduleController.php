@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Course,JoinedCourse,Batch,ClassSchedule};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
+use Illuminate\Support\Str;
 
 class ClassScheduleController extends Controller
 {
@@ -49,7 +50,20 @@ class ClassScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $class = new ClassSchedule;
+        $class->uuid = Str::uuid();
+        $class->title = $request->title;
+        $class->class_date = $request->class_date;
+        $class->class_time = $request->class_time;
+        $class->call_link = $request->call_link;
+        $class->type = $request->type;
+        $class->batch_id = $request->batch_id;
+        $class->course_id = $request->course_id;
+        $class->created_by = Auth::user()->id;
+        $class->save();
+        
+        $validator['success'] = 'Class Created Successfully';
+        return back()->withErrors($validator);
     }
 
     /**
