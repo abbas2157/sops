@@ -19,6 +19,7 @@
                     </div>
                 </div>
                 <div class="col-md-8 col-12 text-end">
+                    <a href="{{ route('courses.index') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Courses</a>
                     <a href="{{ route('admin.class-schedules.create',['course' => request()->course,'batch' => request()->batch]) }}" class="btn create-btn rounded-3 mt-2"> Create Class <i class="bi bi-plus-lg"></i> </a>
                 </div>
             </div>
