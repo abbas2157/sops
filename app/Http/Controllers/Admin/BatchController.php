@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,Batch,Review,User,Course,Trainee};
+use App\Models\{Assignment,Batch,Review,User,Course,Trainee,JoinedCourse};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Mail\BatchCreationEmail;
 use Str;
@@ -53,7 +53,18 @@ class BatchController extends Controller
         $batch->created_by = Auth::user()->id;
         $batch->save();
 
-        Mail::to(['abbas8156@gmail.com'])->send(new BatchCreationEmail($batch));
+        $students = JoinedCourse::where('type','intro')->where('course_id',$batch->course_id)->pluck('user_id');
+        if(!is_null($students))
+        {
+            $students = $students->toArray();
+            $students = User::with('trainee')->whereIn('id',$students)->whereIn('type', ['trainee'])->pluck('email');
+        }
+        $batch = Batch::with('course')->where('id',$batch->id)->first();
+        if(!is_null($students))
+        {
+            $students = $students->toArray();
+            Mail::to($students)->send(new BatchCreationEmail($batch));
+        }
 
         $validator['success'] = 'Batch Created Successfully';
         return back()->withErrors($validator);

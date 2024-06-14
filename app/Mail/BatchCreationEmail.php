@@ -27,7 +27,7 @@ class BatchCreationEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Batch Creation Email',
+            subject: 'We have an important announcement regarding the Batch('.$this->data->code.')  Creation for '.$this->data->course->name,
         );
     }
 
@@ -38,6 +38,9 @@ class BatchCreationEmail extends Mailable
     {
         return new Content(
             view: 'mails.batch-createion',
+            with: [
+                'data' => $this->data,
+            ]
         );
     }
 
