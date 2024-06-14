@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Assignment,Batch,Review,User,Course,Trainee};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
+use App\Mail\BatchCreationEmail;
 use Str;
 
 class BatchController extends Controller
@@ -51,6 +52,8 @@ class BatchController extends Controller
         $batch->type = $request->type;
         $batch->created_by = Auth::user()->id;
         $batch->save();
+
+        Mail::to(['abbas8156@gmail.com'])->send(new BatchCreationEmail($batch));
 
         $validator['success'] = 'Batch Created Successfully';
         return back()->withErrors($validator);
