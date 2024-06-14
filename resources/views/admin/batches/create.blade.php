@@ -48,7 +48,6 @@
                     </select>
                 </div>
                 <button type="submit" class="btn save-btn text-white mt-4">Create</button>
-                <a href="{{ route('admin.batches.index') }}" class="btn create-btn rounded-3 mt-2">Back To Batches<i class="bi bi-funnel"></i></a>
             </form>
         </div>
         </div>

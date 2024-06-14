@@ -71,8 +71,8 @@
                                         <select class="form-control form-select subheading mt-1"
                                             aria-label="Default select example" id="exampleFormControlSelect1" name="type">
                                             <option {{ (request()->type =='Intro') ? 'selected' : '' }}>Intro</option>
-                                            <option {{ (request()->type =='Fundamental') ? 'selected' : '' }}>Fundamental</option>
-                                            <option {{ (request()->type =='Full Skill') ? 'selected' : '' }}>Full Skill</option>
+                                            {{-- <option {{ (request()->type =='Fundamental') ? 'selected' : '' }}>Fundamental</option>
+                                            <option {{ (request()->type =='Full Skill') ? 'selected' : '' }}>Full Skill</option> --}}
                                         </select>
                                     </div>
                                 </div>
@@ -112,6 +112,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn save-btn text-white mt-3">Create {{ request()->type }} Module</button>
+                    <a href="{{ route('steps.index',['id' => request()->id, 'type' => 'Intro']) }}" class="btn create-btn rounded-3 mt-2">Back To Steps<i class="bi bi-funnel"></i></a>
                 </div>
             </div>
         </form>

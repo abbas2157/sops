@@ -72,8 +72,8 @@
                                         <select class="form-control form-select subheading mt-1"
                                             aria-label="Default select example" id="exampleFormControlSelect1" name="type">
                                             <option {{ $step->type == 'Intro' ? 'selected' : '' }}>Intro</option>
-                                            <option {{ $step->type == 'Fundamental' ? 'selected' : '' }}>Fundamental</option>
-                                            <option {{ $step->type == 'Full Skill' ? 'selected' : '' }}>Full Skill</option>
+                                            {{-- <option {{ $step->type == 'Fundamental' ? 'selected' : '' }}>Fundamental</option>
+                                            <option {{ $step->type == 'Full Skill' ? 'selected' : '' }}>Full Skill</option> --}}
                                         </select>
                                     </div>
                                 </div>
