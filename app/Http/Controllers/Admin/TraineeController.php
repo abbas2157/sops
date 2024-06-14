@@ -58,6 +58,7 @@ class TraineeController extends Controller
                 $file->move(public_path('profile_pictures'),$filename);
                 $user->profile_picture = $filename;
             }
+            
             $user->type = 'trainee';
             $user->save();
 

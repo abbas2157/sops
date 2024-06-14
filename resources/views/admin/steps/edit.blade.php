@@ -113,7 +113,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn save-btn text-white mt-3">Update Intro</button>
-                    <a href="{{ route('steps.index',['id' => request()->id, 'type' => 'Intro']) }}" class="btn rounded-3 mt-2 excel-btn">Back To Steps</a>
+                    <a href="{{ route('steps.index',['id' => request()->id, 'type' => 'Intro']) }}" class="btn rounded-3 mt-3 excel-btn">Back To Steps</a>
                 </div>
             </div>
         </form>

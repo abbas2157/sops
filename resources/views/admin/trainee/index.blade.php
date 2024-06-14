@@ -54,7 +54,7 @@
 
                             <td class="align-middle">{{ $trainee->u_trainee->city_from ?? '' }}</td>
                             <td class="align-middle">{{ $trainee->u_trainee->skill_experience ?? '' }}</td>
-                            <td class="align-middle">{{ $trainee->u_trainee->createdby->full_name ?? '' }}</td>
+                            <td class="align-middle">{{ $trainee->createdby->full_name ?? '' }}</td>
                             <td class="align-middle">{{ $trainee->created_at->format('M d, Y') ?? '' }}</td>
                             <td class="align-middle">
                                 @if(is_null($trainee->email_verified_at))

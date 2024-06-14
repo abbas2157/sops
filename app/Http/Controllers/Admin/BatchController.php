@@ -46,6 +46,7 @@ class BatchController extends Controller
         $batch->uuid = Str::uuid();
         $batch->code = $request->code;
         $batch->title = $request->title;
+        $batch->duration = $request->duration;
         $batch->course_id = $request->course_id;
         $batch->type = $request->type;
         $batch->created_by = Auth::user()->id;
