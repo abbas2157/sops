@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn save-btn text-white mt-3">Create {{ request()->type }} Module</button>
-                    <a href="{{ route('steps.index',['id' => request()->id, 'type' => 'Intro']) }}" class="btn create-btn rounded-3 mt-2">Back To Steps<i class="bi bi-funnel"></i></a>
+                    <a href="{{ route('steps.index',['id' => request()->id, 'type' => 'Intro']) }}" class="btn rounded-3 mt-2 excel-btn">Back To Steps</a>
                 </div>
             </div>
         </form>
