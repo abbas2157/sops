@@ -37,7 +37,7 @@ class AddedToBatchEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.batch-creation',
+            view: 'mails.added-to-batch',
             with: [
                 'data' => $this->data,
             ]
