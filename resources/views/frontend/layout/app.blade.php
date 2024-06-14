@@ -50,7 +50,7 @@
                                 <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                 <!-- <span class="dropdown-header">Welcome Tatiana </span> -->
-                                    <li><a class="dropdown-item" href="{{ route('trainee.profile') }}"><i class="fa-regular fa-user me-2"></i> Profile</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('trainee') }}"><i class="fa-regular fa-user me-2"></i> Dashboard</a></li>
                                     <li><a class="dropdown-item" href="{{ route('trainee.profile') }}"><i class="fa-regular fa-pen-to-square me-2"></i> Edit Profile</a></li>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket me-2"></i> Sign Out</a></li>
                                 </ul>
