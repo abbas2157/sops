@@ -21,7 +21,11 @@
                 <i class="bi bi-file-earmark-text"></i>
                 <p class="pt-1 mb-0">Courses</p>
             </a>
-            <div id="navbar-toggler3" class="nav-item nav-link text-center {{ (request()->is('admin/comments*') || request()->is('admin/reviews*')) ? 'active' : '' }}">
+            <div id="navbar-toggler3" class="nav-item nav-link text-center {{ (request()->is('admin/batches*')) ? 'active' : '' }}">
+                <i class="bi bi-box-seam"></i>
+                <p class="pt-1 mb-0">Batches</p>
+            </div>
+            <div id="navbar-toggler4" class="nav-item nav-link text-center {{ (request()->is('admin/comments*') || request()->is('admin/reviews*')) ? 'active' : '' }}">
                 <i class="fa-solid fa-bars"></i>
                 <p class="pt-1 mb-0">Others</p>
             </div>
@@ -58,6 +62,20 @@
         </ul>
     </div>
     <div id="purchase" style="display: none">
+        <ul class="list-unstyled m-0 rounded-5">
+            <li>
+                <a href="{{ route('admin.batches.index') }}" class="text-decoration-none nav-item nav-link ">
+                    <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />All Batches
+                </a>
+            </li>
+            {{-- <li>
+                <a href="{{ route('admin.batches.create') }}" class="text-decoration-none nav-item nav-link ">
+                    <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />Create Batch
+                </a>
+            </li> --}}
+        </ul>
+    </div>
+    <div id="inventory" style="display: none">
         <ul class="list-unstyled m-0 rounded-5">
             <li>
                 <a href="{{ route('admin.comments.index') }}" class="text-decoration-none nav-item nav-link ">

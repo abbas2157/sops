@@ -11,15 +11,15 @@
                 @csrf
                 @method('POST')
                 <div class="form-group">
-                    <label for="exampleFormControlInput1" class="mb-1">Batch Code <span class="text-danger">*</span></label>
-                    <input type="text" name="code" class="form-control subheading" id="exampleFormControlInput1" placeholder="Batch Code" required/>
+                    <label for="exampleFormControlInput12" class="mb-1">Batch Code <span class="text-danger">*</span></label>
+                    <input type="text" name="code" class="form-control subheading" id="exampleFormControlInput12" placeholder="Batch Code" required/>
                 </div>
                 <div class="form-group mt-2">
                     <label for="exampleFormControlInput1" class="mb-1">Batch Title <span class="text-danger">*</span></label>
                     <input type="text" name="title" class="form-control subheading" id="exampleFormControlInput1" placeholder="Name" required/>
                 </div>
                 <div class="form-group mt-2">
-                    <label for="exampleFormControlInput2" class="mb-1">Duration</label>
+                    <label class="mb-1">Duration</label>
                     <select class="form-control form-select subheading mt-1" name="duration">
                         <option>One Week</option>
                         <option>Two Weeks</option>
@@ -31,14 +31,14 @@
                     </select>
                 </div>
                 <div class="form-group mt-2">
-                    <label for="exampleFormControlInput2" class="mb-1">Course Module</label>
+                    <label class="mb-1">Course Module</label>
                     <select class="form-control form-select subheading mt-1" name="type">
                         <option>Fundamental</option>
                         <option>Full Skill</option>
                     </select>
                 </div>
                 <div class="form-group mt-2">
-                    <label for="exampleFormControlInput2" class="mb-1">Course Module</label>
+                    <label class="mb-1">Course Module</label>
                     <select class="form-control form-select subheading mt-1" name="course_id">
                         @if($courses->isNotEmpty())
                             @foreach($courses as $course)

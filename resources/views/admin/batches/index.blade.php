@@ -66,16 +66,16 @@
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Class Schedules 
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('admin.batches.edit', $batch->id) }}">
+                                        {{-- <a class="dropdown-item" href="{{ route('admin.batches.edit', $batch->id) }}">
                                             <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt="" />
                                             Edit Batch
-                                        </a>
+                                        </a> --}}
 
-                                        <a class="dropdown-item" href="javascript:;">
-                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" onclick="$('#courses_destroy').submit();"/>
+                                        <a class="dropdown-item" href="javascript:;" onclick="$('#batch_destroy').submit();">
+                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" />
                                             Delete Batch
                                         </a>
-                                        <form id="courses_destroy" action="{{ route('admin.batches.destroy',$batch->id) }}" method="post">
+                                        <form id="batch_destroy" action="{{ route('admin.batches.destroy',$batch->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                         </form>

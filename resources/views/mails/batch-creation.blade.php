@@ -141,10 +141,14 @@
             <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
                 <p style="margin: 0;">It's SOPS here with an important announcement.</p>
                 <br />
-                We have an important announcement regarding the Batch({{ $data->code ?? '000' }})  Creation for {{ $data->course->name ?? 'No Course' }}.
+                We have an important announcement regarding the Batch ({{ $data->code ?? '000' }})  Creation for course {{ $data->course->name ?? 'No Course' }}.
+                <br />
                 We will be setting up a {{ $data->type ?? '000' }} module for {{ $data->course->name ?? 'No Course' }}, and you also receive an email when we will add you in this batch.
                 <br />
+                <br />
+                <br />
                 <p style="margin: 0;">Thanks and regards</p>
+                <p style="margin: 0;">SOPS - School of Professional Skills</p>
               </p>
             </td>
           </tr>

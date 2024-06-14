@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Assignment,Batch,JoinedCourse,User,Course,BatchStudent};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
+use App\Mail\AddedToBatchEmail;
 use Str;
 
 class BatchStudentsController extends Controller
@@ -61,6 +62,15 @@ class BatchStudentsController extends Controller
                 $batch_students->save(); 
             }
         }
+
+        $students = User::with('trainee')->whereIn('id',$request->students)->whereIn('type', ['trainee'])->pluck('email');
+        $batch = Batch::with('course')->where('id', $request->batch_id)->first();
+        if(!is_null($students))
+        {
+            $students = $students->toArray();
+            Mail::to($students)->send(new AddedToBatchEmail($batch));
+        }
+
         $validator['success'] = 'Batch Updated Successfully';
         return back()->withErrors($validator);
     }

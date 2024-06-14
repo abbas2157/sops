@@ -99,6 +99,8 @@ class BatchController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Batch::find($id)->delete();
+        $validator['success'] = 'Batch Delete Successfully';
+        return back()->withErrors($validator);
     }
 }
