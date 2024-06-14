@@ -47,13 +47,18 @@ class BatchStudentsController extends Controller
     public function store(Request $request)
     {
         $batch = Batch::findOrFail($request->batch_id);
-
+        $al_stds = array();
+        $al_stds = BatchStudent::where(['batch_id' =>$request->batch_id])->pluck('user_id');
+        if(!is_null($al_stds))
+        {
+            $al_stds = $al_stds->toArray();
+            $diff_students = $result=array_diff($request->students,$al_stds);
+        }
         if($request->has('students') && !empty($request->students))
         {
+            BatchStudent::where(['batch_id' =>$request->batch_id])->delete();
             for($i = 0; $i < count($request->students); $i++)
             {
-                BatchStudent::where(['batch_id' =>$request->batch_id])->delete();
-
                 $batch_students = new BatchStudent;
                 $batch_students->batch_id = $request->batch_id;
                 $batch_students->user_id = $request->students[$i];
@@ -63,7 +68,7 @@ class BatchStudentsController extends Controller
             }
         }
 
-        $students = User::with('trainee')->whereIn('id',$request->students)->whereIn('type', ['trainee'])->pluck('email');
+        $students = User::with('trainee')->whereIn('id',$diff_students)->whereIn('type', ['trainee'])->pluck('email');
         $batch = Batch::with('course')->where('id', $request->batch_id)->first();
         if(!is_null($students))
         {
