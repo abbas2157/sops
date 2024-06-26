@@ -43,15 +43,15 @@ class BatchController extends Controller
             'title' => 'required'
         ]);
 
-        $batch = new Batch;
-        $batch->uuid = Str::uuid();
-        $batch->code = $request->code;
-        $batch->title = $request->title;
-        $batch->duration = $request->duration;
-        $batch->course_id = $request->course_id;
-        $batch->type = $request->type;
-        $batch->created_by = Auth::user()->id;
-        $batch->save();
+            $batch = new Batch;
+            $batch->uuid = Str::uuid();
+            $batch->code = $request->code;
+            $batch->title = $request->title;
+            $batch->duration = $request->duration;
+            $batch->course_id = $request->course_id;
+            $batch->type = $request->type;
+            $batch->created_by = Auth::user()->id;
+            $batch->save();
 
         $students = JoinedCourse::where('type','intro')->where('course_id',$batch->course_id)->pluck('user_id');
         if(!is_null($students))
@@ -59,7 +59,7 @@ class BatchController extends Controller
             $students = $students->toArray();
             $students = User::with('trainee')->whereIn('id',$students)->whereIn('type', ['trainee'])->pluck('email');
         }
-        $batch = Batch::with('course')->where('id',$batch->id)->first();
+                $batch = Batch::with('course')->where('id',$batch->id)->first();
         if(!is_null($students))
         {
             $students = $students->toArray();
@@ -75,7 +75,7 @@ class BatchController extends Controller
      */
     public function show(string $id)
     {
-        
+
     }
 
     /**
