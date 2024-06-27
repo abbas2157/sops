@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,JoinedCourse};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
-use App\Mail\AssignmentRemarksMail;
+use App\Jobs\AssignmentRemarksMailJob;
 
 class TaskController extends Controller
 {
@@ -68,7 +68,7 @@ class TaskController extends Controller
         $task->remarks = $request->remarks;
         $task->save();
 
-        Mail::to($task->user->email)->send(new AssignmentRemarksMail($task));
+        AssignmentRemarksMailJob::dispatch($task->user->email, $task);
 
         $validator['success'] = 'Remarks Added Succefully.';
         return redirect('trainer')->withErrors($validator);

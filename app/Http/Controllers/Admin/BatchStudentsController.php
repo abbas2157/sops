@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\{Assignment,Batch,JoinedCourse,User,Course,BatchStudent};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Mail\AddedToBatchEmail;
+use App\Jobs\BatchCreationEmailJob;
 use Str;
 
 class BatchStudentsController extends Controller
@@ -29,7 +30,7 @@ class BatchStudentsController extends Controller
             $joined = array();
         else
             $joined = $joined->toArray();
-            
+
         return view('admin.batch-students.index',compact('batch','students','joined'));
     }
 
@@ -46,6 +47,7 @@ class BatchStudentsController extends Controller
      */
     public function store(Request $request)
     {
+
         $batch = Batch::findOrFail($request->batch_id);
         $al_stds = array();
         $al_stds = BatchStudent::where(['batch_id' =>$request->batch_id])->pluck('user_id');
@@ -64,7 +66,7 @@ class BatchStudentsController extends Controller
                 $batch_students->user_id = $request->students[$i];
                 $batch_students->course_id = $batch->course_id;
                 $batch_students->created_by = Auth::user()->id;
-                $batch_students->save(); 
+                $batch_students->save();
             }
         }
 
@@ -73,7 +75,7 @@ class BatchStudentsController extends Controller
         if(!is_null($students))
         {
             $students = $students->toArray();
-            Mail::to($students)->send(new AddedToBatchEmail($batch));
+            BatchCreationEmailJob::dispatch($students, $batch);
         }
 
         $validator['success'] = 'Batch Updated Successfully';
