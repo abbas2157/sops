@@ -16,11 +16,11 @@ class BatchCreationEmailJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    private $email;
+    private $students;
     private $batch;
-    public function __construct($email,$batch)
+    public function __construct($students,$batch)
     {
-        $this->email = $email;
+        $this->students = $students;
         $this->batch = $batch;
     }
 
@@ -29,6 +29,6 @@ class BatchCreationEmailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to('coris92521@cutxsew.com')->send(new BatchCreationEmail($this->batch));
+        Mail::to($this->students)->send(new BatchCreationEmail($this->batch));
     }
 }

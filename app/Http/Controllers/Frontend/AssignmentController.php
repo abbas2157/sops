@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\{Assignment,Review,User,Course,Trainee,ModuleStep};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Mail\AssignmentSubmissionMail;
+use App\Jobs\AssignmentSubmissionMailJob;
 
 class AssignmentController extends Controller
 {
@@ -61,8 +62,8 @@ class AssignmentController extends Controller
                 'course' => $course->name,
                 'step_no' => $step->steps_no,
                 'assignment' => $assignment->file);
-
-        Mail::to($course->trainer[0]->user->email)->send(new AssignmentSubmissionMail($data));
+        AssignmentSubmissionMailJob::dispatch($course->trainer[0]->user->email, $data);
+        // Mail::to($course->trainer[0]->user->email)->send(new AssignmentSubmissionMail($data));
 
         $validator['success'] = 'Assignment Uploaded Successfully';
         return back()->withErrors($validator);

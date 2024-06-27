@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\{Assignment,Batch,Review,User,Course,Trainee,JoinedCourse};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Mail\BatchCreationEmail;
+use App\Jobs\BatchCreationEmailJob;
 use Str;
 
 class BatchController extends Controller
@@ -59,11 +60,13 @@ class BatchController extends Controller
             $students = $students->toArray();
             $students = User::with('trainee')->whereIn('id',$students)->whereIn('type', ['trainee'])->pluck('email');
         }
-                $batch = Batch::with('course')->where('id',$batch->id)->first();
+        $batch = Batch::with('course')->where('id',$batch->id)->first();
+
         if(!is_null($students))
         {
             $students = $students->toArray();
-            Mail::to($students)->send(new BatchCreationEmail($batch));
+            BatchCreationEmailJob::dispatch($students, $batch);
+            // Mail::to($students)->send(new BatchCreationEmail($batch));
         }
 
         $validator['success'] = 'Batch Created Successfully';
