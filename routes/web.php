@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ZoomController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('verify-account/{id}', [App\Http\Controllers\Auth\LoginController::class, 'verify']);
@@ -25,3 +26,4 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('reviews', App\Http\Controllers\Frontend\ReviewController::class);
     Route::resource('assignments', App\Http\Controllers\Frontend\AssignmentController::class);
 });
+Route::get('create-meeting',[ZoomController::class,'createMetting']);

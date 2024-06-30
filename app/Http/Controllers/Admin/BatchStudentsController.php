@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\{Assignment,Batch,JoinedCourse,User,Course,BatchStudent};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Mail\AddedToBatchEmail;
+use App\Jobs\AddToBatchEmailJob;
 use Str;
 
 class BatchStudentsController extends Controller
@@ -29,7 +30,7 @@ class BatchStudentsController extends Controller
             $joined = array();
         else
             $joined = $joined->toArray();
-            
+
         return view('admin.batch-students.index',compact('batch','students','joined'));
     }
 
@@ -64,7 +65,7 @@ class BatchStudentsController extends Controller
                 $batch_students->user_id = $request->students[$i];
                 $batch_students->course_id = $batch->course_id;
                 $batch_students->created_by = Auth::user()->id;
-                $batch_students->save(); 
+                $batch_students->save();
             }
         }
 
@@ -73,7 +74,7 @@ class BatchStudentsController extends Controller
         if(!is_null($students))
         {
             $students = $students->toArray();
-            Mail::to($students)->send(new AddedToBatchEmail($batch));
+            AddToBatchEmailJob::dispatch($students, $batch);
         }
 
         $validator['success'] = 'Batch Updated Successfully';

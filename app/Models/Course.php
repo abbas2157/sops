@@ -17,4 +17,9 @@ class Course extends Model
     {
         return $this->hasMany(Trainer::class,'course_id','id')->with('user');
     }
+
+    public function baches()
+    {
+        return $this->hasMany(Batch::class);
+    }
 }

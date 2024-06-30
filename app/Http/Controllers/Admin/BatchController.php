@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\{Assignment,Batch,Review,User,Course,Trainee,JoinedCourse};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Mail\BatchCreationEmail;
+use App\Jobs\BatchCreationEmailJob;
 use Str;
 
 class BatchController extends Controller
@@ -43,15 +44,15 @@ class BatchController extends Controller
             'title' => 'required'
         ]);
 
-        $batch = new Batch;
-        $batch->uuid = Str::uuid();
-        $batch->code = $request->code;
-        $batch->title = $request->title;
-        $batch->duration = $request->duration;
-        $batch->course_id = $request->course_id;
-        $batch->type = $request->type;
-        $batch->created_by = Auth::user()->id;
-        $batch->save();
+            $batch = new Batch;
+            $batch->uuid = Str::uuid();
+            $batch->code = $request->code;
+            $batch->title = $request->title;
+            $batch->duration = $request->duration;
+            $batch->course_id = $request->course_id;
+            $batch->type = $request->type;
+            $batch->created_by = Auth::user()->id;
+            $batch->save();
 
         $students = JoinedCourse::where('type','intro')->where('course_id',$batch->course_id)->pluck('user_id');
         if(!is_null($students))
@@ -60,10 +61,12 @@ class BatchController extends Controller
             $students = User::with('trainee')->whereIn('id',$students)->whereIn('type', ['trainee'])->pluck('email');
         }
         $batch = Batch::with('course')->where('id',$batch->id)->first();
+
         if(!is_null($students))
         {
             $students = $students->toArray();
-            Mail::to($students)->send(new BatchCreationEmail($batch));
+            BatchCreationEmailJob::dispatch($students, $batch);
+            // Mail::to($students)->send(new BatchCreationEmail($batch));
         }
 
         $validator['success'] = 'Batch Created Successfully';
@@ -75,7 +78,7 @@ class BatchController extends Controller
      */
     public function show(string $id)
     {
-        
+
     }
 
     /**

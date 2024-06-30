@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'SOPS - School of Professional Skills'),
 
     /*
     |--------------------------------------------------------------------------
@@ -122,5 +122,12 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+
+    'zoom' => [
+        'account_id' => env('ZOOM_ACCOUNT_ID', 'KZczYASISZaOKQCZmmjS7w'),
+        'client_id' => env('ZOOM_CLIENT_ID', 'WKda3_ugRpG140GNpNnijg'),
+        'client_secret' => env('ZOOM_CLIENT_SECRET', '3dPEVd8JazPX6tAShuW1RmBKXQA5UfXC')
+    ]
 
 ];

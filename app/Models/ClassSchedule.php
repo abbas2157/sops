@@ -15,7 +15,7 @@ class ClassSchedule extends Model
     }
     public function batch()
     {
-        return $this->belongsTo(Batch::class,'batch_id','id')->select('id','title');
+        return $this->belongsTo(Batch::class,'batch_id','id')->select('id','title','code');
     }
     public function createdby()
     {
