@@ -12,11 +12,9 @@ class ZoomController extends Controller
 
     public function createMetting(Request $request): array
     {
-
-
+        
         try {
             $postedData = $request->input();
-
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' .self::generateToken(),
                 'Content-Type' => 'application/json',

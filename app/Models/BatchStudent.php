@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class BatchStudent extends Model
 {
     use HasFactory;
+    public function batch()
+    {
+        return $this->belongsTo(Batch::class,'batch_id','id')->select('id','title','type');
+    }
 }

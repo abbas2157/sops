@@ -14,13 +14,17 @@
                     <div class="row">
                         <div class="col-md-9 p-3">
                             <div class=""><a href="{{ route('course', ['uuid' => $my->course->uuid, 'type' => '1']) }}" class=" text-decoration-none">1. Continue Intro Module</a></div>
-                            @if($my->type == 'Fundamental' || $my->type == 'Full Skill')
-                                <div class="mt-1"><a href="{{ route('course', ['uuid' => $my->course->uuid,'type' => '2']) }}" class="text-decoration-none">2. Continue Fundamental Module</a></div>
+                            @if($my->fundamental)
+                                <div class="mt-1">
+                                    <a href="javascript:;" class="text-decoration-none">2. Continue Fundamental Module</a>
+                                </div>
                             @else
                                 <div class="mt-1">2. Continue Fundamental Module <i class="fa-solid fa-lock"></i></div>
                             @endif
-                            @if($my->type == 'Full Skill')
-                                <div class="mt-1"><a href="{{ route('course', ['uuid' => $my->course->uuid, 'type' => '3']) }}" class=" text-decoration-none">3. Continue Full Skill Module</a></div>
+                            @if($my->full_skill)
+                                <div class="mt-1">
+                                    <a href="javascript:;" class=" text-decoration-none">3. Continue Full Skill Module</a>
+                                </div>
                             @else
                                 <div class="mt-1">3. Continue Full Skill Module <i class="fa-solid fa-lock"></i></div>
                             @endif

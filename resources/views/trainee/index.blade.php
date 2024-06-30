@@ -67,7 +67,28 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 mt-2">
-                        <p>Join Class, Access Library, View Tasks</p>
+                        <div class="row mt-2">
+                            <div class="col-md-12 mt-2">
+                                <h6>Join Today Zoom Class:</h6>
+                            </div>
+                        </div>
+                        @if(!empty($t_classes))
+                            @foreach ($t_classes as $item)
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="{{ $item->call_link ?? '' }}" class="text-decoration-none mt-3">
+                                            {{ $loop->index+1}} - {{ $item->course->name ?? 'No Course' }} 
+                                            - {{ $item->batch->title ?? 'No Batch' }}
+                                            ({{ $item->batch->code ?? 'No code' }})
+                                            -  {{ date('M d, Y',strtotime($item->class_date)) }} {{ date('h:i:s A',strtotime($item->class_time)) }}
+                                            (Join)
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <p>No Class Foun</p>                        
+                        @endif
                     </div>
                 </div>
             </div>
@@ -77,15 +98,53 @@
                 <div class="row">
                     <div class="col-md-12 mt-2">
                         <div class="border-bottom" style="width: 100%;">
-                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">ANNOUNCEMENTS</h3>
+                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">ZOOM CLASSES</h3>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-md-12 mt-2">
-                        <p>Important Updates & Reminers</p>
+                        <h6>Upcoming Zoom Classes :</h6>
                     </div>
                 </div>
+                @if(!empty($u_classes))
+                    @foreach ($u_classes as $item)
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="{{ $item->call_link ?? '' }}" class="text-decoration-none mt-3">
+                                    {{ $loop->index+1}} - {{ $item->course->name ?? 'No Course' }} 
+                                    - {{ $item->batch->title ?? 'No Batch' }}
+                                    ({{ $item->batch->code ?? 'No code' }})
+                                    -  {{ date('M d, Y',strtotime($item->class_date)) }} {{ date('h:i:s A',strtotime($item->class_time)) }}
+                                    (Join)
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <p>No Class Foun</p> 
+                @endif
+                <div class="row mt-1">
+                    <div class="col-md-12 mt-2">
+                        <h6>Previous Zoom Classes :</h6>
+                    </div>
+                </div>
+                @if(!empty($p_classes))
+                    @foreach ($p_classes as $item)
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="mt-1">
+                                    {{ $loop->index + 1}} - {{ $item->course->name ?? 'No Course' }} 
+                                    - {{ $item->batch->title ?? 'No Batch' }}
+                                    ({{ $item->batch->code ?? 'No code' }})
+                                    -  {{ date('M d, Y',strtotime($item->class_date)) }} {{ date('h:i:s A',strtotime($item->class_time)) }}
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <p>No Class Foun</p> 
+                @endif
             </div>
         </div>
     </div>
