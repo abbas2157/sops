@@ -11,7 +11,14 @@ Route::group(['middleware' => ['auth']], function() {
 
             Route::get('tasks/{id}', [App\Http\Controllers\Trainer\TaskController::class, 'show'])->name('trainer.tasks.check');
             Route::post('tasks/update/{id}', [App\Http\Controllers\Trainer\TaskController::class, 'update'])->name('trainer.tasks.update');
-
+            Route::group(['prefix' => 'courses'], function(){
+                Route::get('/', [App\Http\Controllers\Trainer\CourseController::class, 'index'])->name('trainer.courses');
+            });
+            Route::group(['prefix' => 'batches'], function(){
+                Route::get('/', [App\Http\Controllers\Trainer\BatchController::class, 'index'])->name('trainer.batches');
+                Route::get('students', [App\Http\Controllers\Trainer\BatchController::class, 'students'])->name('trainer.batches.students');
+                Route::get('class-schedules', [App\Http\Controllers\Trainer\BatchController::class, 'class'])->name('trainer.batches.class');
+            });
             Route::group(['prefix' => 'profile'], function(){
                 Route::get('/', [App\Http\Controllers\Trainer\ProfileController::class, 'create'])->name('trainer.profile');
                 Route::post('perform', [App\Http\Controllers\Trainer\ProfileController::class, 'update'])->name('trainer.profile.perform');
