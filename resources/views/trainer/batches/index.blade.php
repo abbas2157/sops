@@ -59,7 +59,7 @@
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             See Students
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('trainer.batches.class',['course' => $batch->course_id, 'batch' => $batch->id]) }}">
+                                        <a class="dropdown-item" href="{{ route('trainer.batches.class',['batch' => $batch->id]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Class Schedules 
                                         </a>
@@ -80,7 +80,6 @@
             </table>
         </div>
     </div>
-    {!! $batches->withQueryString()->links('pagination::bootstrap-5') !!}
 </div>
 @stop
 @section('js')

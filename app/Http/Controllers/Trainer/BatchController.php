@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Trainer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Batch,User,Course,Trainee,ModuleStep,Trainer,JoinedCourse,BatchStudent};
+use App\Models\{Batch,User,Course,ClassSchedule,Trainer,JoinedCourse,BatchStudent};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 
 class BatchController extends Controller
@@ -19,7 +19,7 @@ class BatchController extends Controller
         {
             $batches->where('course_id',request()->id);
         }
-        $batches = $batches->paginate(20);
+        $batches = $batches->orderBy('id','DESC')->get();
         return view('trainer.batches.index',compact('batches'));
     }
 
@@ -29,20 +29,21 @@ class BatchController extends Controller
     public function students()
     {
         $batch = Batch::findOrFail(request()->id);
-        $students = JoinedCourse::where('type','intro')->where('course_id',$batch->course_id)->pluck('user_id');
-        if(!is_null($students))
-        {
-            $students = $students->toArray();
-            $students = User::with('trainee')->whereIn('id',$students)->whereIn('type', ['trainee'])
-                        ->select('id','name','last_name','email','phone','status','created_at')->get();
-        }
-        $joined = BatchStudent::where('course_id',$batch->course_id)->where('batch_id',request()->id)->pluck('user_id');
-        if(is_null($joined))
-            $joined = array();
-        else
-            $joined = $joined->toArray();
+        $students = BatchStudent::with('student','course')->where('course_id',$batch->course_id)->where('batch_id',request()->id)->get();
+        return view('trainer.batches.students',compact('batch','students'));
+    }
 
-        return view('trainer.batches.students',compact('batch','students','joined'));
+    public function class()
+    {
+        $batch = Batch::findOrFail(request()->batch);
+
+        $classes = ClassSchedule::with('course','batch','createdby');
+        if(request()->has('batch') && !empty(request()->batch))
+        {
+            $classes->where('batch_id',request()->batch);
+        }
+        $classes = $classes->get();
+        return view('trainer.batches.class',compact('classes'));
     }
 
     /**

@@ -50,10 +50,10 @@
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             See Batches
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('admin.students',['uuid' => $course->uuid]) }}">
+                                        {{-- <a class="dropdown-item" href="{{ route('admin.students',['uuid' => $course->uuid]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Enroll Students
-                                        </a>
+                                        </a> --}}
                                     </div>
                                 </div>
                             </td>
