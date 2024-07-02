@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-    <title>Library | SOPS - School of Professional Skills</title>
+    <title>Documents Library | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
 @stop
@@ -21,7 +21,7 @@
                 <div class="col-md-8 col-12 text-end">
                     <a href="{{ route('admin.batches.index') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Batch List</a>
                     <button class="btn create-btn rounded-3 mt-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
-                        Create Library <i class="bi bi-plus-lg"></i>
+                        Upload Documents <i class="bi bi-plus-lg"></i>
                     </button>
                 </div>
             </div>
@@ -52,15 +52,9 @@
                                         <i class="fa-solid fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-
-
-                                        <a class="dropdown-item" href="{{ route('admin.library.edit', $library->id) }}" data-bs-target="#exampleModalToggleedit" data-bs-toggle="modal">
-                                            <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt="" />
-                                            Edit Library
-                                        </a>
                                         <a class="dropdown-item" href="javascript:;" onclick="$('#batch_destroy').submit();">
                                             <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" />
-                                            Delete Library
+                                            Delete Documents
                                         </a>
                                         <form id="batch_destroy" action="{{ route('admin.library.destroy',$library->id) }}" method="post">
                                             @csrf

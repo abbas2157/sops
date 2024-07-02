@@ -17,6 +17,8 @@ return new class extends Migration
             $table->integer('course_id')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
+            $table->string('document')->nullable();
+            $table->integer('uploaded_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

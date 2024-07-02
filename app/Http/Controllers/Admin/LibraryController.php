@@ -16,7 +16,7 @@ class LibraryController extends Controller
     {
 
         $libraries = Library::with('batch','course')->get();
-        return view('admin.Library.index',compact('libraries'));
+        return view('admin.library.index',compact('libraries'));
     }
 
     /**
@@ -36,23 +36,24 @@ class LibraryController extends Controller
         $request->validate([
             'title' => 'required'
         ]);
-        $library = new Library();
-        $library->title = $request->title;
-        $library->description = $request->description;
-        $library->batch_id = $request->batch_id;
-        $library->course_id = $request->course_id;
-        $library->save();
         if ($request->hasfile('document')) {
-                foreach ($request->file('document') as $file){
-                    $library_document = new LibraryDocument();
-                    $library_document->library_id = $library->id;
+        foreach ($request->file('document') as $file)
+            {
+                $library = new Library();
+                $library->title = $request->title;
+                $library->description = $request->description;
+                $library->batch_id = $request->batch_id;
+                $library->course_id = $request->course_id;
+
                 $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
                 $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
                 $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
                 $file->move(public_path('library/document'),$filename);
                 $library_document->document = $filename;
+                $course->uploaded_by = Auth::user()->id;
+
                 $library_document->save();
-            }
+            }      
         }
         $validator['success'] = 'Library Created Successfully';
         return back()->withErrors($validator);
