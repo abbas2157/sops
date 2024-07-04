@@ -68,7 +68,7 @@
                                         </a>
                                         <a class="dropdown-item" href="{{ route('admin.library.index',['course' => $batch->course_id, 'batch' => $batch->id]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
-                                            Library
+                                            Upload Document
                                         </a>
                                         {{-- <a class="dropdown-item" href="{{ route('admin.batches.edit', $batch->id) }}">
                                             <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt="" />
