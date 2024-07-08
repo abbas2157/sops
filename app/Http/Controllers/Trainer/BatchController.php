@@ -14,6 +14,7 @@ class BatchController extends Controller
      */
     public function index()
     {
+
         $batches = Batch::with('createdby','course');
         if(request()->has('id') && !empty(request()->id))
         {

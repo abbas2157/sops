@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Trainer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Library;
@@ -16,7 +16,7 @@ class LibraryController extends Controller
     {
 
         $libraries = Library::with('batch','course')->get();
-        return view('admin.library.index',compact('libraries'));
+        return view('trainer.library.index',compact('libraries'));
     }
 
     /**
@@ -37,6 +37,7 @@ class LibraryController extends Controller
             'title' => 'required'
         ]);
         if ($request->hasfile('document')) {
+
         foreach ($request->file('document') as $file)
             {
                 $library = new Library();
@@ -51,7 +52,6 @@ class LibraryController extends Controller
                 $file->move(public_path('library/document'),$filename);
                 $library->document = $filename;
                 $library->uploaded_by = auth()->user()->id;
-
                 $library->save();
             }
         }
@@ -125,19 +125,10 @@ class LibraryController extends Controller
     public function destroy($id)
     {
         $library = Library::findOrFail($id);
-
-        // Delete associated documents
-        $documents = LibraryDocument::where('library_id', $library->id)->get();
-        foreach ($documents as $document) {
-            if (file_exists(public_path('library/document/' . $document->document))) {
-                unlink(public_path('library/document/' . $document->document));
+            if (file_exists(public_path('library/document/' . $library->document))) {
+                unlink(public_path('library/document/' . $library->document));
             }
-            $document->delete();
-        }
-
-        // Delete the library
         $library->delete();
-
         $validator['success'] = 'Library Deleted Successfully';
         return back()->withErrors($validator);
     }

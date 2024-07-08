@@ -61,7 +61,11 @@
                                         </a>
                                         <a class="dropdown-item" href="{{ route('trainer.batches.class',['batch' => $batch->id]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
-                                            Class Schedules 
+                                            Class Schedules
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('trainer.library.index',['course' => $batch->course_id, 'batch' => $batch->id]) }}">
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            Upload Document
                                         </a>
                                     </div>
                                 </div>

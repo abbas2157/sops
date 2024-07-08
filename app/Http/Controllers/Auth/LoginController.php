@@ -82,6 +82,7 @@ class LoginController extends Controller
             }
             if($user->type == 'trainer')
             {
+
                 if(is_null($user->trainer))
                     return redirect('trainer/profile?details');
                 return redirect('trainer');
