@@ -8,7 +8,6 @@ Route::group(['middleware' => ['auth']], function() {
 
             Route::get('students', [App\Http\Controllers\Trainer\StudentController::class, 'index'])->name('trainer.students');
             Route::get('students/tasks/{id}', [App\Http\Controllers\Trainer\StudentController::class, 'show'])->name('trainer.students.tasks');
-
             Route::get('tasks/{id}', [App\Http\Controllers\Trainer\TaskController::class, 'show'])->name('trainer.tasks.check');
             Route::post('tasks/update/{id}', [App\Http\Controllers\Trainer\TaskController::class, 'update'])->name('trainer.tasks.update');
             Route::group(['prefix' => 'courses'], function(){
@@ -20,6 +19,7 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::get('class-schedules', [App\Http\Controllers\Trainer\BatchController::class, 'class'])->name('trainer.batches.class');
                 Route::get('class-schedules/task', [App\Http\Controllers\Trainer\BatchController::class, 'task_show'])->name('trainer.batches.class.task');
             });
+            Route::resource('library',App\Http\Controllers\Trainer\LibraryController::class,['as' => 'trainer']);
             Route::group(['prefix' => 'profile'], function(){
                 Route::get('/', [App\Http\Controllers\Trainer\ProfileController::class, 'create'])->name('trainer.profile');
                 Route::post('perform', [App\Http\Controllers\Trainer\ProfileController::class, 'update'])->name('trainer.profile.perform');

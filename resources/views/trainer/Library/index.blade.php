@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="col-md-8 col-12 text-end">
-                    <a href="{{ route('admin.batches.index') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Batch List</a>
+                    <a href="{{ route('trainer.batches',['id' => request()->id]) }}" class="btn rounded-3 mt-2 excel-btn"> Back to Batch List</a>
                     <button class="btn create-btn rounded-3 mt-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
                         Upload Documents <i class="bi bi-plus-lg"></i>
                     </button>
@@ -56,7 +56,7 @@
                                             <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" />
                                             Delete Documents
                                         </a>
-                                        <form id="batch_destroy" action="{{ route('admin.library.destroy',$library->id) }}" method="post">
+                                        <form id="batch_destroy" action="{{ route('trainer.library.destroy',$library->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                         </form>
@@ -80,7 +80,7 @@
     </div>
     {{-- {!! $librar->withQueryString()->links('pagination::bootstrap-5') !!} --}}
 </div>
-@include('admin.library.create')
+@include('trainer.library.create')
 @stop
 @section('js')
 @stop
