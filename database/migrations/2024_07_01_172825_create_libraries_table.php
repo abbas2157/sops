@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('document')->nullable();
+            $table->enum('type',['Task','Library'])->nullable();
             $table->integer('uploaded_by')->nullable();
             $table->softDeletes();
             $table->timestamps();

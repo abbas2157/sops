@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::get('/', [App\Http\Controllers\Trainer\BatchController::class, 'index'])->name('trainer.batches');
                 Route::get('students', [App\Http\Controllers\Trainer\BatchController::class, 'students'])->name('trainer.batches.students');
                 Route::get('class-schedules', [App\Http\Controllers\Trainer\BatchController::class, 'class'])->name('trainer.batches.class');
+                Route::get('class-schedules/task', [App\Http\Controllers\Trainer\BatchController::class, 'task_show'])->name('trainer.batches.class.task');
             });
             Route::group(['prefix' => 'profile'], function(){
                 Route::get('/', [App\Http\Controllers\Trainer\ProfileController::class, 'create'])->name('trainer.profile');
