@@ -14,7 +14,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        dd(12);
         $courses = Course::where('id',Auth::user()->trainer->course_id)->count();
         $students = JoinedCourse::where('course_id',Auth::user()->trainer->course_id)->count();
         $tasks = Assignment::with('user','step','course')->where('status','Pending')->where('course_id',Auth::user()->trainer->course_id)->get();

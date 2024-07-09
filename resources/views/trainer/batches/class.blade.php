@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('trainer.layout.app')
 @section('title')
     <title>All Class Schedules | SOPS - School of Professional Skills</title>
 @stop
