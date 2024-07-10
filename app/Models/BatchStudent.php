@@ -12,4 +12,12 @@ class BatchStudent extends Model
     {
         return $this->belongsTo(Batch::class,'batch_id','id')->select('id','title','type');
     }
+    public function student()
+    {
+        return $this->belongsTo(User::class,'user_id','id')->select('id','name','last_name','email','phone');
+    }
+    public function course()
+    {
+        return $this->belongsTo(Course::class,'course_id','id')->select('id','name');
+    }
 }

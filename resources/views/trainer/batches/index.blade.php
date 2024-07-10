@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('trainer.layout.app')
 @section('title')
     <title>All Batches | SOPS - School of Professional Skills</title>
 @stop
@@ -19,10 +19,7 @@
                     </div>
                 </div>
                 <div class="col-md-8 col-12 text-end">
-                    <a href="{{ route('courses.index') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Courses</a>
-                    <button class="btn create-btn rounded-3 mt-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
-                        Create Batch <i class="bi bi-plus-lg"></i>
-                    </button>
+                    <a href="{{ route('trainer.courses') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Courses</a>
                 </div>
             </div>
         </div>
@@ -58,31 +55,18 @@
                                         <i class="fa-solid fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="{{ route('admin.batch-students.index',['id' => $batch->id]) }}">
+                                        <a class="dropdown-item" href="{{ route('trainer.batches.students',['id' => $batch->id]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
-                                            Add Students
+                                            See Students
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('admin.class-schedules.index',['course' => $batch->course_id, 'batch' => $batch->id]) }}">
+                                        <a class="dropdown-item" href="{{ route('trainer.batches.class',['batch' => $batch->id]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Class Schedules
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('admin.library.index',['course' => $batch->course_id, 'batch' => $batch->id]) }}">
+                                        <a class="dropdown-item" href="{{ route('trainer.library.index',['course' => $batch->course_id, 'batch' => $batch->id]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Upload Document
                                         </a>
-                                        {{-- <a class="dropdown-item" href="{{ route('admin.batches.edit', $batch->id) }}">
-                                            <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt="" />
-                                            Edit Batch
-                                        </a> --}}
-
-                                        <a class="dropdown-item" href="javascript:;" onclick="$('#batch_destroy').submit();">
-                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" />
-                                            Delete Batch
-                                        </a>
-                                        <form id="batch_destroy" action="{{ route('admin.batches.destroy',$batch->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
                                     </div>
                                 </div>
                             </td>
@@ -100,9 +84,7 @@
             </table>
         </div>
     </div>
-    {!! $batches->withQueryString()->links('pagination::bootstrap-5') !!}
 </div>
-@include('admin.batches.create')
 @stop
 @section('js')
 @stop
