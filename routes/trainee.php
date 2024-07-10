@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::group(['prefix' => 'courses'], function(){
                 Route::get('/', [App\Http\Controllers\Trainee\CourseController::class, 'index'])->name('trainee.courses');
                 Route::get('join', [App\Http\Controllers\Trainee\CourseController::class, 'create'])->name('trainee.courses.join');
+                Route::get('show', [App\Http\Controllers\Trainee\CourseController::class, 'show'])->name('trainee.courses.show');
             });
             Route::group(['prefix' => 'tasks'], function(){
                 Route::get('{id}', [App\Http\Controllers\Trainee\TaskController::class, 'show'])->name('trainee.tasks');
