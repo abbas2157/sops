@@ -42,6 +42,7 @@ class LibraryController extends Controller
             {
                 $library = new Library();
                 $library->title = $request->title;
+                $library->version = $request->version;
                 $library->description = $request->description;
                 $library->batch_id = $request->batch_id;
                 $library->course_id = $request->course_id;

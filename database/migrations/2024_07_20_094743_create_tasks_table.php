@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('libraries', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->integer('batch_id')->nullable();
             $table->integer('course_id')->nullable();
+            $table->integer('batch_id')->nullable();
+            $table->integer('class_id')->nullable();
             $table->string('title')->nullable();
-            $table->string('version')->nullable();
-            $table->text('description')->nullable();
-            $table->string('document')->nullable();
+            $table->string('file')->nullable();
+            $table->enum('type',['Technincal','Personal Development'])->nullable();
             $table->integer('uploaded_by')->nullable();
-            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('libraries');
+        Schema::dropIfExists('tasks');
     }
 };

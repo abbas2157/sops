@@ -7,7 +7,7 @@
 @section('content')
 <div class="container-fluid pt-4 px-4 mb-5">
     <div class="border-bottom">
-        <h3 class="all-adjustment pb-2 mb-0">All Libraries</h3>
+        <h3 class="all-adjustment pb-2 mb-0">All Uploaded Documents</h3>
     </div>
     <div class="card card-shadow border-0 mt-4 rounded-3 mb-3">
         <div class="card-header bg-white border-0 rounded-3">
@@ -31,10 +31,12 @@
             <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th class="align-middle">Version</th>
                     <th class="align-middle">Title</th>
                     <th class="align-middle">Batch Title</th>
                     <th class="align-middle">Course Name</th>
-                    <th class="align-middle">Created at</th>
+                    <th class="align-middle">Download</th>
+                    <th class="align-middle">Uploaded Date</th>
                     <th class="align-middle">Action</th>
                 </tr>
             </thead>
@@ -42,9 +44,15 @@
                 @if($libraries->isNotEmpty())
                     @foreach($libraries as $library)
                         <tr>
+                            <td class="align-middle">{{ $library->version ?? '' }}</td>
                             <td class="align-middle">{{ $library->title ?? '' }}</td>
                             <td class="align-middle">{{ $library->batch->title ?? '' }}</td>
                             <td class="align-middle">{{ $library->course->name ?? '' }} </td>
+                            <td class="align-middle text-center">
+                                <a href="{{ asset('library/document/'.$library->document) }}" class="text-muted text-decoration-none mt-3" target="_blank"  role="button" >
+                                    <i class="fa fa-download"></i>
+                                </a>
+                            </td>
                             <td class="align-middle">{{ $library->created_at->format('M d, Y') ?? '' }}</td>
                             <td class="align-middle" >
                                 <div>
