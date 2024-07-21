@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('trainer.layout.app')
 @section('title')
     <title>Documents Library | SOPS - School of Professional Skills</title>
 @stop
@@ -55,6 +55,7 @@
                             </td>
                             <td class="align-middle">{{ $library->created_at->format('M d, Y') ?? '' }}</td>
                             <td class="align-middle" >
+                                @if($library->uploaded_by == Auth::user()->id)
                                 <div>
                                     <a class="btn btn-secondary bg-transparent border-0 text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa-solid fa-ellipsis-v"></i>
@@ -70,8 +71,8 @@
                                         </form>
                                     </div>
                                 </div>
+                                @endif
                             </td>
-                            @include('admin.library.edit')
                         </tr>
                     @endforeach
                 @else
