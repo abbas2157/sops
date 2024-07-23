@@ -4,7 +4,7 @@ namespace App\Http\Controllers\trainer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,JoinedCourse};
+use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,ClassSchedule};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Jobs\AssignmentRemarksMailJob;
 
@@ -15,7 +15,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $class = ClassSchedule::findOrFail(request()->id);
+        return view('trainer.tasks.index',compact('class'));
     }
 
     /**

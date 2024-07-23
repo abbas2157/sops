@@ -16,7 +16,7 @@
                             <div class=""><a href="{{ route('course', ['uuid' => $my->course->uuid, 'type' => '1']) }}" class=" text-decoration-none">1. Continue Intro Module</a></div>
                             @if($my->fundamental)
                                 <div class="mt-1">
-                                    <a href="javascript:;" class="text-decoration-none">2. Continue Fundamental Module</a>
+                                    <a href="{{ route('trainee.courses.show', ['uuid' => $my->course->uuid, 'type' => 'fundamental']) }}" class="text-decoration-none">2. Continue Fundamental Module</a>
                                 </div>
                             @else
                                 <div class="mt-1">2. Continue Fundamental Module <i class="fa-solid fa-lock"></i></div>
@@ -33,7 +33,7 @@
                             <img src="{{ asset('images/courses/'.$my->course->image) }}" style="width: 100%;" alt="">
                         </div>
                         <div class="col-md-12 text-center p-3">
-                            <a href="{{ route('trainee.tasks',$my->id) }}" class="btn save-btn text-white mt-2">See Submitted Assignments</a> 
+                            <a href="{{ route('trainee.tasks.show',$my->id) }}" class="btn save-btn text-white mt-2">See Submitted Assignments</a> 
                         </div>
                     </div>
                 </div>

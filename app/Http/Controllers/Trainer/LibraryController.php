@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Trainer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Library;
-use App\Models\LibraryDocument;
 use Illuminate\Http\Request;
 
 class LibraryController extends Controller
@@ -42,6 +41,7 @@ class LibraryController extends Controller
             {
                 $library = new Library();
                 $library->title = $request->title;
+                $library->version = $request->version;
                 $library->description = $request->description;
                 $library->batch_id = $request->batch_id;
                 $library->course_id = $request->course_id;

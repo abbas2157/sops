@@ -17,6 +17,10 @@
                     <input type="text" name="title" class="form-control subheading" id="exampleFormControlInput1" placeholder="Name" required/>
                 </div>
                 <div class="form-group mt-2">
+                    <label for="exampleFormControlInput1" class="mb-1">Version History </label>
+                    <input type="text" name="version" class="form-control subheading" id="exampleFormControlInput1" placeholder="Version History" required/>
+                </div>
+                <div class="form-group mt-2">
                     <label for="exampleFormControlSelect1" class="mb-1">Description</label>
                     <textarea name="description" placeholder="Course Description" class="form-control subheading" rows="3" ></textarea>
                 </div>

@@ -21,9 +21,14 @@ Route::group(['middleware' => ['auth']], function() {
             Route::group(['prefix' => 'courses'], function(){
                 Route::get('/', [App\Http\Controllers\Trainee\CourseController::class, 'index'])->name('trainee.courses');
                 Route::get('join', [App\Http\Controllers\Trainee\CourseController::class, 'create'])->name('trainee.courses.join');
+                Route::get('show', [App\Http\Controllers\Trainee\CourseController::class, 'show'])->name('trainee.courses.show');
+            });
+            Route::group(['prefix' => 'library'], function(){
+                Route::get('/', [App\Http\Controllers\Trainee\LibraryController::class, 'index'])->name('trainee.library');
             });
             Route::group(['prefix' => 'tasks'], function(){
-                Route::get('{id}', [App\Http\Controllers\Trainee\TaskController::class, 'show'])->name('trainee.tasks');
+                Route::get('/', [App\Http\Controllers\Trainee\TaskController::class, 'index'])->name('trainee.tasks');
+                Route::get('{id}', [App\Http\Controllers\Trainee\TaskController::class, 'show'])->name('trainee.tasks.show');
             });
         });
     });
