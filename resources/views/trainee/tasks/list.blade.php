@@ -24,26 +24,24 @@
         @include('partials.alerts')
         <div class="table-responsive p-2">
             <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th class="align-middle">Task Type</th>
-                    <th class="align-middle">Title</th>
-                    <th class="align-middle">Course Name</th>
-                    <th class="align-middle">Batch Title</th>
-                    <th class="align-middle">Class Name</th>
-                    <th class="align-middle">Download</th>
-                    <th class="align-middle">Uploaded Date</th>
-                    <th class="align-middle">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
+                <thead>
+                    <tr>
+                        <th class="align-middle">Task Type</th>
+                        <th class="align-middle">Title</th>
+                        <th class="align-middle">Course Name</th>
+                        <th class="align-middle">Batch Title</th>
+                        <th class="align-middle">Class Name</th>
+                        <th class="align-middle">Download</th>
+                        <th class="align-middle">Uploaded Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
             </table>
         </div>
     </div>
     {{-- {!! $librar->withQueryString()->links('pagination::bootstrap-5') !!} --}}
 </div>
-@include('trainer.library.create')
 @stop
 @section('js')
 @stop
