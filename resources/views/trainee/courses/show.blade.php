@@ -9,6 +9,24 @@
         <h3 class="all-adjustment pb-2 mb-0">My Courses</h3>
     </div>
     <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="card-shadow border rounded align-items-center p-3">
+                <div class="row">
+                    <div class="col-md-12 mt-2">
+                        <div class="border-bottom" style="width: 100%;">
+                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">ANNOUNCEMENTS</h3>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12 mt-2">
+                                <h6>Important Updates & Reminders</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
         <div class="col-md-8">
             <div class="card-shadow border rounded align-items-center p-3">
                 <div class="row">
@@ -38,7 +56,7 @@
                         </div>
                     @endforeach
                 @else
-                    <p>No Class Foun</p> 
+                    <p>No Class Found</p> 
                 @endif
                 <div class="row mt-1">
                     <div class="col-md-12 mt-2">
@@ -100,13 +118,13 @@
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-12">
-                        <a href="{{ $item->call_link ?? '' }}" class="text-decoration-none mt-3"> Access Library
+                        <a href="{{ route('trainee.library',['course' => $course->uuid]) }}" class="text-decoration-none mt-3"> Access Library
                         </a>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-12">
-                        <a href="{{ $item->call_link ?? '' }}" class="text-decoration-none mt-3"> View Tasks
+                        <a href="{{ route('trainee.tasks',['course' => $course->uuid]) }}" class="text-decoration-none mt-3"> View Tasks
                         </a>
                     </div>
                 </div>

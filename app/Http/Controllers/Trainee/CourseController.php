@@ -56,7 +56,7 @@ class CourseController extends Controller
 
         if(!$request->has('uuid') || empty($request->uuid))
             abort(404);
-        if(!$request->has('uuid') || empty($request->uuid) && in_array($request->uuid,['fundamental','full-skill']))
+        if(!$request->has('uuid') || empty($request->uuid) && !in_array($request->type,['fundamental','full-skill']))
             abort(404);
         $course = Course::where('uuid',$request->uuid)->first();
         if(is_null($course))

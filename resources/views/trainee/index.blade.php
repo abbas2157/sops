@@ -122,7 +122,7 @@
                         </div>
                     @endforeach
                 @else
-                    <p>No Class Foun</p> 
+                    <p>No Class Found</p> 
                 @endif
                 <div class="row mt-1">
                     <div class="col-md-12 mt-2">
@@ -133,7 +133,7 @@
                     @foreach ($p_classes as $item)
                         <div class="row">
                             <div class="col-md-12">
-                                <p class="mt-1">
+                                <p class="mb-0">
                                     {{ $loop->index + 1}} - {{ $item->course->name ?? 'No Course' }} 
                                     - {{ $item->batch->title ?? 'No Batch' }}
                                     ({{ $item->batch->code ?? 'No code' }})
@@ -143,7 +143,7 @@
                         </div>
                     @endforeach
                 @else
-                    <p>No Class Foun</p> 
+                    <p>No Class Found</p> 
                 @endif
             </div>
         </div>

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Trainee;
 
 use App\Http\Controllers\Controller;
+use App\Models\Library;
+use App\Models\{User,Course,Trainee,ModuleStep,Trainer,JoinedCourse,ClassSchedule};
 use Illuminate\Http\Request;
-use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,Task};
-use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 
-class TaskController extends Controller
+class LibraryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class TaskController extends Controller
         $course = Course::where('uuid',request()->course)->first();
         if(is_null($course))
             abort(404);
-        $tasks = Task::with('batch','course','class')->where('course_id',$course->id)->orderBy('id','DESC')->get();
-        return view('trainee.tasks.list',compact('tasks'));
+        $libraries = Library::with('batch','course')->where('course_id',$course->id)->orderBy('id','DESC')->get();
+        return view('trainee.library.index',compact('libraries'));
     }
 
     /**
@@ -42,11 +42,7 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        $tasks = Assignment::with('user','step','course')->where('course_id',$id)->where('user_id',Auth::user()->id)->paginate(20);
-        if(is_null($tasks))
-            abort(404);
-        // dd($tasks->toArray());
-        return view('trainee.tasks.index',compact('tasks'));
+        //
     }
 
     /**

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Trainer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Library;
-use App\Models\LibraryDocument;
 use Illuminate\Http\Request;
 
 class LibraryController extends Controller
@@ -14,7 +13,6 @@ class LibraryController extends Controller
      */
     public function index()
     {
-
         $libraries = Library::with('batch','course')->get();
         return view('trainer.library.index',compact('libraries'));
     }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('file')->nullable();
             $table->enum('type',['Technincal','Personal Development'])->nullable();
             $table->integer('uploaded_by')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
