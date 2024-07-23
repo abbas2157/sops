@@ -7,19 +7,24 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
         </div>
         <div class="modal-body">
-            <form enctype="multipart/form-data" id="" method="post" action="{{ route('trainer.library.store') }}">
+            <form enctype="multipart/form-data" id="" method="post" action="{{ route('trainer.task.store') }}">
                 @csrf
                 @method('POST')
                 <div class="form-group mt-2">
                     <input type="hidden" value="{{request()->batch_id}}" name="batch_id">
                     <input type="hidden" value="{{request()->course_id}}" name="course_id" >
+                    <input type="hidden" value="{{request()->class_id}}" name="class_id" >
                     <input type="hidden" name="type" value="task">
                     <label for="exampleFormControlInput1" class="mb-1">Title <span class="text-danger">*</span></label>
                     <input type="text" name="title" class="form-control subheading" id="exampleFormControlInput1" placeholder="Name" required/>
                 </div>
+
                 <div class="form-group mt-2">
-                    <label for="exampleFormControlSelect1" class="mb-1" >Description</label>
-                    <textarea name="description" placeholder="Course Description" class="form-control subheading" rows="3" ></textarea>
+                    <label for="exampleFormControlSelect1" class="mb-1" >Select Type</label>
+                    <select name="type" id="" class="form-select">
+                        <option value="Technical" class="form-control">Technical</option>
+                        <option value="Personal Development">Personal Development</option>
+                    </select>
                 </div>
                 <div class="form-group mt-2">
                     <label for="exampleFormControlSelect1" class="mb-1" >image</label>

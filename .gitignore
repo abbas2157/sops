@@ -25,3 +25,4 @@ yarn-error.log
 /public/trainer/cv
 /public/trainee/tasks
 /public/library/document/
+/public/task/

@@ -45,7 +45,6 @@ class LibraryController extends Controller
                 $library->description = $request->description;
                 $library->batch_id = $request->batch_id;
                 $library->course_id = $request->course_id;
-                $library->type = $request->type;
                 $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
                 $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
                 $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
