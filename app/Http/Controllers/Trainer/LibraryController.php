@@ -14,8 +14,8 @@ class LibraryController extends Controller
      */
     public function index()
     {
-
-        $libraries = Library::with('batch','course')->get();
+        $batch_id = request()->batch;
+        $libraries = Library::with('batch','course')->where('batch_id',$batch_id)->get();
         return view('trainer.library.index',compact('libraries'));
     }
 
@@ -37,7 +37,7 @@ class LibraryController extends Controller
             'title' => 'required'
         ]);
         if ($request->hasfile('document')) {
-
+            // dd($request->all());
         foreach ($request->file('document') as $file)
             {
                 $library = new Library();
@@ -45,7 +45,7 @@ class LibraryController extends Controller
                 $library->description = $request->description;
                 $library->batch_id = $request->batch_id;
                 $library->course_id = $request->course_id;
-
+                $library->type = $request->type;
                 $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
                 $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
                 $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;

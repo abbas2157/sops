@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Trainer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Batch,User,Course,ClassSchedule,Trainer,JoinedCourse,BatchStudent};
+use App\Models\{Batch,User,Course,ClassSchedule,Trainer,JoinedCourse,BatchStudent,Library};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 
 class BatchController extends Controller
@@ -52,7 +52,9 @@ class BatchController extends Controller
      */
     public function task_show(Request $request)
     {
-        
+        $batch_id = request()->batch_id;
+        $libraries = Library::with('batch','course')->where('type','task')->where('batch_id',$batch_id)->get();
+        return view('trainer.tasks.index',compact('libraries'));
     }
 
     /**
