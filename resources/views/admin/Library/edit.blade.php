@@ -11,8 +11,8 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group mt-2">
-                    <input type="hidden" value="{{$library->batch->id}}" name="batch_id">
-                    <input type="hidden" value="{{$library->course->id}}" name="course_id" >
+                    <input type="hidden" value="{{$library->batch->id ?? ''}}" name="batch_id">
+                    <input type="hidden" value="{{$library->course->id ?? ''}}" name="course_id" >
                     <label for="exampleFormControlInput1" class="mb-1">Title <span class="text-danger">*</span></label>
                     <input type="text" name="title" class="form-control subheading" id="exampleFormControlInput1" placeholder="Name" value="{{$library->title}}" required/>
                 </div>

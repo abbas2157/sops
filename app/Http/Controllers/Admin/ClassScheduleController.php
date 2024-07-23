@@ -93,15 +93,16 @@ class ClassScheduleController extends Controller
     }
     protected function generateToken(): string
     {
+        set_time_limit(0);
         try {
             $base64String = base64_encode(config('app.zoom.client_id') . ':' .config('app.zoom.client_secret'));
             $accountId = config('app.zoom.account_id');
-            
+
             $responseToken = Http::withHeaders([
                 "Content-Type"=> "application/x-www-form-urlencoded",
                 "Authorization"=> "Basic {$base64String}"
             ])->post("https://zoom.us/oauth/token?grant_type=account_credentials&account_id={$accountId}");
-                
+
             return $responseToken->json()['access_token'];
 
         } catch (\Throwable $th) {
