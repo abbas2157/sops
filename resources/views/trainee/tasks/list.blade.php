@@ -36,6 +36,29 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if ($tasks->isNotEmpty())
+                        @foreach ($tasks as $task)
+                            <tr>
+                                <td class="align-middle">{{ $task->type ?? '' }}</td>
+                                <td class="align-middle">{{ $task->title ?? '' }}</td>
+                                <td class="align-middle">{{ $task->course->title ?? '' }}</td>
+                                <td class="align-middle">{{ $task->batch->title ?? '' }}</td>
+                                <td class="align-middle">{{ $task->class->title ?? '' }}</td>
+                                <td class="align-middle text-center">
+                                    <a href="{{ asset('course/steps/assignments/') }}" class="text-muted text-decoration-none mt-3" target="_blank"  role="button" >
+                                        <i class="fa fa-download"></i>
+                                    </a>
+                                </td>
+                                <td class="align-middle">{{ $task->created_at->format('M d, Y') ?? '' }}</td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="10" class="align-middle text-center">
+                                No user Found
+                            </td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>

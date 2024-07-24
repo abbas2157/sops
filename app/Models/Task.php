@@ -14,6 +14,9 @@ class Task extends Model
         return $this->belongsTo(Course::class,'course_id','id')->select('id','name');
     }
     public function batch(){
-        return $this->belongsTo(Batch::class,'batch_id','id');
+        return $this->belongsTo(Batch::class,'batch_id','id')->select('id','title','code');
+    }
+    public function class(){
+        return $this->belongsTo(ClassSchedule::class,'batch_id','id')->select('id','title');
     }
 }

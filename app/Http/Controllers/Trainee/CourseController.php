@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Trainee;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{User,Course,Trainee,ModuleStep,Trainer,JoinedCourse,ClassSchedule};
+use App\Models\{User,Course,Trainee,ModuleStep,Trainer,JoinedCourse,ClassSchedule,Task, Library};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 
 class CourseController extends Controller
@@ -29,6 +29,7 @@ class CourseController extends Controller
         $course = Course::where('uuid',$request->uuid)->first();
         if(is_null($course))
             abort(404);
+        
         $join = new JoinedCourse;
         $join->course_id = $course->id;
         $join->user_id = Auth::user()->id;
@@ -36,6 +37,7 @@ class CourseController extends Controller
         $join->type = 'Intro';
         $join->status = 'Processing';
         $join->save();
+
         return back();
     }
 
@@ -97,7 +99,10 @@ class CourseController extends Controller
                 $p_classes[] = $class;
             }
         }
-        return view('trainee.courses.show',compact('course','u_classes','p_classes','t_classes'));
+
+        $libraries = Library::with('batch','course')->where('course_id',$course->id)->orderBy('id','DESC')->limit(3)->get();
+        $tasks = Task::with('batch','course','class')->where('course_id',$course->id)->orderBy('id','DESC')->get();
+        return view('trainee.courses.show',compact('course','u_classes','p_classes','t_classes','libraries','tasks'));
     }
 
     /**
