@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('class_id')->nullable();
             $table->string('title')->nullable();
             $table->string('file')->nullable();
+            $table->date('due_date')->nullable();
             $table->enum('type',['Technical','Personal Development'])->nullable();
             $table->integer('uploaded_by')->nullable();
             $table->softDeletes();

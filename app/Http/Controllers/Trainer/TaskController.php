@@ -50,6 +50,7 @@ class TaskController extends Controller
                 $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
                 $filename = time() .'-'. rand(10000,99999).'-'. preg_replace('/[^A-Za-z0-9\-]/', '',str_replace(' ','-',strtolower($fileName))).'.'.$extension;
                 $file->move(public_path('task/document'),$filename);
+                
                 $task->file = $filename;
                 $task->type = $request->type;
                 $task->uploaded_by = auth()->user()->id;

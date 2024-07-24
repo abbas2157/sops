@@ -172,17 +172,17 @@
                                             <h6>Technical Tasks</h6>
                                         </div>
                                     </div>
-                                    @if($tasks->isNotEmpty())
-                                        @foreach ($tasks as $item)
-                                            @if($item->type == 'Technincal')
+                                    @if($t_tasks->isNotEmpty())
+                                        @foreach ($t_tasks as $item)
+                                            @if($item->type == 'Technical')
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <p class="mb-0">
                                                             {{ $loop->index + 1}} - {{ $item->title ?? 'No Doc' }} 
                                                             - {{ $item->batch->title ?? 'No Batch' }}
                                                             ({{ $item->batch->code ?? 'No code' }})
-                                                            -  {{ date('M d, Y',strtotime($item->created_at)) }}
-                                                            [<a href="{{ asset('library/document/'.$item->file) }}">Download</a>] - 
+                                                            -  {{ date('M d, Y',strtotime($item->due_date)) }}
+                                                            [<a href="{{ asset('task/document/'.$item->file) }}">Download</a>] - 
                                                             [<a href="">Submit Response</a>] 
                                                         </p>
                                                     </div>
@@ -214,9 +214,9 @@
                                                             {{ $loop->index + 1}} - {{ $item->title ?? 'No Doc' }} 
                                                             - {{ $item->batch->title ?? 'No Batch' }}
                                                             ({{ $item->batch->code ?? 'No code' }})
-                                                            -  {{ date('M d, Y',strtotime($item->created_at)) }}
-                                                            [<a href="{{ asset('library/document/'.$item->document) }}">Download</a>] - 
-                                                            [<a href="{{ asset('library/document/'.$item->document) }}">View</a>] 
+                                                            -  {{ date('M d, Y',strtotime($item->due_date)) }}
+                                                            [<a href="{{ asset('task/document/'.$item->file) }}">Download</a>] - 
+                                                            [<a href="">Submit Response</a>] 
                                                         </p>
                                                     </div>
                                                 </div>
