@@ -53,6 +53,7 @@ class TaskController extends Controller
                 $task->file = $filename;
                 $task->type = $request->type;
                 $task->uploaded_by = auth()->user()->id;
+                $task->due_date = $request->due_date;
                 $task->save();
             }
         }

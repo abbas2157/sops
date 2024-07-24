@@ -35,6 +35,8 @@
                     <th class="align-middle">Batch Title</th>
                     <th class="align-middle">Course Name</th>
                     <th class="align-middle">Created at</th>
+                    <th class="align-middle">Due Date</th>
+                    <th class="align-middle">Type</th>
                     <th class="align-middle">Action</th>
                 </tr>
             </thead>
@@ -46,6 +48,8 @@
                             <td class="align-middle">{{ $task->batch->title ?? '' }}</td>
                             <td class="align-middle">{{ $task->course->name ?? '' }} </td>
                             <td class="align-middle">{{ $task->created_at->format('M d, Y') ?? '' }}</td>
+                            <td class="align-middle">{{ $task->due_date ?? '' }}</td>
+                            <td class="align-middle">{{ $task->type ?? '' }}</td>
                             <td class="align-middle" >
                                 <div>
                                     <a class="btn btn-secondary bg-transparent border-0 text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

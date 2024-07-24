@@ -30,6 +30,10 @@
                     <label for="exampleFormControlSelect1" class="mb-1" >image</label>
                     <input type="file" name="document[]" class="form-control subheading" multiple>
                 </div>
+                <div class="form-group mt-2">
+                    <label for="exampleFormControlSelect1" class="mb-1" >Due Date</label>
+                    <input type="date" name="due_date" class="form-control subheading" multiple>
+                </div>
                 <button type="submit" class="btn save-btn text-white mt-4">Create</button>
             </form>
         </div>
