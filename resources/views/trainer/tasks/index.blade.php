@@ -35,17 +35,21 @@
                     <th class="align-middle">Batch Title</th>
                     <th class="align-middle">Course Name</th>
                     <th class="align-middle">Created at</th>
+                    <th class="align-middle">Due Date</th>
+                    <th class="align-middle">Type</th>
                     <th class="align-middle">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @if($libraries->isNotEmpty())
-                    @foreach($libraries as $library)
+                @if($tasks->isNotEmpty())
+                    @foreach($tasks as $task)
                         <tr>
-                            <td class="align-middle">{{ $library->title ?? '' }}</td>
-                            <td class="align-middle">{{ $library->batch->title ?? '' }}</td>
-                            <td class="align-middle">{{ $library->course->name ?? '' }} </td>
-                            <td class="align-middle">{{ $library->created_at->format('M d, Y') ?? '' }}</td>
+                            <td class="align-middle">{{ $task->title ?? '' }}</td>
+                            <td class="align-middle">{{ $task->batch->title ?? '' }}</td>
+                            <td class="align-middle">{{ $task->course->name ?? '' }} </td>
+                            <td class="align-middle">{{ $task->created_at->format('M d, Y') ?? '' }}</td>
+                            <td class="align-middle">{{ $task->due_date ?? '' }}</td>
+                            <td class="align-middle">{{ $task->type ?? '' }}</td>
                             <td class="align-middle" >
                                 <div>
                                     <a class="btn btn-secondary bg-transparent border-0 text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,14 +60,13 @@
                                             <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" />
                                             Delete Task
                                         </a>
-                                        <form id="batch_destroy" action="{{ route('trainer.library.destroy',$library->id) }}" method="post">
+                                        <form id="batch_destroy" action="{{ route('trainer.task.destroy',$task->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                         </form>
                                     </div>
                                 </div>
                             </td>
-                            @include('admin.library.edit')
                         </tr>
                     @endforeach
                 @else

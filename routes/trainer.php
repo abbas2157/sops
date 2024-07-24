@@ -1,11 +1,13 @@
 <?php
+
+use App\Http\Controllers\trainer\TaskController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth']], function() {
     Route::middleware([App\Http\Middleware\EnsureUserIsTrainer::class])->group(function () {
         Route::group(['prefix' => 'trainer'], function(){
             Route::get('/', [App\Http\Controllers\Trainer\DashboardController::class, 'index'])->name('trainer');
-
+            Route::resource('task', App\Http\Controllers\Trainer\TaskController::class,['as' => 'trainer']);
             Route::get('students', [App\Http\Controllers\Trainer\StudentController::class, 'index'])->name('trainer.students');
             Route::get('students/tasks/{id}', [App\Http\Controllers\Trainer\StudentController::class, 'show'])->name('trainer.students.tasks');
             Route::get('tasks/{id}', [App\Http\Controllers\Trainer\TaskController::class, 'show'])->name('trainer.tasks.check');

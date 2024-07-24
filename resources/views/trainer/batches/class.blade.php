@@ -60,7 +60,7 @@
                                         <i class="fa-solid fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="{{ route('trainer.batches.class.task',['course_id' => $class->course->id,'batch_id'=>$class->batch->id]) }}">
+                                        <a class="dropdown-item" href="{{ route('trainer.batches.class.task',['course_id' => $class->course->id,'batch_id'=>$class->batch->id,'class_id'=>$class->id]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
                                             Add Task
                                         </a>
