@@ -181,7 +181,7 @@
                                                             {{ $loop->index + 1}} - {{ $item->title ?? 'No Doc' }} 
                                                             - {{ $item->batch->title ?? 'No Batch' }}
                                                             ({{ $item->batch->code ?? 'No code' }})
-                                                            -  {{ date('M d, Y',strtotime($item->due_date)) }}
+                                                            -  Due Date : {{ date('M d, Y',strtotime($item->due_date)) }}
                                                             [<a href="{{ asset('task/document/'.$item->file) }}">Download</a>] - 
                                                             [<a href="">Submit Response</a>] 
                                                         </p>
@@ -214,7 +214,7 @@
                                                             {{ $loop->index + 1}} - {{ $item->title ?? 'No Doc' }} 
                                                             - {{ $item->batch->title ?? 'No Batch' }}
                                                             ({{ $item->batch->code ?? 'No code' }})
-                                                            -  {{ date('M d, Y',strtotime($item->due_date)) }}
+                                                            - Due Date :  {{ date('M d, Y',strtotime($item->due_date)) }}
                                                             [<a href="{{ asset('task/document/'.$item->file) }}">Download</a>] - 
                                                             [<a href="">Submit Response</a>] 
                                                         </p>
