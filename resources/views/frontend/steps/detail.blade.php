@@ -119,27 +119,29 @@
                                         </div>
                                     </div>
                                     <div class="card shadow-sm px-3 py-3 mb-4">
-                                        <div class="row">
-                                            <div class="col-xs-2 col-sm-2 col-md-1">
-                                                <img src="{{ asset('frontend/img/file.png') }}" style="width: 100%;"
-                                                    alt="" class="me-3">
-                                            </div>
-                                            <div class="col-xs-8 col-sm-8 col-md-9">
-                                                <div class="mt-2">
-                                                    <h5 class="mb m-0-0 h6">{{ $intro->assignment ?? '' }}</h5>
-                                                    <p class="mb-0 fs-xs">Download this Assigment</p>
+                                        @if(!is_null($intro->assignment))
+                                            <div class="row">
+                                                <div class="col-xs-2 col-sm-2 col-md-1">
+                                                    <img src="{{ asset('frontend/img/file.png') }}" style="width: 100%;"
+                                                        alt="" class="me-3">
+                                                </div>
+                                                <div class="col-xs-8 col-sm-8 col-md-9">
+                                                    <div class="mt-2">
+                                                        <h5 class="mb m-0-0 h6">{{ $intro->assignment ?? '' }}</h5>
+                                                        <p class="mb-0 fs-xs">Download this Assigment</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-1 col-sm-1 col-md-1">
+                                                    <div class="mt-2">
+                                                        <a href="{{ asset('course/steps/assignments/' . $intro->assignment) }}"
+                                                            class="text-muted text-decoration-none mt-3" target="_blank"
+                                                            role="button">
+                                                            <i class="fa fa-download"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-1 col-sm-1 col-md-1">
-                                                <div class="mt-2">
-                                                    <a href="{{ asset('course/steps/assignments/' . $intro->assignment) }}"
-                                                        class="text-muted text-decoration-none mt-3" target="_blank"
-                                                        role="button">
-                                                        <i class="fa fa-download"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endif
                                     </div>
                                     @if ($assignments->isNotEmpty())
                                         <div class="row">
