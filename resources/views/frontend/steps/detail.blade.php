@@ -99,11 +99,13 @@
                             <div class="tab-content" id="course_detail_tabContent">
                                 <!-- Tab 1 -->
                                 <div class="tab-pane fade show active" id="overview-tab-pane" role="tabpanel" aria-labelledby="overview-tab" tabindex="0">
-                                    <div class="row mt-3 mb-4">
-                                        <div class="col-md-12">
-                                            <iframe style="width:100%" height="445" src="{{ $intro->video ?? '' }}"></iframe>
+                                    @if(!is_null($intro->video))
+                                        <div class="row mt-3 mb-4">
+                                            <div class="col-md-12">
+                                                <iframe style="width:100%" height="445" src="{{ $intro->video ?? '' }}"></iframe>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
                                     <h2 class="mb-4">{{ $intro->steps_no ?? '' }} : {{ $intro->title ?? '' }}</h2>
                                     {!! $intro->description ?? '' !!}
                                 </div>
