@@ -37,7 +37,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect1">Video<span class="text-danger">*</span></label>
-                                        <input type="link" name="video" class="form-control subheading mt-2" placeholder="Video Link" id="exampleFormControlSelect1" required />
+                                        <input type="link" name="video" class="form-control subheading mt-2" placeholder="Video Link" id="exampleFormControlSelect1"  />
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group fw-bold">
                                         <label for="assignment">Assignment <span class="text-danger">*</span></label>
-                                        <input type="file" name="assignment" class="form-control subheading mt-2" id="assignment" required/>
+                                        <input type="file" name="assignment" class="form-control subheading mt-2" id="assignment" />
                                     </div>
                                 </div>
                             </div>
