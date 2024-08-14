@@ -101,8 +101,8 @@ class CourseController extends Controller
         }
 
         $libraries = Library::with('batch','course')->where('course_id',$course->id)->orderBy('id','DESC')->limit(3)->get();
-        $t_tasks = Task::with('batch','course','class')->where('type','Technical')->where('course_id',$course->id)->orderBy('id','DESC')->limit(5)->get();
-        $tasks = Task::with('batch','course','class')->where('type','Personal Development')->where('course_id',$course->id)->orderBy('id','DESC')->limit(5)->get();
+        $t_tasks = Task::with('batch','course','class','response')->where('type','Technical')->where('course_id',$course->id)->orderBy('id','DESC')->limit(5)->get();
+        $tasks = Task::with('batch','course','class','response')->where('type','Personal Development')->where('course_id',$course->id)->orderBy('id','DESC')->limit(5)->get();
         return view('trainee.courses.show',compact('course','u_classes','p_classes','t_classes','libraries','tasks','t_tasks'));
     }
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,Review,User,Course,Trainee};
+use App\Models\{Assignment,Review,User,Course,Trainee, TaskResponse};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 
 class DashboardController extends Controller
@@ -16,8 +16,9 @@ class DashboardController extends Controller
     {
         $courses = Course::count();
         $users = User::all();
-        $tasks = Assignment::orderBy('id', 'desc')->where('status','Pending')->get();
-        return view('admin.index',compact('courses','users','tasks'));
+        $assignments = Assignment::orderBy('id', 'desc')->limit(5)->where('status','Pending')->get();
+        $tasks = TaskResponse::with('batch','course','class','task','user')->where('status','Pending')->limit(5)->orderBy('id','DESC')->get();
+        return view('admin.index',compact('courses','users','assignments','tasks'));
     }
 
     /**

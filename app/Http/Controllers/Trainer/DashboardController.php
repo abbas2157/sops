@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Trainer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,JoinedCourse};
+use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,JoinedCourse, TaskResponse};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 
 class DashboardController extends Controller
@@ -14,11 +14,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $courses = Course::where('id',Auth::user()->trainer->course_id)->count();
-        $students = JoinedCourse::where('course_id',Auth::user()->trainer->course_id)->count();
-        $tasks = Assignment::with('user','step','course')->where('status','Pending')->where('course_id',Auth::user()->trainer->course_id)->get();
+        $course_id = Auth::user()->trainer->course_id;
+        $courses = Course::where('id',$course_id)->count();
+        $students = JoinedCourse::where('course_id',$course_id)->count();
+        $assignments = Assignment::with('user','step','course')->where('status','Pending')->orderBy('id','DESC')->where('course_id',$course_id)->limit(5)->get();
+        $tasks = TaskResponse::with('batch','course','class','task','user')->where('status','Pending')->where('course_id',$course_id)->orderBy('id','DESC')->get();
         // dd($tasks->toArray());
-        return view('trainer.index',compact('courses','students','tasks'));
+        return view('trainer.index',compact('courses','students','assignments','tasks'));
     }
 
     /**

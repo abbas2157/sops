@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Task extends Model
+class TaskResponse extends Model
 {
     use HasFactory, SoftDeletes;
     public function course()
@@ -19,7 +19,11 @@ class Task extends Model
     public function class(){
         return $this->belongsTo(ClassSchedule::class,'class_id','id')->select('id','title');
     }
-    public function response(){
-        return $this->hasOne(TaskResponse::class)->select('id','file','task_id','created_at');
+    public function task(){
+        return $this->belongsTo(Task::class,'task_id','id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id','id')->select('id','name','last_name','phone','email')->with('trainee');
     }
 }

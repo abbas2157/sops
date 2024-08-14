@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::group(['prefix' => 'tasks'], function(){
                 Route::get('/', [App\Http\Controllers\Trainee\TaskController::class, 'index'])->name('trainee.tasks');
                 Route::get('{id}', [App\Http\Controllers\Trainee\TaskController::class, 'show'])->name('trainee.tasks.show');
+                Route::post('response', [App\Http\Controllers\Trainee\TaskController::class, 'store'])->name('trainee.tasks.response');
             });
         });
     });

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Trainer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,JoinedCourse};
+use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,JoinedCourse, TaskResponse};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 
 class StudentController extends Controller
@@ -43,9 +43,15 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function assignments(string $id)
     {
-        //
+        $assignments = Assignment::with('user','step','course')->orderBy('id','DESC')->where('user_id',$id)->get();
+        return view('trainer.students.assignments',compact('assignments'));
+    }
+    public function tasks(string $id)
+    {
+        $tasks = TaskResponse::with('batch','course','class','task','user')->where('user_id',$id)->orderBy('id','DESC')->get();
+        return view('trainer.students.tasks',compact('tasks'));
     }
 
     /**

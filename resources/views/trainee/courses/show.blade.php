@@ -183,7 +183,11 @@
                                                             ({{ $item->batch->code ?? 'No code' }})
                                                             -  Due Date : {{ date('M d, Y',strtotime($item->due_date)) }}
                                                             [<a href="{{ asset('task/document/'.$item->file) }}">Download</a>] - 
-                                                            [<a href="">Submit Response</a>] 
+                                                            @if(is_null($item->response))
+                                                                [<a href="javascript:;" class="response" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-task-id="{{ $item->id ?? '' }}">Submit Response</a>] 
+                                                            @else
+                                                                [<span>Submitted</span>]
+                                                            @endif
                                                         </p>
                                                     </div>
                                                 </div>
@@ -216,7 +220,11 @@
                                                             ({{ $item->batch->code ?? 'No code' }})
                                                             - Due Date :  {{ date('M d, Y',strtotime($item->due_date)) }}
                                                             [<a href="{{ asset('task/document/'.$item->file) }}">Download</a>] - 
-                                                            [<a href="">Submit Response</a>] 
+                                                            @if(is_null($item->response))
+                                                                [<a href="javascript:;" class="response" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-task-id="{{ $item->id ?? '' }}">Submit Response</a>] 
+                                                            @else
+                                                                [<a href="javascript:;" >Submitted</a>]
+                                                            @endif
                                                         </p>
                                                     </div>
                                                 </div>
@@ -234,5 +242,15 @@
         </div>
     </div>
 </div>
-<!-- Sale & Revenue End -->
+@include('trainee.tasks.response')
+@stop
+@section('js')
+<script>
+    $(document).ready(function() {
+        $(".response").on('click',function() {
+            console.log('console');
+            $('#task_id').val($(this).attr('data-task-id'))
+        });
+    });
+    </script>
 @stop

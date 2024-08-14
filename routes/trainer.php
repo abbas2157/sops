@@ -8,8 +8,11 @@ Route::group(['middleware' => ['auth']], function() {
         Route::group(['prefix' => 'trainer'], function(){
             Route::get('/', [App\Http\Controllers\Trainer\DashboardController::class, 'index'])->name('trainer');
             Route::resource('task', App\Http\Controllers\Trainer\TaskController::class,['as' => 'trainer']);
+
             Route::get('students', [App\Http\Controllers\Trainer\StudentController::class, 'index'])->name('trainer.students');
-            Route::get('students/tasks/{id}', [App\Http\Controllers\Trainer\StudentController::class, 'show'])->name('trainer.students.tasks');
+            Route::get('students/tasks/assignments/{id}', [App\Http\Controllers\Trainer\StudentController::class, 'assignments'])->name('trainer.students.intro.assignments');
+            Route::get('students/tasks/tasks/{id}', [App\Http\Controllers\Trainer\StudentController::class, 'tasks'])->name('trainer.students.tasks');
+
             Route::get('tasks/{id}', [App\Http\Controllers\Trainer\TaskController::class, 'show'])->name('trainer.tasks.check');
             Route::post('tasks/update/{id}', [App\Http\Controllers\Trainer\TaskController::class, 'update'])->name('trainer.tasks.update');
             Route::group(['prefix' => 'courses'], function(){
