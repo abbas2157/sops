@@ -58,10 +58,38 @@ class ProfileController extends Controller
         $trainee->city_currently_living_in = $request->city_currently_living_in;
         $trainee->skill_experience = $request->skill_experience;
         $trainee->date_of_birth = $request->date_of_birth;
-        $trainee->available_on_whatsapp = isset($request->available_on_whatsapp) ? $request->available_on_whatsapp : 'no';
-        $trainee->employed_status = isset($request->employed_status) ? $request->employed_status : 'no';
-        $trainee->study_status = isset($request->study_status) ? $request->study_status : 'no';
-        $trainee->has_computer_and_internet = isset($request->has_computer_and_internet) ? $request->has_computer_and_internet : 'no';
+        if($request->has('available_on_whatsapp'))
+        {
+            $trainee->available_on_whatsapp = 'yes';
+        }
+        else
+        {
+            $request->available_on_whatsapp = 'no';
+        }
+        if($request->has('employed_status'))
+        {
+            $trainee->employed_status = 'yes';
+        }
+        else
+        {
+            $request->employed_status = 'no';
+        }
+        if($request->has('study_status'))
+        {
+            $trainee->study_status = 'yes';
+        }
+        else
+        {
+            $request->study_status = 'no';
+        }
+        if($request->has('has_computer_and_internet'))
+        {
+            $trainee->has_computer_and_internet = 'yes';
+        }
+        else
+        {
+            $request->has_computer_and_internet = 'no';
+        }
         $trainee->save();
         $validator['success'] = 'Profile Details has been Updated.';
         return redirect('trainee/profile')->withErrors($validator);

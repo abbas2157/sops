@@ -51,7 +51,7 @@ class User extends Authenticatable
     }
     public function trainee()
     {
-        return $this->belongsTo(Trainee::class,'id','user_id')->with('trainee_status')->select('id','date_of_birth','gender','city_from','city_currently_living_in','employed_status','study_status','skill_experience','user_id','created_by')->with('createdby');
+        return $this->belongsTo(Trainee::class,'id','user_id')->with('trainee_status')->select('id','date_of_birth','gender','city_from','description','available_on_whatsapp','city_currently_living_in','employed_status','study_status','has_computer_and_internet','skill_experience','user_id','created_by')->with('createdby');
     }
     public function u_trainee()
     {
