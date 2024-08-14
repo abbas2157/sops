@@ -118,8 +118,8 @@
                                             <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
                                         </div>
                                     </div>
-                                    <div class="card shadow-sm px-3 py-3 mb-4">
-                                        @if(!is_null($intro->assignment))
+                                    @if(!is_null($intro->assignment))
+                                        <div class="card shadow-sm px-3 py-3 mb-4">
                                             <div class="row">
                                                 <div class="col-xs-2 col-sm-2 col-md-1">
                                                     <img src="{{ asset('frontend/img/file.png') }}" style="width: 100%;"
@@ -141,8 +141,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endif
-                                    </div>
+                                        </div>
+                                    @endif
                                     @if ($assignments->isNotEmpty())
                                         <div class="row">
                                             <div class="col-md-12">
@@ -190,7 +190,7 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                    @if (!$assignments->isNotEmpty())
+                                    @if (!$assignments->isNotEmpty() && !is_null($intro->assignment))
                                         <div class="row">
                                             <div class="col-md-12 text-center">
                                                 <h3 class="h3  m-0">Upload Your Task</h3>
