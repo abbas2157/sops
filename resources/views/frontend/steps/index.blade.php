@@ -11,7 +11,7 @@
                 <div class="col-lg-10 my-2">
                     <h1 class=" h6 text-center text-lg-start text-white">Welcome {{ Auth::user()->full_name ?? '' }},</h1>
                     <h1 class=" h2 text-center text-lg-start text-white">Your Intro to {{ $course->name ?? '' }} Course</h1>
-                    <p class="text-white">{{ $course->description ?? '' }}</p>
+                    <p class="text-white">{!! nl2br($course->description) !!}</p>
                 </div>
             </div>
         </div>
