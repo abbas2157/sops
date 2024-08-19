@@ -26,10 +26,10 @@
                         <img src="{{ asset('assets/img/login.svg') }}" class="img-fluid text-center align-items-center py-5" alt="" />
                     </div>
                     <div class="col-md-6 col-12 py-5 px-4">
-                        <div class="signup-form text-white my-5">
+                        <div class="signup-form text-white my-5" style="max-width: 620px">
                             <div class="mb-4">
-                                <h2>Welcome ({{ $title ?? '' }})</h2>
-                                <p>Let's get you all steup so you can start your journey to becoming a professinal of your skill of interest.</p>
+                                <h2>Register ({{ $title ?? '' }})</h2>
+                                <p>SOPS - School of Professional Skills</p>
                             </div>
                             @if ($errors->has('emailPassword'))
                                 <span class="text-danger text-left">{{ $errors->first('emailPassword') }}</span>
@@ -37,12 +37,25 @@
                             <form class="signup-input" method="post" action="{{ route('register.perform') }}" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="type" value="{{ $type ?? '' }}" />
-                                <div class="password-container">
-                                    <input type="text" name="name" class="form-control" placeholder="Name" required value="{{old('name')}}" autocomplete="off"/>
-                                    @if ($errors->has('name'))
-                                        <span class="text-danger text-left">{{ $errors->first('name') }}</span>
-                                    @endif
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="password-container">
+                                            <input type="text" name="name" class="form-control" placeholder="First Name" required value="{{old('name')}}" autocomplete="off"/>
+                                            @if ($errors->has('name'))
+                                                <span class="text-danger text-left">{{ $errors->first('name') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="password-container">
+                                            <input type="text" name="last_name" class="form-control" placeholder="Last Name" required value="{{old('last_name')}}" autocomplete="off"/>
+                                            @if ($errors->has('last_name'))
+                                                <span class="text-danger text-left">{{ $errors->first('last_name') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
+                                
                                 <div class="password-container">
                                     <input type="email" name="email" class="form-control" placeholder="Email" required value="{{old('email')}}" autocomplete="off"/>
                                     <img src="{{ asset('assets/img/mail.svg') }}" class="password-toggle pe-2" alt=""/>
