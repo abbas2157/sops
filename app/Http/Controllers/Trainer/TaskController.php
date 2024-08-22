@@ -4,7 +4,7 @@ namespace App\Http\Controllers\trainer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,ClassSchedule, Task};
+use App\Models\{Assignment, User, Course, Trainee, ModuleStep, Trainer, ClassSchedule, Task};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Jobs\AssignmentRemarksMailJob;
 
@@ -15,7 +15,6 @@ class TaskController extends Controller
      */
     public function index()
     {
-
         $tasks = Task::where('batch_id',request()->batch_id)->get();
         return view('trainer.tasks.index',compact('tasks'));
     }

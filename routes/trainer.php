@@ -13,7 +13,6 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('students/tasks/assignments/{id}', [App\Http\Controllers\Trainer\StudentController::class, 'assignments'])->name('trainer.students.intro.assignments');
             Route::get('students/tasks/tasks/{id}', [App\Http\Controllers\Trainer\StudentController::class, 'tasks'])->name('trainer.students.tasks');
 
-            Route::get('tasks/{id}', [App\Http\Controllers\Trainer\TaskController::class, 'show'])->name('trainer.tasks.check');
             Route::post('tasks/update/{id}', [App\Http\Controllers\Trainer\TaskController::class, 'update'])->name('trainer.tasks.update');
             Route::group(['prefix' => 'courses'], function(){
                 Route::get('/', [App\Http\Controllers\Trainer\CourseController::class, 'index'])->name('trainer.courses');
@@ -26,6 +25,10 @@ Route::group(['middleware' => ['auth']], function() {
             });
             Route::group(['prefix' => 'tasks'], function(){
                 Route::get('/', [App\Http\Controllers\Trainer\TaskController::class, 'index'])->name('trainer.tasks');
+                Route::group(['prefix' => 'remarks'], function(){
+                    Route::get('create/{task}', [App\Http\Controllers\Trainer\RemarksController::class, 'create'])->name('trainer.tasks.remarks.create');
+                    Route::post('store/{task}', [App\Http\Controllers\Trainer\RemarksController::class, 'store'])->name('trainer.tasks.remarks.store');
+                });
             });
             Route::resource('library',App\Http\Controllers\Trainer\LibraryController::class,['as' => 'trainer']);
             Route::group(['prefix' => 'profile'], function(){
