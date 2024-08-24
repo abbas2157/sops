@@ -43,15 +43,19 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function assignments(string $id)
-    {
-        $assignments = Assignment::with('user','step','course')->orderBy('id','DESC')->where('user_id',$id)->get();
-        return view('trainer.students.assignments',compact('assignments'));
-    }
     public function tasks(string $id)
     {
-        $tasks = TaskResponse::with('batch','course','class','task','user')->where('user_id',$id)->orderBy('id','DESC')->get();
+        if(!request()->has('type') && (request()->get('type') != 'intro' && request()->get('type') != 'fundamental') ) {
+            abort(404);
+        }
+        if(request()->get('type') == 'intro') {
+            $assignments = Assignment::with('user','step','course')->orderBy('id','DESC')->where('user_id',$id)->paginate(20);
+            return view('trainer.students.assignments',compact('assignments'));
+        }
+
+        $tasks = TaskResponse::with('batch','course','class','task','user')->where('user_id',$id)->orderBy('id','DESC')->paginate(20);
         return view('trainer.students.tasks',compact('tasks'));
+        
     }
 
     /**

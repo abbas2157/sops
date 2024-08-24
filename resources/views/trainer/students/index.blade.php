@@ -58,12 +58,12 @@
                                                 <i class="fa-solid fa-ellipsis-v"></i>
                                             </a>
                                             <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="{{ route('trainer.students.intro.assignments',$user->id) }}" >
-                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 20%;" alt=""/>
+                                                <a class="dropdown-item" href="{{ route('trainer.students.tasks',$user->id) }}?type=intro" >
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                     View Intro Assignments
                                                 </a>
-                                                <a class="dropdown-item" href="{{ route('trainer.students.tasks',$user->id) }}" >
-                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 20%;" alt=""/>
+                                                <a class="dropdown-item" href="{{ route('trainer.students.tasks',$user->id) }}?type=fundamental" >
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                     View Tasks
                                                 </a>
                                             </div>

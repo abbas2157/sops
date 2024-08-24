@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Trainer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment, User, Course, Trainee, ModuleStep, Trainer, ClassSchedule, Task, Remark};
+use App\Models\{Assignment, User, Course, Trainee, ModuleStep, Trainer, ClassSchedule, Task, TaskResponse, Remark};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Jobs\AssignmentRemarksMailJob;
 
@@ -23,12 +23,19 @@ class RemarksController extends Controller
      */
     public function create(string $task)
     {
-        if(!request()->has('type') && (request()->get('type') == 'intro')) {
+        if(!request()->has('type') && (request()->get('type') != 'intro' && request()->get('type') != 'fundamental') ) {
             abort(404);
         }
         if(request()->get('type') == 'intro')
         {
             $task = Assignment::with('user','step','course')->where('id',$task)->first();
+            if(is_null($task))
+                abort(404);
+            return view('trainer.remarks.create',compact('task'));
+        }
+        if(request()->get('type') == 'fundamental')
+        {
+            $task = TaskResponse::with('batch','course','class','task','user')->where('id',$task)->first();
             if(is_null($task))
                 abort(404);
             return view('trainer.remarks.create',compact('task'));
@@ -41,10 +48,32 @@ class RemarksController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->type == 'intro')
+        {
+            $task = Assignment::where('id',$request->task_id)->first();
+            if(is_null($task))
+                abort(404);
+        }
+        if($request->type == 'fundamental')
+        {
+            $task = TaskResponse::where('id',$request->task_id)->first();
+            if(is_null($task))
+                abort(404);
+        }
+
         $remark = new Remark;
-        $remark->course_id = $request->course_id;
         $remark->type = $request->type;
-        $remark->step_id = $request->step_id;
+        if($request->type == 'intro')
+        {
+            $remark->step_id = $task->step_id;
+        }
+        else
+        {
+            $remark->batch_id = $task->batch_id;
+            $remark->class_id = $task->class_id;
+            $remark->class_id = $task->class_id;
+        }
+        $remark->course_id = $task->course_id;
         $remark->user_id = $request->user_id;
         $remark->task_id = $request->task_id;
 
@@ -56,7 +85,6 @@ class RemarksController extends Controller
         $remark->checked_by = Auth::user()->id;
         $remark->save();
 
-        $task = Assignment::where('id',$request->task_id)->first();
         $task->status = 'Pass';
         $task->save();
 

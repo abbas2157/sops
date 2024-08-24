@@ -40,6 +40,7 @@
                                                     <th>Due Date</th>
                                                     <th>Submitted Task</th>
                                                     <th>Submission Date</th>
+                                                    <th>Status</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -64,6 +65,7 @@
                                                                 </a>
                                                             </td>
                                                             <td class="align-middle">{{ $item->created_at->format('M d, Y') ?? '' }}</td>
+                                                            <td class="align-middle">{{ $item->status ?? '' }}</td>
                                                             <td>
                                                                 <div>
                                                                     <a class="btn btn-secondary bg-transparent border-0 text-dark" role="button"
@@ -71,12 +73,14 @@
                                                                         aria-expanded="false">
                                                                         <i class="fa-solid fa-ellipsis-v"></i>
                                                                     </a>
+                                                                    @if($item->status == 'Pending')
                                                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-                                                                        <a class="dropdown-item" href="{{ route('trainer.tasks.check', $item->id) }}" >
+                                                                        <a class="dropdown-item" href="{{ route('trainer.tasks.remarks.create', $item->id) }}?type=fundamental" >
                                                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 20%;" alt=""/>
                                                                             Add Remarks
                                                                         </a>
                                                                     </div>
+                                                                    @endif
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -107,6 +111,7 @@
                                                         <th>Due Date</th>
                                                         <th>Submitted Task</th>
                                                         <th>Submission Date</th>
+                                                        <th>Status</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
@@ -131,6 +136,7 @@
                                                                     </a>
                                                                 </td>
                                                                 <td class="align-middle">{{ $item->created_at->format('M d, Y') ?? '' }}</td>
+                                                                <td class="align-middle">{{ $item->status ?? '' }}</td>
                                                                 <td>
                                                                     <div>
                                                                         <a class="btn btn-secondary bg-transparent border-0 text-dark" role="button"
@@ -138,12 +144,14 @@
                                                                             aria-expanded="false">
                                                                             <i class="fa-solid fa-ellipsis-v"></i>
                                                                         </a>
+                                                                        @if($item->status == 'Pending')
                                                                         <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-                                                                            <a class="dropdown-item" href="{{ route('trainer.tasks.check', $item->id) }}" >
+                                                                            <a class="dropdown-item" href="{{ route('trainer.tasks.remarks.create', $item->id) }}?type=fundamental" >
                                                                                 <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 20%;" alt=""/>
                                                                                 Add Remarks
                                                                             </a>
                                                                         </div>
+                                                                        @endif
                                                                     </div>
                                                                 </td>
                                                             </tr>
