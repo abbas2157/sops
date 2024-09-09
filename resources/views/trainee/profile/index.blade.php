@@ -215,8 +215,8 @@ $trainee = Auth::user();
                                                     <div class="form-group fw-bold">
                                                         <label for="exampleFormControlSelect5">Gender <span class="text-danger">*</span></label>
                                                         <select class="form-control form-select subheading mt-2" aria-label="Default select example" id="exampleFormControlSelect5" name="gender">
-                                                            <option value="male" {{ (Auth::user()->trainee->gender == 'male') ? 'selected' : '' }}>Male</option>
-                                                            <option value="female" {{ (Auth::user()->trainee->gender == 'female') ? 'selected' : '' }}>Female</option>
+                                                            <option value="male" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->gender == 'male') ? 'selected' : '' }}>Male</option>
+                                                            <option value="female" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->gender == 'female') ? 'selected' : '' }}>Female</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -247,7 +247,7 @@ $trainee = Auth::user();
                                                         <label for="exampleFormControlSelect1">Which city are you from? <span class="text-danger">*</span></label>
                                                         <select class="form-control form-select subheading mt-1"
                                                             aria-label="Default select example" id="exampleFormControlSelect1" name="city_from">
-                                                            <option value="Lahore" {{ (Auth::user()->trainee->city_from == 'Lahore') ? 'selected' : '' }}>Lahore</option>
+                                                            <option value="Lahore" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->city_from == 'Lahore') ? 'selected' : '' }}>Lahore</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -256,7 +256,7 @@ $trainee = Auth::user();
                                                         <label for="exampleFormControlSelect1">Which city do you currently live in? <span class="text-danger">*</span></label>
                                                         <select class="form-control form-select subheading mt-1"
                                                             aria-label="Default select example" id="exampleFormControlSelect1" name="city_currently_living_in">
-                                                            <option value="Lahore" {{ (Auth::user()->trainee->city_currently_living_in == 'Lahore') ? 'selected' : '' }}>Lahore</option>
+                                                            <option value="Lahore" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->city_currently_living_in == 'Lahore') ? 'selected' : '' }}>Lahore</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -266,10 +266,10 @@ $trainee = Auth::user();
                                                     <div class="form-group">
                                                         <label for="exampleFormControlSelect1"> Skill of Interest Experience? <span class="text-danger">*</span></label>
                                                         <select class="form-control form-select subheading mt-2"aria-label="Default select example" id="exampleFormControlSelect1" name="skill_experience">
-                                                            <option value="None" {{ (Auth::user()->trainee->skill_experience == 'None') ? 'selected' : '' }}>None</option>
-                                                            <option value="Basic" {{ (Auth::user()->trainee->skill_experience == 'Basic') ? 'selected' : '' }}>Basic</option>
-                                                            <option value="Intermediate" {{ (Auth::user()->trainee->skill_experience == 'Intermediate') ? 'selected' : '' }}>Intermediate</option>
-                                                            <option value="Advance" {{ (Auth::user()->trainee->skill_experience == 'Advance') ? 'selected' : '' }}>Advance</option>
+                                                            <option value="None" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->skill_experience == 'None') ? 'selected' : '' }}>None</option>
+                                                            <option value="Basic" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->skill_experience == 'Basic') ? 'selected' : '' }}>Basic</option>
+                                                            <option value="Intermediate" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->skill_experience == 'Intermediate') ? 'selected' : '' }}>Intermediate</option>
+                                                            <option value="Advance" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->skill_experience == 'Advance') ? 'selected' : '' }}>Advance</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -299,7 +299,7 @@ $trainee = Auth::user();
                                             <div class="row">
                                                 <div class="col-1">
                                                     <label for="myCheckbox09" class="checkbox d-flex mt-1">
-                                                        <input class="checkbox__input" type="checkbox" id="whatsapp" name="available_on_whatsapp"  value="yes" {{ (Auth::user()->trainee->available_on_whatsapp == 'yes') ? 'checked' : ''}}/>
+                                                        <input class="checkbox__input" type="checkbox" id="whatsapp" name="available_on_whatsapp"  value="yes" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->available_on_whatsapp == 'yes') ? 'checked' : ''}}/>
                                                         <svg class="checkbox__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
                                                             <rect width="21" height="21" x=".5" y=".5" fill="#FFF"
                                                                 stroke="rgba(76, 73, 227, 1)" rx="3" />
@@ -316,7 +316,7 @@ $trainee = Auth::user();
                                             <div class="row">
                                                 <div class="col-1">
                                                     <label for="myCheckbox09" class="checkbox d-flex mt-1">
-                                                        <input class="checkbox__input" type="checkbox" id="employment" name="employed_status" value="yes" {{ (Auth::user()->trainee->employed_status == 'yes') ? 'checked' : ''}}/>
+                                                        <input class="checkbox__input" type="checkbox" id="employment" name="employed_status" value="yes" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->employed_status == 'yes') ? 'checked' : ''}}/>
                                                         <svg class="checkbox__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
                                                             <rect width="21" height="21" x=".5" y=".5" fill="#FFF"
                                                                 stroke="rgba(76, 73, 227, 1)" rx="3" />
@@ -337,7 +337,7 @@ $trainee = Auth::user();
                                             <div class="row">
                                                 <div class="col-1">
                                                     <label for="myCheckbox09" class="checkbox d-flex mt-1">
-                                                        <input class="checkbox__input" type="checkbox" id="currently_studying" name="study_status" value="yes" {{ (Auth::user()->trainee->study_status == 'yes') ? 'checked' : ''}}/>
+                                                        <input class="checkbox__input" type="checkbox" id="currently_studying" name="study_status" value="yes" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->study_status == 'yes') ? 'checked' : ''}}/>
                                                         <svg class="checkbox__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
                                                             <rect width="21" height="21" x=".5" y=".5" fill="#FFF"
                                                                 stroke="rgba(76, 73, 227, 1)" rx="3" />
@@ -355,7 +355,7 @@ $trainee = Auth::user();
                                                 <div class="col-1">
                                                     <!-- <input type="checkbox" name="" id="" /> -->
                                                     <label for="myCheckbox09" class="checkbox d-flex mt-1">
-                                                        <input class="checkbox__input" type="checkbox" id="internet_access" name="has_computer_and_internet" value="yes" {{ (Auth::user()->trainee->has_computer_and_internet == 'yes') ? 'checked' : ''}}/>
+                                                        <input class="checkbox__input" type="checkbox" id="internet_access" name="has_computer_and_internet" value="yes" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->has_computer_and_internet == 'yes') ? 'checked' : ''}}/>
                                                         <svg class="checkbox__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
                                                             <rect width="21" height="21" x=".5" y=".5" fill="#FFF"
                                                                 stroke="rgba(76, 73, 227, 1)" rx="3" />

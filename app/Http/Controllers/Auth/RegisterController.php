@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use Illuminate\Support\Str;
 use App\Mail\WelcomeEmail;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Cookie;
 
 class RegisterController extends Controller
 {
@@ -25,6 +27,10 @@ class RegisterController extends Controller
     public function trainee()
     {
         $data = array('type' => 'trainee','title' => 'Student');
+        if(request()->has('course'))
+        {
+            Cookie::queue('course', request()->get('course'), 10);
+        }
         return view('auth.register',$data);
     }
     public function trainer()

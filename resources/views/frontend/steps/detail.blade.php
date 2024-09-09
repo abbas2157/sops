@@ -29,7 +29,7 @@
             <div class="container">
                 <div class="row flex-row-reverse gy-4">
                     <!-- Sidebar -->
-                    <div class="col-lg-3">
+                    {{-- <div class="col-lg-3">
                         <div class="course-detail-sidebar">
                             <div class="card shadow">
                                 <div class="card-body">
@@ -74,9 +74,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- End Sidebar --><!-- Tabbar -->
-                    <div class="col-lg-9">
+                    <div class="col-lg-12">
                         <div class="course-detail-tab bg-white shadow-sm rounded border border-gray-100">
                             <ul class="nav nav-tabs course-nav-tabs" id="course_detail_tab" role="tablist">
                                 <li class="nav-item" role="presentation"><button class="nav-link active" id="overview-tab"
@@ -87,14 +87,14 @@
                                         data-bs-toggle="tab" data-bs-target="#assignment-tab-pane" type="button"
                                         role="tab" aria-controls="assignment-tab-pane" aria-selected="false">Submit
                                         Assignment</button></li>
-                                <li class="nav-item" role="presentation"><button class="nav-link" id="instructor-tab"
+                                {{-- <li class="nav-item" role="presentation"><button class="nav-link" id="instructor-tab"
                                         data-bs-toggle="tab" data-bs-target="#instructor-tab-pane" type="button"
                                         role="tab" aria-controls="instructor-tab-pane"
                                         aria-selected="false">Instructors</button></li>
                                 <li class="nav-item" role="presentation"><button class="nav-link" id="reviews-tab"
                                         data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button"
                                         role="tab" aria-controls="reviews-tab-pane" aria-selected="false">Student
-                                        Reviews</button></li>
+                                        Reviews</button></li> --}}
                             </ul>
                             <div class="tab-content" id="course_detail_tabContent">
                                 <!-- Tab 1 -->
