@@ -105,13 +105,13 @@ $trainee = Auth::user();
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect1" >First Name
                                         <span class="text-danger">*</span></label>
-                                        <input type="text" name="name" class="form-control subheading mt-2" value="{{ Auth::user()->name ?? '' }}" placeholder="Name" required/>
+                                        <input type="text" name="name" class="form-control subheading mt-2" value="{{ Auth::user()->name ?? '' }}" required placeholder="Name" required/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group fw-bold">
-                                        <label for="exampleFormControlSelect1" >Last Name</label>
-                                        <input type="text" class="form-control subheading mt-2" placeholder="Last Name" name="last_name"  value="{{ Auth::user()->last_name ?? '' }}"/>
+                                        <label for="exampleFormControlSelect1" >Last Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control subheading mt-2" placeholder="Last Name" name="last_name" required value="{{ Auth::user()->last_name ?? '' }}"/>
                                     </div>
                                 </div>
                             </div>
@@ -125,14 +125,14 @@ $trainee = Auth::user();
                             <div class="col-md-6">
                                 <div class="form-group fw-bold">
                                     <label for="exampleFormControlSelect1">Email <span class="text-danger">*</span></label>
-                                    <input type="email" disabled class="form-control subheading mt-2" value="{{ Auth::user()->email ?? '' }}" placeholder="MonaLissa@mail.com" 
+                                    <input type="email" disabled class="form-control subheading mt-2" value="{{ Auth::user()->email ?? '' }}" required placeholder="MonaLissa@mail.com" 
                                     />
                                 </div>
                             </div>
                             <div class="col-md-6">
                             <div class="form-group fw-bold">
-                                <label for="exampleFormControlSelect1">Phone No</label>
-                                <input type="text" name="phone" class="form-control subheading mt-2" placeholder="Phone No" value="{{ Auth::user()->phone ?? '' }}"/>
+                                <label for="exampleFormControlSelect1">Phone No <span class="text-danger">*</span></label>
+                                <input type="text" name="phone" class="form-control subheading mt-2" placeholder="Phone No" required value="{{ Auth::user()->phone ?? '' }}"/>
                             </div>
                             </div>
                         </div>
@@ -214,7 +214,7 @@ $trainee = Auth::user();
                                                 <div class="col-md-6">
                                                     <div class="form-group fw-bold">
                                                         <label for="exampleFormControlSelect5">Gender <span class="text-danger">*</span></label>
-                                                        <select class="form-control form-select subheading mt-2" aria-label="Default select example" id="exampleFormControlSelect5" name="gender">
+                                                        <select class="form-control form-select subheading mt-2" aria-label="Default select example" id="exampleFormControlSelect5" name="gender" required>
                                                             <option value="male" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->gender == 'male') ? 'selected' : '' }}>Male</option>
                                                             <option value="female" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->gender == 'female') ? 'selected' : '' }}>Female</option>
                                                         </select>
@@ -223,7 +223,7 @@ $trainee = Auth::user();
                                                 <div class="col-md-6">
                                                     <div class="form-group fw-bold">
                                                         <label for="exampleFormControlSelect6">Date of Birth <span class="text-danger">*</span></label>
-                                                        <input type="date" name="date_of_birth" class="form-control subheading mt-2" value="{{ Auth::user()->trainee->date_of_birth ?? '' }}"
+                                                        <input type="date" name="date_of_birth" class="form-control subheading mt-2" required value="{{ Auth::user()->trainee->date_of_birth ?? '' }}"
                                                             id="exampleFormControlSelect6" />
                                                     </div>
                                                 </div>
@@ -231,9 +231,9 @@ $trainee = Auth::user();
                                             <div class="row mt-2">
                                                 <div class="col-md-12">
                                                     <div class="form-group fw-bold">
-                                                        <label for="exampleFormControlSelect7">Trainee Description</label>
+                                                        <label for="exampleFormControlSelect7">Trainee Description <span class="text-danger">*</span></label>
                                                         <textarea class="form-control subheading mt-1" id="exampleFormControlTextarea7"
-                                                            placeholder="Trainee Description (optinal)" rows="5" name="description">{{Auth::user()->trainee->description ?? ''}}</textarea>
+                                                            placeholder="Trainee Description (optinal)" rows="5"  required name="description">{{Auth::user()->trainee->description ?? ''}}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -246,7 +246,7 @@ $trainee = Auth::user();
                                                     <div class="form-group">
                                                         <label for="exampleFormControlSelect1">Which city are you from? <span class="text-danger">*</span></label>
                                                         <select class="form-control form-select subheading mt-1"
-                                                            aria-label="Default select example" id="exampleFormControlSelect1" name="city_from">
+                                                            aria-label="Default select example" id="exampleFormControlSelect1" name="city_from" required>
                                                             <option value="Lahore" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->city_from == 'Lahore') ? 'selected' : '' }}>Lahore</option>
                                                         </select>
                                                     </div>
@@ -255,7 +255,7 @@ $trainee = Auth::user();
                                                     <div class="form-group">
                                                         <label for="exampleFormControlSelect1">Which city do you currently live in? <span class="text-danger">*</span></label>
                                                         <select class="form-control form-select subheading mt-1"
-                                                            aria-label="Default select example" id="exampleFormControlSelect1" name="city_currently_living_in">
+                                                            aria-label="Default select example" id="exampleFormControlSelect1" name="city_currently_living_in" required>
                                                             <option value="Lahore" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->city_currently_living_in == 'Lahore') ? 'selected' : '' }}>Lahore</option>
                                                         </select>
                                                     </div>
@@ -265,7 +265,7 @@ $trainee = Auth::user();
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="exampleFormControlSelect1"> Skill of Interest Experience? <span class="text-danger">*</span></label>
-                                                        <select class="form-control form-select subheading mt-2"aria-label="Default select example" id="exampleFormControlSelect1" name="skill_experience">
+                                                        <select class="form-control form-select subheading mt-2"aria-label="Default select example" id="exampleFormControlSelect1" name="skill_experience" required>
                                                             <option value="None" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->skill_experience == 'None') ? 'selected' : '' }}>None</option>
                                                             <option value="Basic" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->skill_experience == 'Basic') ? 'selected' : '' }}>Basic</option>
                                                             <option value="Intermediate" {{ (!is_null(Auth::user()->trainee) && Auth::user()->trainee->skill_experience == 'Intermediate') ? 'selected' : '' }}>Intermediate</option>

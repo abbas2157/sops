@@ -102,8 +102,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group fw-bold">
-                                    <label for="exampleFormControlSelect1" >Last Name</label>
-                                    <input type="text" class="form-control subheading mt-2" placeholder="Last Name" name="last_name"  value="{{ Auth::user()->last_name ?? '' }}"/>
+                                    <label for="exampleFormControlSelect1" >Last Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control subheading mt-2" placeholder="Last Name" name="last_name" required value="{{ Auth::user()->last_name ?? '' }}"/>
                                 </div>
                             </div>
                         </div>
@@ -123,8 +123,8 @@
                         </div>
                         <div class="col-md-6">
                         <div class="form-group fw-bold">
-                            <label for="exampleFormControlSelect1">Phone No</label>
-                            <input type="text" name="phone" class="form-control subheading mt-2" placeholder="Phone No" value="{{ Auth::user()->phone ?? '' }}"/>
+                            <label for="exampleFormControlSelect1">Phone No <span class="text-danger">*</span></label>
+                            <input type="text" name="phone" class="form-control subheading mt-2" placeholder="Phone No" required value="{{ Auth::user()->phone ?? '' }}"/>
                         </div>
                         </div>
                     </div>
