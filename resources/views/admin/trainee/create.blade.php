@@ -65,7 +65,7 @@
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect6">Date of Birth <span
                                                 class="text-danger">*</span></label>
-                                        <input type="date" name="date_of_birth" class="form-control subheading mt-2"
+                                        <input type="date" name="date_of_birth" id="date_of_birth" class="form-control subheading mt-2"
                                             id="exampleFormControlSelect6" />
                                     </div>
                                 </div>
@@ -706,5 +706,17 @@
     </div>
 @stop
 @section('js')
-    <script></script>
+<script>
+    // Calculate the date 15 years ago from today
+    function calculateMaxDate() {
+        const today = new Date();
+        const year = today.getFullYear() - 15;  // Subtract 15 years
+        const month = ('0' + (today.getMonth() + 1)).slice(-2);  // Add 1 because months are zero-indexed
+        const day = ('0' + today.getDate()).slice(-2);
+        return `${year}-${month}-${day}`;
+    }
+
+    // Set the max attribute of the date input
+    document.getElementById('date_of_birth').max = calculateMaxDate();
+</script>
 @stop
