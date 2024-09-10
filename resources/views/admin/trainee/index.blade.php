@@ -79,7 +79,7 @@
                                         </a>
                                         <a class="dropdown-item" href="{{route('trainees.edit',$trainee->id)}}">
                                             <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
-                                            Edit Trainer
+                                            Edit Trainee
                                         </a>
                                         <form action="{{ route('trainees.destroy', $trainee->id) }}" method="POST">
                                             @csrf

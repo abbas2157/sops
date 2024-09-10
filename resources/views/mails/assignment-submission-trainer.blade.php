@@ -114,8 +114,8 @@
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
             <td align="center" valign="top" style="padding: 36px 24px;">
-              <a href="https://whitesprout.com.ng" target="_blank" style="display: inline-block;">
-                <img src="https://whitesprout.com.ng/img/SOPS.png" alt="Logo" border="0" width="150" style="display: block; width: 150px; max-width: 150px; min-width: 48px;">
+              <a href="https://sops.pk" target="_blank" style="display: inline-block;">
+                <img src="https://sops.pk/wp-content/uploads/2021/09/SOPS_Logo-1.png" alt="Logo" border="0" width="150" style="display: block; width: 150px; max-width: 150px; min-width: 48px;">
               </a>
             </td>
           </tr>

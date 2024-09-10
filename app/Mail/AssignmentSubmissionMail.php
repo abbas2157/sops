@@ -37,7 +37,7 @@ class AssignmentSubmissionMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.assignment-submission',
+            view: $this->data['type'] == 'trainer' ? 'mails.assignment-submission-trainer' : 'mails.assignment-submission-trainee',
             with: [
                 'data' => $this->data,
             ]

@@ -4,7 +4,7 @@
 
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Forgot Password</title>
+  <title>Assignment Submission Email</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style type="text/css">
   /**
@@ -96,7 +96,7 @@
 
   <!-- start preheader -->
   <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
-    Forgot Password Email From SOPS - School of Professional Skills
+    Assignment Submission Email From SOPS - School of Professional Skills
   </div>
   <!-- end preheader -->
 
@@ -114,9 +114,9 @@
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
             <td align="center" valign="top" style="padding: 36px 24px;">
-              <a href="https://sops.pk" target="_blank" style="display: inline-block;">
-                <img src="https://sops.pk/wp-content/uploads/2021/09/SOPS_Logo-1.png" alt="Logo" border="0" width="150" style="display: block; width: 150px; max-width: 150px; min-width: 48px;">
-              </a>
+                <a href="https://sops.pk" target="_blank" style="display: inline-block;">
+                    <img src="https://sops.pk/wp-content/uploads/2021/09/SOPS_Logo-1.png" alt="Logo" border="0" width="150" style="display: block; width: 150px; max-width: 150px; min-width: 48px;">
+                </a>
             </td>
           </tr>
         </table>
@@ -132,23 +132,13 @@
     <!-- start hero -->
     <tr>
       <td align="center" bgcolor="#e9ecef">
-        <!--[if (gte mso 9)|(IE)]>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
-        <tr>
-        <td align="center" valign="top" width="600">
-        <![endif]-->
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
-              <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Hi {{ $data->name ?? ''}}</h1>
+              <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Dear Trainee,</h1>
             </td>
           </tr>
         </table>
-        <!--[if (gte mso 9)|(IE)]>
-        </td>
-        </tr>
-        </table>
-        <![endif]-->
       </td>
     </tr>
     <!-- end hero -->
@@ -156,44 +146,18 @@
     <!-- start copy block -->
     <tr>
       <td align="center" bgcolor="#e9ecef">
-        <!--[if (gte mso 9)|(IE)]>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
-        <tr>
-        <td align="center" valign="top" width="600">
-        <![endif]-->
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
 
           <!-- start copy -->
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                <p style="margin: 0;">There was a request to change your password!</p>
-                <p style="margin: 0;">If you did not make this request then please ignore this email.</p>
-                 <p style="margin: 0;">Otherwise, please click this link to change your password </p>
+                <p style="margin: 0;">You have to be proud of yourself! You have completed a step in the process and closer to becoming part of our community.</p>
+                <p style="margin: 0;">Log into our system and start working on the next step so that you can be eligible to one of the spots of the upcoming fundamentals module of your skill of interest. </p>
+                 <p style="margin: 0;">Regards,<br /> SOPS Team </p>
               </p>
             </td>
           </tr>
           <!-- end copy -->
-
-          <!-- start button -->
-          <tr>
-            <td align="left" bgcolor="#ffffff">
-              <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                <tr>
-                  <td align="center" bgcolor="#ffffff" style="padding: 12px;">
-                    <table border="0" cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td align="center" bgcolor="#19255b" style="border-radius: 6px;">
-                          <a href="{{ url('reset-password', $data->uuid) }}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Reset Password</a>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <!-- end button -->
-
           <tr>
             <td align="center" valign="top" style="padding: 36px 24px;">
             </td>
