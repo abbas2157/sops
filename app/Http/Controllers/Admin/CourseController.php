@@ -83,6 +83,7 @@ class CourseController extends Controller
         ]);
         $course = Course::findorfail($id);
         $course->name = $request->name;
+        $course->detail_url = $request->detail_url;
         $course->description = $request->description;
         $course->lectures = $request->lectures;
         $course->skill_level = $request->skill_level;

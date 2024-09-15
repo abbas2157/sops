@@ -123,9 +123,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card rounded-3 border-0 card-shadow mt-2">
+                        <div class="card-body">
+                            <div class="form-group fw-bold">
+                                <label for="detail_url">Detail URL (Website) <span class="text-danger">*</span></label>
+                                <input type="text" name="detail_url" class="form-control subheading mt-2"
+                                    id="detail_url" value="{{ $course->detail_url ?? '' }}" />
+                            </div>
+                        </div>
+                    </div>
                     <button class="btn save-btn text-white mt-3">Update Course</button>
                 </div>
-                
+
             </div>
 
         </form>
