@@ -22,10 +22,18 @@
                 <div class="col-md-9">
                     <h1 class="mb-4 h2 text-center text-lg-start">Your steps</h1>
                     @if($intros->isNotEmpty())
-                        @php $next = 0; $i = 1; @endphp 
+                        @php $next = 0; $i = 1; @endphp
                         @foreach($intros as $intro)
                             @if($intro->trainee_assignment_count == 1 || $next == 1 || $i == 1)
-                                @php $next = $intro->trainee_assignment_count; $i++; @endphp 
+                                @php
+                                    if(is_null($intro->assignment)) {
+                                        $next = 1;
+                                    }
+                                    else {
+                                        $next = $intro->trainee_assignment_count;
+                                    }
+                                    $i++;
+                                @endphp
                                 <div class="row mt-3">
                                     <div class="col">
                                         <div class="card shadow row g-0 flex-sm-row overflow-hidden">
@@ -68,7 +76,7 @@
                     @else
                         <tr>
                             <td colspan="7" class="align-middle text-center">
-                                No Module Found
+                                No Steps Found.
                             </td>
                         </tr>
                     @endif
