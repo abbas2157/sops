@@ -26,12 +26,7 @@
                         @foreach($intros as $intro)
                             @if($intro->trainee_assignment_count == 1 || $next == 1 || $i == 1)
                                 @php
-                                    if(is_null($intro->assignment)) {
-                                        $next = 1;
-                                    }
-                                    else {
-                                        $next = $intro->trainee_assignment_count;
-                                    }
+                                    $next = $intro->trainee_assignment_count;
                                     $i++;
                                 @endphp
                                 <div class="row mt-3">
@@ -49,7 +44,7 @@
                                                         <p class="text-success fs-sm mb-2"> Work submitted. We will check your work as soon as we can.</p>
                                                     </div>
                                                 @endif
-                                                <a href="{{ route('course.detail',['uuid'=> $intro->uuid]) }}" class="btn btn-success" type="submit">Go to {{ $intro->steps_no ?? '' }}</a>
+                                                <a href="{{ route('course.detail',['uuid'=> $intro->uuid]) }}" class="btn btn-primary" type="submit">Go to {{ $intro->steps_no ?? '' }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -90,7 +85,7 @@
                                 </div>
                                 <hr />
                                 <div class="d-flex flex-column">
-                                    <a class="btn btn-outline-primary mt-2" href="{{ route('trainee.courses.join',['uuid'=> $course->uuid]) }}">Enroll Now</a>
+                                    {{-- <a class="btn btn-outline-primary mt-2" href="{{ route('trainee.courses.join',['uuid'=> $course->uuid]) }}">Enroll Now</a> --}}
                                 </div>
                                 <ul class="list-group list-group-flush pt-1">
                                     <li class="list-group-item d-flex align-items-center px-0">

@@ -19,8 +19,8 @@
                         </div>
                     </div>
                     <div class="col-md-9 col-12 text-end">
-                        <a href="javascript:;" id="addStudents" class="btn pdf rounded-3 mt-2"><i class="bi bi-plus-lg"> </i> Add Students</a>
-                        <a href="{{ route('admin.batches.index') }}" class="btn create-btn rounded-3 mt-2">Back To Batches<i class="bi bi-funnel"></i></a>
+                        <a href="javascript:;" id="addStudents" class="btn save-btn text-white rounded-3 mt-2"><i class="bi bi-plus-lg text-white"> </i> Add Students</a>
+                        <a href="{{ route('admin.batches.index') }}" class="btn rounded-3 mt-2 excel-btn">Back To Batches</a>
                         <a href="{{ route('courses.index') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Courses</a>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
             $(".singleStudent").prop('checked',false);
         }
         else
-        { 
+        {
             $(".singleStudent").prop('checked',true);
         }
     });

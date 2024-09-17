@@ -1,19 +1,10 @@
 <div class="row mt-3">
     <div class="col-md-12">
         <div class="card border-0 card-shadow rounded-3 p-2 mt-4 mb-3">
-            <div class="card-header border-0 bg-white">
-                <div class="row my-3">
-                    <div class="col-md-3 col-12 mt-2">
-                        <div class="input-search position-relative">
-                            <input type="text" placeholder="Search Table" class="form-control rounded-3 subheading" />
-                            <span class="fa fa-search search-icon text-secondary"></span>
-                        </div>
-                    </div>
-                    <div class="col-md-9 col-12 text-end">
-                        <a href="#" class="btn create-btn rounded-3 mt-2">Filter <i class="bi bi-funnel"></i></a>
-                        <a href="#" class="btn rounded-3 mt-2 excel-btn">Excel <i
-                                class="bi bi-file-earmark-text"></i></a>
-                        <a href="#" class="btn pdf rounded-3 mt-2">Pdf <i class="bi bi-file-earmark"></i></a>
+            <div class="row mb-3">
+                <div class="col-md-12 mt-2">
+                    <div class="border-bottom" style="width: 100%;">
+                        <h3 class="all-adjustment pb-2 mb-0" style="width: 15%;">Intro Module</h3>
                     </div>
                 </div>
             </div>

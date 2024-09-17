@@ -3,34 +3,9 @@
     <title>Profile | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
-    <style>
-      /* Style the tab */
-      /* Style the buttons inside the tab */
-      .tab button {
-        /* display: block; */
-        background-color: inherit;
-        padding: 16px;
-        width: 100%;
-        border: none;
-        /* outline: none; */
-        text-align: left;
-        cursor: pointer;
-        /* transition: 0.3s; */
-      }
-
-      .tab button:hover {
-        background: rgba(76, 73, 227, 0.1);
-        border-left: 4px solid rgba(76, 73, 227, 1);
-      }
-
-      .tab button.active {
-        background-color: rgba(76, 73, 227, 0.1);
-        border-left: 4px solid rgba(76, 73, 227, 1);
-      }
-    </style>
 @stop
 @section('content')
-@php 
+@php
 $trainer = Auth::user();
 @endphp
 <div class="container-fluid px-4">
@@ -54,7 +29,7 @@ $trainer = Auth::user();
                         Change Password
                         <img src="{{ asset('assets/img/change-password.svg') }}" alt="" />
                     </button>
-                    
+
                 </div>
             </div>
             </div>
@@ -83,7 +58,7 @@ $trainer = Auth::user();
                                 <form enctype="multipart/form-data" id="profile_picture_form" method="post" action="{{ route('trainer.change-profile.picture') }}">
                                 @csrf
                                     <input type="file" name="profile_picture" id="profile_picture" accept="images/*" onchange="form.submit()" class="fileInput" style="display: none"  required/>
-                                    <button id="change-picture-btn" class="change-picture-btn btn create-btn" type="button">
+                                    <button id="change-picture-btn" class="btn save-btn text-white rounded-3" type="button">
                                         Change Profile Picture
                                     </button>
                                 </form>
@@ -125,7 +100,7 @@ $trainer = Auth::user();
                             <div class="col-md-6">
                                 <div class="form-group fw-bold">
                                     <label for="exampleFormControlSelect1">Email <span class="text-danger">*</span></label>
-                                    <input type="email" disabled class="form-control subheading mt-2" value="{{ Auth::user()->email ?? '' }}" placeholder="MonaLissa@mail.com" 
+                                    <input type="email" disabled class="form-control subheading mt-2" value="{{ Auth::user()->email ?? '' }}" placeholder="MonaLissa@mail.com"
                                     />
                                 </div>
                             </div>

@@ -33,7 +33,7 @@
                 <div class="col-md-3 mt-4">
                     <a href="javascript:;" class="text-decoration-none">
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
-                        <i class="fa-thin fa-check-square fs-2"></i>
+                        <i class="fa-solid fa-layer-group fs-2"></i>
                         <div class="ms-3">
                             <p class="mb-1 fs-6 text-muted subheading">PASSED TASKS</p>
                             <h6 class="mb-0 sales-amount">{{ $tasks->where('status','Pass')->count() ?? 'N/A' }}</h6>
@@ -77,7 +77,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <a href="{{ $item->call_link ?? '' }}" class="text-decoration-none mt-3">
-                                            {{ $loop->index+1}} - {{ $item->course->name ?? 'No Course' }} 
+                                            {{ $loop->index+1}} - {{ $item->course->name ?? 'No Course' }}
                                             - {{ $item->batch->title ?? 'No Batch' }}
                                             ({{ $item->batch->code ?? 'No code' }})
                                             -  {{ date('M d, Y',strtotime($item->class_date)) }} {{ date('h:i:s A',strtotime($item->class_time)) }}
@@ -87,7 +87,7 @@
                                 </div>
                             @endforeach
                         @else
-                            <p>No Class Foun</p>                        
+                            <p>No Class Foun</p>
                         @endif
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <a href="{{ $item->call_link ?? '' }}" class="text-decoration-none mt-3">
-                                    {{ $loop->index+1}} - {{ $item->course->name ?? 'No Course' }} 
+                                    {{ $loop->index+1}} - {{ $item->course->name ?? 'No Course' }}
                                     - {{ $item->batch->title ?? 'No Batch' }}
                                     ({{ $item->batch->code ?? 'No code' }})
                                     -  {{ date('M d, Y',strtotime($item->class_date)) }} {{ date('h:i:s A',strtotime($item->class_time)) }}
@@ -122,7 +122,7 @@
                         </div>
                     @endforeach
                 @else
-                    <p>No Class Found</p> 
+                    <p>No Class Found</p>
                 @endif
                 <div class="row mt-1">
                     <div class="col-md-12 mt-2">
@@ -134,7 +134,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <p class="mb-0">
-                                    {{ $loop->index + 1}} - {{ $item->course->name ?? 'No Course' }} 
+                                    {{ $loop->index + 1}} - {{ $item->course->name ?? 'No Course' }}
                                     - {{ $item->batch->title ?? 'No Batch' }}
                                     ({{ $item->batch->code ?? 'No code' }})
                                     -  {{ date('M d, Y',strtotime($item->class_date)) }} {{ date('h:i:s A',strtotime($item->class_time)) }}
@@ -143,7 +143,7 @@
                         </div>
                     @endforeach
                 @else
-                    <p>No Class Found</p> 
+                    <p>No Class Found</p>
                 @endif
             </div>
         </div>
@@ -164,7 +164,7 @@
                             </li>
                             <li class="nav-item col-md-2 mt-1" role="presentation">
                             <button class="nav-link shopping-items w-100" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
-                                FININSHED
+                                COMPLETED
                             </button>
                             </li>
                         </ul>

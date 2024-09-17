@@ -19,10 +19,7 @@
                     </div>
                 </div>
                 <div class="col-md-9 col-12 text-end">
-                    <a href="#" class="btn create-btn rounded-3 mt-2">Filter <i class="bi bi-funnel"></i></a>
-                    <a href="#" class="btn rounded-3 mt-2 excel-btn">Excel <i class="bi bi-file-earmark-text"></i></a>
-                    <a href="#" class="btn pdf rounded-3 mt-2">Pdf <i class="bi bi-file-earmark"></i></a>
-                    <a href="{{ route('trainees.create') }}" class="btn create-btn rounded-3 mt-2">Create Trainee <i class="bi bi-plus-lg"></i></a>
+                    <a href="{{ route('trainees.create') }}" class="btn save-btn text-white rounded-3 mt-2">Create Trainee <i class="bi bi-plus-lg text-white"></i></a>
                 </div>
             </div>
         </div>

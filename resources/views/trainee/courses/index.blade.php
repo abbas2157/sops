@@ -33,6 +33,7 @@
                                     <div class="row mt-5 mb-3">
                                         <div class="col-md-12">
                                            <a class="text-decoration-none ps-3" target="_blank" href="{{ $course->detail_url ?? '' }}">View Detail</a>
+                                           <a class="text-decoration-none ps-3" target="_blank" href="{{ route('trainee.courses.join',['uuid'=> $course->uuid]) }}">Enroll here</a>
                                         </div>
                                     </div>
                                 </div>
