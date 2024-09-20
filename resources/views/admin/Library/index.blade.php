@@ -20,8 +20,8 @@
                 </div>
                 <div class="col-md-8 col-12 text-end">
                     <a href="{{ route('admin.batches.index') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Batch List</a>
-                    <button class="btn create-btn rounded-3 mt-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
-                        Upload Documents <i class="bi bi-plus-lg"></i>
+                    <button class="btn save-btn text-white rounded-3 mt-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                        Upload Documents <i class="bi bi-plus-lg text-white"></i>
                     </button>
                 </div>
             </div>

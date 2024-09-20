@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->nullable();
             $table->text('description');
+            $table->string('detail_url')->nullable();
             $table->string('image')->nullable();
             $table->tinyInteger('list')->default(0);
             $table->string('duration')->nullable();

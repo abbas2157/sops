@@ -3,7 +3,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth']], function() {
     Route::middleware([App\Http\Middleware\EnsureUserIsTrainee::class])->group(function () {
-        Route::get('/', function(){return view('trainee.index');})->name('frontend');
+        Route::get('/', [App\Http\Controllers\Trainee\DashboardController::class, 'index'])->name('trainee');
         Route::group(['prefix' => 'course'], function(){
             Route::get('/', [App\Http\Controllers\Frontend\StepController::class, 'index'])->name('course');
             Route::get('details', [App\Http\Controllers\Frontend\StepController::class, 'show'])->name('course.detail');

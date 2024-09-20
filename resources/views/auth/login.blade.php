@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="col-md-6 mt-3 forget-password text-end">
                                         <a href="{{ route('forgot-password') }}" class="text-decoration-none text-white">
-                                            Forget Password?
+                                            Forgot Password?
                                         </a>
                                     </div>
                                 </div>

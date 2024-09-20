@@ -139,16 +139,18 @@
           <!-- start copy -->
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                <p style="margin: 0;">It's SOPS here with an important announcement.</p>
+                <p style="margin: 0;">Congratulations on successfully completing all the steps of the Intro Module! You have shown great dedication and are now eligible to advance to the Fundamentals Module.</p>
                 <br />
-                We have an important announcement regarding the Batch ({{ $data->code ?? '000' }})  Creation for course {{ $data->course->name ?? 'No Course' }}.
+                <p>You can now proceed to the Fundamentals Module, where you will further develop your skills and prepare for the Full Skill Development Module. This next phase will build on the foundation you have established, and we’re excited to see you continue your journey with us.                </p>
                 <br />
-                We will be setting up a {{ $data->type ?? '000' }} module for {{ $data->course->name ?? 'No Course' }}, and you have added you in this batch.
+                <p>To access the Fundamentals Module, please log in to your account here: <a href="{{ route('login') }}"> {{ route('login') }} </a></p>
                 <br />
+                <p>We wish you continued success and look forward to your participation in the next module.</p>
                 <br />
                 <br />
                 <p style="margin: 0;">Thanks and regards</p>
                 <p style="margin: 0;">SOPS - School of Professional Skills</p>
+                <p><a href="https://sops.pk"> SOPS </a> </p>
               </p>
             </td>
           </tr>

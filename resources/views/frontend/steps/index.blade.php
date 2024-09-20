@@ -22,10 +22,13 @@
                 <div class="col-md-9">
                     <h1 class="mb-4 h2 text-center text-lg-start">Your steps</h1>
                     @if($intros->isNotEmpty())
-                        @php $next = 0; $i = 1; @endphp 
+                        @php $next = 0; $i = 1; @endphp
                         @foreach($intros as $intro)
                             @if($intro->trainee_assignment_count == 1 || $next == 1 || $i == 1)
-                                @php $next = $intro->trainee_assignment_count; $i++; @endphp 
+                                @php
+                                    $next = $intro->trainee_assignment_count;
+                                    $i++;
+                                @endphp
                                 <div class="row mt-3">
                                     <div class="col">
                                         <div class="card shadow row g-0 flex-sm-row overflow-hidden">
@@ -41,7 +44,7 @@
                                                         <p class="text-success fs-sm mb-2"> Work submitted. We will check your work as soon as we can.</p>
                                                     </div>
                                                 @endif
-                                                <a href="{{ route('course.detail',['uuid'=> $intro->uuid]) }}" class="btn btn-success" type="submit">Go to {{ $intro->steps_no ?? '' }}</a>
+                                                <a href="{{ route('course.detail',['uuid'=> $intro->uuid]) }}" class="btn btn-primary" type="submit">Go to {{ $intro->steps_no ?? '' }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -68,7 +71,7 @@
                     @else
                         <tr>
                             <td colspan="7" class="align-middle text-center">
-                                No Module Found
+                                No Steps Found.
                             </td>
                         </tr>
                     @endif
@@ -82,7 +85,7 @@
                                 </div>
                                 <hr />
                                 <div class="d-flex flex-column">
-                                    <a class="btn btn-outline-primary mt-2" href="{{ route('trainee.courses.join',['uuid'=> $course->uuid]) }}">Enroll Now</a>
+                                    {{-- <a class="btn btn-outline-primary mt-2" href="{{ route('trainee.courses.join',['uuid'=> $course->uuid]) }}">Enroll Now</a> --}}
                                 </div>
                                 <ul class="list-group list-group-flush pt-1">
                                     <li class="list-group-item d-flex align-items-center px-0">

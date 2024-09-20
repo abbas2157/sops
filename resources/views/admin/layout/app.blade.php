@@ -22,12 +22,6 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('toast/css/jquery.toast.css') }}">
     @yield('css')
-    <style>
-      .align-middle, .text-secondary
-        {
-            white-space:nowrap;
-        }
-    </style>
   </head>
 
   <body>
@@ -152,30 +146,30 @@
     <script>
         @if ($errors->has('success'))
             $.toast({
-                position: 'top-right', 
+                position: 'top-right',
                 heading: 'Note !',
                 text: "{{ $errors->first('success') }}",
                 icon: 'info',
                 loader: true,
                 loaderBg: '#9EC600',
-                showHideTransition: 'fade', 
-                allowToastClose: true, 
-                hideAfter: 8000, 
-                stack: 5, 
+                showHideTransition: 'fade',
+                allowToastClose: true,
+                hideAfter: 8000,
+                stack: 5,
             });
         @endif
         @if ($errors->has('error'))
             $.toast({
-                position: 'top-right', 
+                position: 'top-right',
                 heading: 'Note !',
                 text: "{{ $errors->first('error') }}",
                 icon: 'warning',
                 loader: true,
                 loaderBg: '#9EC600',
-                showHideTransition: 'fade', 
-                allowToastClose: true, 
-                hideAfter: 3000, 
-                stack: 5, 
+                showHideTransition: 'fade',
+                allowToastClose: true,
+                hideAfter: 3000,
+                stack: 5,
             });
         @endif
     </script>

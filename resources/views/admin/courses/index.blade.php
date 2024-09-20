@@ -19,8 +19,8 @@
                     </div>
                 </div>
                 <div class="col-md-8 col-12 text-end">
-                    <button class="btn create-btn rounded-3 mt-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
-                        Create Course <i class="bi bi-plus-lg"></i>
+                    <button class="btn save-btn text-white rounded-3 mt-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                        Create Course <i class="bi bi-plus-lg text-white"></i>
                     </button>
                 </div>
             </div>

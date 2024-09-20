@@ -8,7 +8,7 @@
 <div class="container-fluid pt-4 px-4 mb-5">
     <div class="border-bottom">
     <h3 class="all-adjustment text-center pb-2 mb-0 cutomer-management">
-        {{ $course->name ?? '' }}'s Steps 
+        {{ $course->name ?? '' }}'s Steps
     </h3>
     </div>
 
@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-md-8 col-12 text-end">
                     <a href="{{ route('courses.index') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Courses</a>
-                    <a href="{{ route('steps.create',['id' => $course->uuid,'type' => request()->type ]) }}" class="btn create-btn rounded-3 mt-2" >Create Step <i class="bi bi-plus-lg"></i></a>
+                    <a href="{{ route('steps.create',['id' => $course->uuid,'type' => request()->type ]) }}" class="btn save-btn text-white rounded-3 mt-2" >Create Step <i class="bi bi-plus-lg text-white"></i></a>
                 </div>
             </div>
         </div>

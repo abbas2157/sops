@@ -8,9 +8,8 @@
       <meta name="keywords" content="">
       <meta name="description" content="">
       @yield('title')
-      
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon-32x32.png') }}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon-16x16.png') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
       <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
       <link rel="stylesheet" href="{{ asset('toast/css/jquery.toast.css') }}">
@@ -29,29 +28,28 @@
             <header class="main-header main-header-01 headroom navbar-light bg-white header-height fixed-top">
                 <nav class="navbar navbar-expand-lg">
                     <div class="container">
-                        <!-- Logo --> 
+                        <!-- Logo -->
                         <a class="navbar-brand header-navbar-brand" href="{{ url('trainee') }}">
-                            <img class="logo-dark" src="https://whitesprout.com.ng/img/SOPS.png" style="width:10%" title="" alt=""> 
-                            <img class="logo-light" src="https://whitesprout.com.ng/img/SOPS.png" title="" alt="">
+                            <img class="logo-dark" src="{{ asset('assets/img/SOPS.png') }}" style="width:10%" title="" alt="">
+                            <img class="logo-light" src="{{ asset('assets/img/SOPS.png') }}" title="" alt="">
                         </a>
                         <!-- Logo -->
                         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
                             <div class="offcanvas-header">
-                                <div class="offcanvas-title" id="offcanvasNavbar2Label"><img class="logo-dark" src="https://whitesprout.com.ng/img/SOPS.png" style="width:10%" title="" alt=""></div>
+                                <div class="offcanvas-title" id="offcanvasNavbar2Label"><img class="logo-dark" src="{{ asset('assets/img/SOPS.png') }}" style="width:10%" title="" alt=""></div>
                                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body">
-                                <ul class="navbar-nav mx-auto"></ul>
+                                <ul class="navbar-nav mx-auto">
+                                    <li><a class="dropdown-item" href="{{ route('course',['uuid' => $course->uuid, 'type' => 1]) }}"> All Steps</a></li>
+                                </ul>
                             </div>
                         </div>
                         <div class="header-right ms-auto">
-                            <!-- <div class="hr-nav-item h-btn">
-                                <a href="#" class="header-btn">Sign In</a>
-                                </div> -->
                             <div class="hr-nav-item h-user dropdown">
                                 <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                <!-- <span class="dropdown-header">Welcome Tatiana </span> -->
+                                    <span class="dropdown-header">Welcome {{ Auth::user()->full_name ?? ''}} </span>
                                     <li><a class="dropdown-item" href="{{ route('trainee') }}"><i class="fa-regular fa-user me-2"></i> Dashboard</a></li>
                                     <li><a class="dropdown-item" href="{{ route('trainee.profile') }}"><i class="fa-regular fa-pen-to-square me-2"></i> Edit Profile</a></li>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket me-2"></i> Sign Out</a></li>
@@ -84,7 +82,7 @@
                 </div>
             </footer>
       </div>
-      
+
          <script src="{{ asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
          <script src="{{ asset('frontend/js/theme.js') }}"></script>
          <script src="{{ asset('frontend/js/jquery-3.5.1.min.js') }}"></script>

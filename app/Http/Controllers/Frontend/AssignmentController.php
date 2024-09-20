@@ -55,18 +55,18 @@ class AssignmentController extends Controller
 
         $course = Course::with('trainer')->where('id',$request->course_id)->first();
         $step = ModuleStep::where('id',$request->step_id)->first();
-        
+
         $data = array(
                 'type' => 'trainer',
                 'trainee' => Auth::user()->full_name,
-                'trainer' => $course->trainer[0]->user->full_name,
+                'trainer' => (!is_null($course->trainer)) ? $course->trainer[0]->full_name : 'No Traier Assign',
                 'course' => $course->name,
                 'step_no' => $step->steps_no,
                 'assignment' => $assignment->file);
-        // AssignmentSubmissionMailJob::dispatch($course->trainer[0]->user->email, $data);
-        Mail::to($course->trainer[0]->user->email)->send(new AssignmentSubmissionMail($data));
+        if(!is_null($course->trainer))
+            AssignmentSubmissionMailJob::dispatch($course->trainer[0]->user->email, $data);
         $data['type'] = 'trainee';
-        Mail::to(Auth::user()->email)->send(new AssignmentSubmissionMail($data));
+        AssignmentSubmissionMailJob::dispatch(Auth::user()->email, $data);
         $validator['success'] = 'Assignment Uploaded Successfully';
         return back()->withErrors($validator);
     }

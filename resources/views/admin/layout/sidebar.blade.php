@@ -17,11 +17,11 @@
                 <i class="bi bi-person"></i>
                 <p class="pt-1 mb-0">Trainee</p>
             </div>
-            <a href="{{ route('courses.index') }}" class="nav-item nav-link {{ request()->is('admin/courses') ? 'active' : '' }} text-center border-top">
+            <a href="{{ route('courses.index') }}" class="nav-item nav-link {{ (request()->is('admin/courses') || request()->is('admin/steps*') || request()->is('admin/students*')) ? 'active' : '' }} text-center border-top">
                 <i class="bi bi-file-earmark-text"></i>
                 <p class="pt-1 mb-0">Courses</p>
             </a>
-            <div id="navbar-toggler3" class="nav-item nav-link text-center {{ (request()->is('admin/batches*')) ? 'active' : '' }}">
+            <div id="navbar-toggler3" class="nav-item nav-link text-center {{ (request()->is('admin/batches*') || request()->is('admin/batch-students*') || request()->is('admin/class-schedules*') || request()->is('admin/library*')) ? 'active' : '' }}">
                 <i class="bi bi-box-seam"></i>
                 <p class="pt-1 mb-0">Batches</p>
             </div>

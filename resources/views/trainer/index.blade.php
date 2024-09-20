@@ -33,7 +33,7 @@
                 <div class="col-md-3 mt-4">
                     <a href="{{ route('trainer.students') }}" class="text-decoration-none">
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
-                        <i class="fa-thin fa-check-square fs-2"></i>
+                        <i class="fa-solid fa-layer-group fs-2"></i>
                         <div class="ms-3">
                             <p class="mb-1 fs-6 text-muted subheading">Total Students</p>
                             <h6 class="mb-0 sales-amount">{{ $students ?? 'N/A' }}</h6>
