@@ -32,6 +32,7 @@
                 <tr>
                     <th style="width:10%" class="align-middle">Image</th>
                     <th class="align-middle">Course Name</th>
+                    <th class="align-middle">Course Price</th>
                     <th class="align-middle">Course Description</th>
                     <th class="align-middle">Course Modules</th>
                     <th class="align-middle">Created By</th>
@@ -45,7 +46,8 @@
                         <tr>
                             <td style="width:10%" class="align-middle"><img src="{{ asset('images/courses/'.$course->image) }}" style="width: 50%;" alt=""></td>
                             <td class="align-middle">{{ $course->name ?? '' }}</td>
-                            <td class="align-middle" style="white-space: normal;">{{ $course->description ?? '' }}</td>
+                            <td class="align-middle">{{ $course->price ?? '' }}</td>
+                            <td class="align-middle" style="white-space: normal;">{{ \Illuminate\Support\Str::words($course->description, 15, '...') }}</td>
                             <td class="align-middle">
                                 <a class="badges blue-border text-center text-decoration-none p-1" href="{{ route('steps.index',['id' => $course->uuid, 'type' => 'Intro']) }}" >Intro Module</a>
                              </td>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Trainee;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{User,Course,Trainee,ModuleStep,Trainer,JoinedCourse,ClassSchedule,Task, Library};
+use App\Models\{User,Course,Trainee,ModuleStep,Trainer,JoinedCourse,ClassSchedule,Task, Library,Batch,BatchStudent};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 
 class CourseController extends Controller
@@ -16,6 +16,22 @@ class CourseController extends Controller
     {
         $courses = Course::with('createdby')->where('list',1)->get();
         $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->get();
+        foreach ($my_courses as $course) {
+            $BatchStudent = BatchStudent::with('batch')->where(['course_id' => $course->course_id, 'user_id' => Auth::user()->id])->first();
+            $course->fundamental = false;
+            $course->full_skill = false;
+            if(!is_null($BatchStudent))
+            {
+                if($BatchStudent->batch->type = 'Fundamental')
+                {
+                    $course->fundamental = true;
+                }
+                else
+                {
+                    $course->full_skill = true;
+                }
+            }
+        }
         return view('trainee.courses.index',compact('courses','my_courses'));
     }
 

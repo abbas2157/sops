@@ -1,17 +1,17 @@
 @if($my_courses->isNotEmpty())
     @foreach($my_courses as $my)
     <div class="col-md-3">
-        <div class="card-shadow border rounded align-items-center" style="position: relative;">
+        <div class="course-box border rounded align-items-center" style="position: relative;">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="badgecs">PKR 15,000</div>
+                    <div class="badgecs">PKR {{ $my->course->price ?? '00' }}</div>
                     <img src="{{ asset('assets/img/course-bg.png') }}" class="course-img">
                     <img src="{{ asset('assets/img/logo.png') }}" class="logo-place">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="mt-5 ps-3 course-name"> {{ $my->course->name ?? '' }}</h3>
+                    <h3 class="mt-5 ps-3 course-name"> {{ $my->course->name ?? '00' }}</h3>
                     <p class="ps-3">School of Professional Skills</p class="ps-3">
                 </div>
             </div>

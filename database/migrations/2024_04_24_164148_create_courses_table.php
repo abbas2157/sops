@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('uuid')->nullable();
             $table->string('name');
             $table->string('slug')->nullable();
-            $table->text('description');
+            $table->integer('price')->nullable();
+            $table->text('description')->nullable();
             $table->string('detail_url')->nullable();
             $table->string('image')->nullable();
             $table->tinyInteger('list')->default(0);
