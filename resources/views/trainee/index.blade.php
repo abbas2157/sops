@@ -7,6 +7,7 @@
 <div class="container-fluid px-4">
     <div class="row">
         <div class="col-md-12 mt-4">
+            @include('partials.alerts')
             <div class="row">
                 <div class="col-md-3 mt-4">
                     <a href="javascript:;" class="text-decoration-none">

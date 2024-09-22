@@ -42,7 +42,10 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::get('/', [App\Http\Controllers\Admin\StudentController::class, 'index'])->name('admin.students');
                 Route::get('steps', [App\Http\Controllers\Admin\StudentController::class, 'show'])->name('admin.students.steps');
             });
-
+            Route::group(['prefix' => 'payments'], function(){
+                Route::get('{id}', [App\Http\Controllers\Admin\PaymentController::class, 'show'])->name('admin.payments');
+                Route::post('{id}/', [App\Http\Controllers\Admin\PaymentController::class, 'update'])->name('admin.payments.store');
+            });
         });
     });
 });

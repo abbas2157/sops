@@ -2,6 +2,10 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth']], function() {
+    Route::group(['prefix' => 'payments'], function(){
+        Route::get('/', [App\Http\Controllers\PaymentController::class, 'index'])->name('payments');
+        Route::get('perform', [App\Http\Controllers\PaymentController::class, 'store'])->name('payments.perform');
+    });
     Route::middleware([App\Http\Middleware\EnsureUserIsTrainee::class])->group(function () {
         Route::get('/', [App\Http\Controllers\Trainee\DashboardController::class, 'index'])->name('trainee');
         Route::group(['prefix' => 'course'], function(){
@@ -11,6 +15,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('comments',App\Http\Controllers\Frontend\CommentsController::class);
         Route::group(['prefix' => 'trainee'], function(){
             Route::get('/', [App\Http\Controllers\Trainee\DashboardController::class, 'index'])->name('trainee');
+            Route::get('enroll/{id}', [App\Http\Controllers\Trainee\CourseController::class, 'store'])->name('trainee.enroll');
             Route::group(['prefix' => 'profile'], function(){
                 Route::get('/', [App\Http\Controllers\Trainee\ProfileController::class, 'create'])->name('trainee.profile');
                 Route::post('perform', [App\Http\Controllers\Trainee\ProfileController::class, 'update'])->name('trainee.profile.perform');

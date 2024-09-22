@@ -23,8 +23,8 @@
             </div>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-6 col-12 position-relative signup-img">
-                        <img src="{{ asset('assets/img/login.svg') }}" class="img-fluid text-center align-items-center py-5" alt="" />
+                    <div class="col-md-6 col-12 position-relative signup-img mt-5">
+                        <img src="{{ asset('assets/img/login.gif') }}" class="img-fluid text-center align-items-center py-5 mt-5" alt="" />
                     </div>
                     <div class="col-md-6 col-12 py-5 px-4">
                         <div class="signup-form text-white my-5">

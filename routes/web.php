@@ -16,6 +16,7 @@ Route::group(['middleware' => ['guest']], function() {
     });
     Route::group(['prefix' => 'register'], function(){
         Route::get('trainee', [App\Http\Controllers\Auth\RegisterController::class, 'trainee'])->name('register.trainee');
+        Route::post('trainee_perform', [App\Http\Controllers\Auth\RegisterController::class, 'trainee_store'])->name('register.trainee_perform');
         Route::post('perform', [App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('register.perform');
         Route::get('trainer', [App\Http\Controllers\Auth\RegisterController::class, 'trainer'])->name('register.trainer');
     });

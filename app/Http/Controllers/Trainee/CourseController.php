@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Trainee;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{User,Course,Trainee,ModuleStep,Trainer,JoinedCourse,ClassSchedule,Task, Library,Batch,BatchStudent};
-use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
+use Illuminate\Support\Facades\{Auth, Hash, Mail, DB, Cookie};
 
 class CourseController extends Controller
 {
@@ -14,8 +14,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::with('createdby')->where('list',1)->get();
         $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->get();
+        $joined_array= [];
         foreach ($my_courses as $course) {
             $BatchStudent = BatchStudent::with('batch')->where(['course_id' => $course->course_id, 'user_id' => Auth::user()->id])->first();
             $course->fundamental = false;
@@ -31,7 +31,9 @@ class CourseController extends Controller
                     $course->full_skill = true;
                 }
             }
+            $joined_array[] = $course->course_id;
         }
+        $courses = Course::with('createdby')->whereNotIn('id',$joined_array)->where('list',1)->get();
         return view('trainee.courses.index',compact('courses','my_courses'));
     }
 
@@ -60,9 +62,14 @@ class CourseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $course = Course::where('uuid',$id)->first();
+        if(is_null($course)) {
+            abort(404);
+        }
+        Cookie::queue('course', $id, 1000);
+        return redirect('payments');
     }
 
     /**

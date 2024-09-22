@@ -8,6 +8,7 @@
     <!-- Sale & Revenue Start -->
     <div class="container-fluid px-4">
         <div class="border-bottom mt-4">
+            @include('partials.alerts')
             <ul class="nav nav-pills mb-3 row" id="pills-tab" role="tablist">
                 <li class="nav-item col-md-2 mt-1" role="presentation">
                     <button class="shopping-items nav-link active me-2 w-100" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
@@ -50,7 +51,7 @@
                                             <div class="row mt-5 mb-3">
                                                 <div class="col-md-12">
                                                    <a class="text-decoration-none ps-3" target="_blank" href="{{ $course->detail_url ?? '' }}">View Detail</a>
-                                                   <a class="text-decoration-none ps-3" target="_blank" href="{{ route('trainee.courses.join',['uuid'=> $course->uuid]) }}">Enroll here</a>
+                                                   <a class="text-decoration-none ps-3" href="{{ route('trainee.enroll',$course->uuid) }}">Enroll here</a>
                                                 </div>
                                             </div>
                                         </div>
