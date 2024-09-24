@@ -91,6 +91,13 @@ class ProfileController extends Controller
             $request->has_computer_and_internet = 'no';
         }
         $trainee->save();
+
+        $join = JoinedCourse::where('trainee_id',NULL)->where('user_id',$trainee->user_id)->first();
+        if(!is_null($join)) {
+            $join->trainee_id = $trainee->id;
+            $join->save();
+        }
+
         $validator['success'] = 'Profile Details has been Updated.';
         return redirect('trainee/profile')->withErrors($validator);
     }

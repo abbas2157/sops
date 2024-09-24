@@ -20,19 +20,16 @@
             </div>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-6 col-12 position-relative signup-img mt-5">
+                    <div class="col-md-6 col-12 position-relative signup-img mt-3">
                         <img src="{{ asset('assets/img/login.gif') }}" class="img-fluid text-center align-items-center py-5 mt-5" alt="" />
                     </div>
                     <div class="col-md-6 col-12 px-4">
-                        <div class="signup-form text-white my-3">
-                            <div class="mb-4">
+                        <div class="signup-form text-white my-2">
+                            <div class="mb-2">
                                 <h2>In Your Cart</h2>
                                 <p>Your purchase contains the following:</p>
                             </div>
-                            @if ($errors->has('emailPassword'))
-                                <span class="text-danger text-left">{{ $errors->first('emailPassword') }}</span>
-                            @endif
-                            <div class="row mt-2">
+                            <div class="row mt-1">
                                 <div class="col-md-4">
                                     <img src="{{ asset('assets/img/SOPS.png') }}" style="width: 100%">
                                 </div>
@@ -41,19 +38,18 @@
                                     <p>Verified Certificate</p>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row mt-1">
                                 <div class="col-md-12">
                                     <h6 class="mt-2">Summary</h6>
                                 </div>
                                 <div class="col-md-6">Price</div>
                                 <div class="col-md-6 text-right">Rs. {{ $course->price ?? '00' }}</div>
                             </div>
-                            <div class="row mt-3">
+                            <div class="row mt-2">
                                 <div class="col-md-9">
                                     <h6 class="mt-2">Add coupon code (optional)</h6>
                                     <div class="password-container">
                                         <input type="text" id="coupon" name="coupon" class="password-input form-control subheading" placeholder="Enter Coupon" />
-                                        <span class="text-danger fs-6 text-left d-none"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-3 pt-3">
@@ -61,24 +57,40 @@
                                         <button class="btn save-btn text-white w-100 mt-3" id="apply_coupon"> Apply </button>
                                     </div>
                                 </div>
+                                <div class="col-md-12 mt-1 ms-1">
+                                    <span class="text-danger  fs-6 text-left d-none"></span>
+                                </div>
+                                <div class="col-md-12 mt-1 ms-1">
+                                    <span class="text-success fs-6 text-left d-none"></span>
+                                </div>
                             </div>
-                            <div class="row mt-4">
+
+                            <div class="row mt-2">
                                 <div class="col-md-6">Total</div>
                                 <div class="col-md-6 text-right">Rs. {{ $course->price ?? '00' }}</div>
                             </div>
-                            <div class="row mt-3">
+                            <div class="row mt-2">
                                 <div class="col-md-12">
                                     <h6 class="mt-2">Order Details</h6>
                                     <p>
-                                        The above total includes any applicable taxes. 
-                                        After you complete your order you will be automatically
-                                        enrolled in the verified track of the course.
+                                        We are a non-profit organization currently in the process of registration, so these account details are temporary to manage the payment process.
                                     </p>
+                                    <p>
+                                        To submit your course fee payment, please transfer the total amount to the following bank account:
+                                    </p>
+                                    <p>
+                                        <b>Account Title </b> : Ocean Publishers <br />
+                                        <b>Account Number </b>: 01371007145782 <br />
+                                        <b>IBAN </b>: PK51ALFH0137001007145782 <br />
+                                        <b>Branch Name </b>: Model Town Branch <br />
+                                        <b>Branch Code </b>: 0137 <br />
+                                    </p>
+                                    <p>Once completed, please submit proof of payment—including your name and course title—to our WhatsApp number. Thank you!</p>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-12">
-                                    <a href="{{ route('payments.perform') }}" class="btn save-btn text-white w-100 mt-3"> Continue </a>
+                                    <a href="{{ route('payments.perform') }}" class="btn save-btn text-white w-100 mt-3 change-continues"> Continue </a>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +121,9 @@
                     processData: false,
                     success: function(response) {
                         if (response.hasOwnProperty('success')) {
-                            
+                            $('.text-success').text(response.success);
+                            $('.text-success').removeClass('d-none');
+                            $('.change-continues').attr('href',"{{ route('payments.perform') }}?coupon="+coupon);
                         }
                         else {
                             $('.text-danger').text(response.error);

@@ -20,7 +20,7 @@
 @endif
 @if(!is_null(Auth::user()->pending_payment))
     <div class="alert alert-warning" role="alert">
-        Please Pay your Purchased course fee then you will get access modules. Like intro, Fundamental and Full Skill.
+        Please submit your course fee to access the course.
     </div>
 @endif
 <!-- @if ($errors->has('success'))

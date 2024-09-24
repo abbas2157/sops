@@ -22,6 +22,8 @@ return new class extends Migration
             $table->integer('total_price')->nullable();
 
             $table->enum('status',['Pending','Paid','Coupon'])->default('Pending');
+            $table->integer('coupon_id')->nullable();
+            
             $table->integer('received_by')->nullable();
 
             $table->softDeletes();
