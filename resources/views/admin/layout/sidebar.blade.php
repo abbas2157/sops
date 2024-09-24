@@ -17,7 +17,7 @@
                 <i class="bi bi-person"></i>
                 <p class="pt-1 mb-0">Trainee</p>
             </div>
-            <a href="{{ route('courses.index') }}" class="nav-item nav-link {{ (request()->is('admin/courses') || request()->is('admin/steps*') || request()->is('admin/students*')) ? 'active' : '' }} text-center border-top">
+            <a href="{{ route('courses.index') }}" class="nav-item nav-link {{ (request()->is('admin/courses*') || request()->is('admin/steps*') || request()->is('admin/students*')) ? 'active' : '' }} text-center border-top">
                 <i class="bi bi-file-earmark-text"></i>
                 <p class="pt-1 mb-0">Courses</p>
             </a>
@@ -25,7 +25,7 @@
                 <i class="bi bi-box-seam"></i>
                 <p class="pt-1 mb-0">Batches</p>
             </div>
-            <div id="navbar-toggler4" class="nav-item nav-link text-center {{ (request()->is('admin/comments*') || request()->is('admin/reviews*')) ? 'active' : '' }}">
+            <div id="navbar-toggler4" class="nav-item nav-link text-center {{ (request()->is('admin/comments*') || request()->is('admin/reviews*') || request()->is('admin/coupons*')) ? 'active' : ''  }}">
                 <i class="fa-solid fa-bars"></i>
                 <p class="pt-1 mb-0">Others</p>
             </div>
@@ -85,6 +85,11 @@
             <li>
                 <a href="{{ route('admin.reviews.index') }}" class="text-decoration-none nav-item nav-link ">
                     <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />All Reviews
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.coupons.index') }}" class="text-decoration-none nav-item nav-link ">
+                    <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />Coupons
                 </a>
             </li>
         </ul>

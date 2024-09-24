@@ -83,11 +83,11 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card border-0 rounded-3 card-shadow">
-                        <div class="card-header bg-white p-3">
+                        <div class="card-header bg-white p-1">
                             <p class="m-0 fw-bold">Course Picture</p>
                         </div>
                         <div class="card-body">
-                            <div class="file-upload m-0">
+                            <div class="file-upload m-0" style="padding: 0.5rem .5rem;">
                                 <input class="file-input" type="file" name="image"/>
                                 <img src="dasheets/img/upload-btn.svg" class="img-fluid" alt="" />
                                 <div class="mt-2 subheading">
@@ -129,6 +129,11 @@
                                 <label for="detail_url">Detail URL (Website) <span class="text-danger">*</span></label>
                                 <input type="text" name="detail_url" class="form-control subheading mt-2"
                                     id="detail_url" value="{{ $course->detail_url ?? '' }}" />
+                            </div>
+                            <div class="form-group fw-bold mt-1">
+                                <label for="price">Course Price<span class="text-danger">*</span></label>
+                                <input type="text" name="price" class="form-control subheading mt-2"
+                                    id="price" value="{{ $course->price ?? '' }}" />
                             </div>
                         </div>
                     </div>

@@ -15,7 +15,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::with('createdby')->paginate(20);
+        $courses = Course::with('createdby')->orderBy('id','desc')->paginate(20);
         return view('admin.courses.index',compact('courses'));
     }
 
@@ -90,6 +90,7 @@ class CourseController extends Controller
         $course->language = $request->language;
         $course->certificate = $request->certificate;
         $course->duration = $request->duration;
+        $course->price = $request->price;
         $course->list = isset($request->list) ? $request->list : '0';
         if($request->hasFile('image'))
         {

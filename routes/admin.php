@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth']], function() {
 
             Route::resource('comments', App\Http\Controllers\Admin\CommentsController::class,['as' => 'admin']);
             Route::resource('reviews', App\Http\Controllers\Admin\ReviewsController::class,['as' => 'admin']);
+            Route::resource('coupons', App\Http\Controllers\Admin\CouponController::class,['as' => 'admin']);
             Route::resource('replies', App\Http\Controllers\Admin\ReplyController::class,['as' => 'admin']);
             Route::resource('batches', App\Http\Controllers\Admin\BatchController::class,['as' => 'admin']);
             Route::resource('batch-students', App\Http\Controllers\Admin\BatchStudentsController::class,['as' => 'admin']);

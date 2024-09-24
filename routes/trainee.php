@@ -5,6 +5,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::group(['prefix' => 'payments'], function(){
         Route::get('/', [App\Http\Controllers\PaymentController::class, 'index'])->name('payments');
         Route::get('perform', [App\Http\Controllers\PaymentController::class, 'store'])->name('payments.perform');
+
+        Route::post('coupon/apply', [App\Http\Controllers\PaymentController::class, 'show'])->name('payments.coupon.apply');
     });
     Route::middleware([App\Http\Middleware\EnsureUserIsTrainee::class])->group(function () {
         Route::get('/', [App\Http\Controllers\Trainee\DashboardController::class, 'index'])->name('trainee');

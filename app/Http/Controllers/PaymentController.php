@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Cookie, Auth};
-use App\Models\{Course, Payment};
+use App\Models\{Course, Payment, Coupon};
 
 class PaymentController extends Controller
 {
@@ -59,9 +59,19 @@ class PaymentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        $coupon = Coupon::where('code',$request->coupon)->first();
+        if(is_null($coupon)) {
+            return response()->json(['error' => 'Coupon code not found.'], 200);
+        }
+        if(!is_null($coupon->last_date)) {
+            return response()->json(['error' => 'Coupon code expired.'], 200);
+        }
+        if(!is_null($coupon->limit)) {
+            return response()->json(['error' => 'Coupon code exceeded.'], 200);
+        }
+        
     }
 
     /**
