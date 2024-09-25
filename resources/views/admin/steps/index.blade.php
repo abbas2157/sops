@@ -65,19 +65,19 @@
                                             <a class="dropdown-item"
                                                 href="{{ route('course.detail',['uuid'=> $step->uuid]) }}">
                                                 <img src="{{ asset('assets/img/eye.svg') }}" class="img-fluid me-1"
-                                                    style="width: 17%;" alt="" />
+                                                    style="width: 10%;" alt="" />
                                                 Step Detail
                                             </a>
                                             <a class="dropdown-item" href="{{ route('steps.edit', $step->id) }}">
                                                 <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1"
-                                                    style="    width: 17%;" alt="" />
+                                                    style="    width: 10%;" alt="" />
                                                 Edit Step
                                             </a>
                                             <form action="{{ route('steps.destroy', $step->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="dropdown-item">
-                                                    <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                                    <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                     Delete
                                                 </button>
                                             </form>

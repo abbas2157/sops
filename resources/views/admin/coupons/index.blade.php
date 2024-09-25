@@ -62,11 +62,11 @@
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
                                         {{-- <a class="dropdown-item" href="{{ route('courses.edit', $coupon->id) }}">
-                                            <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt="" />
+                                            <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 10%;" alt="" />
                                             Edit Course
                                         </a> --}}
                                         <a class="dropdown-item" href="javascript:;" onclick="$('#coupon_destroy').submit();">
-                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" />
+                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 10%;" alt="" />
                                             Delete Coupon
                                         </a>
                                         <form id="coupon_destroy" action="{{ route('admin.coupons.destroy',$coupon->id) }}" method="post">

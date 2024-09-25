@@ -115,20 +115,20 @@
                                                     <a class="dropdown-item"
                                                         href="{{ asset('trainer/cv/' . $train->trainer->curriculum_vitae) }}">
                                                         <img src="{{ asset('assets/img/eye.svg') }}" class="img-fluid me-1"
-                                                            style="width: 17%;" alt="" />
+                                                            style="width: 10%;" alt="" />
                                                         View CV
                                                     </a>
                                                 @endif
                                                 <a class="dropdown-item" href="{{ route('trainers.edit', $train->id) }}">
                                                     <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1"
-                                                        style="    width: 17%;" alt="" />
+                                                        style="    width: 10%;" alt="" />
                                                     Edit Trainer
                                                 </a>
                                                 <form action="{{ route('trainers.destroy', $train->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="dropdown-item">
-                                                        <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                                        <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                         Delete Trainer
                                                     </button>
                                                 </form>

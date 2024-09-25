@@ -69,4 +69,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Payment::class,'id','user_id')->where('status','Pending');
     }
+    public function coupon_payment()
+    {
+        return $this->belongsTo(Payment::class,'id','user_id')->where('status','Coupon');
+    }
 }

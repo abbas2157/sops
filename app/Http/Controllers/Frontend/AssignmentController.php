@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,Review,User,Course,Trainee,ModuleStep, Payment};
+use App\Models\{Assignment, Review, User, Course, Trainee, ModuleStep, JoinedCourse, Payment};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Mail\AssignmentSubmissionMail;
 use App\Jobs\AssignmentSubmissionMailJob;
@@ -63,6 +63,12 @@ class AssignmentController extends Controller
             $payment->course_id = $course->id;
             $payment->total_price = $course->price;
             $payment->save();
+
+            $joinedCourse = JoinedCourse::where('course_id', $course->id)->where('type','Intro')->where('status','Processing')->first();
+            if(!is_null($joinedCourse)) {
+                $joinedCourse->status = 'Completed';
+                $joinedCourse->save();
+            }
         }
         if($course->trainer->isNotEmpty()) {
             $trainer_name = $course->trainer[0]->full_name;

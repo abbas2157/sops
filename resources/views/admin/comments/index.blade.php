@@ -100,19 +100,19 @@
                                             </a>
                                             <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
                                                 <a class="dropdown-item" >
-                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" data-bs-target="#commentReply" data-bs-toggle="modal"/> Reply
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt="" data-bs-target="#commentReply" data-bs-toggle="modal"/> Reply
                                                 </a>
                                                 @if ($comment->show == '1')
                                                     <a class="dropdown-item" href="{{ route('admin.comments.show', $comment->id) }}?show=0">
-                                                        <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/> Hide
+                                                        <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/> Hide
                                                     </a>
                                                 @else
                                                     <a class="dropdown-item" href="{{ route('admin.comments.show', $comment->id) }}?show=1">
-                                                        <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/> Publish
+                                                        <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/> Publish
                                                     </a>
                                                 @endif
                                                 <a class="dropdown-item" href="javascript:;">
-                                                    <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" onclick="$('#comments_destroy').submit();" />
+                                                    <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 10%;" alt="" onclick="$('#comments_destroy').submit();" />
                                                     Delete comment
                                                 </a>
                                                 <form id="comments_destroy" action="{{ route('admin.comments.destroy', $comment->id) }}" method="post">

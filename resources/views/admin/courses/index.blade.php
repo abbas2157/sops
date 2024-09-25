@@ -60,31 +60,31 @@
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="{{ route('steps.create',['id' => $course->uuid]) }}">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             Create Module
                                         </a>
                                         <a class="dropdown-item" href="{{ route('admin.batches.index',['id' => $course->id]) }}">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             See Batches
                                         </a>
                                         <a class="dropdown-item" href="{{ route('admin.students',['uuid' => $course->uuid]) }}">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             Enroll Students
                                         </a>
                                         <a class="dropdown-item" href="{{ route('admin.comments.index',['id' => $course->id]) }}">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             See Comments
                                         </a>
                                         <a class="dropdown-item" href="{{ route('admin.reviews.index',['id' => $course->id]) }}">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                 See Reviews
                                         </a>
                                         <a class="dropdown-item" href="{{ route('courses.edit', $course->id) }}">
-                                            <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt="" />
+                                            <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 10%;" alt="" />
                                             Edit Course
                                         </a>
                                         <a class="dropdown-item" href="javascript:;">
-                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" onclick="$('#courses_destroy').submit();"/>
+                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 10%;" alt="" onclick="$('#courses_destroy').submit();"/>
                                             Delete Course
                                         </a>
                                         <form id="courses_destroy" action="{{ route('courses.destroy',$course->id) }}" method="post">

@@ -86,11 +86,11 @@
                                             </a>
                                             <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
                                                 <a class="dropdown-item" href="{{ route('admin.payments',$user->uuid) }}">
-                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 8%;" alt=""/>
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                     Payments
                                                 </a>
                                                 <a class="dropdown-item"href="javascript:;" onclick="document.getElementById('forgot_password').submit();">
-                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 8%;" alt=""/>
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                         Send Reset Password Mail
                                                 </a>
                                                 <form id="forgot_password" action="{{ route('admin.forgot-password.email') }}" method="post" style="display:none;">
@@ -99,7 +99,7 @@
                                                     <input type="hidden" name="email" value="{{ $user->email}}">
                                                 </form>
                                                 <a class="dropdown-item" href="javascript:;" onclick="document.getElementById('courses_destroy_{{ $user->id }}').submit();">
-                                                    <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="width: 8%;" alt="" />
+                                                    <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="width: 10%;" alt="" />
                                                     @if ($user->status == 'active')
                                                         BLOCK
                                                     @else

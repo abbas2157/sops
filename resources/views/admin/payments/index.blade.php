@@ -72,7 +72,7 @@
                                             @if ($payment->status == 'Pending')
                                             <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
                                                 <a class="dropdown-item" href="javascript:;" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-id="{{ $payment->id ?? '' }}">
-                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 8%;" alt=""/>
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                     Add Payment
                                                 </a>
                                             </div>
