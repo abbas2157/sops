@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,Review,User,Course,Trainee,ModuleStep};
+use App\Models\{Assignment,Review,User,Course,Trainee,ModuleStep, Payment};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Mail\AssignmentSubmissionMail;
 use App\Jobs\AssignmentSubmissionMailJob;
@@ -56,14 +56,28 @@ class AssignmentController extends Controller
         $course = Course::with('trainer')->where('id',$request->course_id)->first();
         $step = ModuleStep::where('id',$request->step_id)->first();
 
+        $last_step_id = ModuleStep::where('course_id',$request->course_id)->orderBy('id', 'desc')->value('id');
+        if($last_step_id == $request->step_id) {
+            $payment = new Payment;
+            $payment->user_id = Auth::user()->id;
+            $payment->course_id = $course->id;
+            $payment->total_price = $course->price;
+            $payment->save();
+        }
+        if($course->trainer->isNotEmpty()) {
+            $trainer_name = $course->trainer[0]->full_name;
+        }
+        else {
+            $trainer_name = 'No Trainer Assign';
+        }
         $data = array(
                 'type' => 'trainer',
                 'trainee' => Auth::user()->full_name,
-                'trainer' => (!is_null($course->trainer)) ? $course->trainer[0]->full_name : 'No Traier Assign',
+                'trainer' => $trainer_name ,
                 'course' => $course->name,
                 'step_no' => $step->steps_no,
                 'assignment' => $assignment->file);
-        if(!is_null($course->trainer))
+        if($course->trainer->isNotEmpty())
             AssignmentSubmissionMailJob::dispatch($course->trainer[0]->user->email, $data);
         $data['type'] = 'trainee';
         AssignmentSubmissionMailJob::dispatch(Auth::user()->email, $data);

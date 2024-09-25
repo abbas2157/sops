@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Cookie, Auth};
-use App\Models\{Course, Payment, Coupon, JoinedCourse};
+use App\Models\{Course, Payment, Coupon, JoinedCourse, Trainee};
 
 class PaymentController extends Controller
 {
