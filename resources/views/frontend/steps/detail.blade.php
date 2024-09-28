@@ -55,8 +55,8 @@
                                         @if(!is_null($intro->assignment))
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <h5 class="h5 m-0">Your Assignment for this Class</h5>
-                                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+                                                    <h5 class="h5">Your Assignment for this Class</h5>
+                                                    {{-- <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p> --}}
                                                 </div>
                                             </div>
                                             <div class="card shadow-sm px-3 py-3 mb-4">
@@ -86,8 +86,8 @@
                                         @if ($assignments->isNotEmpty())
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <h5 class="h5 m-0">Your Submitted Tasks</h5>
-                                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+                                                    <h5 class="h5 ">Your Submitted Tasks</h5>
+                                                    {{-- <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p> --}}
                                                 </div>
                                             </div>
                                         @endif
@@ -133,8 +133,8 @@
                                         @if (!$assignments->isNotEmpty())
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
-                                                    <h3 class="h3  m-0">Upload Your Task</h3>
-                                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+                                                    <h3 class="h3">Upload Your Task</h3>
+                                                    {{-- <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p> --}}
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="row">

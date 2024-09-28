@@ -74,6 +74,30 @@
     background: rgba(85, 171, 233, 1);
 }
 
+.login-btn {
+    background: #f4bf3f;
+    color: black !important;
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+.login-btn:hover {
+    background: #f4bf3f;
+    font-size: 19px;
+    font-weight: 500;
+}
+.coupon-btn {
+    background: #f4bf3f;
+    color: black !important;
+    font-family: "Nunito", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+.coupon-btn:hover {
+    background: #f4bf3f;
+    font-size: 14px;
+    font-weight: 500;
+}
 .save-btn:hover {
     background: #f4bf3f;
     color: black !important;
@@ -750,7 +774,7 @@ table {
     max-width: 420px;
     padding: 45px 20px;
     border-radius: 10px;
-    background: rgba(0, 0, 0, 0.3);
+    background: #916194;
 }
 
 .signup-input input {
