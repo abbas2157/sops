@@ -47,6 +47,9 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::get('{id}', [App\Http\Controllers\Admin\PaymentController::class, 'show'])->name('admin.payments');
                 Route::post('{id}/', [App\Http\Controllers\Admin\PaymentController::class, 'update'])->name('admin.payments.store');
             });
+            Route::group(['prefix' => 'financial-support'], function(){
+                Route::get('/', [App\Http\Controllers\Admin\FinancialSupportController::class, 'index'])->name('admin.financial-support');
+            });
         });
     });
 });

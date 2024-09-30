@@ -8,6 +8,10 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::post('coupon/apply', [App\Http\Controllers\PaymentController::class, 'show'])->name('payments.coupon.apply');
     });
+    Route::group(['prefix' => 'financial-support'], function(){
+        Route::get('{id}', [App\Http\Controllers\FinancialSupportController::class, 'show'])->name('financial-support');
+        Route::post('{id}/perform', [App\Http\Controllers\FinancialSupportController::class, 'update'])->name('financial-support.perform');
+    });
     Route::middleware([App\Http\Middleware\EnsureUserIsTrainee::class])->group(function () {
         Route::get('/', [App\Http\Controllers\Trainee\DashboardController::class, 'index'])->name('trainee');
         Route::group(['prefix' => 'course'], function(){

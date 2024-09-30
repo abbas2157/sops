@@ -6,29 +6,37 @@
         </a>
         <div class="navbar-nav">
             <a href="{{ route('admin') }}" class="nav-item nav-link {{ request()->is('admin') ? 'active' : '' }} text-center border-top">
-                <i class="bi bi-grid"></i>
+                <i class="bi bi-house-up-fill"></i>
                 <p class="pt-1 mb-0">Dashboard</p>
             </a>
             <div id="navbar-toggler" class="nav-item nav-link text-center {{ request()->is('admin/trainers*') ? 'active' : '' }}">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-person-vcard"></i>
                 <p class="pt-1 mb-0">Trainer</p>
             </div>
             <div id="navbar-toggler2" class="nav-item nav-link text-center {{ request()->is('admin/trainees*') ? 'active' : '' }}">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-person-vcard-fill"></i>
                 <p class="pt-1 mb-0">Trainee</p>
             </div>
             <a href="{{ route('courses.index') }}" class="nav-item nav-link {{ (request()->is('admin/courses*') || request()->is('admin/steps*') || request()->is('admin/students*')) ? 'active' : '' }} text-center border-top">
-                <i class="bi bi-file-earmark-text"></i>
+                <i class="bi bi-file-richtext-fill"></i>
                 <p class="pt-1 mb-0">Courses</p>
             </a>
             <div id="navbar-toggler3" class="nav-item nav-link text-center {{ (request()->is('admin/batches*') || request()->is('admin/batch-students*') || request()->is('admin/class-schedules*') || request()->is('admin/library*')) ? 'active' : '' }}">
-                <i class="bi bi-box-seam"></i>
+                <i class="bi bi-grid-fill"></i>
                 <p class="pt-1 mb-0">Batches</p>
             </div>
-            <div id="navbar-toggler4" class="nav-item nav-link text-center {{ (request()->is('admin/comments*') || request()->is('admin/reviews*') || request()->is('admin/coupons*')) ? 'active' : ''  }}">
+            <div id="navbar-toggler4" class="nav-item nav-link text-center {{ (request()->is('admin/comments*') || request()->is('admin/reviews*')) ? 'active' : ''  }}">
                 <i class="fa-solid fa-bars"></i>
                 <p class="pt-1 mb-0">Others</p>
             </div>
+            <a href="{{ route('admin.coupons.index') }}" class="nav-item nav-link {{ (request()->is('admin/coupons*')) ? 'active' : '' }} text-center border-top">
+                <i class="bi bi-gift"></i>
+                <p class="pt-1 mb-0">Coupon</p>
+            </a>
+            <a href="{{ route('admin.coupons.index') }}" class="nav-item nav-link {{ (request()->is('admin/financial-support*')) ? 'active' : '' }} text-center border-top">
+                <i class="bi bi-cash-coin"></i>
+                <p class="pt-1 mb-0">Financial Support</p>
+            </a>
         </div>
     </nav>
 </div>
@@ -85,11 +93,6 @@
             <li>
                 <a href="{{ route('admin.reviews.index') }}" class="text-decoration-none nav-item nav-link ">
                     <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />All Reviews
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.coupons.index') }}" class="text-decoration-none nav-item nav-link ">
-                    <img src="{{ asset('assets/img/menu.svg') }}" class="img-fluid me-2" alt="" />Coupons
                 </a>
             </li>
         </ul>

@@ -84,9 +84,11 @@
                                     <h3 class="m-0">Course Details</h3>
                                 </div>
                                 <hr />
-                                <div class="d-flex flex-column">
-                                    {{-- <a class="btn btn-outline-primary mt-2" href="{{ route('trainee.courses.join',['uuid'=> $course->uuid]) }}">Enroll Now</a> --}}
-                                </div>
+                                @if($complete && $payment && $support == 0)
+                                    <div class="d-flex flex-column">
+                                        <a class="btn btn-outline-primary mt-1" href="{{ route('financial-support', $course->uuid) }}">Financial Support</a>
+                                    </div>
+                                @endif
                                 <ul class="list-group list-group-flush pt-1">
                                     <li class="list-group-item d-flex align-items-center px-0">
                                         <i class="fa-regular fa-clock text-primary me-2"></i>
