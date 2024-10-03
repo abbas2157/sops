@@ -33,7 +33,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6 col-12 position-relative signup-img mt-5">
                         <div class="mt-5 ms-5 ps-5">
-                            <h1 style="font-size: 3rem; color: #4f3a72;">THE NEXT <br /> GENERATION <br /> OF LEARNING</h1>
+                            <h1 style="font-size: 3rem; color: #4f3a72;" class="typewriter">THE NEXT <br /> GENERATION <br /> OF LEARNING</h1>
                             <hr style="width: 30%; border : 2px solid #f4bf3f;    opacity: unset;"/>
                             <ul>
                                 <li>Build skills quicker with AI Assistance.</li>

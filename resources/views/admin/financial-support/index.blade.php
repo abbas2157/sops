@@ -35,6 +35,7 @@
                             <th class="text-secondary">Annual Income</th>
                             <th class="text-secondary">Can Pay</th>
                             <th class="text-secondary">Applied Date</th>
+                            <th class="text-secondary">Status</th>
                             <th class="text-secondary">Payment Status</th>
                             <th class="text-secondary">Actions</th>
                         </tr>
@@ -52,6 +53,16 @@
                                     <td class="align-middle">{{ $support->currency ?? '' }} {{ $support->annual_income ?? '' }}</td>
                                     <td class="align-middle">{{ $support->currency ?? '' }} {{ $support->amount_you_can_pay ?? '' }}</td>
                                     <td class="align-middle">{{ $support->created_at->format('M d, Y') ?? '' }}</td>
+                                    
+                                    <td class="align-middle">
+                                        @if ($support->status == 'Pending')
+                                            <span class="badges yellow-border text-center">Pending</span>
+                                        @elseif ($support->status == 'Accepted')
+                                            <span class="badges green-border text-center">Accepted</span>
+                                        @else
+                                            <span class="badges red-border text-center">Desclined</span>
+                                        @endif
+                                    </td>
                                     <td class="align-middle">
                                         @if (!is_null($support->user->pending_payment))
                                             <span class="badges yellow-border text-center">Pending</span>

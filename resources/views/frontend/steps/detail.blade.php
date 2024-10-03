@@ -15,22 +15,18 @@
                 </div>
             </div>
         </div>
-        <!-- end section --><!-- section -->
         <section class="bg-gray-100 section pt-0">
             <div class="container">
                 <div class="row flex-row-reverse gy-4">
-                    <!-- Sidebar -->
-                    <!-- End Sidebar --><!-- Tabbar -->
                     <div class="col-lg-12">
                         <div class="course-detail-tab bg-white shadow-sm rounded border border-gray-100">
                             <ul class="nav nav-tabs course-nav-tabs" id="course_detail_tab" role="tablist">
                                 <li class="nav-item" role="presentation"><button class="nav-link active" id="overview-tab"
                                         data-bs-toggle="tab" data-bs-target="#overview-tab-pane" type="button"
-                                        role="tab" aria-controls="overview-tab-pane" aria-selected="true">Overview &
-                                        Video</button></li>
+                                        role="tab" aria-controls="overview-tab-pane" aria-selected="true">Details</button></li>
+                                <li class="nav-item" role="presentation"><a class="nav-link" href="{{ route('course',['uuid' => $course->uuid, 'type' => 1]) }}"><i class="fa-solid fa-arrow-left-to-arc text-primary me-2"></i> Go Back</a></li>
                             </ul>
                             <div class="tab-content" id="course_detail_tabContent">
-                                <!-- Tab 1 -->
                                 <div class="tab-pane fade show active" id="overview-tab-pane" role="tabpanel" aria-labelledby="overview-tab" tabindex="0">
                                     @if(!is_null($intro->video))
                                         <div class="row mt-3 mb-4">

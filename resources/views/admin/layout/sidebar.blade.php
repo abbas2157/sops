@@ -33,7 +33,7 @@
                 <i class="bi bi-gift"></i>
                 <p class="pt-1 mb-0">Coupon</p>
             </a>
-            <a href="{{ route('admin.coupons.index') }}" class="nav-item nav-link {{ (request()->is('admin/financial-support*')) ? 'active' : '' }} text-center border-top">
+            <a href="{{ route('admin.financial-support') }}" class="nav-item nav-link {{ (request()->is('admin/financial-support*')) ? 'active' : '' }} text-center border-top">
                 <i class="bi bi-cash-coin"></i>
                 <p class="pt-1 mb-0">Financial Support</p>
             </a>

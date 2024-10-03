@@ -26,8 +26,36 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group fw-bold">
-                                        <label for="exampleFormControlSelect3">Total Lectures <span class="text-danger">*</span></label>
+                                        <label for="exampleFormControlSelect3">Total Modules <span class="text-danger">*</span></label>
                                         <input type="text" name="lectures" class="form-control subheading mt-2"  placeholder="Total Lectures" id="exampleFormControlSelect3" value="{{ $course->lectures ?? '' }}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <div class="form-group fw-bold">
+                                        <label for="interactive_sessions">Interactive Sessions <span class="text-danger">*</span></label>
+                                        <input type="text" name="interactive_sessions" class="form-control subheading mt-2" placeholder="10" id="interactive_sessions" value="{{ $course->interactive_sessions ?? '' }}"  />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group fw-bold">
+                                        <label for="intro_module">Intro Module <span class="text-danger">*</span></label>
+                                        <input type="text" name="intro_module" class="form-control subheading mt-2"  placeholder="Self-paced" id="intro_module" value="{{ $course->intro_module ?? '' }}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <div class="form-group fw-bold">
+                                        <label for="fundamentals_module">Fundamentals Module <span class="text-danger">*</span></label>
+                                        <input type="text" name="fundamentals_module" class="form-control subheading mt-2" placeholder="Zoom-based" id="fundamentals_module" value="{{ $course->fundamentals_module ?? '' }}" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group fw-bold">
+                                        <label for="full_skill_development">Full Skill Development Module <span class="text-danger">*</span></label>
+                                        <input type="text" name="full_skill_development" class="form-control subheading mt-2"  placeholder="Zoom-based" id="full_skill_development" value="{{ $course->full_skill_development ?? '' }}" />
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +64,7 @@
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect1">Skill Level <span class="text-danger">*</span></label>
                                         <select class="form-control form-select subheading mt-2" aria-label="Default select example" id="exampleFormControlSelect1" name="skill_level">
-                                            <option {{ $course->skill_level == 'Beginner' ?? '' }}>Beginner</option>
+                                            <option {{ $course->skill_level == 'Introductory' ?? '' }}>Introductory</option>
                                             <option {{ $course->skill_level == 'Advanced' ?? '' }}>Advanced</option>
                                             <option {{ $course->skill_level == 'Expert' ?? '' }}>Expert</option>
                                         </select>
@@ -60,10 +88,9 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <div class="form-group fw-bold">
-                                        <label for="duration">Duration <span class="text-danger">*</span></label>
+                                        <label for="duration">Total Duration <span class="text-danger">*</span></label>
                                         <input type="text" name="duration" class="form-control subheading mt-2"
                                             id="duration" value="{{ $course->duration ?? '' }}" />
                                     </div>

@@ -19,7 +19,7 @@
     <section class="bg-gray-100 py-6">
         <div class="container">
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <h1 class="mb-4 h2 text-center text-lg-start">Your steps</h1>
                     @if($intros->isNotEmpty())
                         @php $next = 0; $i = 1; @endphp
@@ -76,7 +76,7 @@
                         </tr>
                     @endif
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="">
                         <div class="card shadow">
                             <div class="card-body">
@@ -91,24 +91,39 @@
                                 @endif
                                 <ul class="list-group list-group-flush pt-1">
                                     <li class="list-group-item d-flex align-items-center px-0">
-                                        <i class="fa-regular fa-clock text-primary me-2"></i>
-                                        <h6 class="m-0">Duration</h6>
-                                        <span class="fs-sm ms-auto">{{ $course->duration ?? '0 Months' }}</span>
-                                    </li>
-                                    <li class="list-group-item d-flex align-items-center px-0">
-                                        <i class="fa-solid fa-book text-primary me-2"></i>
-                                        <h6 class="m-0">Lectures</h6>
+                                        <i class="fa-solid fa-cubes text-primary me-2"></i>
+                                        <h6 class="m-0">Total Modules</h6>
                                         <span class="fs-sm ms-auto">{{ $course->lectures ?? '0' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center px-0">
-                                        <i class="fa-solid fa-sliders text-primary me-2"></i>
-                                        <h6 class="m-0">Skill level</h6>
-                                        <span class="fs-sm ms-auto">{{ $course->skill_level ?? 'No Level' }}</span>
+                                        <i class="fa-solid fa-business-time text-primary me-2"></i>
+                                        <h6 class="m-0">Total Duration</h6>
+                                        <span class="fs-sm ms-auto">{{ $course->duration ?? '0 Months' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center px-0">
-                                        <i class="fa-solid fa-users text-primary me-2"></i>
-                                        <h6 class="m-0">Enrolled</h6>
-                                        <span class="fs-sm ms-auto">0 Stud.</span>
+                                        <i class="fa-solid fa-network-wired text-primary me-2"></i>
+                                        <h6 class="m-0">Intro Module</h6>
+                                        <span class="fs-sm ms-auto">{{ $course->intro_module ?? '0 Months' }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center px-0">
+                                        <i class="fa-solid fa-code-compare text-primary me-2"></i>
+                                        <h6 class="m-0">Fundamentals</h6>
+                                        <span class="fs-sm ms-auto">{{ $course->fundamentals_module ?? '0 Months' }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center px-0">
+                                        <i class="fa-solid fa-code text-primary me-2"></i>
+                                        <h6 class="m-0">Full Skill Development</h6>
+                                        <span class="fs-sm ms-auto">{{ $course->full_skill_development ?? '0 Months' }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center px-0">
+                                        <i class="fa-solid fa-face-meh text-primary me-2"></i>
+                                        <h6 class="m-0">Interactive Sessions</h6>
+                                        <span class="fs-sm ms-auto">{{ $course->interactive_sessions ?? '0' }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center px-0">
+                                        <i class="fa-solid fa-database text-primary me-2"></i>
+                                        <h6 class="m-0">Skill level</h6>
+                                        <span class="fs-sm ms-auto">{{ $course->skill_level ?? 'No Level' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex align-items-center px-0">
                                     <i class="fa-solid fa-microphone-lines text-primary me-2"></i>

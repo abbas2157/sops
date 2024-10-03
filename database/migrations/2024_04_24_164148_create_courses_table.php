@@ -24,6 +24,10 @@ return new class extends Migration
             $table->string('duration')->nullable();
             $table->string('lectures')->nullable();
             $table->string('skill_level')->nullable();
+            $table->string('intro_module')->nullable();
+            $table->string('fundamentals_module')->nullable();
+            $table->string('full_skill_development')->nullable();
+            $table->string('interactive_sessions')->nullable();
             $table->string('language')->nullable();
             $table->string('certificate')->nullable();
             $table->integer('created_by');
