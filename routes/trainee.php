@@ -33,14 +33,21 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::get('/', [App\Http\Controllers\Trainee\CourseController::class, 'index'])->name('trainee.courses');
                 Route::get('join', [App\Http\Controllers\Trainee\CourseController::class, 'create'])->name('trainee.courses.join');
                 Route::get('show', [App\Http\Controllers\Trainee\CourseController::class, 'show'])->name('trainee.courses.show');
+                Route::get('move/{id}', [App\Http\Controllers\Trainee\CourseController::class, 'move'])->name('trainee.courses.move');
+                Route::post('move/perform', [App\Http\Controllers\Trainee\CourseController::class, 'move_perform'])->name('trainee.courses.move.perform');
             });
             Route::group(['prefix' => 'library'], function(){
                 Route::get('/', [App\Http\Controllers\Trainee\LibraryController::class, 'index'])->name('trainee.library');
             });
+            
             Route::group(['prefix' => 'tasks'], function(){
                 Route::get('/', [App\Http\Controllers\Trainee\TaskController::class, 'index'])->name('trainee.tasks');
                 Route::get('{id}', [App\Http\Controllers\Trainee\TaskController::class, 'show'])->name('trainee.tasks.show');
                 Route::post('response', [App\Http\Controllers\Trainee\TaskController::class, 'store'])->name('trainee.tasks.response');
+            });
+
+            Route::group(['prefix' => 'reports'], function(){
+                Route::get('/', [App\Http\Controllers\Trainee\LibraryController::class, 'index'])->name('trainee.reports');
             });
         });
     });

@@ -13,6 +13,10 @@
                 <i class="bi bi-file-richtext-fill"></i>
                 <p class="pt-1 mb-0">Courses</p>
             </a>
+            <a href="{{ route('trainee.reports') }}" class="nav-item nav-link {{ request()->is('trainee/reports*') ? 'active' : '' }} text-center border-top">
+                <i class="bi bi-file-bar-graph-fill"></i>
+                <p class="pt-1 mb-0">Reports</p>
+            </a>
         </div>
     </nav>
 </div>
