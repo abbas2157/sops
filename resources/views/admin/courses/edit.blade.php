@@ -101,7 +101,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect1">Short Description </label>
-                                        <textarea style="display:none" id="description" name="description"></textarea>
+                                        <textarea style="display:none" id="description" name="description">{!! $course->description ?? '' !!}</textarea>
                                         <div id="editor" style="height: 250px">{!! $course->description ?? '' !!}</div>
                                     </div>
                                 </div>
