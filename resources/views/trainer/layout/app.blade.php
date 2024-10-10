@@ -20,6 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Template Stylesheet -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('toast/css/jquery.toast.css') }}">
     @yield('css')
   </head>
 
@@ -141,6 +142,37 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <!-- Template Javascript -->
     <script src="{{ asset('assets/js/trainee-main.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('toast/js/jquery.toast.js') }}"></script>
     @yield('js')
+    <script>
+      @if ($errors->has('success'))
+          $.toast({
+              position: 'top-right',
+              heading: 'Note !',
+              text: "{{ $errors->first('success') }}",
+              icon: 'info',
+              loader: true,
+              loaderBg: '#916194',
+              showHideTransition: 'fade',
+              allowToastClose: true,
+              hideAfter: 8000,
+              stack: 5,
+          });
+      @endif
+      @if ($errors->has('error'))
+          $.toast({
+              position: 'top-right',
+              heading: 'Note !',
+              text: "{{ $errors->first('error') }}",
+              icon: 'warning',
+              loader: true,
+              loaderBg: '#f4bf3f',
+              showHideTransition: 'fade',
+              allowToastClose: true,
+              hideAfter: 3000,
+              stack: 5,
+          });
+      @endif
+  </script>
   </body>
 </html>

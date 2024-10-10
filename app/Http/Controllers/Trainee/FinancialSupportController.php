@@ -1,26 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Trainer;
+namespace App\Http\Controllers\Trainee;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,JoinedCourse, TaskResponse};
-use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
+use App\Models\{User,Course,Payment, FinancialSupport};
+use Illuminate\Support\Facades\{Auth, Hash, Mail, DB, Cookie};
 
-class DashboardController extends Controller
+class FinancialSupportController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $course_id = Auth::user()->trainer->course_id;
-        $courses = Course::where('id',$course_id)->count();
-        $students = JoinedCourse::where('course_id',$course_id)->where('is_move',0)->count();
-        $assignments = Assignment::with('user','step','course')->where('is_move',0)->where('status','Pending')->orderBy('id','DESC')->where('course_id',$course_id)->limit(5)->get();
-        $tasks = TaskResponse::with('batch','course','class','task','user')->where('status','Pending')->where('course_id',$course_id)->orderBy('id','DESC')->get();
-        // dd($tasks->toArray());
-        return view('trainer.index',compact('courses','students','assignments','tasks'));
+        $supports = FinancialSupport::orderBy('id','desc')->where('user_id',Auth::user()->id)->get();
+        return view('trainee.financial-support.index',compact('supports'));
     }
 
     /**

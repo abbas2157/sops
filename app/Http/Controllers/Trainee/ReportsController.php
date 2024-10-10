@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Trainee;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\{Assignment, User, Course, Trainee, TaskResponse, Remark};
+use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 
 class ReportsController extends Controller
 {
@@ -12,7 +14,7 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

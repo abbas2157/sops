@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('joined_courses', function (Blueprint $table) {
+        Schema::create('user_course_change_histories', function (Blueprint $table) {
             $table->id();
-            $table->integer('course_id');
-            $table->integer('user_id');
-            $table->integer('trainee_id');
-            $table->enum('type',['Intro','Fundamental','Full Skill'])->nullable();
-            $table->enum('status',['Processing','Completed'])->nullable();
-            $table->integer('is_move')->default(0);
+            $table->integer('user_id')->nullable();
+            $table->integer('from_course_id')->nullable();
+            $table->integer('to_course_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('joined_courses');
+        Schema::dropIfExists('user_course_change_histories');
     }
 };

@@ -46,9 +46,14 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::post('response', [App\Http\Controllers\Trainee\TaskController::class, 'store'])->name('trainee.tasks.response');
             });
 
-            Route::group(['prefix' => 'reports'], function(){
-                Route::get('/', [App\Http\Controllers\Trainee\LibraryController::class, 'index'])->name('trainee.reports');
+            Route::group(['prefix' => 'financial-support'], function(){
+                Route::get('/', [App\Http\Controllers\Trainee\FinancialSupportController::class, 'index'])->name('trainee.financial-support');
             });
+
+            Route::group(['prefix' => 'reports'], function(){
+                Route::get('/', [App\Http\Controllers\Trainee\ReportsController::class, 'index'])->name('trainee.reports');
+            });
+            
         });
     });
 });

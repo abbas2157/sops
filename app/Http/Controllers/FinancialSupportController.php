@@ -58,7 +58,8 @@ class FinancialSupportController extends Controller
     {
         $course = Course::where('uuid',$id)->first();
         if(is_null($course)) {
-            return back()->with('error', 'Course not found.');
+            $validator['error'] = 'Course not found.';
+            return back()->withErrors($validator);
         }
         try {
             DB::beginTransaction();
@@ -70,24 +71,20 @@ class FinancialSupportController extends Controller
             $support->employee_status = $request->employee_status;
             $support->financial_aid = $request->financial_aid;
             $support->amount_you_can_pay = $request->amount_you_can_pay;
+            $support->amount_must_pay = $request->amount_must_pay;
             $support->your_goals = $request->your_goals;
             $support->course_id = $course->id;
             $support->user_id = Auth::user()->id;
             $support->save();
 
-            $payment = new Payment;
-            $payment->user_id = Auth::user()->id;
-            $payment->course_id = $course->id;
-            $payment->total_price = $request->amount_you_can_pay;
-            $payment->save();
-
             DB::commit();
-            return redirect('trainee')->with('success', 'Your request has been sent.');
+            $validator['success'] = 'Your request has been sent.';
+            return redirect('trainee')->withErrors($validator);
         } 
         catch (\Exception $e) {
             DB::rollBack();
-            dd($e->getMessage());
-            return back()->with('error', $e->getMessage());
+            $validator['success'] = $e->getMessage();
+            return back()->withErrors($validator);
         }
     }
 

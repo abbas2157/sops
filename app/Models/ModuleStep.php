@@ -20,6 +20,6 @@ class ModuleStep extends Model
     }
     public function trainee_assignment()
     {
-        return $this->belongsTo(Assignment::class,'id','step_id')->where('user_id',Auth::user()->id);
+        return $this->belongsTo(Assignment::class,'id','step_id')->where('is_move',0)->where('user_id',Auth::user()->id);
     }
 }

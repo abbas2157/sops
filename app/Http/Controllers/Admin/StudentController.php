@@ -21,7 +21,7 @@ class StudentController extends Controller
         if(is_null($course))
             abort(404);
 
-        $students = JoinedCourse::with('user','trainee')->where('course_id',$course->id)->get();
+        $students = JoinedCourse::with('user','trainee')->where('course_id',$course->id)->where('is_move',0)->get();
         return view('admin.courses.students.index',compact('students','course'));
     }
 
@@ -60,7 +60,7 @@ class StudentController extends Controller
         if(is_null($user))
             abort(404);
         
-        $steps = Assignment::with('step')->where('user_id',$request->id)->where('course_id',$course->id)->get();
+        $steps = Assignment::with('step')->where('is_move',0)->where('user_id',$request->id)->where('course_id',$course->id)->get();
         // dd($steps->toArray());
         return view('admin.courses.students.steps',compact('steps','course','user'));
     }

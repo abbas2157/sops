@@ -21,12 +21,12 @@ class StepController extends Controller
         if(is_null($course))
             abort(404);
 
-        $joined = JoinedCourse::where(['course_id' => $course->id, 'user_id' => Auth::user()->id])->first(); 
+        $joined = JoinedCourse::where(['course_id' => $course->id, 'user_id' => Auth::user()->id])->where('is_move',0)->first(); 
         if(is_null($joined)) {
             return redirect('trainee');
         }
         $intros = ModuleStep::where('course_id',$course->id)->with('createdby')->withCount('trainee_assignment')->get();
-        $complete = JoinedCourse::where(['course_id' => $course->id, 'user_id' => Auth::user()->id, 'status' => 'Completed'])->count();
+        $complete = JoinedCourse::where(['course_id' => $course->id, 'user_id' => Auth::user()->id, 'status' => 'Completed'])->where('is_move',0)->count();
         $payment = Payment::where(['course_id' => $course->id, 'user_id' => Auth::user()->id, 'status' => 'Coupon'])->count();
         $support = FinancialSupport::where(['course_id' => $course->id, 'user_id' => Auth::user()->id])->count();
         return view('frontend.steps.index',compact('intros','course','support','complete','payment'));
@@ -63,13 +63,13 @@ class StepController extends Controller
         $course = Course::where('id',$intro->course_id)->first();
         if(is_null($course))
             abort(404);
-        $joined = JoinedCourse::where(['course_id' => $course->id, 'user_id' => Auth::user()->id])->first(); 
+        $joined = JoinedCourse::where(['course_id' => $course->id, 'user_id' => Auth::user()->id])->where('is_move',0)->first(); 
         if(is_null($joined))
             return redirect('trainee');
 
         $reviews = Review::where('course_id',$intro->course_id)->get();
         $comments = Comment::with('replies')->where('step_id',$intro->id)->where('show','1')->get();
-        $assignments = Assignment::where('course_id',$intro->course_id)->where('step_id',$intro->id)->where('user_id',Auth::user()->id)->get();
+        $assignments = Assignment::where('course_id',$intro->course_id)->where('step_id',$intro->id)->where('is_move',0)->where('user_id',Auth::user()->id)->get();
         // dd($assignments->toArray());
         return view('frontend.steps.detail',compact('intro','course','reviews','assignments','comments'));
     }

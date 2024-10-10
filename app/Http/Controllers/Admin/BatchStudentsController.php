@@ -18,7 +18,7 @@ class BatchStudentsController extends Controller
     public function index()
     {
         $batch = Batch::findOrFail(request()->id);
-        $students = JoinedCourse::where('type','intro')->where('course_id',$batch->course_id)->pluck('user_id');
+        $students = JoinedCourse::where('type','intro')->where('course_id',$batch->course_id)->where('is_move',0)->pluck('user_id');
         if(!is_null($students))
         {
             $students = $students->toArray();

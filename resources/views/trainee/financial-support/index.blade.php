@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('trainee.layout.app')
 @section('title')
     <title>Financial Support | SOPS - School of Professional Skills</title>
 @stop
@@ -34,9 +34,9 @@
                             <th class="text-secondary">Empoyee Status</th>
                             <th class="text-secondary">Annual Income</th>
                             <th class="text-secondary">Can Pay</th>
+                            <th class="text-secondary">Must Pay</th>
                             <th class="text-secondary">Applied Date</th>
                             <th class="text-secondary">Status</th>
-                            <th class="text-secondary">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +51,7 @@
                                     <td class="align-middle">{{ $support->employee_status ?? '' }}</td>
                                     <td class="align-middle">{{ $support->currency ?? '' }} {{ $support->annual_income ?? '' }}</td>
                                     <td class="align-middle">{{ $support->currency ?? '' }} {{ $support->amount_you_can_pay ?? '' }}</td>
+                                    <td class="align-middle">{{ $support->currency ?? '' }} {{ $support->amount_must_pay ?? '' }}</td>
                                     <td class="align-middle">{{ $support->created_at->format('M d, Y') ?? '' }}</td>
                                     <td class="align-middle">
                                         @if ($support->status == 'Pending')
@@ -60,25 +61,6 @@
                                         @else
                                             <span class="badges red-border text-center">Desclined</span>
                                         @endif
-                                    </td>
-                                    <td class="align-middle">
-                                        <div>
-                                            <a class="btn btn-secondary bg-transparent border-0 text-dark" role="button"
-                                                id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
-                                                <i class="fa-solid fa-ellipsis-v"></i>
-                                            </a>
-                                            <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="{{ route('admin.payments',$support->user->uuid) }}">
-                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
-                                                    Payments
-                                                </a>
-                                                <a class="dropdown-item" href="{{ route('admin.financial-support.show',$support->id) }}">
-                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
-                                                    Make Decision
-                                                </a>
-                                            </div>
-                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -93,7 +75,6 @@
                 </table>
             </div>
         </div>
-        {!! $supports->withQueryString()->links('pagination::bootstrap-5') !!}
     </div>
 @stop
 @section('js')

@@ -27,12 +27,23 @@
                             <div class="row mt-5 mb-3">
                                 <div class="col-md-12">
                                     <a class="text-decoration-none ps-3" target="_blank" href="{{ $course->detail_url ?? '' }}">View Detail</a>
-                                    <a class="text-decoration-none ps-3" onclick="$('#move_course').submit();" href="javascript:;">Move To</a>
-                                    <form id="move_course" action="{{ route('trainee.courses.move.perform') }}" method="post">
-                                        @csrf
-                                        <input type="hidden" value="{{ $from_course->id ?? '' }}" name="from">
-                                        <input type="hidden" value="{{ $course->id ?? '' }}" name="to">
-                                    </form>
+                                    @if(in_array($course->id, $left_course_ids))
+                                        <a class="text-decoration-none ps-3" onclick="$('#move_course').submit();" href="javascript:;">Move Back</a>
+                                        <form id="move_course" action="{{ route('trainee.courses.move.perform') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" value="{{ $from_course->id ?? '' }}" name="from">
+                                            <input type="hidden" value="{{ $course->id ?? '' }}" name="to">
+                                            <input type="hidden" value="move_back" name="type">
+                                        </form>
+                                    @else
+                                        <a class="text-decoration-none ps-3" onclick="$('#move_course').submit();" href="javascript:;">Move To</a>
+                                        <form id="move_course" action="{{ route('trainee.courses.move.perform') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" value="{{ $from_course->id ?? '' }}" name="from">
+                                            <input type="hidden" value="{{ $course->id ?? '' }}" name="to">
+                                        </form>
+                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>

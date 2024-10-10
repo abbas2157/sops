@@ -92,7 +92,7 @@ class ProfileController extends Controller
         }
         $trainee->save();
 
-        $join = JoinedCourse::where('trainee_id',NULL)->where('user_id',$trainee->user_id)->first();
+        $join = JoinedCourse::where('trainee_id',NULL)->where('user_id',$trainee->user_id)->where('is_move',0)->first();
         if(!is_null($join)) {
             $join->trainee_id = $trainee->id;
             $join->save();

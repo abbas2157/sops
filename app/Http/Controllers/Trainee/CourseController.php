@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Trainee;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment, User,Course,Trainee,ModuleStep,Trainer,JoinedCourse,ClassSchedule,Task, Library,Batch,BatchStudent};
+use App\Models\{Assignment, User, Course, Trainee, ModuleStep, Trainer, JoinedCourse};
+use App\Models\{ClassSchedule, Task, Library, Batch, BatchStudent, UserCourseChangeHistory};
 use Illuminate\Support\Facades\{Auth, Hash, Mail, DB, Cookie};
 
 class CourseController extends Controller
@@ -14,7 +15,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->get();
+        $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->where('is_move',0)->get();
         $joined_array= [];
         foreach ($my_courses as $course) {
             $BatchStudent = BatchStudent::with('batch')->where(['course_id' => $course->course_id, 'user_id' => Auth::user()->id])->first();
@@ -33,6 +34,7 @@ class CourseController extends Controller
             }
             $joined_array[] = $course->course_id;
         }
+        
         $courses = Course::with('createdby')->whereNotIn('id',$joined_array)->where('list',1)->get();
         return view('trainee.courses.index',compact('courses','my_courses'));
     }
@@ -138,19 +140,29 @@ class CourseController extends Controller
         if(is_null($from_course)) {
             abort(404);
         }
-        $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->get();
+        $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->where('is_move',0)->get();
         $joined_array= [];
         foreach ($my_courses as $course) {
             $joined_array[] = $course->course_id;
         }
+        $left_courses = JoinedCourse::where('user_id',Auth::user()->id)->where('is_move',1)->pluck('course_id');
+        $left_course_ids = array();
+        if($left_courses->isNotEmpty()) {
+            $left_course_ids = $left_courses->toArray();
+        }
         $courses = Course::with('createdby')->whereNotIn('id',$joined_array)->where('list',1)->get();
-        return view('trainee.courses.move',compact('courses','from_course'));
+        return view('trainee.courses.move',compact('courses','from_course','left_course_ids'));
     }
 
     public function move_perform(Request $request)
     {
         $from = $request->from;
         $to = $request->to;
+        $user_course_count = UserCourseChangeHistory::where('user_id', Auth::user()->id)->count();
+        if($user_course_count >= 3) {
+            $validator['success'] = 'Your Course limit exceeds.';
+            return redirect()->route('trainee.courses')->withErrors($validator);
+        }
         $from_course = Course::where('id',$from)->first();
         if(is_null($from_course)) {
             abort(404);
@@ -159,22 +171,45 @@ class CourseController extends Controller
         if(is_null($to_course)) {
             abort(404);
         }
-        $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->where('course_id',$from)->where('status','Processing')->first();
-
+        if($request->has('type') && $request->type == 'move_back') {
+            $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->where('course_id',$to)->where('status','Processing')->where('is_move',1)->first();
+        }
+        else {
+            $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->where('course_id',$from)->where('status','Processing')->where('is_move',0)->first();
+        }
         if(!is_null($my_courses)) {
-            $assignments = Assignment::where('user_id',Auth::user()->id)->where('course_id',$from)->delete();
-            $my_courses->delete();
-            $join = new JoinedCourse;
-            $join->course_id = $to;
-            $join->user_id = Auth::user()->id;
-            $join->trainee_id = Auth::user()->trainee->id;
-            $join->type = 'Intro';
-            $join->status = 'Processing';
-            $join->save();
+            if($request->has('type') && $request->type == 'move_back') {
+                $assignments = Assignment::where('user_id',Auth::user()->id)->where('course_id',$from)->where('is_move',1)->update(array('is_move' => 0));
+                $my_courses->is_move = 0;
+                $my_courses->save();
+
+                $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->where('course_id',$from)->where('status','Processing')->where('is_move',0)->first();
+                $my_courses->is_move = 1;
+                $my_courses->save();
+            }
+            else {
+                $assignments = Assignment::where('user_id',Auth::user()->id)->where('course_id',$from)->where('is_move',0)->update(array('is_move' => 1));
+                $my_courses->is_move = 1;
+                $my_courses->save();
+
+                $join = new JoinedCourse;
+                $join->course_id = $to;
+                $join->user_id = Auth::user()->id;
+                $join->trainee_id = Auth::user()->trainee->id;
+                $join->type = 'Intro';
+                $join->status = 'Processing';
+                $join->save();
+            }
+            $user_course_count = new UserCourseChangeHistory;
+            $user_course_count->user_id = Auth::user()->id;
+            $user_course_count->from_course_id = $from;
+            $user_course_count->to_course_id = $to;
+            $user_course_count->save();
+
             $validator['success'] = 'Course Swapped Successfully.';
             return redirect()->route('trainee.courses')->withErrors($validator);
         }
-        $validator['error'] = 'This course cannot b swapped because you passed intro module.';
+        $validator['error'] = 'This course cannot be swapped because you passed intro module.';
         return back()->withErrors($validator);
     }
     /**

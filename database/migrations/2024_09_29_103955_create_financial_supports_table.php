@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('financial_aid')->nullable();
 
             $table->string('amount_you_can_pay')->nullable();
+            $table->string('amount_must_pay')->nullable();
             $table->string('your_goals')->nullable();
 
             $table->enum('status',['Pending','Accepted','Declined'])->default('Pending');

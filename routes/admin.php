@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth']], function() {
             });
             Route::group(['prefix' => 'financial-support'], function(){
                 Route::get('/', [App\Http\Controllers\Admin\FinancialSupportController::class, 'index'])->name('admin.financial-support');
+                Route::get('{id}/show', [App\Http\Controllers\Admin\FinancialSupportController::class, 'show'])->name('admin.financial-support.show');
+                Route::post('{id}/update', [App\Http\Controllers\Admin\FinancialSupportController::class, 'update'])->name('admin.financial-support.update');
             });
         });
     });

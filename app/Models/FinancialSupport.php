@@ -15,6 +15,6 @@ class FinancialSupport extends Model
     }
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id','id')->select('id','uuid','name','last_name','email','phone')->with('pending_payment');
+        return $this->belongsTo(User::class,'user_id','id')->select('id','uuid','name','last_name','email','phone');
     }
 }
