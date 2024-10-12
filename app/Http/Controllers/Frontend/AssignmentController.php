@@ -82,7 +82,9 @@ class AssignmentController extends Controller
                 'trainer' => $trainer_name ,
                 'course' => $course->name,
                 'step_no' => $step->steps_no,
-                'assignment' => $assignment->file);
+                'assignment' => $assignment->file,
+                'status' => $joinedCourse->status
+            );
         if($course->trainer->isNotEmpty())
             AssignmentSubmissionMailJob::dispatch($course->trainer[0]->user->email, $data);
         $data['type'] = 'trainee';

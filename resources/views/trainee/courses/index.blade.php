@@ -42,7 +42,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="badgecs">PKR {{ $course->price ?? '00' }}</div>
-                                                    <img src="{{ asset('assets/img/course-bg.png') }}" class="course-img">
+                                                    <img src="{{ asset('images/courses/'.$course->image) }}" class="course-img">
                                                     <img src="{{ asset('assets/img/logo.png') }}" class="logo-place">
                                                 </div>
                                             </div>
@@ -75,7 +75,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="badgecs">PKR {{ $my->course->price ?? '00' }}</div>
-                                                    <img src="{{ asset('assets/img/course-bg.png') }}" class="course-img">
+                                                    <img src="{{ asset('images/courses/'.$course->image) }}" class="course-img">
                                                     <img src="{{ asset('assets/img/logo.png') }}" class="logo-place">
                                                 </div>
                                             </div>
