@@ -64,7 +64,7 @@ class AssignmentController extends Controller
             $payment->total_price = $course->price;
             $payment->save();
 
-            $joinedCourse = JoinedCourse::where('course_id', $course->id)->where('is_move',0)->where('type','Intro')->where('status','Processing')->first();
+            $joinedCourse = JoinedCourse::where('course_id', $course->id)->where('user_id', Auth::user()->id)->where('is_move',0)->where('type','Intro')->where('status','Processing')->first();
             if(!is_null($joinedCourse)) {
                 $joinedCourse->status = 'Completed';
                 $joinedCourse->save();
