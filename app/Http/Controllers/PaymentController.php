@@ -45,20 +45,20 @@ class PaymentController extends Controller
             if($request->has('coupon') && !empty($request->coupon)) {
                 $coupon = Coupon::where('code',$request->coupon)->first();
 
-                
+                $join = JoinedCourse::where(['course_id' => $course->id, 'user_id' => $user->id])->first();
+                if(is_null($join)) {
+                    $join->course_id = $course->id;
+                    $join->user_id = $user->id;
+    
+                    $trainee = Trainee::where('user_id',$user->id)->first();
+                    if(!is_null($trainee)) {
+                        $join->trainee_id = $trainee->id;
+                    }
 
-                $join = new JoinedCourse;
-                $join->course_id = $course->id;
-                $join->user_id = $user->id;
-
-                $trainee = Trainee::where('user_id',$user->id)->first();
-                if(!is_null($trainee)) {
-                    $join->trainee_id = $trainee->id;
+                    $join->type = 'Intro';
+                    $join->status = 'Processing';
+                    $join->save();
                 }
-
-                $join->type = 'Intro';
-                $join->status = 'Processing';
-                $join->save();
 
                 $payment = new Payment;
                 $payment->user_id = $user->id;
@@ -76,7 +76,7 @@ class PaymentController extends Controller
                 $payment->total_price = $course->price;
                 $payment->save();
             }
-            return redirect('trainee/profile?details');
+            return redirect('trainee');
         }
         return abort(404);
     }

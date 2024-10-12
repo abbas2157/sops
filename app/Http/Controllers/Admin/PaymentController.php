@@ -85,14 +85,16 @@ class PaymentController extends Controller
         $payment->received_by = Auth::user()->id;
         $payment->save();
 
-        $join = new JoinedCourse;
-        $join->course_id = $payment->course_id;
-        $join->user_id = $user->id;
-        $join->trainee_id = $user->trainee->id;
-        $join->type = 'Intro';
-        $join->status = 'Processing';
-        $join->save();
-
+        $join = JoinedCourse::where(['course_id' => $payment->course_id, 'user_id' => $user->id])->first();
+        if(is_null($join)) {
+            $join = new JoinedCourse;
+            $join->course_id = $payment->course_id;
+            $join->user_id = $user->id;
+            $join->trainee_id = $user->trainee->id;
+            $join->type = 'Intro';
+            $join->status = 'Processing';
+            $join->save();
+        }
         $validator['success'] = 'Payment Updated Successfully';
         return back()->withErrors($validator);
     }
