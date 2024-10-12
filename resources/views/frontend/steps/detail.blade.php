@@ -36,8 +36,13 @@
                                             </div>
                                         </div>
                                     @endif
-                                    <h2 class="mb-4">{{ $intro->steps_no ?? '' }} : {{ $intro->title ?? '' }}</h2>
-                                    {!! $intro->description ?? '' !!}
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-10">
+                                            <h2 class="mb-4">{{ $intro->steps_no ?? '' }} : {{ $intro->title ?? '' }}</h2>
+                                            {!! $intro->description ?? '' !!}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -171,12 +176,17 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
+                        @include('frontend.steps.partials.help')
+                    </div>
+                    </div>
+                    <div class="col-lg-12">
                         <div class="card shadow mt-2">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-10">
                                         <h3 class="h5 m-0">Write Comments</h3>
-                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+                                        <p>Only feedback regarding assignment will be provided in the comment section below</p>
                                         <form method="POST" action="{{ route('comments.store') }}">
                                             @csrf
                                             <input type="hidden" name="type" value="Course">
@@ -193,62 +203,65 @@
 
                                         </form>
                                     </div>
-                                    <div class="col-md-12 mt-2 text-center" >
-                                        <h3 class="h5  m-0 m-0">All Comments</h3>
-                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <ul class="list-group list-group-flush">
-                                            @foreach ($comments as $comment)
-                                                <li class="list-group-item px-0 text-body">
-                                                    <div class="card shadow-sm px-3 py-3 mb-1">
-                                                        <div class="align-items-center">
-                                                            <div class="row">
-                                                                <div class="col-md-1 text-center ps-3 py-1">
-                                                                    <div class="avatar-lg shadow p-1 rounded-circle">
-                                                                        <img src="{{ asset('frontend/img/team-8.jpg') }}" title="{{ $review->reviewer_name ?? '' }}" alt="" class="rounded-circle">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-10 ps-5 py-1">
-                                                                    <div class="">
-                                                                        <h6 class="mb-1 fw-500">{{ $comment->user_name ?? '' }}  <span class="text-warning small">({{ $comment->created_at->format('M d, Y') ?? '' }})</span></h6>
-                                                                    </div>
-                                                                    <p class="m-0">{{ $comment->text ?? '' }}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                @foreach ($comment->replies as $reply)
-                                                    <li class="list-group-item px-0 text-body ps-5">
-                                                        <div class="row">
-                                                            <div class="col-md-1 ps-3 py-1">
-                                                                <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-vert pull-right"  alt="">
-                                                            </div>
-                                                            <div class="col-md-11">
-                                                                <div class="card shadow-sm px-3 py-3 mb-1">
-                                                                    <div class="align-items-center">
-                                                                        <div class="row">
-                                                                            <div class="col-md-1 text-center ps-3 py-1">
-                                                                                <div class="avatar-lg shadow p-1 rounded-circle">
-                                                                                    <img src="{{ asset('frontend/img/team-8.jpg') }}" title="{{ $reply->user_name ?? '' }}" alt="" class="rounded-circle">
-                                                                                </div>
+                                    <div class="col-md-12 mt-2" >
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10">
+                                                <h3 class="h5  m-0 m-0">All Comments</h3>
+                                                <p>Only feedback regarding assignment will be provided in the comment section below</p>
+                                                <ul class="list-group list-group-flush">
+                                                    @foreach ($comments as $comment)
+                                                        <li class="list-group-item px-0 text-body">
+                                                            <div class="card shadow-sm px-3 py-3 mb-1">
+                                                                <div class="align-items-center">
+                                                                    <div class="row">
+                                                                        <div class="col-md-1 text-center ps-3 py-1">
+                                                                            <div class="avatar-lg shadow p-1 rounded-circle">
+                                                                                <img src="{{ asset('frontend/img/team-8.jpg') }}" title="{{ $review->reviewer_name ?? '' }}" alt="" class="rounded-circle">
                                                                             </div>
-                                                                            <div class="col-md-10 ps-5 py-1">
-                                                                                <div class="">
-                                                                                    <h6 class="mb-1 fw-500">{{ $reply->user_name ?? '' }}  <span class="text-warning small">({{ $reply->created_at->format('M d, Y') ?? '' }})</span></h6>
-                                                                                </div>
-                                                                                <p class="m-0">{{ $reply->text ?? '' }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-10 ps-5 py-1">
+                                                                            <div class="">
+                                                                                <h6 class="mb-1 fw-500">{{ $comment->user_name ?? '' }}  <span class="text-warning small">({{ $comment->created_at->format('M d, Y') ?? '' }})</span></h6>
                                                                             </div>
+                                                                            <p class="m-0">{{ $comment->text ?? '' }}</p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </li>
-                                                @endforeach
-                                            @endforeach
-                                        </ul>
+                                                        </li>
+                                                        @foreach ($comment->replies as $reply)
+                                                            <li class="list-group-item px-0 text-body ps-5">
+                                                                <div class="row">
+                                                                    <div class="col-md-1 ps-3 py-1">
+                                                                        <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-vert pull-right"  alt="">
+                                                                    </div>
+                                                                    <div class="col-md-11">
+                                                                        <div class="card shadow-sm px-3 py-3 mb-1">
+                                                                            <div class="align-items-center">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-1 text-center ps-3 py-1">
+                                                                                        <div class="avatar-lg shadow p-1 rounded-circle">
+                                                                                            <img src="{{ asset('frontend/img/team-8.jpg') }}" title="{{ $reply->user_name ?? '' }}" alt="" class="rounded-circle">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-10 ps-5 py-1">
+                                                                                        <div class="">
+                                                                                            <h6 class="mb-1 fw-500">{{ $reply->user_name ?? '' }}  <span class="text-warning small">({{ $reply->created_at->format('M d, Y') ?? '' }})</span></h6>
+                                                                                        </div>
+                                                                                        <p class="m-0">{{ $reply->text ?? '' }}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        @endforeach
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

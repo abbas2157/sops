@@ -53,75 +53,28 @@
         @yield('content')
         <div class="container-fluid pt-4 px-4 mb-5 main-footer">
             <div class="bg-footer rounded-top-5 p-3">
-            <p class="fw-bold">SOPS - School of Professional Skills</p>
-            <div class="row">
-                <div class="col-md-6 align-items-center align-middle">
-                    <div class="d-flex align-items-center">
-                        <img src="{{ asset('assets/img/SOPS.png') }}" style="max-width: 10% !important;" class="img-fluid" alt="" />
-                        <div class="ms-2">
-                        <p class="m-0">© 2024 Developed by SOPS</p>
-                        <p class="m-0">All right reserved</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 text-end">
-                    <a href="#" class="text-decoration-none"
-                        ><img
-                        src="{{ asset('assets/img/footer-linkedin.svg') }}"
-                        class="img-fluid me-2"
-                        alt="linkedin"
-                    /></a>
-                    <a href="#" class="text-decoration-none"
-                        ><img
-                        src="{{ asset('assets/img/footer-facebook.svg') }}"
-                        class="img-fluid me-2"
-                        alt="facebook"
-                    /></a>
-                    <a href="#" class="text-decoration-none"
-                        ><img
-                        src="{{ asset('assets/img/footer-twitch.svg') }}"
-                        class="img-fluid me-2"
-                        alt="Twitch"
-                    /></a>
-                    <a href="#" class="text-decoration-none"
-                        ><img
-                        src="{{ asset('assets/img/footer-twitter.svg') }}"
-                        class="img-fluid me-2"
-                        alt="Twitter"
-                    /></a>
-                </div>
-            </div>
+              <p class="fw-bold">SOPS - School of Professional Skills</p>
+              <div class="row">
+                  <div class="col-md-6 align-items-center align-middle">
+                      <div class="d-flex align-items-center">
+                          <img src="{{ asset('assets/img/SOPS.png') }}" style="max-width: 10% !important;" class="img-fluid" alt="" />
+                          <div class="ms-2">
+                          <p class="m-0">© 2024 Developed by SOPS</p>
+                          <p class="m-0">All right reserved</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6 text-end">
+                      <a href="https://sops.pk/meet-the-team/" class="text-decoration-none" ><img src="{{ asset('assets/img/footer-linkedin.svg') }}" class="img-fluid me-2" alt="linkedin"/></a>
+                      <a href="https://www.facebook.com/SOPSPK" class="text-decoration-none" ><img src="{{ asset('assets/img/footer-facebook.svg') }}" class="img-fluid me-2" alt="facebook"/></a>
+                      <a href="https://www.instagram.com/sopspk" class="text-decoration-none" ><img src="{{ asset('assets/img/footer-twitch.svg') }}" class="img-fluid me-2" alt="Twitch"/></a>
+                      <a href="https://sops.pk/meet-the-team/" class="text-decoration-none" ><img src="{{ asset('assets/img/footer-twitter.svg') }}" class="img-fluid me-2" alt="Twitter"/></a>
+                  </div>
+              </div>
             </div>
         </div>
-
       </div>
       <!-- Recent Sales End -->
-
-      <!-- Calendar Modal -->
-      <div
-        class="modal fade"
-        id="myModal"
-        aria-labelledby="exampleModalToggleLabel"
-        tabindex="-1"
-        style="display: none"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content calendar-modal">
-            <div class="modal-header border-0 text-white">
-              <button
-                type="button"
-                class="btn-close text-white calendar-close-btn"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div id="datepicker"></div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <!-- Content End -->
     <script type="text/javascript">

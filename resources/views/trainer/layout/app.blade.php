@@ -27,15 +27,8 @@
   <body>
     <div class="container-fluid position-relative bg-white d-flex p-0">
       <!-- Spinner Start -->
-      <div
-        id="spinner"
-        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
-      >
-        <div
-          class="spinner-border text-primary"
-          style="width: 3rem; height: 3rem"
-          role="status"
-        >
+      <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem" role="status">
           <span class="sr-only">Loading...</span>
         </div>
       </div>
@@ -52,7 +45,7 @@
         <!-- Navbar End -->
         @yield('content')
         <div class="container-fluid pt-4 px-4 mb-5 main-footer">
-            <div class="bg-footer rounded-top-5 p-3">
+          <div class="bg-footer rounded-top-5 p-3">
             <p class="fw-bold">SOPS - School of Professional Skills</p>
             <div class="row">
                 <div class="col-md-6 align-items-center align-middle">
@@ -65,63 +58,16 @@
                     </div>
                 </div>
                 <div class="col-md-6 text-end">
-                    <a href="#" class="text-decoration-none"
-                        ><img
-                        src="{{ asset('assets/img/footer-linkedin.svg') }}"
-                        class="img-fluid me-2"
-                        alt="linkedin"
-                    /></a>
-                    <a href="#" class="text-decoration-none"
-                        ><img
-                        src="{{ asset('assets/img/footer-facebook.svg') }}"
-                        class="img-fluid me-2"
-                        alt="facebook"
-                    /></a>
-                    <a href="#" class="text-decoration-none"
-                        ><img
-                        src="{{ asset('assets/img/footer-twitch.svg') }}"
-                        class="img-fluid me-2"
-                        alt="Twitch"
-                    /></a>
-                    <a href="#" class="text-decoration-none"
-                        ><img
-                        src="{{ asset('assets/img/footer-twitter.svg') }}"
-                        class="img-fluid me-2"
-                        alt="Twitter"
-                    /></a>
+                    <a href="https://sops.pk/meet-the-team/" class="text-decoration-none" ><img src="{{ asset('assets/img/footer-linkedin.svg') }}" class="img-fluid me-2" alt="linkedin"/></a>
+                    <a href="https://www.facebook.com/SOPSPK" class="text-decoration-none" ><img src="{{ asset('assets/img/footer-facebook.svg') }}" class="img-fluid me-2" alt="facebook"/></a>
+                    <a href="https://www.instagram.com/sopspk" class="text-decoration-none" ><img src="{{ asset('assets/img/footer-twitch.svg') }}" class="img-fluid me-2" alt="Twitch"/></a>
+                    <a href="https://sops.pk/meet-the-team/" class="text-decoration-none" ><img src="{{ asset('assets/img/footer-twitter.svg') }}" class="img-fluid me-2" alt="Twitter"/></a>
                 </div>
-            </div>
-            </div>
-        </div>
-
-      </div>
-      <!-- Recent Sales End -->
-
-      <!-- Calendar Modal -->
-      <div
-        class="modal fade"
-        id="myModal"
-        aria-labelledby="exampleModalToggleLabel"
-        tabindex="-1"
-        style="display: none"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content calendar-modal">
-            <div class="modal-header border-0 text-white">
-              <button
-                type="button"
-                class="btn-close text-white calendar-close-btn"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div id="datepicker"></div>
             </div>
           </div>
         </div>
       </div>
+      <!-- Recent Sales End -->
     </div>
     <!-- Content End -->
 

@@ -68,13 +68,13 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 text-center text-md-start py-1">
-                                <p class="m-0 text-white text-opacity-75">© 2023 copyright by SOPS - School of Professional Skills</p>
+                                <p class="m-0 text-white text-opacity-75">© 2024 copyright by SOPS - School of Professional Skills</p>
                             </div>
                             <div class="col-md-6 text-center text-md-end py-1">
                                 <ul class="nav justify-content-center justify-content-md-end list-unstyled footer-link-01 m-0">
-                                <li class="p-0 mx-3 ms-md-0 me-md-3"><a href="#" class="text-white text-opacity-75">Privace &amp; Policy</a></li>
-                                <li class="p-0 mx-3 ms-md-0 me-md-3"><a href="#" class="text-white text-opacity-75">Faq's</a></li>
-                                <li class="p-0 mx-3 ms-md-0 me-md-3"><a href="#" class="text-white text-opacity-75">Get a Quote</a></li>
+                                <li class="p-0 mx-3 ms-md-0 me-md-3"><a href="https://sops.pk/" class="text-white text-opacity-75">Our Website</a></li>
+                                <li class="p-0 mx-3 ms-md-0 me-md-3"><a href="https://sops.pk/about-us-2/" class="text-white text-opacity-75">About Us</a></li>
+                                <li class="p-0 mx-3 ms-md-0 me-md-3"><a href="https://sops.pk/meet-the-team/" class="text-white text-opacity-75">Meet The Team</a></li>
                                 </ul>
                             </div>
                         </div>
