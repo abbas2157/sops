@@ -24,21 +24,21 @@
                                     <div class="form-group fw-bold">
                                         <input type="hidden" name="course_id" id="" value="{{$step->course_id}}">
                                         <label for="exampleFormControlSelect1">Step No<span class="text-danger">*</span></label>
-                                        <input type="text" name="steps_no" class="form-control subheading mt-2" readonly value="{{ $step->steps_no }}" id="exampleFormControlSelect1" required />
+                                        <input type="text" name="steps_no" class="form-control subheading mt-2" readonly value="{{ $step->steps_no ?? '' }}" id="exampleFormControlSelect1" required />
                                     </div>
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect2">Intro Title <span class="text-danger">*</span></label>
-                                        <input type="text" name="title" class="form-control subheading mt-2" placeholder="Title" id="exampleFormControlSelect2" required value="{{$step->title}}"/>
+                                        <input type="text" name="title" class="form-control subheading mt-2" placeholder="Title" id="exampleFormControlSelect2" required value="{{$step->title ?? ''}}"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-12">
                                     <div class="form-group fw-bold">
-                                        <label for="exampleFormControlSelect1">Video<span class="text-danger">*</span></label>
-                                        <input type="link" name="video" class="form-control subheading mt-2" placeholder="Video Link" id="exampleFormControlSelect1" required value="{{$step->video}}"/>
+                                        <label for="exampleFormControlSelect1">Video</label>
+                                        <input type="link" name="video" class="form-control subheading mt-2" placeholder="Video Link" id="exampleFormControlSelect1" value="{{$step->video ?? ''}}"/>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect1">Short Description </label>
-                                        <textarea name="short_description" class="form-control subheading mt-1" id="exampleFormControlTextarea1" placeholder="Short Description" rows="5">{{$step->short_description}}</textarea>
+                                        <textarea name="short_description" class="form-control subheading mt-1" id="exampleFormControlTextarea1" placeholder="Short Description" rows="5">{!! $step->short_description ?? '' !!}</textarea>
                                     </div>
                                 </div>
                             </div>
