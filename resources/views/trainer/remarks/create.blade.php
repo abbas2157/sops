@@ -38,16 +38,16 @@
                                         <label for="exampleFormControlSelect1">Completion Grading</label>
                                         <select class="form-control form-select subheading mt-1"  name="completion_grade">
                                             <optgroup label="Completed">
-                                                <option value="1">The student has complete all of the course work.</option>
+                                                <option value="3">The student has complete all of the course work.</option>
                                             </optgroup>
                                             <optgroup label="Nearly Completed">
                                                 <option value="2">The student has completed 90% or more of the course work.</option>
                                             </optgroup>
                                             <optgroup label="Only Started">
-                                                <option value="3">The student has completed less than 90% of the course work.</option>
+                                                <option value="1">The student has completed less than 90% of the course work.</option>
                                             </optgroup>
                                             <optgroup label="Not Started">
-                                                <option value="4">The student has not started the course work.</option>
+                                                <option value="0">The student has not started the course work.</option>
                                             </optgroup>
                                         </select>
                                     </div>
@@ -57,19 +57,19 @@
                                         <label for="exampleFormControlSelect1">Assessment Grading</label>
                                         <select class="form-control form-select subheading mt-1"  name="assessment_grade">
                                             <optgroup label="Very Good">
-                                                <option value="1">The student excelled at the assesment.</option>
+                                                <option value="4">The student excelled at the assesment.</option>
                                             </optgroup>
                                             <optgroup label="Good">
-                                                <option value="2">Good.</option>
+                                                <option value="3">Good.</option>
                                             </optgroup>
                                             <optgroup label="Average">
-                                                <option value="3">Average</option>
+                                                <option value="2">Average</option>
                                             </optgroup>
                                             <optgroup label="Poor">
-                                                <option value="4">Poor.</option>
+                                                <option value="1">Poor.</option>
                                             </optgroup>
                                             <optgroup label="Very Poor">
-                                                <option value="5">Very Poor</option>
+                                                <option value="0">Very Poor</option>
                                             </optgroup>
                                         </select>
                                     </div>

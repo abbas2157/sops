@@ -49,10 +49,10 @@
 <script>
     Highcharts.chart('completion_grade', {
         chart: { polar: true, type: 'line' },
-        title: { text: '', x: -80 },
-        pane:  { size: '94%' },
+        title: { text: '' },
+        pane:  { size: '100%' },
         xAxis: {
-            categories: ['Completed', 'Nearly Completed', 'Only Started', 'Not Started' ],
+            categories: ['Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Step 6', 'Step 7', 'Step 8'],
             tickmarkPlacement: 'on',
             lineWidth: 0
         },
@@ -63,20 +63,18 @@
         },
         tooltip: {
             shared: true,
-            pointFormat: '<span style="color:{series.color}">{series.name}: <b>' +
-                '{point.y:,.0f}</b><br/>'
+            pointFormat: '<b>Grade is ' + '"{point.y:,.0f}"</b> <br /> 0  => Not Started <br /> 1  => Only Started <br /> 2 => Nearly Completed <br /> 3  => Completed'
         },
         series: [{
-            name: '',
-            data: {{ json_encode($completion_grade) }},
-            pointPlacement: 'on'
+            name: ' Percentage : {{ $complete_percenatge ?? 0 }}%',
+            data: {{ json_encode($completion_grade) }}
         }],
         responsive: {
             rules: [{
                 condition: { maxWidth: 500 },
                 chartOptions: {
                     legend: { align: 'center', verticalAlign: 'bottom', layout: 'horizontal' },
-                    pane: { size: '70%' }
+                    pane: { size: '100%' }
                 }
             }]
         }
@@ -86,7 +84,7 @@
         title: { text: '', x: -80 },
         pane:  { size: '94%' },
         xAxis: {
-            categories: ['Very Good', 'Good', 'Average', 'Poor', 'Very Poor'],
+            categories: ['Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5', 'Step 6', 'Step 7', 'Step 8', 'Step 9', 'Step 10'],
             tickmarkPlacement: 'on',
             lineWidth: 0
         },
@@ -97,20 +95,18 @@
         },
         tooltip: {
             shared: true,
-            pointFormat: '<span style="color:{series.color}">{series.name}: <b>' +
-                '{point.y:,.0f}</b><br/>'
+            pointFormat: '<b>Grade is ' + '"{point.y:,.0f}"</b> <br /> 0  => Very Poor <br /> 1  => Poor <br /> 2 => Average <br /> 3  => Good <br /> 4 => Very Good'
         },
         series: [{
-            name: '',
+            name: ' Percentage : {{ $assessment_pecentage ?? 0 }}%' ,
             data: {{ json_encode($assessment_grade) }},
-            pointPlacement: 'on'
         }],
         responsive: {
             rules: [{
                 condition: { maxWidth: 500 },
                 chartOptions: {
                     legend: { align: 'center', verticalAlign: 'bottom', layout: 'horizontal' },
-                    pane: { size: '70%' }
+                    pane: { size: '100%' }
                 }
             }]
         }

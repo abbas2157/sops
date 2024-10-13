@@ -17,43 +17,20 @@ class ReportsController extends Controller
         $course = JoinedCourse::where('user_id',Auth::user()->id)->where('is_move',0)->first();
         $completion_grade = array();
         $assessment_grade = array();
+        $complete_percenatge = 0;
+        $assessment_pecentage = 0;
         if(!is_null($course)) {
             $intro_remarks = Remark::where(['course_id' => $course->course_id, 'type' => 'intro'])->select('completion_grade','assessment_grade')->get();
-            $completion_grade_1 = $completion_grade_2 = $completion_grade_3 = $completion_grade_4 = 0;
-            $assessment_grade_1 = $assessment_grade_2 = $assessment_grade_3 = $assessment_grade_4 = $assessment_grade_5 = 0;
             foreach($intro_remarks as $intro) {
-                if($intro->completion_grade == 1) {
-                    $completion_grade_1 = $completion_grade_1 + 1;
-                }
-                if($intro->completion_grade == 2) {
-                    $completion_grade_2 = $completion_grade_2 + 1;
-                }
-                if($intro->completion_grade == 3) {
-                    $completion_grade_3 = $completion_grade_3 + 1;
-                }
-                if($intro->completion_grade == 4) {
-                    $completion_grade_4 = $completion_grade_4 + 1;
-                }
-                if($intro->assessment_grade == 1) {
-                    $assessment_grade_1 = $assessment_grade_1 + 1;
-                }
-                if($intro->assessment_grade == 2) {
-                    $assessment_grade_2 = $assessment_grade_2 + 1;
-                }
-                if($intro->assessment_grade == 3) {
-                    $assessment_grade_3 = $assessment_grade_3 + 1;
-                }
-                if($intro->assessment_grade == 4) {
-                    $assessment_grade_4 = $assessment_grade_4 + 1;
-                }
-                if($intro->assessment_grade == 5) {
-                    $assessment_grade_5 = $assessment_grade_5 + 1;
-                }
+                $completion_grade[] = (int) $intro->completion_grade;
+                $assessment_grade[] = (int) $intro->assessment_grade;
+                $complete_percenatge = $complete_percenatge + (int) $intro->completion_grade;
+                $assessment_pecentage = $assessment_pecentage + (int) $intro->assessment_grade;
             }
-            $completion_grade = array((int) $completion_grade_1, (int) $completion_grade_2, (int) $completion_grade_3,(int) $completion_grade_4); 
-            $assessment_grade = array((int) $assessment_grade_1,(int) $assessment_grade_2, (int) $assessment_grade_3, (int) $assessment_grade_4, (int) $assessment_grade_5);
+            $complete_percenatge = round($complete_percenatge / (count($intro_remarks)*3),2) * 100;
+            $assessment_pecentage = round($assessment_pecentage / (count($intro_remarks)*4),2) * 100;
         }
-        return view('trainee.reports.index',compact('completion_grade','assessment_grade'));
+        return view('trainee.reports.index',compact('completion_grade','assessment_grade','complete_percenatge', 'assessment_pecentage'));
     }
 
     /**
