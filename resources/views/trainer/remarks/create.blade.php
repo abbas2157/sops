@@ -3,7 +3,7 @@
     <title>Add Remarks | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
-<link href="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.snow.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
 @stop
 @section('content')
     <div class="container-fluid py-5 px-4">

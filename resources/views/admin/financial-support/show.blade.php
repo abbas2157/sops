@@ -3,7 +3,6 @@
     <title>Add Remarks | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
-<link href="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.snow.css" rel="stylesheet" />
 @stop
 @section('content')
     <div class="container-fluid py-5 px-4">
@@ -124,13 +123,4 @@
     </div>
 @stop
 @section('js')
-<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.js"></script>
-<script>
-$(".accept").on("click", function(){
-    $("#decision").val('accept');
- });
- $(".decline").on("click", function(){
-    $("#decision").val('decline');
- })
-</script>
 @stop

@@ -3,7 +3,7 @@
     <title>Create Intro Module | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
-<link href="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.snow.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
 @stop
 @section('content')
     <div class="container-fluid py-5 px-4">
@@ -55,7 +55,7 @@
                                     <textarea style="display:none" id="description" name="description"></textarea>
                                     <div class="form-group fw-bold">
                                         <label for="description">Description </label>
-                                        <div id="editor" style="height: 250px">{!! $step->description !!}</div>
+                                        <div id="summernote">{!! $step->description !!}</div>
                                     </div>
                                 </div>
                             </div>
@@ -120,38 +120,18 @@
     </div>
 @stop
 @section('js')
-<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.js"></script>
-<!-- Initialize Quill editor -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
 <script>
-    const toolbarOptions = [
-    ['bold', 'italic', 'underline', 'strike'],
-    ['blockquote', 'code-block'],
-    ['link', 'image', 'video', 'formula'],
-
-    [{ 'header': 1 }, { 'header': 2 }],
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
-    [{ 'script': 'sub'}, { 'script': 'super' }],
-    [{ 'indent': '-1'}, { 'indent': '+1' }], 
-    [{ 'direction': 'rtl' }],
-
-    [{ 'size': ['small', false, 'large', 'huge'] }],
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-    [{ 'color': [] }, { 'background': [] }],
-    [{ 'font': [] }],
-    [{ 'align': [] }],
-
-    ['clean']
-    ];
-    const quill = new Quill('#editor', {
-        modules: {
-        toolbar: toolbarOptions
-    },
-        theme: 'snow'
-    });
-    quill.on('text-change', () => {
-        const delta = quill.getSemanticHTML();
-        $('#description').html(delta);
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 250,
+            callbacks: {
+                onChange: function(contents, $editable) {
+                    console.log('onChange:', contents);
+                    $('#description').html(contents);
+                }
+            }
+        });
     });
 </script>
 @stop

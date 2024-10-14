@@ -27,7 +27,7 @@ class WelcomeEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Welcome to SOPS',
+            subject: ($this->data['type'] == 'trainer') ? 'Welcome to the Team!' :'Welcome to SOPS',
         );
     }
 
@@ -37,7 +37,7 @@ class WelcomeEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.welcome',
+            view: ($this->data['type'] == 'trainer') ? 'mails.welcome-trainer' :'mails.welcome',
             with: [
                 'data' => $this->data,
             ]

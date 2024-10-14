@@ -3,7 +3,6 @@
     <title>Update Course | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
-<link href="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.snow.css" rel="stylesheet" />
 @stop
 @section('content')
     <div class="container-fluid py-5 px-4">
@@ -102,7 +101,7 @@
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect1">Short Description </label>
                                         <textarea style="display:none" id="description" name="description">{!! $course->description ?? '' !!}</textarea>
-                                        <div id="editor" style="height: 250px">{!! $course->description ?? '' !!}</div>
+                                        <div id="summernote">{!! $course->description ?? '' !!}</div>
                                     </div>
                                 </div>
                             </div>
@@ -172,38 +171,4 @@
     </div>
 @stop
 @section('js')
-<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.js"></script>
-<!-- Initialize Quill editor -->
-<script>
-    const toolbarOptions = [
-        ['bold', 'italic', 'underline', 'strike'],
-        ['blockquote', 'code-block'],
-        ['link', 'image', 'video', 'formula'],
-
-        [{ 'header': 1 }, { 'header': 2 }],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
-        [{ 'script': 'sub'}, { 'script': 'super' }],
-        [{ 'indent': '-1'}, { 'indent': '+1' }], 
-        [{ 'direction': 'rtl' }],
-
-        [{ 'size': ['small', false, 'large', 'huge'] }],
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-        [{ 'color': [] }, { 'background': [] }],
-        [{ 'font': [] }],
-        [{ 'align': [] }],
-
-        ['clean']
-    ];
-    const quill = new Quill('#editor', {
-        modules: {
-        toolbar: toolbarOptions
-    },
-        theme: 'snow'
-    });
-    quill.on('text-change', () => {
-        const delta = quill.getSemanticHTML();
-        $('#description').html(delta);
-    });
-</script>
 @stop
