@@ -14,13 +14,15 @@
                         <div class="row g-3">
                             <div class="col-md-12">
                                 <p>Workshops are meetings where you can get Intro Module help - you will receive invitations to workshops via email and also you can see upcoming Intro Module workshops specific to your course dates on our website homepage.</p>
+                                <a class="btn btn-outline-primary mt-1" href="https://sops.pk/">Attend a workshop</a>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-learning" role="tabpanel" aria-labelledby="nav-learning-tab" tabindex="0">
                         <div class="row g-3">
                             <div class="col-md-12">
-                                Slack is a messaging software - once you have downloaded Slack you can visit our Slack Channel to ask your questions.
+                                <p>Slack is a messaging software - once you have downloaded Slack you can visit our Slack Channel to ask your questions.</p>
+                                <a class="btn btn-outline-primary mt-1" href="https://sops.pk/">Join the Slack Channel</a>
                             </div>
                         </div>
                     </div>

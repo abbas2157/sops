@@ -78,6 +78,8 @@ class TraineeController extends Controller
             $trainee->save();
             DB::commit();
 
+            $user->my_password = $user->password;
+            $user->register = 1;
             Mail::to($request->email)->send(new WelcomeEmail($user));
 
             $validator['success'] = 'Trainee has been Created.';

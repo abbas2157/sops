@@ -27,8 +27,12 @@ class ReportsController extends Controller
                 $complete_percenatge = $complete_percenatge + (int) $intro->completion_grade;
                 $assessment_pecentage = $assessment_pecentage + (int) $intro->assessment_grade;
             }
-            $complete_percenatge = round($complete_percenatge / (count($intro_remarks)*3),2) * 100;
-            $assessment_pecentage = round($assessment_pecentage / (count($intro_remarks)*4),2) * 100;
+            if($complete_percenatge > 0) {
+                $complete_percenatge = round($complete_percenatge / (count($intro_remarks)*3),2) * 100;
+            }
+            if($assessment_pecentage > 0) {
+                $assessment_pecentage = round($assessment_pecentage / (count($intro_remarks)*3),2) * 100;
+            }
         }
         return view('trainee.reports.index',compact('completion_grade','assessment_grade','complete_percenatge', 'assessment_pecentage'));
     }

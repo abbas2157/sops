@@ -40,7 +40,7 @@ class CommentsController extends Controller
         $comment->text = $request->text;
         $comment->show = '0';
         $comment->save();
-        $validator['success'] = 'Your Comment will show after approvel';
+        $validator['success'] = 'Your Comment will show after approval';
         return back()->withErrors($validator);
 
     }
