@@ -57,19 +57,19 @@
                                         <label for="exampleFormControlSelect1">Assessment Grading</label>
                                         <select class="form-control form-select subheading mt-1"  name="assessment_grade">
                                             <optgroup label="Very Good">
-                                                <option value="4">The student excelled at the assesment.</option>
+                                                <option value="4">The student excelled at the assessment achieving all goals in the most optimal way with little to no help or issues</option>
                                             </optgroup>
                                             <optgroup label="Good">
-                                                <option value="3">Good.</option>
+                                                <option value="3">The student achieved all of the goals in a sub-optimal way with a little help Average - The student achieved all of the goals in a sub-optimal way and with some help.</option>
                                             </optgroup>
                                             <optgroup label="Average">
-                                                <option value="2">Average</option>
+                                                <option value="2"> The student achieved all of the goals in a sub-optimal way and with some help.</option>
                                             </optgroup>
                                             <optgroup label="Poor">
-                                                <option value="1">Poor.</option>
+                                                <option value="1">The student achieved the goals but only with significant help or the student could not achieve some of the goals.</option>
                                             </optgroup>
                                             <optgroup label="Very Poor">
-                                                <option value="0">Very Poor</option>
+                                                <option value="0">The student could not complete the goals of the assessment. The student did not do the assessment</option>
                                             </optgroup>
                                         </select>
                                     </div>
@@ -80,7 +80,7 @@
                                     <textarea style="display:none" id="description" name="remarks"></textarea>
                                     <div class="form-group fw-bold">
                                         <label for="description">Add Remarks </label>
-                                        <div id="editor" style="height: 200px"></div>
+                                        <div id="summernote"></div>
                                     </div>
                                 </div>
                             </div>
@@ -93,38 +93,18 @@
     </div>
 @stop
 @section('js')
-<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.js"></script>
-<!-- Initialize Quill editor -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
 <script>
-    const toolbarOptions = [
-  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-  ['blockquote', 'code-block'],
-  ['link', 'image', 'video', 'formula'],
-
-  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-  [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
-  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-  [{ 'direction': 'rtl' }],                         // text direction
-
-  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-  [{ 'font': [] }],
-  [{ 'align': [] }],
-
-  ['clean']                                         // remove formatting button
-];
-    const quill = new Quill('#editor', {
-        modules: {
-        toolbar: toolbarOptions
-    },
-        theme: 'snow'
-    });
-    quill.on('text-change', () => {
-        const delta = quill.getSemanticHTML();
-        $('#description').html(delta);
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 250,
+            callbacks: {
+                onChange: function(contents, $editable) {
+                    console.log('onChange:', contents);
+                    $('#description').html(contents);
+                }
+            }
+        });
     });
 </script>
 @stop

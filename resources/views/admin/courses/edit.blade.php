@@ -3,6 +3,7 @@
     <title>Update Course | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
 @stop
 @section('content')
     <div class="container-fluid py-5 px-4">
@@ -171,4 +172,18 @@
     </div>
 @stop
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 250,
+            callbacks: {
+                onChange: function(contents, $editable) {
+                    console.log('onChange:', contents);
+                    $('#description').html(contents);
+                }
+            }
+        });
+    });
+</script>
 @stop
