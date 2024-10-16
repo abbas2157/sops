@@ -173,6 +173,8 @@ class TrainerController extends Controller
             $trainer->course_id = $request->course_id;
             $trainer->save();
 
+            Mail::to($request->email)->send(new WelcomeEmail($user));
+            
             DB::commit();
 
             $validator['success'] = 'Trainer has been Updated.';
@@ -195,13 +197,13 @@ class TrainerController extends Controller
                 if ($trainer->curriculum_vitae && file_exists(public_path('trainer/cv' . $trainer->curriculum_vitae))) {
                     unlink(public_path('trainer/cv' . $user->curriculum_vitae));
                 }
-                $trainer->delete();
+                $trainer->forceDelete();
             }
             if ($user->profile_picture && file_exists(public_path('profile_pictures/' . $user->profile_picture))) {
                 unlink(public_path('profile_pictures/' . $user->profile_picture));
             }
 
-            $user->delete();
+            $user->forceDelete();
         }
         $validate['success'] = 'Trainer Deleted Successfully';
         return back()->withErrors($validate);

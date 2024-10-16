@@ -87,7 +87,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="dropdown-item">
                                                 <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
-                                                Delete Trainee
+                                                Delete Trainee Permanently
                                             </button>
                                         </form>
                                     </div>
