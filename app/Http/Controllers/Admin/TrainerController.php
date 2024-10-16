@@ -87,6 +87,9 @@ class TrainerController extends Controller
 
             DB::commit();
 
+            $user->my_password = $user->password;
+            $user->course = $user->t_course->name;
+            $user->register = 1;
             Mail::to($request->email)->send(new WelcomeEmail($user));
 
             $validator['success'] = 'Trainer has been Updated.';

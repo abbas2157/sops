@@ -132,7 +132,7 @@
                 <p style="margin: 0;"> <strong> Email </strong> : <a href="mail:{{ $data->email }}"> {{ $data->email }} </a> </p>
                 <p style="margin: 0;"> <strong> Password </strong> :  {{ $data->my_password ?? '' }} </p>
                 <br />
-                <p>You have been given access to the Intro Module of given course as a trainer. You will also be added to the Fundamentals Module and Full Skill Development Module as per the batch schedule, and you will receive a notification through a separate email once these are available.</p>
+                <p>You have been given access to the Intro Module of {{ $data->course ?? 'given course' }} as a trainer. You will also be added to the Fundamentals Module and Full Skill Development Module as per the batch schedule, and you will receive a notification through a separate email once these are available.</p>
                 <p>Please take a moment to login and verify your email to ensure you receive all important updates and communications.</p>
                 <br>
                 <a href="{{ url('verify-account', $data->uuid) }}" target="_blank"style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px;text-align: center; background-color: #19255b; color: #ffffff; text-decoration: none; border-radius: 6px;">Verify Account</a>
