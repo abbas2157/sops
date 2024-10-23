@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->text('comments')->nullable();
             $table->integer('workshop_id')->nullable();
+            $table->integer('one_hour_mail')->default(0);
+            $table->integer('hour_24_mail')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });
