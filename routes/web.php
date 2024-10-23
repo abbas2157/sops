@@ -21,7 +21,10 @@ Route::group(['middleware' => ['guest']], function() {
         Route::get('trainer', [App\Http\Controllers\Auth\RegisterController::class, 'trainer'])->name('register.trainer');
     });
 });
-
+Route::group(['prefix' => 'workshop'], function(){
+    Route::get('register/{uuid}', [App\Http\Controllers\WorkshopController::class, 'create'])->name('workshop.register');
+    Route::post('register/{uuid}/perform', [App\Http\Controllers\WorkshopController::class, 'store'])->name('workshop.register.perform');
+});
 Route::group(['middleware' => ['auth']], function() {
     Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'destroy'])->name('logout');
     Route::resource('reviews', App\Http\Controllers\Frontend\ReviewController::class);

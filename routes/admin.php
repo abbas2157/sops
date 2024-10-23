@@ -52,6 +52,11 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::get('{id}/show', [App\Http\Controllers\Admin\FinancialSupportController::class, 'show'])->name('admin.financial-support.show');
                 Route::post('{id}/update', [App\Http\Controllers\Admin\FinancialSupportController::class, 'update'])->name('admin.financial-support.update');
             });
+
+            Route::group(['prefix' => 'workshops'], function(){
+                Route::get('/', [App\Http\Controllers\Admin\WorkshopController::class, 'index'])->name('admin.workshops');
+                Route::post('store', [App\Http\Controllers\Admin\WorkshopController::class, 'store'])->name('admin.workshops.store');
+            });
         });
     });
 });

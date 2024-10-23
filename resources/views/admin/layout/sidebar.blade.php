@@ -37,6 +37,10 @@
                 <i class="bi bi-cash-coin"></i>
                 <p class="pt-1 mb-0">Financial Support</p>
             </a>
+            <a href="{{ route('admin.workshops') }}" class="nav-item nav-link {{ (request()->is('admin/workshops*')) ? 'active' : '' }} text-center border-top">
+                <i class="bi bi-person-workspace"></i>
+                <p class="pt-1 mb-0">Workshops</p>
+            </a>
         </div>
     </nav>
 </div>
