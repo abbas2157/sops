@@ -44,7 +44,7 @@ class SendWorkshopMails extends Command
                     if(!is_null($users)) {
                         foreach($users as $user) {
                             $workshop->reminder_type = 1;
-                            // WorkshopReminderEmailJob::dispatch($user, $workshop);
+                            WorkshopReminderEmailJob::dispatch($user, $workshop);
                             $user->one_hour_mail = 1;
                             $user->save();
                         }

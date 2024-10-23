@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Trainer, Workshop};
+use App\Models\{Trainer, Workshop, WorkshopRegistration};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB,Http};
 use App\Mail\BatchCreationEmail;
 use App\Jobs\BatchCreationEmailJob;
@@ -115,7 +115,13 @@ class WorkshopController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $workshop = Workshop::where('uuid',$id)->first();
+        if(is_null($workshop)) {
+            $validator['error'] = 'Workshop not found.';
+            return back()->withErrors($validator);
+        }
+        $registerations = WorkshopRegistration::where('workshop_id',$workshop->id)->paginate(20);
+        return view('admin.workshops.show',compact('registerations','workshop'));
     }
 
     /**

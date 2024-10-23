@@ -73,18 +73,10 @@
                                         <i class="fa-solid fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-                                        {{-- <a class="dropdown-item" href="{{ route('courses.edit', $workshop->id) }}">
-                                            <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 10%;" alt="" />
-                                            Edit Course
-                                        </a> --}}
-                                        {{-- <a class="dropdown-item" href="javascript:;" onclick="$('#coupon_destroy').submit();">
-                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 10%;" alt="" />
-                                            Delete workshop
-                                        </a> --}}
-                                        {{-- <form id="coupon_destroy" action="{{ route('admin.workshops.destroy',$workshop->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form> --}}
+                                        <a class="dropdown-item" href="{{ route('admin.workshops.show', $workshop->uuid) }}">
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt="" />
+                                            View Registerations
+                                        </a>
                                     </div>
                                 </div>
                             </td>
