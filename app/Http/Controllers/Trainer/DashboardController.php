@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Trainer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,JoinedCourse, TaskResponse};
+use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,JoinedCourse, TaskResponse, Workshop};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 
 class DashboardController extends Controller
@@ -19,8 +19,8 @@ class DashboardController extends Controller
         $students = JoinedCourse::where('course_id',$course_id)->where('is_move',0)->count();
         $assignments = Assignment::with('user','step','course')->where('is_move',0)->where('status','Pending')->orderBy('id','DESC')->where('course_id',$course_id)->limit(5)->get();
         $tasks = TaskResponse::with('batch','course','class','task','user')->where('status','Pending')->where('course_id',$course_id)->orderBy('id','DESC')->get();
-        // dd($tasks->toArray());
-        return view('trainer.index',compact('courses','students','assignments','tasks'));
+        $workshops = Workshop::whereDate('workshop_date', '>=', date('Y-m-d'))->where('trainer_id',Auth::user()->trainer->id)->get();
+        return view('trainer.index',compact('courses','students','assignments','tasks','workshops'));
     }
 
     /**

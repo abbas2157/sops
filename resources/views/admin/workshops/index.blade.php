@@ -53,8 +53,8 @@
                             <td class="align-middle">
                                 {{ $workshop->title ?? '' }}
                             </td>
-                            <td class="align-middle">{{ $workshop->workshop_date ?? 'No Limit' }}</td>
-                            <td class="align-middle">{{ $workshop->workshop_time ?? 'No Date' }}</td>
+                            <td class="align-middle">{{ date('M d, Y',strtotime($workshop->workshop_date)) }}</td>
+                            <td class="align-middle">{{ date('h:i:s A',strtotime($workshop->workshop_time)) }}</td>
                             <td class="align-middle">{{ $workshop->type ?? '' }}</td>
                             <td class="align-middle">
                                 @if($workshop->type == 'Online')
