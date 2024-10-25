@@ -52,13 +52,6 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::get('{id}/show', [App\Http\Controllers\Admin\FinancialSupportController::class, 'show'])->name('admin.financial-support.show');
                 Route::post('{id}/update', [App\Http\Controllers\Admin\FinancialSupportController::class, 'update'])->name('admin.financial-support.update');
             });
-<<<<<<< HEAD
-            Route::group(['prefix' => 'workshops'], function(){
-                Route::get('/', [App\Http\Controllers\Admin\WorkshopController::class, 'index'])->name('admin.workshops');
-                Route::post('store', [App\Http\Controllers\Admin\WorkshopController::class, 'store'])->name('admin.workshops.store');
-                Route::get('show/{uuid}', [App\Http\Controllers\Admin\WorkshopController::class, 'show'])->name('admin.workshops.show');
-            });
-=======
 
             Route::group(['prefix' => 'workshops'], function(){
                 Route::get('/', [App\Http\Controllers\Admin\WorkshopController::class, 'index'])->name('admin.workshops');
@@ -70,7 +63,6 @@ Route::group(['middleware' => ['auth']], function() {
             Route::group(['prefix' => 'reports'], function(){
                 Route::get('{uuid}', [App\Http\Controllers\Admin\ReportController::class, 'show'])->name('admin.reports');
             });
->>>>>>> 3acb4d94be3e2ee7da0edcbc85577beee00a3708
         });
     });
 });
