@@ -87,8 +87,13 @@ class TrainerController extends Controller
 
             DB::commit();
 
+<<<<<<< HEAD
             $user->my_password = $uuid;
             // $user->course = $user->t_course->name;
+=======
+            $user->my_password = $user->password;
+            $user->course = $user->t_course->name;
+>>>>>>> 3acb4d94be3e2ee7da0edcbc85577beee00a3708
             $user->register = 1;
             Mail::to($request->email)->send(new WelcomeEmail($user));
 

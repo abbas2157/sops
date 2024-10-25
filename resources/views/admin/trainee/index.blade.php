@@ -78,6 +78,10 @@
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             Pending Tasks
                                         </a>
+                                        <a class="dropdown-item" href="{{ route('admin.reports',$trainee->uuid) }}">
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
+                                            Reports
+                                        </a>
                                         <a class="dropdown-item" href="{{route('trainees.edit',$trainee->id)}}">
                                             <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             Edit Trainee
@@ -87,7 +91,11 @@
                                             @method('DELETE')
                                             <button type="submit" class="dropdown-item">
                                                 <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
+<<<<<<< HEAD
                                                 Delete Trainee
+=======
+                                                Delete Trainee Permanently
+>>>>>>> 3acb4d94be3e2ee7da0edcbc85577beee00a3708
                                             </button>
                                         </form>
                                     </div>

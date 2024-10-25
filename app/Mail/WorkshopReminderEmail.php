@@ -30,7 +30,11 @@ class WorkshopReminderEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
+<<<<<<< HEAD
             subject: 'Reminder Email for '.$this->workshop->type.' Workshop',
+=======
+            subject: 'Reminder Email for '.$this->workshop->title.' Workshop',
+>>>>>>> 3acb4d94be3e2ee7da0edcbc85577beee00a3708
         );
     }
 

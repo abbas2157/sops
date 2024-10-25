@@ -32,6 +32,11 @@ Route::group(['middleware' => ['auth']], function() {
                 });
             });
             Route::resource('library',App\Http\Controllers\Trainer\LibraryController::class,['as' => 'trainer']);
+
+            Route::group(['prefix' => 'reports'], function(){
+                Route::get('{uuid}', [App\Http\Controllers\Trainer\ReportController::class, 'show'])->name('trainer.reports');
+            });
+
             Route::group(['prefix' => 'profile'], function(){
                 Route::get('/', [App\Http\Controllers\Trainer\ProfileController::class, 'create'])->name('trainer.profile');
                 Route::post('perform', [App\Http\Controllers\Trainer\ProfileController::class, 'update'])->name('trainer.profile.perform');

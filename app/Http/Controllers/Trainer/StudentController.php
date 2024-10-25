@@ -19,7 +19,7 @@ class StudentController extends Controller
         {
             $students = $students->toArray();
             $students = User::with('trainee')->whereIn('id',$students)->whereIn('type', ['trainee'])
-                        ->select('id','name','last_name','email','phone','status','created_at')->get();
+                        ->select('id','uuid','name','last_name','email','phone','status','created_at')->get();
         }
         return view('trainer.students.index',compact('students'));
     }
@@ -48,12 +48,20 @@ class StudentController extends Controller
         if(!request()->has('type') && (request()->get('type') != 'intro' && request()->get('type') != 'fundamental') ) {
             abort(404);
         }
+        $user = User::where('uuid', $id)->first();
+        if(is_null($user)) {
+            abort(404);
+        }
         if(request()->get('type') == 'intro') {
+<<<<<<< HEAD
             $assignments = Assignment::with('user','step','course')->where('is_move',0)->orderBy('id','DESC')->where('user_id',$id)->paginate(20);
+=======
+            $assignments = Assignment::with('user','step','course')->where('is_move',0)->orderBy('id','DESC')->where('user_id',$user->id)->paginate(20);
+>>>>>>> 3acb4d94be3e2ee7da0edcbc85577beee00a3708
             return view('trainer.students.assignments',compact('assignments'));
         }
 
-        $tasks = TaskResponse::with('batch','course','class','task','user')->where('user_id',$id)->orderBy('id','DESC')->paginate(20);
+        $tasks = TaskResponse::with('batch','course','class','task','user')->where('user_id',$user->id)->orderBy('id','DESC')->paginate(20);
         return view('trainer.students.tasks',compact('tasks'));
         
     }

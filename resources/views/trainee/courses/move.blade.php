@@ -14,7 +14,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="badgecs">PKR {{ $course->price ?? '00' }}</div>
+<<<<<<< HEAD
                                     <img src="{{ asset('assets/img/course-bg.png') }}" class="course-img">
+=======
+                                    <img src="{{ asset('images/courses/'.$course->image) }}" class="course-img">
+>>>>>>> 3acb4d94be3e2ee7da0edcbc85577beee00a3708
                                     <img src="{{ asset('assets/img/logo.png') }}" class="logo-place">
                                 </div>
                             </div>
