@@ -53,11 +53,7 @@ class StudentController extends Controller
             abort(404);
         }
         if(request()->get('type') == 'intro') {
-<<<<<<< HEAD
-            $assignments = Assignment::with('user','step','course')->where('is_move',0)->orderBy('id','DESC')->where('user_id',$id)->paginate(20);
-=======
             $assignments = Assignment::with('user','step','course')->where('is_move',0)->orderBy('id','DESC')->where('user_id',$user->id)->paginate(20);
->>>>>>> 3acb4d94be3e2ee7da0edcbc85577beee00a3708
             return view('trainer.students.assignments',compact('assignments'));
         }
 

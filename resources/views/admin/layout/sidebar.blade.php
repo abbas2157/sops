@@ -37,11 +37,7 @@
                 <i class="bi bi-cash-coin"></i>
                 <p class="pt-1 mb-0">Financial Support</p>
             </a>
-<<<<<<< HEAD
-             <a href="{{ route('admin.workshops') }}" class="nav-item nav-link {{ (request()->is('admin/workshops*')) ? 'active' : '' }} text-center border-top">
-=======
             <a href="{{ route('admin.workshops') }}" class="nav-item nav-link {{ (request()->is('admin/workshops*')) ? 'active' : '' }} text-center border-top">
->>>>>>> 3acb4d94be3e2ee7da0edcbc85577beee00a3708
                 <i class="bi bi-person-workspace"></i>
                 <p class="pt-1 mb-0">Workshops</p>
             </a>

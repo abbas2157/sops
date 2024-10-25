@@ -5,10 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Auth, Hash, Mail, DB, Cookie};
-<<<<<<< HEAD
-=======
 use App\Models\{Trainer, Workshop};
->>>>>>> 3acb4d94be3e2ee7da0edcbc85577beee00a3708
 use Illuminate\Support\Str;
 use App\Mail\WelcomeEmail;
 use App\Models\User;
