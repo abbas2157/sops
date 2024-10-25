@@ -19,4 +19,10 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+AddHandler application/x-httpd-php83 .php .php5 .php4 .php3
 
+# Hide a specific file
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>

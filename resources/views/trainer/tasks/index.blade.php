@@ -57,7 +57,7 @@
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="javascript:;" onclick="$('#batch_destroy').submit();">
-                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" />
+                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 10%;" alt="" />
                                             Delete Task
                                         </a>
                                         <form id="batch_destroy" action="{{ route('trainer.task.destroy',$task->id) }}" method="post">

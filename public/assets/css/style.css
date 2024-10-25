@@ -20,7 +20,7 @@
 
 /* Button */
 .save-btn {
-    background: rgba(76, 73, 227, 1);
+    background: #916194;
     font-family: "Nunito", sans-serif;
     /* font-size: 11.382px; */
     font-size: 13.008px;
@@ -74,11 +74,40 @@
     background: rgba(85, 171, 233, 1);
 }
 
+.login-btn {
+    background: #f4bf3f;
+    color: black !important;
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+.login-btn:hover {
+    background: #f4bf3f;
+    font-size: 19px;
+    font-weight: 500;
+}
+.coupon-btn {
+    background: #f4bf3f;
+    color: black !important;
+    font-family: "Nunito", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+.coupon-btn:hover {
+    background: #f4bf3f;
+    font-size: 14px;
+    font-weight: 500;
+}
 .save-btn:hover {
-    background: rgba(76, 73, 227, 1);
+    background: #f4bf3f;
+    color: black !important;
+}
+.save-btn:hover i{
+    color: black !important;
 }
 .warning-btn:hover {
-    background: rgba(226, 166, 64, 1);
+    background: #916194;
+    color: white;
 }
 
 .pdf {
@@ -95,8 +124,8 @@
 }
 
 .create-btn {
-    border: 1px solid rgba(76, 73, 227, 1);
-    color: rgba(76, 73, 227, 1);
+    border: 1px solid #916194;
+    color: #916194;
     font-family: "Nunito", sans-serif;
     font-size: 11.382px;
     font-weight: 400;
@@ -129,16 +158,16 @@
 }
 
 .excel-btn {
-    border: 1px solid rgba(187, 55, 47, 1);
-    color: rgba(187, 55, 47, 1);
+    border: 1px solid #f4bf3f;
+    color: #f4bf3f;
     font-family: "Nunito", sans-serif;
     font-size: 11.382px;
     font-weight: 400;
 }
 
 .excel-btn:hover {
-    background: rgba(187, 55, 47, 1);
-    color: white !important;
+    background: #f4bf3f;
+    color: black !important;
 }
 
 .create-btn:hover {
@@ -147,12 +176,13 @@
 }
 
 .shopping-items.nav-link {
-    border: 1px solid rgba(76, 73, 227, 1);
-    color: rgba(76, 73, 227, 1);
+    border: 1px solid #f4bf3f;
+    color: #f4bf3f;
 }
 
 .shopping-items.nav-link.active {
-    background-color: rgba(76, 73, 227, 1);
+    border: 1px solid #916194;
+    background-color: #916194;
 }
 
 .new-pagination a {
@@ -235,7 +265,7 @@
 
 /* Button End */
 .all-adjustment {
-    border-bottom: 3px solid rgba(76, 73, 227, 1);
+    border-bottom: 3px solid #916194;
     width: 20%;
     font-family: "Nunito", sans-serif;
     font-size: 24px;
@@ -251,7 +281,7 @@
 }
 
 .section-title {
-    color: rgba(98, 95, 237, 1);
+    color: #916194;
     font-family: "Nunito", sans-serif;
     font-size: 24px;
     font-weight: 500;
@@ -306,11 +336,18 @@ li {
 }
 
 .sidebar-ul li:hover {
-    border-left: 4px solid rgba(76, 73, 227, 1);
+    border-left: 4px solid #916194;
     background: rgba(76, 73, 227, 0.1);
     padding: 15px;
 }
-
+.course-box
+{
+    max-width: 270px;
+    min-width: 270px;
+}
+.course-box:hover {
+    box-shadow: 0px 1px 12px 0px rgba(0, 0, 0, 0.15);
+}
 .card-shadow {
     box-shadow: 0px 1px 12px 0px rgba(0, 0, 0, 0.15);
 }
@@ -562,11 +599,20 @@ li {
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
     color: white;
-    background: rgba(76, 73, 227, 1);
+    background: #916194;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.sidebar .navbar .navbar-nav .nav-link:hover i,
+.sidebar .navbar .navbar-nav .nav-link:hover{
+    color: black;
+    background: #f4bf3f;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar .navbar .navbar-nav .nav-link:hover i{
+    color: black;
+}
+
 .sidebar .navbar .navbar-nav .nav-link.active i {
     color: white;
 }
@@ -588,7 +634,7 @@ li {
     font-family: "Nunito", sans-serif;
     font-size: 24px;
     font-weight: 400;
-    color: rgba(98, 95, 237, 1);
+    color: #916194;
 }
 
 table {
@@ -605,7 +651,7 @@ table {
 }
 
 .badge.bg-purple {
-    background: rgba(76, 73, 227, 1);
+    background: #916194;
     width: 40px !important;
 }
 
@@ -619,7 +665,7 @@ table {
 
 .badges.bg-darkwarning {
     background: rgba(226, 166, 64, 0.2);
-    color: rgba(191, 136, 44, 1);
+    color: #f4bf3f;
 }
 
 .badges.green-border {
@@ -631,12 +677,12 @@ table {
     color: rgba(244, 99, 99, 1);
 }
 .badges.yellow-border {
-    border: 1px solid rgba(191, 136, 44, 1);
-    color: rgba(191, 136, 44, 1);
+    border: 1px solid #f4bf3f;
+    color: #f4bf3f;
 }
 .badges.blue-border {
-    border: 1px solid rgba(76, 73, 227, 1);
-    color: rgba(76, 73, 227, 1);
+    border: 1px solid #916194;
+    color: #916194;
 }
 
 .badges.tier-one-bg {
@@ -728,7 +774,7 @@ table {
     max-width: 420px;
     padding: 45px 20px;
     border-radius: 10px;
-    background: rgba(0, 0, 0, 0.3);
+    background: #916194;
 }
 
 .signup-input input {
@@ -805,13 +851,13 @@ table {
 
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight {
-    color: rgba(76, 73, 227, 1);
+    color: #916194;
 }
 
 .ui-state-active,
 .ui-widget-content .ui-state-active {
     text-align: center;
-    background: rgba(76, 73, 227, 1);
+    background: #916194;
     color: white;
 }
 
@@ -894,7 +940,7 @@ table {
 }
 
 .nav-tabs {
-    border-color: rgba(76, 73, 227, 1);
+    border-color: #916194;
 }
 
 .nav-tabs .nav-link {
@@ -902,7 +948,7 @@ table {
 }
 
 .nav-tabs .nav-link.active {
-    border-color: rgba(76, 73, 227, 1);
+    border-color: #916194;
     border-bottom: none;
     background: rgb(194 193 247);
 }
@@ -919,7 +965,7 @@ table {
 
 @media (max-width: 768px) {
     .all-adjustment {
-        border-bottom: 3px solid rgba(76, 73, 227, 1);
+        border-bottom: 3px solid #916194;
         width: 100% !important;
     }
 
@@ -1009,3 +1055,71 @@ table {
         height: 100%;
     }
 }
+.badgecs {
+    position: absolute;
+    top: 10px;
+    z-index: 343;
+    background: green;
+    left: 1px;
+    padding: 1px 15px;
+    color: #fff;
+    border-top-right-radius: 14px;
+    font-weight: bold;
+}
+.course-img
+{
+    width: 100%;
+    border-top-left-radius: .375rem;
+    border-top-right-radius: .375rem;
+    max-height: inherit;
+    object-fit: cover;
+    height: 120px;
+    object-fit: cover;
+    object-position: top center;
+}
+.logo-place
+{
+    background-color: #fff;
+    border-radius: .25rem;
+    top: 4rem;
+    box-shadow: 0 2px 8px 0 #00000026, 0 2px 4px 0 #00000026;
+    height: 4.125rem;
+    inset-inline-start: 1.5rem;
+    padding: .5rem;
+    position: absolute;
+    width: 7.25rem;
+}
+.course-name
+{
+    font-weight: 700;
+    text-align: start;
+    font-size: 1.125rem !important;
+    line-height: 12px;
+}
+
+.align-middle, .text-secondary
+{
+    white-space:nowrap;
+}
+.bi, .fa-solid, .fa-regular, .fa{color:#f4bf3f}
+      .tab button {
+        /* display: block; */
+        background-color: inherit;
+        padding: 16px;
+        width: 100%;
+        border: none;
+        /* outline: none; */
+        text-align: left;
+        cursor: pointer;
+        /* transition: 0.3s; */
+      }
+
+      .tab button:hover {
+        background: #91619424;
+        border-left: 4px solid #916194;
+      }
+
+      .tab button.active {
+        background-color: #91619424;
+        border-left: 4px solid #916194;
+      }

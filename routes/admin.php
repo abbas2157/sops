@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth']], function() {
 
             Route::resource('comments', App\Http\Controllers\Admin\CommentsController::class,['as' => 'admin']);
             Route::resource('reviews', App\Http\Controllers\Admin\ReviewsController::class,['as' => 'admin']);
+            Route::resource('coupons', App\Http\Controllers\Admin\CouponController::class,['as' => 'admin']);
             Route::resource('replies', App\Http\Controllers\Admin\ReplyController::class,['as' => 'admin']);
             Route::resource('batches', App\Http\Controllers\Admin\BatchController::class,['as' => 'admin']);
             Route::resource('batch-students', App\Http\Controllers\Admin\BatchStudentsController::class,['as' => 'admin']);
@@ -42,7 +43,20 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::get('/', [App\Http\Controllers\Admin\StudentController::class, 'index'])->name('admin.students');
                 Route::get('steps', [App\Http\Controllers\Admin\StudentController::class, 'show'])->name('admin.students.steps');
             });
-
+            Route::group(['prefix' => 'payments'], function(){
+                Route::get('{id}', [App\Http\Controllers\Admin\PaymentController::class, 'show'])->name('admin.payments');
+                Route::post('{id}/', [App\Http\Controllers\Admin\PaymentController::class, 'update'])->name('admin.payments.store');
+            });
+            Route::group(['prefix' => 'financial-support'], function(){
+                Route::get('/', [App\Http\Controllers\Admin\FinancialSupportController::class, 'index'])->name('admin.financial-support');
+                Route::get('{id}/show', [App\Http\Controllers\Admin\FinancialSupportController::class, 'show'])->name('admin.financial-support.show');
+                Route::post('{id}/update', [App\Http\Controllers\Admin\FinancialSupportController::class, 'update'])->name('admin.financial-support.update');
+            });
+            Route::group(['prefix' => 'workshops'], function(){
+                Route::get('/', [App\Http\Controllers\Admin\WorkshopController::class, 'index'])->name('admin.workshops');
+                Route::post('store', [App\Http\Controllers\Admin\WorkshopController::class, 'store'])->name('admin.workshops.store');
+                Route::get('show/{uuid}', [App\Http\Controllers\Admin\WorkshopController::class, 'show'])->name('admin.workshops.show');
+            });
         });
     });
 });

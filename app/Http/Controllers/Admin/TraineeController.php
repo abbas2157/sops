@@ -77,7 +77,7 @@ class TraineeController extends Controller
             $trainee->created_by = Auth::user()->id;
             $trainee->save();
             DB::commit();
-
+            
             Mail::to($request->email)->send(new WelcomeEmail($user));
 
             $validator['success'] = 'Trainee has been Created.';
@@ -183,13 +183,13 @@ class TraineeController extends Controller
         if(!is_null($user)){
             $trainee = Trainee::where('user_id',$id)->first();
             if(!is_null($trainee)){
-                $trainee->delete();
+                $trainee->forceDelete();
             }
             if ($user->profile_picture && file_exists(public_path('profile_pictures/' . $user->profile_picture))) {
                 unlink(public_path('profile_pictures/' . $user->profile_picture));
             }
 
-            $user->delete();
+            $user->forceDelete();
         }
         $validate['success'] = 'Trainee Deleted Successfully';
         return back()->withErrors($validate);

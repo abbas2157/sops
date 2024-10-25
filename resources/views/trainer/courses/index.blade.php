@@ -37,7 +37,7 @@
                         <tr>
                             <td style="width:10%" class="align-middle"><img src="{{ asset('images/courses/'.$course->image) }}" style="width: 50%;" alt=""></td>
                             <td class="align-middle">{{ $course->name ?? '' }}</td>
-                            <td class="align-middle" style="white-space: normal;">{{ $course->description ?? '' }}</td>
+                            <td class="align-middle" style="white-space: normal;">{{ \Illuminate\Support\Str::words($course->description, 20, '...') }}</td>
                             <td class="align-middle">{{ $course->createdby->full_name ?? '' }}</td>
                             <td class="align-middle">{{ $course->created_at->format('M d, Y') ?? '' }}</td>
                             <td class="align-middle" >
@@ -47,11 +47,11 @@
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="{{ route('trainer.batches',['id' => $course->id]) }}">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             See Batches
                                         </a>
                                         {{-- <a class="dropdown-item" href="{{ route('admin.students',['uuid' => $course->uuid]) }}">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             Enroll Students
                                         </a> --}}
                                     </div>

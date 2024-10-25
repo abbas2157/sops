@@ -3,31 +3,6 @@
     <title>Setting | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
-    <style>
-      /* Style the tab */
-      /* Style the buttons inside the tab */
-      .tab button {
-        /* display: block; */
-        background-color: inherit;
-        padding: 16px;
-        width: 100%;
-        border: none;
-        /* outline: none; */
-        text-align: left;
-        cursor: pointer;
-        /* transition: 0.3s; */
-      }
-
-      .tab button:hover {
-        background: rgba(76, 73, 227, 0.1);
-        border-left: 4px solid rgba(76, 73, 227, 1);
-      }
-
-      .tab button.active {
-        background-color: rgba(76, 73, 227, 0.1);
-        border-left: 4px solid rgba(76, 73, 227, 1);
-      }
-    </style>
 @stop
 @section('content')
 
@@ -64,9 +39,7 @@
                     <div class="card rounded-3 border-0 card-shadow h-100 p-3">
                         <div class="card-body h-100">
                             <h4 class="all-adjustment border-0 m-0">Update Settings</h4>
-                            @php
-                                $alerts = json_decode($setting->alerts);
-                            @endphp
+
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div class="form-group fw-bold">
@@ -82,7 +55,7 @@
                     <div class="card rounded-3 border-0 card-shadow h-100 p-3">
                         <div class="card-body h-100">
                             <h4 class="all-adjustment border-0 m-0">Update Settings</h4>
-                            
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group fw-bold">

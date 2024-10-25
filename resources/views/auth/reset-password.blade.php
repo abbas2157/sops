@@ -6,7 +6,8 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <meta content="" name="keywords" />
         <meta content="" name="description" />
-        <link rel="shortcut icon" href="https://whitesprout.com.ng/img/SOPS.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon-16x16.png') }}">
         <!-- Icon Font Stylesheet -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
         <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -14,18 +15,34 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
         <!-- Template Stylesheet -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
+        <style>
+            .signup-body {
+                margin: 0;
+                padding: 0;
+                background-image: url('{{ asset("assets/img/login-bg.jpg") }}');
+                background-attachment: fixed;
+                background-size: 100% 100%; /* Stretches the image */
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+        </style>
     </head>
     <body class="signup-body">
         <section class="signup position-relative">
-            <div class="right-down-arrow">
-                <img src="{{ asset('assets/img/Ellipse.png') }}" class="img-fluid" alt="" />
-            </div>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-6 col-12 position-relative signup-img">
-                        <img src="{{ asset('assets/img/login.svg') }}" class="img-fluid text-center align-items-center py-5" alt="" />
+                    <div class="col-md-6 col-12 position-relative signup-img mt-5">
+                        <div class="mt-5 ms-5 ps-5">
+                            <h1 style="font-size: 3rem; color: #4f3a72;">THE NEXT <br /> GENERATION <br /> OF LEARNING</h1>
+                            <hr style="width: 30%; border : 2px solid #f4bf3f;    opacity: unset;"/>
+                            <ul>
+                                <li>Build skills quicker with AI Assistance.</li>
+                                <li>Gain interactive learning experience with modern tools</li>
+                            </ul>
+                        </div>
+                        <img src="{{ asset('assets/img/login.gif') }}" class="img-fluid text-center align-items-center" alt="" />
                     </div>
-                    <div class="col-md-6 col-12 py-5 px-4">
+                    <div class="col-md-6 col-12 py-5 px-4 mt-5">
                         <div class="signup-form text-white my-5">
                             <div class="mb-4">
                                 <h2>Reset Password</h2>
@@ -53,7 +70,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <button class="btn save-btn text-white p-3 w-100 mt-4 mb-2"> Change Password </button>
+                                <button class="btn login-btn p-3 w-100 mt-4 mb-2"> Change Password </button>
                                 @if ($errors->has('success'))
                                     <span class="text-success text-left">{{ $errors->first('success') }}</span>
                                 @endif

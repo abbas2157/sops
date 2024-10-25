@@ -6,7 +6,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
-    <link rel="shortcut icon" href="https://whitesprout.com.ng/img/SOPS.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon-16x16.png') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- jQuery UI CSS -->
@@ -21,12 +22,6 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('toast/css/jquery.toast.css') }}">
     @yield('css')
-    <style>
-      .align-middle, .text-secondary
-        {
-            white-space:nowrap;
-        }
-    </style>
   </head>
 
   <body>
@@ -58,75 +53,28 @@
         @yield('content')
         <div class="container-fluid pt-4 px-4 mb-5 main-footer">
             <div class="bg-footer rounded-top-5 p-3">
-            <p class="fw-bold">SOPS - School of Professional Skills</p>
-            <div class="row">
-                <div class="col-md-6 align-items-center align-middle">
-                    <div class="d-flex align-items-center">
-                        <img src="{{ asset('assets/img/SOPS.png') }}" style="max-width: 10% !important;" class="img-fluid" alt="" />
-                        <div class="ms-2">
-                        <p class="m-0">© 2024 Developed by SOPS</p>
-                        <p class="m-0">All right reserved</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 text-end">
-                    <a href="#" class="text-decoration-none"
-                        ><img
-                        src="{{ asset('assets/img/footer-linkedin.svg') }}"
-                        class="img-fluid me-2"
-                        alt="linkedin"
-                    /></a>
-                    <a href="#" class="text-decoration-none"
-                        ><img
-                        src="{{ asset('assets/img/footer-facebook.svg') }}"
-                        class="img-fluid me-2"
-                        alt="facebook"
-                    /></a>
-                    <a href="#" class="text-decoration-none"
-                        ><img
-                        src="{{ asset('assets/img/footer-twitch.svg') }}"
-                        class="img-fluid me-2"
-                        alt="Twitch"
-                    /></a>
-                    <a href="#" class="text-decoration-none"
-                        ><img
-                        src="{{ asset('assets/img/footer-twitter.svg') }}"
-                        class="img-fluid me-2"
-                        alt="Twitter"
-                    /></a>
-                </div>
-            </div>
+              <p class="fw-bold">SOPS - School of Professional Skills</p>
+              <div class="row">
+                  <div class="col-md-6 align-items-center align-middle">
+                      <div class="d-flex align-items-center">
+                          <img src="{{ asset('assets/img/SOPS.png') }}" style="max-width: 10% !important;" class="img-fluid" alt="" />
+                          <div class="ms-2">
+                          <p class="m-0">© 2024 Developed by SOPS</p>
+                          <p class="m-0">All right reserved</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6 text-end">
+                      <a href="https://sops.pk/meet-the-team/" class="text-decoration-none" ><img src="{{ asset('assets/img/footer-linkedin.svg') }}" class="img-fluid me-2" alt="linkedin"/></a>
+                      <a href="https://www.facebook.com/SOPSPK" class="text-decoration-none" ><img src="{{ asset('assets/img/footer-facebook.svg') }}" class="img-fluid me-2" alt="facebook"/></a>
+                      <a href="https://www.instagram.com/sopspk" class="text-decoration-none" ><img src="{{ asset('assets/img/footer-twitch.svg') }}" class="img-fluid me-2" alt="Twitch"/></a>
+                      <a href="https://sops.pk/meet-the-team/" class="text-decoration-none" ><img src="{{ asset('assets/img/footer-twitter.svg') }}" class="img-fluid me-2" alt="Twitter"/></a>
+                  </div>
+              </div>
             </div>
         </div>
-
       </div>
       <!-- Recent Sales End -->
-
-      <!-- Calendar Modal -->
-      <div
-        class="modal fade"
-        id="myModal"
-        aria-labelledby="exampleModalToggleLabel"
-        tabindex="-1"
-        style="display: none"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content calendar-modal">
-            <div class="modal-header border-0 text-white">
-              <button
-                type="button"
-                class="btn-close text-white calendar-close-btn"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div id="datepicker"></div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <!-- Content End -->
     <script type="text/javascript">
@@ -151,30 +99,30 @@
     <script>
         @if ($errors->has('success'))
             $.toast({
-                position: 'top-right', 
+                position: 'top-right',
                 heading: 'Note !',
                 text: "{{ $errors->first('success') }}",
                 icon: 'info',
                 loader: true,
-                loaderBg: '#9EC600',
-                showHideTransition: 'fade', 
-                allowToastClose: true, 
-                hideAfter: 8000, 
-                stack: 5, 
+                loaderBg: '#916194',
+                showHideTransition: 'fade',
+                allowToastClose: true,
+                hideAfter: 8000,
+                stack: 5,
             });
         @endif
         @if ($errors->has('error'))
             $.toast({
-                position: 'top-right', 
+                position: 'top-right',
                 heading: 'Note !',
                 text: "{{ $errors->first('error') }}",
                 icon: 'warning',
                 loader: true,
-                loaderBg: '#9EC600',
-                showHideTransition: 'fade', 
-                allowToastClose: true, 
-                hideAfter: 3000, 
-                stack: 5, 
+                loaderBg: '#f4bf3f',
+                showHideTransition: 'fade',
+                allowToastClose: true,
+                hideAfter: 3000,
+                stack: 5,
             });
         @endif
     </script>

@@ -28,7 +28,7 @@ class RemarksController extends Controller
         }
         if(request()->get('type') == 'intro')
         {
-            $task = Assignment::with('user','step','course')->where('id',$task)->first();
+            $task = Assignment::with('user','step','course')->where('is_move',0)->where('id',$task)->first();
             if(is_null($task))
                 abort(404);
             return view('trainer.remarks.create',compact('task'));
@@ -50,7 +50,7 @@ class RemarksController extends Controller
     {
         if($request->type == 'intro')
         {
-            $task = Assignment::where('id',$request->task_id)->first();
+            $task = Assignment::where('id',$request->task_id)->where('is_move',0)->first();
             if(is_null($task))
                 abort(404);
         }
@@ -89,7 +89,7 @@ class RemarksController extends Controller
         $task->save();
 
         $validator['success'] = 'Task Checked Successfully';
-        return back()->withErrors($validator);
+        return redirect('trainer')->withErrors($validator);
     }
 
     /**

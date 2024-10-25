@@ -14,7 +14,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = JoinedCourse::where('course_id',Auth::user()->trainer->course_id)->pluck('user_id');
+        $students = JoinedCourse::where('course_id',Auth::user()->trainer->course_id)->where('is_move',0)->pluck('user_id');
         if(!is_null($students))
         {
             $students = $students->toArray();
@@ -49,7 +49,7 @@ class StudentController extends Controller
             abort(404);
         }
         if(request()->get('type') == 'intro') {
-            $assignments = Assignment::with('user','step','course')->orderBy('id','DESC')->where('user_id',$id)->paginate(20);
+            $assignments = Assignment::with('user','step','course')->where('is_move',0)->orderBy('id','DESC')->where('user_id',$id)->paginate(20);
             return view('trainer.students.assignments',compact('assignments'));
         }
 

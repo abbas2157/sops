@@ -1,0 +1,7 @@
+Sohaib Chaudhry is an accomplished Senior Software Engineer currently based in Seattle, WA, currently working at Fast since July 2018. During his tenure, he managed a highly scalable application catering to 2 million daily users. His contributions included implementing React to enhance the UI, resulting in a 62% reduction in debugging time and a 31% increase in views. Additionally, he played a pivotal role in mentoring interns and leading a team that achieved a 15% improvement in e-commerce payment protection. 
+
+Prior to his work at Fast, Sohaib Chaudhry spent five years at Adaptiva from September 2013 until April 2018, specializing in the development of cloud-based solutions using C++ and Java. His efforts contributed to a remarkable 60% increase in content distribution efficiency and a 27% boost in client satisfaction. He also demonstrated expertise in algorithm optimization, leading to a 32% improvement in automation, and authored comprehensive documentation for over 20 projects. 
+
+Sohaib Chaudhry's career commenced with a Software Engineer Internship at Expedia Group from June 2012 until May 2013, where he actively participated in a 6% increase in online sales. Additionally, he collaborated with fellow interns to redesign a flexible API, which generated an impressive $1.5 million in additional revenue.
+
+Sohaib Chaudhry graduated from Stanford University in 2013 with a Bachelor's Degree in Computer Science (GPA: 3.6). Sohaib Lives at 727 Everblue Terrace, Springfield Oregon, 97475.  

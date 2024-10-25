@@ -16,7 +16,7 @@ class DashboardController extends Controller
     {
         $courses = Course::count();
         $users = User::all();
-        $assignments = Assignment::orderBy('id', 'desc')->limit(5)->where('status','Pending')->get();
+        $assignments = Assignment::orderBy('id', 'desc')->limit(5)->where('status','Pending')->where('is_move',0)->get();
         $tasks = TaskResponse::with('batch','course','class','task','user')->where('status','Pending')->limit(5)->orderBy('id','DESC')->get();
         return view('admin.index',compact('courses','users','assignments','tasks'));
     }

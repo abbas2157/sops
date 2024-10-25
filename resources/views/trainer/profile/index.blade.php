@@ -3,34 +3,9 @@
     <title>Profile | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
-    <style>
-      /* Style the tab */
-      /* Style the buttons inside the tab */
-      .tab button {
-        /* display: block; */
-        background-color: inherit;
-        padding: 16px;
-        width: 100%;
-        border: none;
-        /* outline: none; */
-        text-align: left;
-        cursor: pointer;
-        /* transition: 0.3s; */
-      }
-
-      .tab button:hover {
-        background: rgba(76, 73, 227, 0.1);
-        border-left: 4px solid rgba(76, 73, 227, 1);
-      }
-
-      .tab button.active {
-        background-color: rgba(76, 73, 227, 0.1);
-        border-left: 4px solid rgba(76, 73, 227, 1);
-      }
-    </style>
 @stop
 @section('content')
-@php 
+@php
 $trainer = Auth::user();
 @endphp
 <div class="container-fluid px-4">
@@ -54,7 +29,7 @@ $trainer = Auth::user();
                         Change Password
                         <img src="{{ asset('assets/img/change-password.svg') }}" alt="" />
                     </button>
-                    
+
                 </div>
             </div>
             </div>
@@ -83,7 +58,7 @@ $trainer = Auth::user();
                                 <form enctype="multipart/form-data" id="profile_picture_form" method="post" action="{{ route('trainer.change-profile.picture') }}">
                                 @csrf
                                     <input type="file" name="profile_picture" id="profile_picture" accept="images/*" onchange="form.submit()" class="fileInput" style="display: none"  required/>
-                                    <button id="change-picture-btn" class="change-picture-btn btn create-btn" type="button">
+                                    <button id="change-picture-btn" class="btn save-btn text-white rounded-3" type="button">
                                         Change Profile Picture
                                     </button>
                                 </form>
@@ -105,13 +80,13 @@ $trainer = Auth::user();
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect1" >First Name
                                         <span class="text-danger">*</span></label>
-                                        <input type="text" name="name" class="form-control subheading mt-2" value="{{ Auth::user()->name ?? '' }}" placeholder="Name" required/>
+                                        <input type="text" name="name" class="form-control subheading mt-2" required value="{{ Auth::user()->name ?? '' }}" placeholder="Name" required/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group fw-bold">
-                                        <label for="exampleFormControlSelect1" >Last Name</label>
-                                        <input type="text" class="form-control subheading mt-2" placeholder="Last Name" name="last_name"  value="{{ Auth::user()->last_name ?? '' }}"/>
+                                        <label for="exampleFormControlSelect1" >Last Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control subheading mt-2" placeholder="Last Name" required required name="last_name"  value="{{ Auth::user()->last_name ?? '' }}"/>
                                     </div>
                                 </div>
                             </div>
@@ -125,14 +100,14 @@ $trainer = Auth::user();
                             <div class="col-md-6">
                                 <div class="form-group fw-bold">
                                     <label for="exampleFormControlSelect1">Email <span class="text-danger">*</span></label>
-                                    <input type="email" disabled class="form-control subheading mt-2" value="{{ Auth::user()->email ?? '' }}" placeholder="MonaLissa@mail.com" 
+                                    <input type="email" disabled class="form-control subheading mt-2" value="{{ Auth::user()->email ?? '' }}" placeholder="MonaLissa@mail.com"
                                     />
                                 </div>
                             </div>
                             <div class="col-md-6">
                             <div class="form-group fw-bold">
-                                <label for="exampleFormControlSelect1">Phone No</label>
-                                <input type="text" name="phone" class="form-control subheading mt-2" placeholder="Phone No" value="{{ Auth::user()->phone ?? '' }}"/>
+                                <label for="exampleFormControlSelect1">Phone No <span class="text-danger">*</span></label>
+                                <input type="text" name="phone" class="form-control subheading mt-2" required placeholder="Phone No" value="{{ Auth::user()->phone ?? '' }}"/>
                             </div>
                             </div>
                         </div>
@@ -214,7 +189,7 @@ $trainer = Auth::user();
                                                 <div class="col-md-6">
                                                     <div class="form-group fw-bold">
                                                         <label for="exampleFormControlSelect5">Gender <span class="text-danger">*</span></label>
-                                                        <select class="form-control form-select subheading mt-2" aria-label="Default select example" id="exampleFormControlSelect5" name="gender">
+                                                        <select class="form-control form-select subheading mt-2" aria-label="Default select example" id="exampleFormControlSelect5" name="gender" required>
                                                             <option value="Male" {{ (!is_null($trainer->trainer) && $trainer->trainer->gender == 'Male') ? 'selected' : '' }}>Male</option>
                                                             <option value="Female" {{ (!is_null($trainer->trainer) && $trainer->trainer->gender == 'Female') ? 'selected' : '' }}>Female</option>
                                                         </select>
@@ -223,7 +198,7 @@ $trainer = Auth::user();
                                                 <div class="col-md-6">
                                                     <div class="form-group fw-bold">
                                                         <label for="exampleFormControlSelect6">Date of Birth <span class="text-danger">*</span></label>
-                                                        <input type="date" name="date_of_birth" class="form-control subheading mt-2" value="{{ $trainer->trainer->date_of_birth ?? '' }}"
+                                                        <input type="date" name="date_of_birth" id="date_of_birth" class="form-control subheading mt-2" required value="{{ $trainer->trainer->date_of_birth ?? '' }}"
                                                             id="exampleFormControlSelect6" />
                                                     </div>
                                                 </div>
@@ -231,9 +206,9 @@ $trainer = Auth::user();
                                             <div class="row mt-2">
                                                 <div class="col-md-12">
                                                     <div class="form-group fw-bold">
-                                                        <label for="exampleFormControlSelect7">Trainer Description</label>
+                                                        <label for="exampleFormControlSelect7">Trainer Description <span class="text-danger">*</span></label>
                                                         <textarea class="form-control subheading mt-1" id="exampleFormControlTextarea7"
-                                                            placeholder="Trainer Description (optinal)" rows="5" name="description">{{$trainer->trainer->description ?? ''}}</textarea>
+                                                            placeholder="Trainer Description (optinal)" rows="5" required name="description">{{$trainer->trainer->description ?? ''}}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -245,7 +220,7 @@ $trainer = Auth::user();
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="highest_qualification">Highest Qualification <span class="text-danger">*</span></label>
-                                                        <select name="highest_qualification" id="highest_qualification" class="form-control form-select subheading mt-1" required="">
+                                                        <select name="highest_qualification" id="highest_qualification" class="form-control form-select subheading mt-1" required>
                                                             <option value="bsc" {{ optional($trainer->trainer)->highest_qualification == 'bsc' ? 'selected' : '' }}>BSc</option>
                                                             <option value="msc" {{ optional($trainer->trainer)->highest_qualification == 'msc' ? 'selected' : '' }}>MSc</option>
                                                             <option value="phd" {{ optional($trainer->trainer)->highest_qualification == 'phd' ? 'selected' : '' }}>PhD</option>
@@ -256,7 +231,7 @@ $trainer = Auth::user();
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="areas_of_expertise">Areas of Expertise <span class="text-danger">*</span></label>
-                                                        <select name="areas_of_expertise" id="areas_of_expertise" class="form-control form-select subheading mt-1" required="">
+                                                        <select name="areas_of_expertise" id="areas_of_expertise" class="form-control form-select subheading mt-1" required>
                                                             <option value="Web Development" {{ optional($trainer->trainer)->areas_of_expertise == 'Web Development' ? 'selected' : '' }}>Web Development</option>
                                                             <option value="Mobile Development" {{ optional($trainer->trainer)->areas_of_expertise == 'Mobile Development' ? 'selected' : '' }}>Mobile Development</option>
                                                             <option value="Data Science" {{ optional($trainer->trainer)->areas_of_expertise == 'Data Science' ? 'selected' : '' }}>Data Science</option>
@@ -297,8 +272,8 @@ $trainer = Auth::user();
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group fw-bold">
-                                                        <label for="curriculum_vitae" >Curriculum Vitae </label>
-                                                        <input type="file" name="curriculum_vitae" class="form-control subheading mt-2" id="curriculum_vitae"  />
+                                                        <label for="curriculum_vitae" >Curriculum Vitae <span class="text-danger">*</span></label>
+                                                        <input type="file" name="curriculum_vitae" class="form-control subheading mt-2" id="curriculum_vitae" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -357,5 +332,18 @@ $trainer = Auth::user();
         document.getElementById("change-picture-btn").onclick = function() {
             $('#profile_picture').trigger('click');
         };
+    </script>
+    <script>
+        // Calculate the date 15 years ago from today
+        function calculateMaxDate() {
+            const today = new Date();
+            const year = today.getFullYear() - 15;  // Subtract 15 years
+            const month = ('0' + (today.getMonth() + 1)).slice(-2);  // Add 1 because months are zero-indexed
+            const day = ('0' + today.getDate()).slice(-2);
+            return `${year}-${month}-${day}`;
+        }
+
+        // Set the max attribute of the date input
+        document.getElementById('date_of_birth').max = calculateMaxDate();
     </script>
 @stop

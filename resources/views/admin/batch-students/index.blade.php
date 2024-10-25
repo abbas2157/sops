@@ -19,8 +19,8 @@
                         </div>
                     </div>
                     <div class="col-md-9 col-12 text-end">
-                        <a href="javascript:;" id="addStudents" class="btn pdf rounded-3 mt-2"><i class="bi bi-plus-lg"> </i> Add Students</a>
-                        <a href="{{ route('admin.batches.index') }}" class="btn create-btn rounded-3 mt-2">Back To Batches<i class="bi bi-funnel"></i></a>
+                        <a href="javascript:;" id="addStudents" class="btn save-btn text-white rounded-3 mt-2"><i class="bi bi-plus-lg text-white"> </i> Add Students</a>
+                        <a href="{{ route('admin.batches.index') }}" class="btn rounded-3 mt-2 excel-btn">Back To Batches</a>
                         <a href="{{ route('courses.index') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Courses</a>
                     </div>
                 </div>
@@ -48,6 +48,7 @@
                             <th class="text-secondary">Course Name</th>
                             <th class="text-secondary">Module</th>
                             <th class="text-secondary">Joined Date</th>
+                            <th class="text-secondary">Payment Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,6 +72,14 @@
                                     <td class="align-middle">{{ $user->trainee->trainee_status->trainee_course->name ?? '' }}</td>
                                     <td class="align-middle">{{ $user->trainee->trainee_status->type ?? '' }}</td>
                                     <td class="align-middle">{{ $user->created_at->format('M d, Y') ?? '' }}</td>
+                                    <td class="align-middle">
+                                        @if(!is_null($user->pending_payment) && $user->pending_payment->course_id == $batch->course_id) 
+                                            <span class="badges yellow-border text-center">Pending</span>
+                                        @elseif(!is_null($user->coupon_payment) && $user->coupon_payment->course_id == $batch->course_id) 
+                                            <span class="badges yellow-border text-center">Coupon</span>
+                                        @else
+                                            <span class="badges green-border text-center">Paid</span>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -96,7 +105,7 @@
             $(".singleStudent").prop('checked',false);
         }
         else
-        { 
+        {
             $(".singleStudent").prop('checked',true);
         }
     });

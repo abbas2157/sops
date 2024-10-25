@@ -7,7 +7,7 @@
 @section('content')
     <div class="container-fluid pt-4 px-4 mb-5">
         <div class="border-bottom">
-            <h3 class="all-adjustment text-center pb-2 mb-0">All Users</h3>
+            <h3 class="all-adjustment pb-2 mb-0">All Users</h3>
         </div>
         <div class="card border-0 card-shadow rounded-3 p-2 mt-4 mb-3">
             <div class="card-header border-0 bg-white">
@@ -19,10 +19,6 @@
                         </div>
                     </div>
                     <div class="col-md-9 col-12 text-end">
-                        <a href="#" class="btn create-btn rounded-3 mt-2">Filter <i class="bi bi-funnel"></i></a>
-                        <a href="#" class="btn rounded-3 mt-2 excel-btn">Excel <i
-                                class="bi bi-file-earmark-text"></i></a>
-                        <a href="#" class="btn pdf rounded-3 mt-2">Pdf <i class="bi bi-file-earmark"></i></a>
                     </div>
                 </div>
             </div>
@@ -37,6 +33,7 @@
                             <th class="text-secondary">Created At</th>
                             <th class="text-secondary">Role</th>
                             <th class="text-secondary">Status</th>
+                            <th class="text-secondary">Payment Status</th>
                             <th class="text-secondary">Actions</th>
                         </tr>
                     </thead>
@@ -72,6 +69,15 @@
                                         @endif
                                     </td>
                                     <td class="align-middle">
+                                        @if (!is_null($user->pending_payment))
+                                            @if ($user->pending_payment->status == 'Pending')
+                                                <span class="badges yellow-border text-center">Pending</span>
+                                            @else
+                                                <span class="badges green-border text-center">Paid</span>
+                                            @endif
+                                        @endif
+                                    </td>
+                                    <td class="align-middle">
                                         <div>
                                             <a class="btn btn-secondary bg-transparent border-0 text-dark" role="button"
                                                 id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -79,8 +85,12 @@
                                                 <i class="fa-solid fa-ellipsis-v"></i>
                                             </a>
                                             <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="{{ route('admin.payments',$user->uuid) }}">
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
+                                                    Payments
+                                                </a>
                                                 <a class="dropdown-item"href="javascript:;" onclick="document.getElementById('forgot_password').submit();">
-                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 8%;" alt=""/>
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                         Send Reset Password Mail
                                                 </a>
                                                 <form id="forgot_password" action="{{ route('admin.forgot-password.email') }}" method="post" style="display:none;">
@@ -89,7 +99,7 @@
                                                     <input type="hidden" name="email" value="{{ $user->email}}">
                                                 </form>
                                                 <a class="dropdown-item" href="javascript:;" onclick="document.getElementById('courses_destroy_{{ $user->id }}').submit();">
-                                                    <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="width: 8%;" alt="" />
+                                                    <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="width: 10%;" alt="" />
                                                     @if ($user->status == 'active')
                                                         BLOCK
                                                     @else
@@ -98,10 +108,9 @@
                                                 </a>
                                                 <form id="courses_destroy_{{ $user->id ?? ''}}" action="{{ route('users.update', $user->id) }}" method="post" style="display:none;">
                                                     @csrf
-                                                    @method('PATCH') <!-- Use PATCH or PUT for updates -->
+                                                    @method('PATCH') 
                                                     <input type="hidden" name="status" value="{{ $user->status == 'active' ? 'block' : 'active' }}">
                                                 </form>
-
                                             </div>
                                         </div>
                                     </td>

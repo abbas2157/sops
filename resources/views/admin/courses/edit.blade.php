@@ -3,6 +3,7 @@
     <title>Update Course | SOPS - School of Professional Skills</title>
 @stop
 @section('css')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
 @stop
 @section('content')
     <div class="container-fluid py-5 px-4">
@@ -26,8 +27,36 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group fw-bold">
-                                        <label for="exampleFormControlSelect3">Total Lectures <span class="text-danger">*</span></label>
+                                        <label for="exampleFormControlSelect3">Total Modules <span class="text-danger">*</span></label>
                                         <input type="text" name="lectures" class="form-control subheading mt-2"  placeholder="Total Lectures" id="exampleFormControlSelect3" value="{{ $course->lectures ?? '' }}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <div class="form-group fw-bold">
+                                        <label for="interactive_sessions">Interactive Sessions <span class="text-danger">*</span></label>
+                                        <input type="text" name="interactive_sessions" class="form-control subheading mt-2" placeholder="10" id="interactive_sessions" value="{{ $course->interactive_sessions ?? '' }}"  />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group fw-bold">
+                                        <label for="intro_module">Intro Module <span class="text-danger">*</span></label>
+                                        <input type="text" name="intro_module" class="form-control subheading mt-2"  placeholder="Self-paced" id="intro_module" value="{{ $course->intro_module ?? '' }}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <div class="form-group fw-bold">
+                                        <label for="fundamentals_module">Fundamentals Module <span class="text-danger">*</span></label>
+                                        <input type="text" name="fundamentals_module" class="form-control subheading mt-2" placeholder="Zoom-based" id="fundamentals_module" value="{{ $course->fundamentals_module ?? '' }}" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group fw-bold">
+                                        <label for="full_skill_development">Full Skill Development Module <span class="text-danger">*</span></label>
+                                        <input type="text" name="full_skill_development" class="form-control subheading mt-2"  placeholder="Zoom-based" id="full_skill_development" value="{{ $course->full_skill_development ?? '' }}" />
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +65,7 @@
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect1">Skill Level <span class="text-danger">*</span></label>
                                         <select class="form-control form-select subheading mt-2" aria-label="Default select example" id="exampleFormControlSelect1" name="skill_level">
-                                            <option {{ $course->skill_level == 'Beginner' ?? '' }}>Beginner</option>
+                                            <option {{ $course->skill_level == 'Introductory' ?? '' }}>Introductory</option>
                                             <option {{ $course->skill_level == 'Advanced' ?? '' }}>Advanced</option>
                                             <option {{ $course->skill_level == 'Expert' ?? '' }}>Expert</option>
                                         </select>
@@ -60,10 +89,9 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <div class="form-group fw-bold">
-                                        <label for="duration">Duration <span class="text-danger">*</span></label>
+                                        <label for="duration">Total Duration <span class="text-danger">*</span></label>
                                         <input type="text" name="duration" class="form-control subheading mt-2"
                                             id="duration" value="{{ $course->duration ?? '' }}" />
                                     </div>
@@ -73,8 +101,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect1">Short Description </label>
-                                        <textarea name="description" class="form-control subheading mt-1" id="exampleFormControlTextarea1"
-                                            placeholder="Short Description" rows="5">{{$course->description ?? ''}}</textarea>
+                                        <textarea style="display:none" id="description" name="description">{!! $course->description ?? '' !!}</textarea>
+                                        <div id="summernote">{!! $course->description ?? '' !!}</div>
                                     </div>
                                 </div>
                             </div>
@@ -83,11 +111,11 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card border-0 rounded-3 card-shadow">
-                        <div class="card-header bg-white p-3">
+                        <div class="card-header bg-white p-1">
                             <p class="m-0 fw-bold">Course Picture</p>
                         </div>
                         <div class="card-body">
-                            <div class="file-upload m-0">
+                            <div class="file-upload m-0" style="padding: 0.5rem .5rem;">
                                 <input class="file-input" type="file" name="image"/>
                                 <img src="dasheets/img/upload-btn.svg" class="img-fluid" alt="" />
                                 <div class="mt-2 subheading">
@@ -104,7 +132,7 @@
                                     <div class="row">
                                         <div class="col-md-1">
                                             <label for="myCheckbox09" class="checkbox d-flex mt-1">
-                                                <input class="checkbox__input" type="checkbox" id="list" name="list"
+                                                <input class="checkbox__input" checked type="checkbox" id="list" name="list"
                                                     value="1" {{$course->list == '1' ? 'checked' : ''}}/>
                                                 <svg class="checkbox__icon" xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 22 22">
@@ -123,14 +151,39 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card rounded-3 border-0 card-shadow mt-2">
+                        <div class="card-body">
+                            <div class="form-group fw-bold">
+                                <label for="detail_url">Detail URL (Website) <span class="text-danger">*</span></label>
+                                <input type="text" name="detail_url" class="form-control subheading mt-2"
+                                    id="detail_url" value="{{ $course->detail_url ?? '' }}" />
+                            </div>
+                            <div class="form-group fw-bold mt-1">
+                                <label for="price">Course Price<span class="text-danger">*</span></label>
+                                <input type="text" name="price" class="form-control subheading mt-2"
+                                    id="price" value="{{ $course->price ?? '' }}" />
+                            </div>
+                        </div>
+                    </div>
                     <button class="btn save-btn text-white mt-3">Update Course</button>
                 </div>
-                
             </div>
-
         </form>
     </div>
 @stop
 @section('js')
-    <script></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 250,
+            callbacks: {
+                onChange: function(contents, $editable) {
+                    console.log('onChange:', contents);
+                    $('#description').html(contents);
+                }
+            }
+        });
+    });
+</script>
 @stop

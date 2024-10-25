@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('trainee_id');
             $table->enum('type',['Intro','Fundamental','Full Skill'])->nullable();
             $table->enum('status',['Processing','Completed'])->nullable();
+            $table->integer('is_move')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

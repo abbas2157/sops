@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,Review,User,Course,Trainee,ModuleStep};
+use App\Models\{Assignment, Review, User, Course, Trainee, ModuleStep, JoinedCourse, Payment};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Mail\AssignmentSubmissionMail;
 use App\Jobs\AssignmentSubmissionMailJob;
@@ -55,16 +55,40 @@ class AssignmentController extends Controller
 
         $course = Course::with('trainer')->where('id',$request->course_id)->first();
         $step = ModuleStep::where('id',$request->step_id)->first();
-        
+
+        $last_step_id = ModuleStep::where('course_id',$request->course_id)->orderBy('id', 'desc')->value('id');
+        if($last_step_id == $request->step_id) {
+            $payment = new Payment;
+            $payment->user_id = Auth::user()->id;
+            $payment->course_id = $course->id;
+            $payment->total_price = $course->price;
+            $payment->save();
+
+            $joinedCourse = JoinedCourse::where('course_id', $course->id)->where('user_id', Auth::user()->id)->where('is_move',0)->where('type','Intro')->where('status','Processing')->first();
+            if(!is_null($joinedCourse)) {
+                $joinedCourse->status = 'Completed';
+                $joinedCourse->save();
+            }
+        }
+        if($course->trainer->isNotEmpty()) {
+            $trainer_name = $course->trainer[0]->full_name;
+        }
+        else {
+            $trainer_name = 'No Trainer Assign';
+        }
         $data = array(
+                'type' => 'trainer',
                 'trainee' => Auth::user()->full_name,
-                'trainer' => $course->trainer[0]->user->full_name,
+                'trainer' => $trainer_name ,
                 'course' => $course->name,
                 'step_no' => $step->steps_no,
-                'assignment' => $assignment->file);
-        AssignmentSubmissionMailJob::dispatch($course->trainer[0]->user->email, $data);
-        // Mail::to($course->trainer[0]->user->email)->send(new AssignmentSubmissionMail($data));
-
+                'assignment' => $assignment->file,
+                'status' => $joinedCourse->status
+            );
+        if($course->trainer->isNotEmpty())
+            AssignmentSubmissionMailJob::dispatch($course->trainer[0]->user->email, $data);
+        $data['type'] = 'trainee';
+        AssignmentSubmissionMailJob::dispatch(Auth::user()->email, $data);
         $validator['success'] = 'Assignment Uploaded Successfully';
         return back()->withErrors($validator);
     }

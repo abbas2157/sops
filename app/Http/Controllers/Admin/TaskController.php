@@ -17,7 +17,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Assignment::with('user','step','course')->where('status','Pending');
+        $tasks = Assignment::with('user','step','course')->where('is_move',0)->where('status','Pending');
         if(request()->has('user') && !empty(request()->user))
         {
             $tasks->where('user_id',request()->user);
@@ -47,7 +47,7 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        $task = Assignment::with('user','step','course')->where('id',$id)->first();
+        $task = Assignment::with('user','step','course')->where('is_move',0)->where('id',$id)->first();
         if(is_null($task))
         abort(404);
         // dd($tasks->toArray());
@@ -67,7 +67,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $task = Assignment::with('user')->where('id',$id)->first();
+        $task = Assignment::with('user')->where('is_move',0)->where('id',$id)->first();
         if(is_null($task))
             abort(404);
         // dd($task);

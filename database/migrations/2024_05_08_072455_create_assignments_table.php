@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('type',['Course','Trainer','Other'])->default('Other');
             $table->enum('status',['Pending','Checking','Fail','Pass'])->default('Pending');
             $table->text('remarks')->nullable();
+            $table->integer('is_move')->default(0);
             $table->integer('checked_by')->nullable();
             $table->softDeletes();
             $table->timestamps();

@@ -22,9 +22,6 @@
                             </div>
                             <div class="col-md-9 col-12 text-end">
                                 <a href="{{ route('trainer.students') }}" class="btn create-btn rounded-3 mt-2">Back to Students <i class="bi bi-funnel"></i></a>
-                                <a href="#" class="btn rounded-3 mt-2 excel-btn">Excel <i
-                                        class="bi bi-file-earmark-text"></i></a>
-                                <a href="#" class="btn pdf rounded-3 mt-2">Pdf <i class="bi bi-file-earmark"></i></a>
                             </div>
                         </div>
                     </div>

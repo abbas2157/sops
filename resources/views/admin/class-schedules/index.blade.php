@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-8 col-12 text-end">
                     <a href="{{ route('courses.index') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Courses</a>
-                    <a href="{{ route('admin.class-schedules.create',['course' => request()->course,'batch' => request()->batch]) }}" class="btn create-btn rounded-3 mt-2"> Create Class <i class="bi bi-plus-lg"></i> </a>
+                    <a href="{{ route('admin.class-schedules.create',['course' => request()->course,'batch' => request()->batch]) }}" class="btn save-btn text-white rounded-3 mt-2"> Create Class <i class="bi bi-plus-lg text-white"></i> </a>
                 </div>
             </div>
         </div>
@@ -61,16 +61,16 @@
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="#">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             Add Task
                                         </a>
                                         <a class="dropdown-item" href="{{ route('admin.batches.edit', $class->id) }}">
-                                            <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt="" />
+                                            <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 10%;" alt="" />
                                             Edit Class
                                         </a>
 
                                         <a class="dropdown-item" href="javascript:;">
-                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" onclick="$('#courses_destroy').submit();"/>
+                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 10%;" alt="" onclick="$('#courses_destroy').submit();"/>
                                             Delete Class
                                         </a>
                                         <form id="courses_destroy" action="{{ route('admin.batches.destroy',$class->id) }}" method="post">

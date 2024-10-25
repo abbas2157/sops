@@ -65,4 +65,12 @@ class User extends Authenticatable
     {
         return strtolower($this->city_from);
     }
+    public function pending_payment()
+    {
+        return $this->belongsTo(Payment::class,'id','user_id')->where('status','Pending');
+    }
+    public function coupon_payment()
+    {
+        return $this->belongsTo(Payment::class,'id','user_id')->where('status','Coupon');
+    }
 }

@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
+use Illuminate\Support\Facades\{Auth, Hash, Mail, DB, Cookie};
 use Illuminate\Support\Str;
 use App\Mail\WelcomeEmail;
 use App\Models\User;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -25,7 +26,11 @@ class RegisterController extends Controller
     public function trainee()
     {
         $data = array('type' => 'trainee','title' => 'Student');
-        return view('auth.register',$data);
+        if(request()->has('course'))
+        {
+            Cookie::queue('course', request()->get('course'), 1000);
+        }
+        return view('auth.trainee-register',$data);
     }
     public function trainer()
     {
@@ -52,7 +57,7 @@ class RegisterController extends Controller
         $user->type = $request->type;
         $user->save();
 
-        $user->password = $request->password;
+        $user->my_password = $request->password;
         $user->register = 1;
         
         Mail::to($request->email)->send(new WelcomeEmail($user));
@@ -80,9 +85,41 @@ class RegisterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function trainee_store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|max:250|unique:users',
+            'password' => 'required'
+        ]);
+        
+        $user = new User;
+        $user->uuid = Str::uuid();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->type = $request->type;
+        $user->save();
+
+        $user->password = $request->password;
+        $user->register = 1;
+        
+        Mail::to($request->email)->send(new WelcomeEmail($user));
+
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            if (!empty(Cookie::get('course'))) {
+                return redirect('payments');
+            }
+
+            if($user->type == 'trainee')
+            {
+                return redirect('trainee/profile?details');
+            }
+        }
+        $validator['emailPassword'] = 'Something Went Wrong.';
+        return back()->withErrors($validator);
     }
 
     /**

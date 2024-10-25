@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{User,Course,Trainee};
+use App\Models\{User,Course,Trainee, JoinedCourse};
 
 class ProfileController extends Controller
 {
@@ -91,6 +91,13 @@ class ProfileController extends Controller
             $request->has_computer_and_internet = 'no';
         }
         $trainee->save();
+
+        $join = JoinedCourse::where('trainee_id',NULL)->where('user_id',$trainee->user_id)->where('is_move',0)->first();
+        if(!is_null($join)) {
+            $join->trainee_id = $trainee->id;
+            $join->save();
+        }
+
         $validator['success'] = 'Profile Details has been Updated.';
         return redirect('trainee/profile')->withErrors($validator);
     }

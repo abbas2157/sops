@@ -15,6 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
             Route::middleware('web')->group(base_path('routes/trainer.php'));
         },
     )
+    ->withCommands([
+        __DIR__.'/../app/Console/Commands/Reminders',
+    ])
     ->withMiddleware(function (Middleware $middleware) {
         //
     })

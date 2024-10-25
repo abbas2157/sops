@@ -77,7 +77,7 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        $tasks = Assignment::with('user','step','course')->where('course_id',$id)->where('user_id',Auth::user()->id)->paginate(20);
+        $tasks = Assignment::with('user','step','course')->where('is_move',0)->where('course_id',$id)->where('user_id',Auth::user()->id)->paginate(20);
         if(is_null($tasks))
             abort(404);
         // dd($tasks->toArray());

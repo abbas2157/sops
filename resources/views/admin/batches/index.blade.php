@@ -20,8 +20,8 @@
                 </div>
                 <div class="col-md-8 col-12 text-end">
                     <a href="{{ route('courses.index') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Courses</a>
-                    <button class="btn create-btn rounded-3 mt-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
-                        Create Batch <i class="bi bi-plus-lg"></i>
+                    <button class="btn save-btn text-white rounded-3 mt-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                        Create Batch <i class="bi bi-plus-lg text-white"></i>
                     </button>
                 </div>
             </div>
@@ -59,24 +59,24 @@
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="{{ route('admin.batch-students.index',['id' => $batch->id]) }}">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             Add Students
                                         </a>
                                         <a class="dropdown-item" href="{{ route('admin.class-schedules.index',['course' => $batch->course_id, 'batch' => $batch->id]) }}">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             Class Schedules
                                         </a>
                                         <a class="dropdown-item" href="{{ route('admin.library.index',['course' => $batch->course_id, 'batch' => $batch->id]) }}">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 17%;" alt=""/>
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             Upload Document
                                         </a>
                                         {{-- <a class="dropdown-item" href="{{ route('admin.batches.edit', $batch->id) }}">
-                                            <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 17%;" alt="" />
+                                            <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 10%;" alt="" />
                                             Edit Batch
                                         </a> --}}
 
                                         <a class="dropdown-item" href="javascript:;" onclick="$('#batch_destroy').submit();">
-                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 17%;" alt="" />
+                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 10%;" alt="" />
                                             Delete Batch
                                         </a>
                                         <form id="batch_destroy" action="{{ route('admin.batches.destroy',$batch->id) }}" method="post">

@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-12 text-end">
-                <a href="{{ route('courses.index') }}" class="btn create-btn rounded-3 mt-2"><i class="fa-solid fa-backward"></i> Back To Courses</a>
+                <a href="{{ route('courses.index') }}" class="btn rounded-3 mt-2 excel-btn"> Back To Courses</a>
             </div>
         </div>
     </div>
@@ -35,7 +35,8 @@
                     <th class="text-secondary">City Name</th>
                     <th class="text-secondary">Skills of Experience</th>
                     <th class="text-secondary">Joined Date</th>
-                    <th class="text-secondary">Course Status</th>
+                    {{-- <th class="text-secondary">Course Status</th> --}}
+                    <th class="text-secondary">Payment Status</th>
                     <th class="text-secondary">Action</th>
                 </tr>
             </thead>
@@ -50,11 +51,20 @@
                         <td class="align-middle">{{ $student->trainee->city_from ?? '' }}</td>
                         <td class="align-middle">{{ $student->trainee->skill_experience ?? '' }}</td>
                         <td class="align-middle">{{ $student->created_at->format('M d, Y') ?? '' }}</td>
-                        <td class="align-middle">
+                        {{-- <td class="align-middle">
                             @if ($student->status == 'Processing')
-                                <span class="badges yellow-border text-center p-1">Processing</span>
+                                <span class="badges yellow-border text-center ps-1 pe-1">Processing</span>
                             @else
-                                <span class="badges green-border text-center p-1">Completed</span>
+                                <span class="badges green-border text-center ps-1 pe-1">Completed</span>
+                            @endif
+                        </td> --}}
+                        <td class="align-middle">
+                            @if(!is_null($student->user->pending_payment) && $student->user->pending_payment->course_id == $course->id) 
+                                <span class="badges yellow-border text-center">Pending</span>
+                            @elseif(!is_null($student->user->coupon_payment) && $student->user->coupon_payment->course_id == $course->id) 
+                                <span class="badges yellow-border text-center">Coupon</span>
+                            @else
+                                <span class="badges green-border text-center">Paid</span>
                             @endif
                         </td>
                         <td class="align-middle">

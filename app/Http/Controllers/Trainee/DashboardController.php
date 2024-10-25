@@ -17,8 +17,8 @@ class DashboardController extends Controller
         date_default_timezone_set("Asia/Karachi");
 
         $courses = Course::with('createdby')->where('list',1)->get();
-        $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->get();
-        $tasks = Assignment::where('user_id',Auth::user()->id )->get();
+        $my_courses = JoinedCourse::where('user_id',Auth::user()->id)->where('is_move',0)->get();
+        $tasks = Assignment::where('user_id',Auth::user()->id )->where('is_move',0)->get();
         $u_classes = array();
         $p_classes = array();
         $t_classes = array();

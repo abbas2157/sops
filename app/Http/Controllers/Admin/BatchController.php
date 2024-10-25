@@ -54,7 +54,7 @@ class BatchController extends Controller
             $batch->created_by = Auth::user()->id;
             $batch->save();
 
-        $students = JoinedCourse::where('type','intro')->where('course_id',$batch->course_id)->pluck('user_id');
+        $students = JoinedCourse::where('type','intro')->where('is_move',0)->where('course_id',$batch->course_id)->pluck('user_id');
         if(!is_null($students))
         {
             $students = $students->toArray();

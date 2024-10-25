@@ -19,6 +19,6 @@ class Trainee extends Model
     }
     public function trainee_status()
     {
-        return $this->belongsTo(JoinedCourse::class,'id','trainee_id')->select('id','trainee_id','type','status','course_id')->with('trainee_course');
+        return $this->belongsTo(JoinedCourse::class,'id','trainee_id')->where('is_move',0)->select('id','trainee_id','type','status','course_id')->with('trainee_course');
     }
 }

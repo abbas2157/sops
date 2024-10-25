@@ -6,16 +6,20 @@
         </a>
         <div class="navbar-nav">
             <a href="{{ route('trainee') }}" class="nav-item nav-link {{ request()->is('trainee') ? 'active' : '' }} text-center border-top">
-                <i class="bi bi-grid"></i>
+                <i class="bi bi-house-up-fill"></i>
                 <p class="pt-1 mb-0">Dashboard</p>
             </a>
-            <a href="{{ route('trainee.courses') }}" class="nav-item nav-link {{ request()->is('admin/courses') ? 'active' : '' }} text-center border-top">
-                <i class="bi bi-file-earmark-text"></i>
+            <a href="{{ route('trainee.courses') }}" class="nav-item nav-link {{ request()->is('trainee/courses*') ? 'active' : '' }} text-center border-top">
+                <i class="bi bi-file-richtext-fill"></i>
                 <p class="pt-1 mb-0">Courses</p>
+            </a>
+            <a href="{{ route('trainee.reports') }}" class="nav-item nav-link {{ request()->is('trainee/reports*') ? 'active' : '' }} text-center border-top">
+                <i class="bi bi-file-bar-graph-fill"></i>
+                <p class="pt-1 mb-0">Reports</p>
             </a>
         </div>
     </nav>
 </div>
 <div class="positon-relative sidebar-ul">
-    
+
 </div>

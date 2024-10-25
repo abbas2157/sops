@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Welcome Email</title>
@@ -114,8 +113,8 @@
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
             <td align="center" valign="top" style="padding: 36px 24px;">
-              <a href="https://whitesprout.com.ng" target="_blank" style="display: inline-block;">
-                <img src="https://whitesprout.com.ng/img/SOPS.png" alt="Logo" border="0" width="150" style="display: block; width: 150px; max-width: 150px; min-width: 48px;">
+              <a href="https://sops.pk" target="_blank" style="display: inline-block;">
+                <img src="https://sops.pk/wp-content/uploads/2021/09/SOPS_Logo-1.png" alt="Logo" border="0" width="150" style="display: block; width: 150px; max-width: 150px; min-width: 48px;">
               </a>
             </td>
           </tr>
@@ -166,27 +165,28 @@
           <!-- start copy -->
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                <p style="margin: 0;">Welcome to SOPS - School of Professional Skills - 
-                we're excited to have you on board and we'd love to say thank you on behalf of 
-                our whole company for chosing us. We believe SOPS - School of Professional Skills 
-                will help you.</p>
-                <br> 
-                <p style="margin: 0;">First, you must complete your registration by clicking on the button below:</p>
-                <br> 
-                    <a href="{{ url('verify-account', $data->uuid) }}" target="_blank"style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px;text-align: center; background-color: #19255b; color: #ffffff; text-decoration: none; border-radius: 6px;">Verify Account</a>
+                <p style="margin: 0;">Thank you for registering your interest in joining the School of Professional Skills (SOPS) community. We’re here to help you on your journey to a fulfilling career.
+                </p>
                 <br>
-                <br> 
-                <p style="margin: 0;">This link will verify your email address, and then you’ll officially be a part of the SOPS community.</p>
-                <br>         
-                <p style="margin: 0;"> If you want to login in our System please use these creadentials. </p>
+                <h1 style="margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -1px; line-height: 48px;">What should I do next?</h1>
+                <p style="margin: 0;">The Intro Module, is a series of steps that gives you the best introduction to technical skill of your interest and professional development skills.</p>
+                <br>
+                <p style="margin: 0;">Your account is almost ready. Just verify your email address to complete the setup process. </p>
+                <br>
+                <a href="{{ url('verify-account', $data->uuid) }}" target="_blank"style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px;text-align: center; background-color: #19255b; color: #ffffff; text-decoration: none; border-radius: 6px;">Verify Account</a>
+                <br /><br />
+                <p style="margin: 0;"> After verification, you can login at following link: </p>
                 <p style="margin: 0;"> <strong>Login Page </strong> : <a href="{{ route('login') }}"> {{ route('login') }} </a> </p>
                 <p style="margin: 0;"> <strong> Email </strong> : <a href="mail:{{ $data->email }}"> {{ $data->email }} </a> </p>
-                <p style="margin: 0;"> <strong> Password </strong> : {{ (isset($data->register)) ? $data->password : $data->uuid }} </p>
                 <br>
-                <p style="margin: 0;">If you have any questions, send us an email.<p style="margin: 0;">
-                 
-                <p style="margin: 0;">We're glad you're here! <br>
-                The SOPS team </p>
+                <h1 style="margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -1px; line-height: 48px;">How much time will the Intro Module take?</h1>
+                <p style="margin: 0;">You should dedicate 20-40 hours of study time to the Intro Module.</p>
+                <br />
+                <p style="margin: 0;">It is a self-study module, and you will receive guidance from industry professionals through free two hour workshops scheduled from time to time and communicated through website, social media and email.</p><br>
+                <p style="margin: 0;">After completing the Intro Module, you will be eligible to proceed to the Fundamentals Module. Similarly, upon finishing the Fundamentals Module, you will qualify for the Full Skill Development Module. Passing each module is mandatory to move on to the next one. The Intro Module is self-paced, allowing you multiple attempts to pass and advance to the Fundamentals Module. However, if the Fundamentals Module and Full Skill Development Module are Zoom-based, you will have two chances to pass each. If you do not succeed after these attempts, you will need to re-enroll.</p><br>
+                <p style="margin: 0;">Our teaching and learning framework has already proven successful with many of our graduates, who have gone on to have thriving careers in the industry. Many of them were previously unaware of even the basics.</p><br>
+                <p style="margin: 0;"> All the best, <br />
+                The School of Professioal Skills Team </p>
             </td>
           </tr>
           <!-- end copy -->
