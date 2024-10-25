@@ -59,6 +59,10 @@ Route::group(['middleware' => ['auth']], function() {
 
                 Route::get('show/{uuid}', [App\Http\Controllers\Admin\WorkshopController::class, 'show'])->name('admin.workshops.show');
             });
+
+            Route::group(['prefix' => 'reports'], function(){
+                Route::get('{uuid}', [App\Http\Controllers\Admin\ReportController::class, 'show'])->name('admin.reports');
+            });
         });
     });
 });

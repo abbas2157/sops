@@ -6,7 +6,7 @@
 @stop
 @section('content')
     <div class="container-fluid pt-4 px-4 mb-5">
-        <div class="border-bottom">
+        <div class="border-bottom ">
             <h3 class="all-adjustment text-center pb-2 mb-0">All Students</h3>
         </div>
         <div class="card border-0 card-shadow rounded-3 p-2 mt-4 mb-3">
@@ -54,13 +54,17 @@
                                                 <i class="fa-solid fa-ellipsis-v"></i>
                                             </a>
                                             <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="{{ route('trainer.students.tasks',$user->id) }}?type=intro" >
+                                                <a class="dropdown-item" href="{{ route('trainer.students.tasks',$user->uuid) }}?type=intro" >
                                                     <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                     View Intro Assignments
                                                 </a>
-                                                <a class="dropdown-item" href="{{ route('trainer.students.tasks',$user->id) }}?type=fundamental" >
+                                                <a class="dropdown-item" href="{{ route('trainer.students.tasks',$user->uuid) }}?type=fundamental" >
                                                     <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                     View Tasks
+                                                </a>
+                                                <a class="dropdown-item" href="{{ route('trainer.reports',$user->uuid) }}">
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
+                                                    Reports
                                                 </a>
                                             </div>
                                         </div>
