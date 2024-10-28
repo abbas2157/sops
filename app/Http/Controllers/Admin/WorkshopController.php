@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\GoogleCalendarService;
 use App\Models\{Trainer, Workshop, WorkshopRegistration};
-use Illuminate\Support\Facades\{Auth,Hash,Mail,DB,Http};
+use Illuminate\Support\Facades\{Auth,Hash,Mail,DB,Http,Session};
 use App\Mail\BatchCreationEmail;
 use App\Jobs\BatchCreationEmailJob;
 use Carbon\Carbon;
@@ -14,6 +15,16 @@ use Str;
 
 class WorkshopController extends Controller
 {
+    protected $googleService;
+
+    public function __construct(GoogleCalendarService $googleService)
+    {
+        $this->googleService = $googleService;
+    }
+    public function authenticate()
+    {
+        return $this->googleService->authenticate();
+    }
     /**
      * Display a listing of the resource.
      */
@@ -38,29 +49,27 @@ class WorkshopController extends Controller
     public function store(Request $request)
     {
         try {
+        // dd($request->google_token);
             $trainer = Trainer::where('id',$request->trainer_id)->first();
             if(is_null($trainer)) {
                 $validator['error'] = 'Trainer not found.';
                 return back()->withErrors($validator);
             }
             if($request->type == 'Online') {
-                $response = Http::withHeaders(
-                    [
-                        'Authorization' => 'Bearer ' .self::generateToken(),
-                        'Content-Type' => 'application/json',
-                    ]
-                )
-                ->post(
-                    "https://api.zoom.us/v2/users/me/meetings",
-                    [
-                        'topic' => $request->title,
-                        'type' => 2, // 2 for scheduled meeting
-                        'start_time' => Carbon::parse($request->workshop_date . ' ' . $request->workshop_time)->toIso8601String(),
-                        'duration' => 60,
-                        'timezone' => 'UTC'
-                    ]
-                );
-               $zoom =  $response->json();
+                $startTime = new \DateTime( Carbon::parse($request->workshop_date . ' ' . $request->workshop_time)->toIso8601String(), new \DateTimeZone('Asia/Karachi'));
+                // Step 4: Calculate end time by adding the duration in minutes
+                $endTime = clone $startTime;
+                $endTime->modify('+40 minutes');
+
+                $eventData = [
+                    'summary' => $request->title,
+                    'start' => $startTime->format(\DateTime::RFC3339),
+                    'end' => $endTime->format(\DateTime::RFC3339),
+                    'timeZone' => 'Asia/Karachi',
+                ];
+        
+                $event = $this->googleService->createGoogleMeetEvent($eventData);
+                Session::forget('google_token'); 
             }
 
             DB::beginTransaction();
@@ -72,7 +81,7 @@ class WorkshopController extends Controller
             $workshop->workshop_time = $request->workshop_time;
             $workshop->type = $request->type;
             if($workshop->type == 'Online') {
-                $workshop->workshop_link = $zoom['join_url'];
+                $workshop->workshop_link = $event->getHangoutLink();
             }
             else {
                 $workshop->address = $request->address;

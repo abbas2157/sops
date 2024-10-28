@@ -55,9 +55,12 @@ Route::group(['middleware' => ['auth']], function() {
 
             Route::group(['prefix' => 'workshops'], function(){
                 Route::get('/', [App\Http\Controllers\Admin\WorkshopController::class, 'index'])->name('admin.workshops');
+
+                Route::get('google-auth',[App\Http\Controllers\Admin\WorkshopController::class, 'authenticate'])->name('admin.workshops.google-auth');
                 Route::post('store', [App\Http\Controllers\Admin\WorkshopController::class, 'store'])->name('admin.workshops.store');
 
                 Route::get('show/{uuid}', [App\Http\Controllers\Admin\WorkshopController::class, 'show'])->name('admin.workshops.show');
+
             });
 
             Route::group(['prefix' => 'reports'], function(){

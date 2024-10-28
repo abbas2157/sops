@@ -10,6 +10,7 @@
                 <form enctype="multipart/form-data" id="" method="post" action="{{ route('admin.workshops.store') }}">
                     @csrf
                     @method('POST')
+                    {{-- <input type="hidden" name="google_token" value="{{ Session::get('google_token') ?? '' }}"> --}}
                     <div class="form-group">
                         <label for="exampleFormControlInput1" class="mb-1">Workshop Title <span class="text-danger">*</span></label>
                         <input type="text" name="title" class="form-control subheading" id="exampleFormControlInput1" placeholder="Workshop Title" required />

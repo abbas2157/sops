@@ -19,9 +19,9 @@
                     </div>
                 </div>
                 <div class="col-md-8 col-12 text-end">
-                    <button class="btn save-btn text-white rounded-3 mt-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                    <a href="{{ route('admin.workshops.google-auth') }}" class="btn save-btn text-white rounded-3 mt-2" >
                         Create Workshop <i class="bi bi-plus-lg text-white"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -96,6 +96,7 @@
     {!! $workshops->withQueryString()->links('pagination::bootstrap-5') !!}
 </div>
 @include('admin.workshops.create')
+<button class="exampleModalToggle" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"></button>
 @stop
 @section('js')
 <script>
@@ -112,5 +113,8 @@
         copyText.select();
         navigator.clipboard.writeText(copyText.value) .then(() => { }) .catch(err => { });
     }
+    @if(Session::has('google_token'))
+        $('.exampleModalToggle').trigger('click');
+    @endif
 </script>
 @stop

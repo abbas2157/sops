@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->date('workshop_date', 0)->nullable();
             $table->time('workshop_time', 0)->nullable();
+            $table->string('duration')->nullable();
             $table->enum('type',['Onsite','Online'])->default('Online');
             $table->string('workshop_link')->nullable();
             $table->text('payload')->nullable();
