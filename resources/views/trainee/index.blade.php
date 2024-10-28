@@ -70,7 +70,7 @@
                     <div class="col-md-12 mt-2">
                         <div class="row mt-2">
                             <div class="col-md-12 mt-2">
-                                <h6>Join Today Zoom Class:</h6>
+                                <h6>Join Today Google Meet Class:</h6>
                             </div>
                         </div>
                         @if(!empty($t_classes))
@@ -99,13 +99,13 @@
                 <div class="row">
                     <div class="col-md-12 mt-2">
                         <div class="border-bottom" style="width: 100%;">
-                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">ZOOM CLASSES</h3>
+                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">GOOGLE MEET CLASSES</h3>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-12 mt-2">
-                        <h6>Upcoming Zoom Classes :</h6>
+                        <h6>Upcoming Google Meet Classes :</h6>
                     </div>
                 </div>
                 @if(!empty($u_classes))
@@ -127,7 +127,7 @@
                 @endif
                 <div class="row mt-1">
                     <div class="col-md-12 mt-2">
-                        <h6>Previous Zoom Classes :</h6>
+                        <h6>Previous Google Meet Classes :</h6>
                     </div>
                 </div>
                 @if(!empty($p_classes))

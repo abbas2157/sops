@@ -108,8 +108,8 @@
                                 <li><b>Date : </b> {{ date('M d, Y',strtotime($workshop->workshop_date)) }}</li>
                                 <li><b>Time : </b> {{ date('h:i:s A',strtotime($workshop->workshop_time)) }}</li>
                                 @if($workshop->type == 'Online')
-                                    <li><b>Platform : </b> Zoom</li>
-                                    <li><b>Zoom Link : </b> <a href="{{ $workshop->workshop_link ?? '#' }}"> Join Workshop</a></li>
+                                    <li><b>Platform : </b> Google Meet</li>
+                                    <li><b>Meet Link : </b> <a href="{{ $workshop->workshop_link ?? '#' }}"> Join Workshop</a></li>
                                 @else
                                     <li><b>Location : </b>{{ $workshop->address ?? 'No Address' }}</li>
                                 @endif
