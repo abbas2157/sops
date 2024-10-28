@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('email_settings')->nullable();
             $table->text('trainee_settings')->nullable();
             $table->text('trainer_settings')->nullable();
+            $table->text('google_auth_code')->nullable();
             $table->timestamps();
         });
     }

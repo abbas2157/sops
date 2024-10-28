@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use App\Services\GoogleCalendarService;
 use App\Models\{Trainer, Workshop, WorkshopRegistration};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB,Http,Session};
-use App\Mail\BatchCreationEmail;
 use App\Jobs\BatchCreationEmailJob;
+use App\Mail\BatchCreationEmail;
 use Carbon\Carbon;
 use Exception;
 use Str;
@@ -49,7 +49,6 @@ class WorkshopController extends Controller
     public function store(Request $request)
     {
         try {
-        // dd($request->google_token);
             $trainer = Trainer::where('id',$request->trainer_id)->first();
             if(is_null($trainer)) {
                 $validator['error'] = 'Trainer not found.';
@@ -57,9 +56,8 @@ class WorkshopController extends Controller
             }
             if($request->type == 'Online') {
                 $startTime = new \DateTime( Carbon::parse($request->workshop_date . ' ' . $request->workshop_time)->toIso8601String(), new \DateTimeZone('Asia/Karachi'));
-                // Step 4: Calculate end time by adding the duration in minutes
                 $endTime = clone $startTime;
-                $endTime->modify('+40 minutes');
+                $endTime->modify('+'.$request->duration.' minutes');
 
                 $eventData = [
                     'summary' => $request->title,
@@ -79,6 +77,7 @@ class WorkshopController extends Controller
             $workshop->title = $request->title;
             $workshop->workshop_date = $request->workshop_date;
             $workshop->workshop_time = $request->workshop_time;
+            $workshop->duration = $request->duration;
             $workshop->type = $request->type;
             if($workshop->type == 'Online') {
                 $workshop->workshop_link = $event->getHangoutLink();

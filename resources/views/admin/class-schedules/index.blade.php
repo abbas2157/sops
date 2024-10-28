@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-8 col-12 text-end">
                     <a href="{{ route('courses.index') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Courses</a>
-                    <a href="{{ route('admin.class-schedules.create',['course' => request()->course,'batch' => request()->batch]) }}" class="btn save-btn text-white rounded-3 mt-2"> Create Class <i class="bi bi-plus-lg text-white"></i> </a>
+                    <a href="{{ route('admin.workshops.google-auth') }}?next={{ route('admin.class-schedules.create',['course' => request()->course,'batch' => request()->batch]) }}" class="btn save-btn text-white rounded-3 mt-2"> Create Class <i class="bi bi-plus-lg text-white"></i> </a>
                 </div>
             </div>
         </div>
@@ -51,7 +51,9 @@
                             <td class="align-middle">{{ $class->batch->title ?? '' }} </td>
                             <td class="align-middle">{{ $class->class_date ?? '' }}</td>
                             <td class="align-middle">{{ $class->class_time ?? '' }}</td>
-                            <td class="align-middle">{{ $class->call_link ?? '' }}</td>
+                            <td class="align-middle">
+                                <a target="_blank" href="{{ $class->call_link ?? '' }}">Start Class</a>
+                            </td>
                             <td class="align-middle">{{ $class->createdby->full_name ?? '' }}</td>
                             <td class="align-middle">{{ $class->created_at->format('M d, Y') ?? '' }}</td>
                             <td class="align-middle" >

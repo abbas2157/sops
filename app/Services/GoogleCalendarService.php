@@ -5,7 +5,7 @@ use Google\Client;
 use Google\Service\Calendar;
 use Google\Service\Calendar\Event;
 use Google\Service\Calendar\EventDateTime;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\{Session, Cookie};
 
 class GoogleCalendarService
 {
@@ -41,13 +41,13 @@ class GoogleCalendarService
             ]),
             'conferenceData' => [
                 'createRequest' => [
-                    'requestId' => 'randomString', // Should be unique for each event
+                    'requestId' => 'randomString',
                     'conferenceSolutionKey' => ['type' => 'hangoutsMeet'],
                 ],
             ],
         ]);
 
-        $calendarId = 'primary';  // Or another calendar ID
+        $calendarId = 'primary';
         $event = $this->calendar->events->insert($calendarId, $event, ['conferenceDataVersion' => 1]);
 
         return $event;
@@ -58,8 +58,18 @@ class GoogleCalendarService
         if (isset($_GET['code'])) {
             $token = $this->client->fetchAccessTokenWithAuthCode($_GET['code']);
             session(['google_token' => $token]);
+            if(!empty(Cookie::get('url')))
+            {
+                Cookie::forget('url');
+                return redirect(Cookie::get('url'));
+            }
             return redirect()->route('admin.workshops')->send();
-        } else {
+        } 
+        else {
+            if(request()->has('next'))
+            {
+                Cookie::queue('url', request()->get('next'), 1000);
+            }
             return redirect()->to($this->client->createAuthUrl());
         }
     }

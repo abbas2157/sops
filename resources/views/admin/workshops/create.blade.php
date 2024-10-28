@@ -12,16 +12,20 @@
                     @method('POST')
                     {{-- <input type="hidden" name="google_token" value="{{ Session::get('google_token') ?? '' }}"> --}}
                     <div class="form-group">
-                        <label for="exampleFormControlInput1" class="mb-1">Workshop Title <span class="text-danger">*</span></label>
-                        <input type="text" name="title" class="form-control subheading" id="exampleFormControlInput1" placeholder="Workshop Title" required />
+                        <label for="exampleFormControlInput13" class="mb-1">Workshop Title <span class="text-danger">*</span></label>
+                        <input type="text" name="title" class="form-control subheading" id="exampleFormControlInput13" placeholder="Workshop Title" required />
                     </div>
                     <div class="form-group mt-2">
-                        <label for="exampleFormControlInput1" class="mb-1">Workshop Date</label>
-                        <input type="date" name="workshop_date" class="form-control subheading" min="{{date('Y-m-d')}}" id="exampleFormControlInput1" placeholder="Workshop Date" required />
+                        <label for="exampleFormControlInput4" class="mb-1">Workshop Date</label>
+                        <input type="date" name="workshop_date" class="form-control subheading" min="{{date('Y-m-d')}}" id="exampleFormControlInput4" placeholder="Workshop Date" required />
                     </div>
                     <div class="form-group mt-2">
-                        <label for="exampleFormControlInput1" class="mb-1">Workshop Time</label>
-                        <input type="time" name="workshop_time" class="form-control subheading" id="exampleFormControlInput1" placeholder="Workshop Time" required />
+                        <label for="exampleFormControlInput5" class="mb-1">Workshop Time</label>
+                        <input type="time" name="workshop_time" class="form-control subheading" id="exampleFormControlInput5" placeholder="Workshop Time" required />
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="exampleFormControlInput6" class="mb-1">Workshop Duration</label>
+                        <input type="number" name="duration" class="form-control subheading" id="exampleFormControlInput6" placeholder="Workshop Duration" required />
                     </div>
                     <div class="form-group mt-2">
                         <label class="mb-1">Trainer Name</label>

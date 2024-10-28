@@ -5,12 +5,19 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Course,JoinedCourse,Batch,ClassSchedule};
-use Illuminate\Support\Facades\{Auth,Hash,Mail,DB,Http};
-use Carbon\Carbon;
+use Illuminate\Support\Facades\{Auth,Hash,Mail,DB,Http,Session};
+use App\Services\GoogleCalendarService;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
+use Exception;
 
 class ClassScheduleController extends Controller
 {
+    protected $googleService;
+    public function __construct(GoogleCalendarService $googleService)
+    {
+        $this->googleService = $googleService;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -34,7 +41,7 @@ class ClassScheduleController extends Controller
      */
     public function create()
     {
-        $courses = Course::get();
+        $courses = Course::where('id', request()->course)->get();
         if(request()->has('course') && !empty(request()->course))
         {
             $batches = Batch::where('course_id',request()->course)->get();
@@ -51,25 +58,22 @@ class ClassScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        $zoom = array();
+        $event = array();
         try {
-            $response = Http::withHeaders(
-                [
-                    'Authorization' => 'Bearer ' .self::generateToken(),
-                    'Content-Type' => 'application/json',
-                ]
-            )
-            ->post(
-                "https://api.zoom.us/v2/users/me/meetings",
-                [
-                    'topic' => $request->title,
-                    'type' => 2, // 2 for scheduled meeting
-                    'start_time' => Carbon::parse($request->class_date . ' ' . $request->class_time)->toIso8601String(),
-                    'duration' => $request->duration,
-                    'timezone' => 'UTC'
-                ]
-            );
-           $zoom =  $response->json();
+            $startTime = new \DateTime( Carbon::parse($request->class_date . ' ' . $request->class_time)->toIso8601String(), new \DateTimeZone('Asia/Karachi'));
+            $endTime = clone $startTime;
+            $endTime->modify('+'.$request->duration.' minutes');
+
+            $eventData = [
+                'summary' => $request->title,
+                'start' => $startTime->format(\DateTime::RFC3339),
+                'end' => $endTime->format(\DateTime::RFC3339),
+                'timeZone' => 'Asia/Karachi',
+            ];
+    
+            $event = $this->googleService->createGoogleMeetEvent($eventData);
+            Session::forget('google_token');
+
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -80,12 +84,14 @@ class ClassScheduleController extends Controller
         $class->class_date = $request->class_date;
         $class->class_time = $request->class_time;
         $class->duration = $request->duration;
-        $class->call_link = $zoom['join_url'];
+        if(!empty($event)) {
+            $class->call_link = $event->getHangoutLink();
+        }
         $class->type = $request->type;
         $class->batch_id = $request->batch_id;
         $class->course_id = $request->course_id;
         $class->created_by = Auth::user()->id;
-        $class->payload = json_encode($zoom);
+        $class->payload = json_encode($event);
         $class->save();
 
         $validator['success'] = 'Class Created Successfully';

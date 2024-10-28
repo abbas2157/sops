@@ -36,7 +36,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect23">Class Date <span class="text-danger">*</span></label>
-                                        <input type="date" name="class_date" class="form-control subheading mt-2" placeholder="Title" id="exampleFormControlSelect23" required/>
+                                        <input type="date" name="class_date" class="form-control subheading mt-2" min="{{date('Y-m-d')}}" placeholder="Title" id="exampleFormControlSelect23" required/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
