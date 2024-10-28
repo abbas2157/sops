@@ -26,3 +26,4 @@ yarn-error.log
 /public/trainee/tasks
 /public/library/document/
 /public/task/
+/public/client_secret.json
