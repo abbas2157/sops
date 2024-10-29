@@ -77,6 +77,10 @@
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt="" />
                                             View Registerations
                                         </a>
+                                        <a class="dropdown-item" href="{{ route('admin.workshops.google-auth') }}?next={{ route('admin.workshops.cancel', $workshop->uuid) }}">
+                                            <img src="{{ asset('assets/img/plus-circle.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
+                                            Cancel Workshop
+                                        </a>
                                     </div>
                                 </div>
                             </td>

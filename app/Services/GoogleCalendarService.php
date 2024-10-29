@@ -6,6 +6,7 @@ use Google\Service\Calendar;
 use Google\Service\Calendar\Event;
 use Google\Service\Calendar\EventDateTime;
 use Illuminate\Support\Facades\{Session, Cookie};
+use Google\Service\Exception as GoogleServiceException;
 
 class GoogleCalendarService
 {
@@ -52,7 +53,21 @@ class GoogleCalendarService
 
         return $event;
     }
-
+    public function deleteGoogleMeetEvent($workshop)
+    {
+        if(!is_null($workshop->payload))
+            try {
+                $this->calendar->events->delete('primary', $workshop->payload);
+            }
+            catch (GoogleServiceException $e) {
+                if ($e->getCode() === 410) {
+                    
+                }
+            } catch (\Exception $e) {
+                // return ;
+            }
+        return true;
+    }
     public function authenticate()
     {
         if (isset($_GET['code'])) {
@@ -60,12 +75,14 @@ class GoogleCalendarService
             session(['google_token' => $token]);
             if(!empty(Cookie::get('url')))
             {
-                Cookie::forget('url');
-                return redirect(Cookie::get('url'));
+                $url = Cookie::get('url');
+                Cookie::queue(Cookie::forget('url'));
+                return redirect($url);
             }
             return redirect()->route('admin.workshops')->send();
         } 
         else {
+            Cookie::forget('url');
             if(request()->has('next'))
             {
                 Cookie::queue('url', request()->get('next'), 1000);

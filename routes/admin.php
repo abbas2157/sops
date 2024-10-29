@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::post('store', [App\Http\Controllers\Admin\WorkshopController::class, 'store'])->name('admin.workshops.store');
 
                 Route::get('show/{uuid}', [App\Http\Controllers\Admin\WorkshopController::class, 'show'])->name('admin.workshops.show');
-
+                Route::get('cancel/{uuid}', [App\Http\Controllers\Admin\WorkshopController::class, 'cancel'])->name('admin.workshops.cancel');
             });
 
             Route::group(['prefix' => 'reports'], function(){

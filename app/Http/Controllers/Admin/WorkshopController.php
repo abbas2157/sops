@@ -6,9 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\GoogleCalendarService;
 use App\Models\{Trainer, Workshop, WorkshopRegistration};
-use Illuminate\Support\Facades\{Auth,Hash,Mail,DB,Http,Session};
-use App\Jobs\BatchCreationEmailJob;
-use App\Mail\BatchCreationEmail;
+use Illuminate\Support\Facades\{Auth,Hash,Mail,DB,Http,Session,Cookie};
+use App\Jobs\CancelWorkshopJob;
 use Carbon\Carbon;
 use Exception;
 use Str;
@@ -65,9 +64,8 @@ class WorkshopController extends Controller
                     'end' => $endTime->format(\DateTime::RFC3339),
                     'timeZone' => 'Asia/Karachi',
                 ];
-        
-                $event = $this->googleService->createGoogleMeetEvent($eventData);
-                Session::forget('google_token'); 
+                Session::forget('google_token');
+                $event = $this->googleService->createGoogleMeetEvent($eventData); 
             }
 
             DB::beginTransaction();
@@ -81,6 +79,7 @@ class WorkshopController extends Controller
             $workshop->type = $request->type;
             if($workshop->type == 'Online') {
                 $workshop->workshop_link = $event->getHangoutLink();
+                $workshop->payload = $event->getId();
             }
             else {
                 $workshop->address = $request->address;
@@ -100,24 +99,7 @@ class WorkshopController extends Controller
             return back()->withErrors($validator);
         }
     }
-    protected function generateToken(): string
-    {
-        set_time_limit(0);
-        try {
-            $base64String = base64_encode(config('app.zoom.client_id') . ':' .config('app.zoom.client_secret'));
-            $accountId = config('app.zoom.account_id');
-
-            $responseToken = Http::withHeaders([
-                "Content-Type"=> "application/x-www-form-urlencoded",
-                "Authorization"=> "Basic {$base64String}"
-            ])->post("https://zoom.us/oauth/token?grant_type=account_credentials&account_id={$accountId}");
-
-            return $responseToken->json()['access_token'];
-
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
+    
     /**
      * Display the specified resource.
      */
@@ -151,8 +133,28 @@ class WorkshopController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function cancel(string $id)
     {
-        //
+        $workshop = Workshop::where('uuid', $id)->first();
+        if(is_null($workshop)) {
+            $validator['error'] = 'Workshop not found.';
+            return redirect()->route('admin.workshops')->withErrors($validator);
+        }
+        $registerations = WorkshopRegistration::where('workshop_id',$workshop->id)->get();
+        $this->googleService->deleteGoogleMeetEvent($workshop);
+        Session::forget('google_token');
+
+        if(is_null($registerations)) {
+            $workshop->delete();
+            $validator['success'] = 'Workshop Cancelled Successfully';
+            return redirect()->route('admin.workshops')->withErrors($validator);
+        }
+        
+        CancelWorkshopJob::dispatch($registerations, $workshop);
+        $workshop->delete();
+
+
+        $validator['success'] = 'Workshop Cancelled Successfully';
+        return redirect()->route('admin.workshops')->withErrors($validator);
     }
 }
