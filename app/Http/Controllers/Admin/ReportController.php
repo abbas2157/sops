@@ -42,27 +42,56 @@ class ReportController extends Controller
         if(is_null($user)) {
             abort(404);
         }
-        $course = JoinedCourse::where('user_id',$user->id)->where('is_move',0)->first();
-        if(is_null($course)) {
-            abort(404);
+        if(request()->has('course') && request()->has('type')) {
+            $course_id = request()->course;
+            $type = request()->type;
+            $course = JoinedCourse::where('user_id',$user->id)->where('course_id',$course_id)->where('is_move',0)->first();
+            if(is_null($course)) {
+                abort(404);
+            }
+            $completion_grade = array();
+            $assessment_grade = array();
+            $complete_percenatge = 0;
+            $assessment_pecentage = 0;
+            if(!is_null($course)) {
+                $intro_remarks = Remark::where(['user_id' => $user->id, 'course_id' => $course->course_id, 'type' => $type])->select('completion_grade','assessment_grade')->get();
+                foreach($intro_remarks as $intro) {
+                    $completion_grade[] = (int) $intro->completion_grade;
+                    $assessment_grade[] = (int) $intro->assessment_grade;
+                    $complete_percenatge = $complete_percenatge + (int) $intro->completion_grade;
+                    $assessment_pecentage = $assessment_pecentage + (int) $intro->assessment_grade;
+                }
+                if($complete_percenatge > 0) {
+                    $complete_percenatge = round($complete_percenatge / (count($intro_remarks)*3),2) * 100;
+                }
+                if($assessment_pecentage > 0) {
+                    $assessment_pecentage = round($assessment_pecentage / (count($intro_remarks)*4),2) * 100;
+                }
+            }
         }
-        $completion_grade = array();
-        $assessment_grade = array();
-        $complete_percenatge = 0;
-        $assessment_pecentage = 0;
-        if(!is_null($course)) {
-            $intro_remarks = Remark::where(['course_id' => $course->course_id, 'type' => 'intro'])->select('completion_grade','assessment_grade')->get();
-            foreach($intro_remarks as $intro) {
-                $completion_grade[] = (int) $intro->completion_grade;
-                $assessment_grade[] = (int) $intro->assessment_grade;
-                $complete_percenatge = $complete_percenatge + (int) $intro->completion_grade;
-                $assessment_pecentage = $assessment_pecentage + (int) $intro->assessment_grade;
+        else {
+            $course = JoinedCourse::where('user_id',$user->id)->where('is_move',0)->first();
+            if(is_null($course)) {
+                abort(404);
             }
-            if($complete_percenatge > 0) {
-                $complete_percenatge = round($complete_percenatge / (count($intro_remarks)*3),2) * 100;
-            }
-            if($assessment_pecentage > 0) {
-                $assessment_pecentage = round($assessment_pecentage / (count($intro_remarks)*4),2) * 100;
+            $completion_grade = array();
+            $assessment_grade = array();
+            $complete_percenatge = 0;
+            $assessment_pecentage = 0;
+            if(!is_null($course)) {
+                $intro_remarks = Remark::where(['user_id' => $user->id, 'course_id' => $course->course_id, 'type' => 'intro'])->select('completion_grade','assessment_grade')->get();
+                foreach($intro_remarks as $intro) {
+                    $completion_grade[] = (int) $intro->completion_grade;
+                    $assessment_grade[] = (int) $intro->assessment_grade;
+                    $complete_percenatge = $complete_percenatge + (int) $intro->completion_grade;
+                    $assessment_pecentage = $assessment_pecentage + (int) $intro->assessment_grade;
+                }
+                if($complete_percenatge > 0) {
+                    $complete_percenatge = round($complete_percenatge / (count($intro_remarks)*3),2) * 100;
+                }
+                if($assessment_pecentage > 0) {
+                    $assessment_pecentage = round($assessment_pecentage / (count($intro_remarks)*4),2) * 100;
+                }
             }
         }
         $courses = JoinedCourse::where('user_id',$user->id)->where('is_move',0)->get();

@@ -5,7 +5,37 @@
 @section('content')
 <div class="container-fluid px-4">
     <div class="border-bottom">
-        <h3 class="all-adjustment text-center pb-2 mb-0">All Reports</h3>
+        <h3 class="all-adjustment pb-2 mb-0">All Reports</h3>
+    </div>
+    <div class="card card-shadow border-0 mt-4 rounded-3 mb-3 p-3">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group fw-bold">
+                    <label for="course">Select Course</label>
+                    <select class="form-control form-select subheading mt-2" name="course" id="course" required>
+                        @if($courses->isNotEmpty())
+                            @foreach($courses as $course)
+                                <option value="{{ $course->course->id ?? '' }}" {{ ($course->course->id == request()->course) ? 'selected' : '' }}>{{ $course->course->name ?? '' }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group fw-bold">
+                    <label for="course">Select Module</label>
+                    <select class="form-control form-select subheading mt-2" name="type" id="type" required>
+                        <option value="Intro">Intro Module</option>
+                        <option value="Fundamental">Fundamental Module</option>
+                        <option value="Full Skill">Full Skill Module</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2 pt-3">
+                <button id="search" class="btn save-btn text-white mt-3">Search</button>
+                <button id="clear" class="btn warning-btn text-white mt-3">Clear</button>
+            </div>
+        </div>
     </div>
     <div class="row mt-3">
         <div class="col-md-6">
@@ -117,5 +147,21 @@
     setTimeout(() => {
         $('.highcharts-credits').text('');
     }, 1);
+
+    $( document ).ready(function() {
+        $('#search').click(function(){
+            var url = '?';
+            if ($('#course').val() != '' &&  $('#course').val() != undefined) {
+                url += 'course='+$('#course').val();
+            }
+            if ($('#type').val() != '' &&  $('#type').val() != undefined) {
+                url += 'type='+$('#type').val();
+            }
+            window.location.replace('{{ route('trainer.reports',$user->uuid) }}' +  url);
+        })
+    });
+    $(document).on("click", "#clear", function (e) {
+        window.location.replace('{{ route('trainer.reports',$user->uuid) }}');
+    });
 </script>
 @stop

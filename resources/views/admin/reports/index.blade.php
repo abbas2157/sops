@@ -5,7 +5,7 @@
 @section('content')
 <div class="container-fluid px-4">
     <div class="border-bottom">
-        <h3 class="all-adjustment text-center pb-2 mb-0">All Trainers</h3>
+        <h3 class="all-adjustment text-center pb-2 mb-0">All Reports</h3>
     </div>
     <div class="card card-shadow border-0 mt-4 rounded-3 mb-3 p-3">
         <div class="row">
@@ -25,9 +25,9 @@
                 <div class="form-group fw-bold">
                     <label for="course">Select Module</label>
                     <select class="form-control form-select subheading mt-2" name="type" id="type" required>
-                        <option value="1">Intro Module</option>
-                        <option value="2">Fundamental Module</option>
-                        <option value="3">Full Skill Module</option>
+                        <option value="Intro">Intro Module</option>
+                        <option value="Fundamental">Fundamental Module</option>
+                        <option value="Full Skill">Full Skill Module</option>
                     </select>
                 </div>
             </div>
@@ -156,11 +156,11 @@
             if ($('#type').val() != '' &&  $('#type').val() != undefined) {
                 url += 'type='+$('#type').val();
             }
-            window.location.replace('{{ route('admin.payments',$user->uuid) }}' +  url);
+            window.location.replace('{{ route('admin.reports',$user->uuid) }}' +  url);
         })
     });
     $(document).on("click", "#clear", function (e) {
-        window.location.replace('{{ route('admin.payments',$user->uuid) }}');
+        window.location.replace('{{ route('admin.reports',$user->uuid) }}');
     });
 </script>
 @stop

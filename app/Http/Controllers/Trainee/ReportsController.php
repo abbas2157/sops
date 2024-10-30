@@ -20,7 +20,7 @@ class ReportsController extends Controller
         $complete_percenatge = 0;
         $assessment_pecentage = 0;
         if(!is_null($course)) {
-            $intro_remarks = Remark::where(['course_id' => $course->course_id, 'type' => 'intro'])->select('completion_grade','assessment_grade')->get();
+            $intro_remarks = Remark::where(['user_id' => Auth::user()->id,'course_id' => $course->course_id, 'type' => 'intro'])->select('completion_grade','assessment_grade')->get();
             foreach($intro_remarks as $intro) {
                 $completion_grade[] = (int) $intro->completion_grade;
                 $assessment_grade[] = (int) $intro->assessment_grade;
