@@ -57,7 +57,6 @@ class WorkshopController extends Controller
                 $startTime = new \DateTime( Carbon::parse($request->workshop_date . ' ' . $request->workshop_time)->toIso8601String(), new \DateTimeZone('Asia/Karachi'));
                 $endTime = clone $startTime;
                 $endTime->modify('+'.$request->duration.' minutes');
-
                 $eventData = [
                     'summary' => $request->title,
                     'start' => $startTime->format(\DateTime::RFC3339),
