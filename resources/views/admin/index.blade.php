@@ -24,7 +24,7 @@
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
                         <i class="fa fa-users fs-2"></i>
                         <div class="ms-3">
-                            <p class="mb-1 fs-6 text-muted subheading">ACTIVE TRAINERS</p>
+                            <p class="mb-1 fs-6 text-muted subheading">TOTAL TRAINERS</p>
                             <h6 class="mb-0 sales-amount">{{ $users->where('type','trainer')->count() ?? 0 }}</h6>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                     <div class="card-shadow border rounded d-flex align-items-center p-3">
                         <i class="fa fa-user fs-2"></i>
                         <div class="ms-3">
-                            <p class="mb-1 fs-6 text-muted subheading">ACTIVE TRAINEES</p>
+                            <p class="mb-1 fs-6 text-muted subheading">TOTAL TRAINEES</p>
                             <h6 class="mb-0 sales-amount">{{ $users->where('type','trainee')->count() ?? 0 }}</h6>
                         </div>
                     </div>
