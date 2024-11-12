@@ -31,6 +31,7 @@
                             <th class="text-secondary">Full Name</th>
                             <th class="text-secondary">Email</th>
                             <th class="text-secondary">Phone No</th>
+                            <th class="text-secondary">City Name</th>
                             <th class="text-secondary">Registered At</th>
                         </tr>
                     </thead>
@@ -46,6 +47,7 @@
                                     <td class="align-middle">
                                         <a href="tel:{{ $user->phone ?? '' }}" class="text-decoration-none">{{ $user->phone ?? '' }}</a>
                                     </td>
+                                    <td class="align-middle">{{ $user->city ?? '' }}</td>
                                     <td class="align-middle">{{ $user->created_at->format('M d, Y') ?? '' }}</td>
                                 </tr>
                             @endforeach

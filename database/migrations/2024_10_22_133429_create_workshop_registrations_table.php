@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->string('city')->nullable();
             $table->text('comments')->nullable();
             $table->integer('workshop_id')->nullable();
             $table->integer('one_hour_mail')->default(0);
