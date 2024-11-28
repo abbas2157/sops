@@ -36,7 +36,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect1">Completion Grading</label>
-                                        <select class="form-control form-select subheading mt-1"  name="completion_grade">
+                                        <select class="form-control form-select subheading mt-1" id="completion_grade"  name="completion_grade">
                                             <optgroup label="Completed">
                                                 <option value="3">The student has complete all of the course work.</option>
                                             </optgroup>
@@ -47,7 +47,7 @@
                                                 <option value="1">The student has completed less than 90% of the course work.</option>
                                             </optgroup>
                                             <optgroup label="Not Started">
-                                                <option value="0">The student has not started the course work.</option>
+                                                <option value="0" selected>The student has not started the course work.</option>
                                             </optgroup>
                                         </select>
                                     </div>
@@ -55,7 +55,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group fw-bold">
                                         <label for="exampleFormControlSelect1">Assessment Grading</label>
-                                        <select class="form-control form-select subheading mt-1"  name="assessment_grade">
+                                        <select class="form-control form-select subheading mt-1" id="assessment_grade"  name="assessment_grade" disabled>
                                             <optgroup label="Very Good">
                                                 <option value="4">The student excelled at the assessment achieving all goals in the most optimal way with little to no help or issues</option>
                                             </optgroup>
@@ -96,6 +96,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
 <script>
     $(document).ready(function() {
+        $('#completion_grade').change(function(){
+            if($(this).val() >= 2) {
+                $('#assessment_grade').prop('disabled',false);
+            }
+            else {
+                $('#assessment_grade').prop('disabled',true);
+            }
+        });
         $('#summernote').summernote({
             height: 250,
             callbacks: {

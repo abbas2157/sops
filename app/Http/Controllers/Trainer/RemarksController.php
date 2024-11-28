@@ -48,48 +48,56 @@ class RemarksController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->type == 'intro')
-        {
-            $task = Assignment::where('id',$request->task_id)->where('is_move',0)->first();
-            if(is_null($task))
-                abort(404);
+        try {
+            DB::beginTransaction();
+            if($request->type == 'intro') {
+                $task = Assignment::where('id',$request->task_id)->where('is_move',0)->first();
+                if(is_null($task))
+                    abort(404);
+            }
+            if($request->type == 'fundamental') {
+                $task = TaskResponse::where('id',$request->task_id)->first();
+                if(is_null($task))
+                    abort(404);
+            }
+
+            $remark = new Remark;
+            $remark->type = $request->type;
+            if($request->type == 'intro') {
+                $remark->step_id = $task->step_id;
+            }
+            else {
+                $remark->batch_id = $task->batch_id;
+                $remark->class_id = $task->class_id;
+                $remark->class_id = $task->class_id;
+            }
+            $remark->course_id = $task->course_id;
+            $remark->user_id = $request->user_id;
+            $remark->task_id = $request->task_id;
+
+            $remark->completion_grade = $request->completion_grade;
+            $remark->assessment_grade = $request->assessment_grade;
+            $remark->remarks = $request->remarks;
+
+            $remark->status = 'Checked';
+            $remark->checked_by = Auth::user()->id;
+            $remark->save();
+            if($request->completion_grade >= 2)
+                $task->status = 'Pass';
+            else
+                $task->status = 'Fail';
+            $task->save();
+
+            DB::commit();
+
+            $validator['success'] = 'Task Checked Successfully';
+            return redirect('trainer')->withErrors($validator);
+        } 
+        catch (\Exception $e) {
+            DB::rollBack();
+            $validator['error'] = $e->getMessage();
+            return back()->withErrors($validator);
         }
-        if($request->type == 'fundamental')
-        {
-            $task = TaskResponse::where('id',$request->task_id)->first();
-            if(is_null($task))
-                abort(404);
-        }
-
-        $remark = new Remark;
-        $remark->type = $request->type;
-        if($request->type == 'intro')
-        {
-            $remark->step_id = $task->step_id;
-        }
-        else
-        {
-            $remark->batch_id = $task->batch_id;
-            $remark->class_id = $task->class_id;
-            $remark->class_id = $task->class_id;
-        }
-        $remark->course_id = $task->course_id;
-        $remark->user_id = $request->user_id;
-        $remark->task_id = $request->task_id;
-
-        $remark->completion_grade = $request->completion_grade;
-        $remark->assessment_grade = $request->assessment_grade;
-        $remark->remarks = $request->remarks;
-
-        $remark->status = 'Checked';
-        $remark->checked_by = Auth::user()->id;
-        $remark->save();
-
-        $task->status = 'Pass';
-        $task->save();
-
-        $validator['success'] = 'Task Checked Successfully';
-        return redirect('trainer')->withErrors($validator);
     }
 
     /**

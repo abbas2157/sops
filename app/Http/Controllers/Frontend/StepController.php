@@ -54,7 +54,7 @@ class StepController extends Controller
     public function show(Request $request)
     {
         if(!$request->has('uuid') || empty($request->uuid))
-        abort(404);
+            abort(404);
 
         $intro = ModuleStep::where('uuid',$request->uuid)->with('createdby','course')->first();
         if(is_null($intro))
