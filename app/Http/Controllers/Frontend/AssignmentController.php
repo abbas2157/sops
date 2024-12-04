@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment, Review, User, Course, Trainee, ModuleStep, JoinedCourse, Payment};
+use App\Models\{Assignment, Review, User, Course, Trainee};
+use App\Models\{ModuleStep, JoinedCourse, Payment, TrainerCourse};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Mail\AssignmentSubmissionMail;
 use App\Jobs\AssignmentSubmissionMailJob;
@@ -37,9 +38,9 @@ class AssignmentController extends Controller
         ]);
         try {
             DB::beginTransaction();
+
             $assignment = new Assignment;
-            if($request->hasFile('assignment'))
-            {
+            if($request->hasFile('assignment')) {
                 $file = $request->file('assignment');
                 $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
                 $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
@@ -59,6 +60,7 @@ class AssignmentController extends Controller
             $joinedCourse_status = 'Pending';
             $last_step_id = ModuleStep::where('course_id',$request->course_id)->orderBy('id', 'desc')->value('id');
             if($last_step_id == $request->step_id) {
+
                 $payment = new Payment;
                 $payment->user_id = Auth::user()->id;
                 $payment->course_id = $course->id;
@@ -87,8 +89,11 @@ class AssignmentController extends Controller
                     'assignment' => $assignment->file,
                     'status' => $joinedCourse_status
                 );
-            if($course->trainer->isNotEmpty())
-                AssignmentSubmissionMailJob::dispatch($course->trainer[0]->user->email, $data);
+            $trainers = TrainerCourse::where('course_id', $course->id)->get();
+            foreach($trainers as $item) {
+                AssignmentSubmissionMailJob::dispatch($item->trainer->user->email, $data);
+            }
+            
             $data['type'] = 'trainee';
             AssignmentSubmissionMailJob::dispatch(Auth::user()->email, $data);
             DB::commit();

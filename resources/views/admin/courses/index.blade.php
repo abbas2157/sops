@@ -79,6 +79,10 @@
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                 See Reviews
                                         </a>
+                                        <a class="dropdown-item" href="{{ route('admin.courses.assign') }}?course={{ $course->id ?? '' }}">
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
+                                            Assign Trainer
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('courses.edit', $course->id) }}">
                                             <img src="{{ asset('assets/img/edit-2.svg') }}" class="img-fluid me-1" style="    width: 10%;" alt="" />
                                             Edit Course

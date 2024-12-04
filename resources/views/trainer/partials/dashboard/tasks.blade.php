@@ -63,7 +63,7 @@
                         @else
                             <tr>
                                 <td colspan="10" class="align-middle text-center">
-                                    No user Found
+                                    No Record Found
                                 </td>
                             </tr>
                         @endif

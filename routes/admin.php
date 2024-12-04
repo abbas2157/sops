@@ -12,7 +12,13 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::post('change/password', [App\Http\Controllers\Admin\ProfileController::class, 'show'])->name('admin.profile.change.password');
                 Route::post('picture/update', [App\Http\Controllers\Admin\ProfileController::class, 'picture_update'])->name('change-profile.picture');
             });
-
+            Route::group(['prefix' => 'courses'], function(){
+                Route::group(['prefix' => 'assign'], function(){
+                    Route::get('/', [App\Http\Controllers\Admin\AssignCourseToTrainer::class, 'index'])->name('admin.courses.assign');
+                    Route::post('store', [App\Http\Controllers\Admin\AssignCourseToTrainer::class, 'store'])->name('admin.courses.assign.store');
+                    Route::get('remove/{id}', [App\Http\Controllers\Admin\AssignCourseToTrainer::class, 'remove'])->name('admin.courses.assign.remove');
+                });
+            });
             Route::resource('courses', App\Http\Controllers\Admin\CourseController::class);
             Route::resource('steps', App\Http\Controllers\Admin\StepController::class);
             Route::resource('trainers', App\Http\Controllers\Admin\TrainerController::class);

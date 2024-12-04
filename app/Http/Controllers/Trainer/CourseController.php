@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Trainer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,JoinedCourse};
+use App\Models\{Course, TrainerCourse};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 
 class CourseController extends Controller
@@ -14,7 +14,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::where('id',Auth::user()->trainer->course_id)->orderBy('id','DESC')->get();
+        $courses = TrainerCourse::with('course','assignedby')->where('trainer_id', Auth::user()->trainer->id)->get();
         return view('trainer.courses.index',compact('courses'));
     }
 

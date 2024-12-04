@@ -9,7 +9,7 @@
       <meta name="description" content="">
       @yield('title')
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon-32x32.png') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
       <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
       <link rel="stylesheet" href="{{ asset('toast/css/jquery.toast.css') }}">

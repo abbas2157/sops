@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Trainer;
 
+use App\Models\{Assignment, User, TrainerCourse, TaskResponse, JoinedCourse};
+use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,User,Course,Trainee,ModuleStep,Trainer,JoinedCourse, TaskResponse};
-use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 
 class StudentController extends Controller
 {
@@ -14,12 +14,16 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = JoinedCourse::where('course_id',Auth::user()->trainer->course_id)->where('is_move',0)->pluck('user_id');
+        $courses = TrainerCourse::with('course','assignedby')->where('trainer_id', Auth::user()->trainer->id)->pluck('course_id');
+        $course_ids = array();
+        if(!is_null($courses)) {
+            $course_ids = $courses->toArray();
+        }
+        $students = JoinedCourse::whereIn('course_id', $course_ids)->where('is_move',0)->pluck('user_id');
         if(!is_null($students))
         {
             $students = $students->toArray();
-            $students = User::with('trainee')->whereIn('id',$students)->whereIn('type', ['trainee'])
-                        ->select('id','uuid','name','last_name','email','phone','status','created_at')->get();
+            $students = User::with('trainee')->whereIn('id',$students)->whereIn('type', ['trainee'])->select('id','uuid','name','last_name','email','phone','status','created_at')->get();
         }
         return view('trainer.students.index',compact('students'));
     }

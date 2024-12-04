@@ -25,9 +25,9 @@
                 <tr>
                     <th style="width:10%" class="align-middle">Image</th>
                     <th class="align-middle">Course Name</th>
-                    <th class="align-middle">Course Description</th>
-                    <th class="align-middle">Created By</th>
-                    <th class="align-middle">Created at</th>
+                    <th class="align-middle">Module Type</th>
+                    <th class="align-middle">Assigned By</th>
+                    <th class="align-middle">Assigned Date</th>
                     <th class="align-middle">Action</th>
                 </tr>
             </thead>
@@ -35,10 +35,10 @@
                 @if($courses->isNotEmpty())
                     @foreach($courses as $course)
                         <tr>
-                            <td style="width:10%" class="align-middle"><img src="{{ asset('images/courses/'.$course->image) }}" style="width: 50%;" alt=""></td>
-                            <td class="align-middle">{{ $course->name ?? '' }}</td>
-                            <td class="align-middle" style="white-space: normal;">{{ \Illuminate\Support\Str::words($course->description, 20, '...') }}</td>
-                            <td class="align-middle">{{ $course->createdby->full_name ?? '' }}</td>
+                            <td style="width:10%" class="align-middle"><img src="{{ asset('images/courses/'.$course->course->image) }}" style="width: 50%;" alt=""></td>
+                            <td class="align-middle">{{ $course->course->name ?? '' }}</td>
+                            <td class="align-middle">{{ $course->course_module ?? '' }}</td>
+                            <td class="align-middle">{{ $course->assignedby->full_name ?? '' }}</td>
                             <td class="align-middle">{{ $course->created_at->format('M d, Y') ?? '' }}</td>
                             <td class="align-middle" >
                                 <div>
@@ -50,10 +50,6 @@
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             See Batches
                                         </a>
-                                        {{-- <a class="dropdown-item" href="{{ route('admin.students',['uuid' => $course->uuid]) }}">
-                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
-                                            Enroll Students
-                                        </a> --}}
                                     </div>
                                 </div>
                             </td>

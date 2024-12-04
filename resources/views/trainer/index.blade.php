@@ -70,52 +70,52 @@
                         <div class="col-md-12 mt-2">
                             <div class="table-responsive p-2">
                                 <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th class="align-middle">Registeration Link</th>
-                                        <th class="align-middle">Workshop Title</th>
-                                        <th class="align-middle">Workshop Date</th>
-                                        <th class="align-middle">Workshop Time</th>
-                                        <th class="align-middle">Workshop Type</th>
-                                        <th class="align-middle">Link or Address</th>
-                                        <th class="align-middle">Created at</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if($workshops->isNotEmpty())
-                                        @foreach($workshops as $workshop)
-                                            <tr>
-                                                <td class="align-middle">
-                                                    <input type="hidden" value="{{ $workshop->workshop_link ?? '' }}" id="copyText_{{ $workshop->id ?? '' }}" >
-                                                    <i class="bi bi-file-earmark-text fs-6" style="cursor: copy;" onclick="copyToClipboard({{ $workshop->id ?? '' }})"></i> 
-                                                    <a target="_blank" href="{{ route('workshop.register', $workshop->uuid) }}">Register link</a>
-                                                </td>
-                                                <td class="align-middle">
-                                                    {{ $workshop->title ?? '' }}
-                                                </td>
-                                                <td class="align-middle">{{ date('M d, Y',strtotime($workshop->workshop_date)) }}</td>
-                                                <td class="align-middle">{{ date('h:i:s A',strtotime($workshop->workshop_time)) }}</td>
-                                                <td class="align-middle">{{ $workshop->type ?? '' }}</td>
-                                                <td class="align-middle">
-                                                    @if($workshop->type == 'Online')
+                                    <thead>
+                                        <tr>
+                                            <th class="align-middle">Registeration Link</th>
+                                            <th class="align-middle">Workshop Title</th>
+                                            <th class="align-middle">Workshop Date</th>
+                                            <th class="align-middle">Workshop Time</th>
+                                            <th class="align-middle">Workshop Type</th>
+                                            <th class="align-middle">Link or Address</th>
+                                            <th class="align-middle">Created at</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if($workshops->isNotEmpty())
+                                            @foreach($workshops as $workshop)
+                                                <tr>
+                                                    <td class="align-middle">
                                                         <input type="hidden" value="{{ $workshop->workshop_link ?? '' }}" id="copyText_{{ $workshop->id ?? '' }}" >
                                                         <i class="bi bi-file-earmark-text fs-6" style="cursor: copy;" onclick="copyToClipboard({{ $workshop->id ?? '' }})"></i> 
-                                                        <a target="_blank" href="{{ $workshop->workshop_link ?? '' }}">Start Workshop</a>
-                                                    @else
-                                                        {{ $workshop->address ?? '' }}
-                                                    @endif
+                                                        <a target="_blank" href="{{ route('workshop.register', $workshop->uuid) }}">Register link</a>
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        {{ $workshop->title ?? '' }}
+                                                    </td>
+                                                    <td class="align-middle">{{ date('M d, Y',strtotime($workshop->workshop_date)) }}</td>
+                                                    <td class="align-middle">{{ date('h:i:s A',strtotime($workshop->workshop_time)) }}</td>
+                                                    <td class="align-middle">{{ $workshop->type ?? '' }}</td>
+                                                    <td class="align-middle">
+                                                        @if($workshop->type == 'Online')
+                                                            <input type="hidden" value="{{ $workshop->workshop_link ?? '' }}" id="copyText_{{ $workshop->id ?? '' }}" >
+                                                            <i class="bi bi-file-earmark-text fs-6" style="cursor: copy;" onclick="copyToClipboard({{ $workshop->id ?? '' }})"></i> 
+                                                            <a target="_blank" href="{{ $workshop->workshop_link ?? '' }}">Start Workshop</a>
+                                                        @else
+                                                            {{ $workshop->address ?? '' }}
+                                                        @endif
+                                                    </td>
+                                                    <td class="align-middle">{{ $workshop->created_at->format('M d, Y') ?? '' }}</td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="8" class="align-middle text-center">
+                                                    No Record Found
                                                 </td>
-                                                <td class="align-middle">{{ $workshop->created_at->format('M d, Y') ?? '' }}</td>
                                             </tr>
-                                        @endforeach
-                                    @else
-                                        <tr>
-                                            <td colspan="8" class="align-middle text-center">
-                                                No workshop Found
-                                            </td>
-                                        </tr>
-                                    @endif
-                                </tbody>
+                                        @endif
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
