@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::resource('replies', App\Http\Controllers\Admin\ReplyController::class,['as' => 'admin']);
             Route::resource('batches', App\Http\Controllers\Admin\BatchController::class,['as' => 'admin']);
             Route::resource('batch-students', App\Http\Controllers\Admin\BatchStudentsController::class,['as' => 'admin']);
+            Route::resource('batch-trainers', App\Http\Controllers\Admin\BatchTrainersController::class,['as' => 'admin']);
             Route::resource('class-schedules', App\Http\Controllers\Admin\ClassScheduleController::class,['as' => 'admin']);
             Route::resource('library',App\Http\Controllers\Admin\LibraryController::class,['as' => 'admin']);
 

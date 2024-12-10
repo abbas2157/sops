@@ -31,7 +31,7 @@
                             <option disabled selected> Select Trainer</option>
                             @if($trainers->isNotEmpty())
                                 @foreach($trainers as $trainer)
-                                    <option value="{{ $trainer->id ?? '' }}" {{ (request()->has('id') && $trainer->id == request()->trainer)? 'selected' : ''  }}>{{ $trainer->name ?? '' }}</option>
+                                    <option value="{{ $trainer->id ?? '' }}" {{ (request()->has('trainer') && $trainer->id == request()->trainer)? 'selected' : ''  }}>{{ $trainer->name ?? '' }}</option>
                                 @endforeach
                             @endif
                         </select>

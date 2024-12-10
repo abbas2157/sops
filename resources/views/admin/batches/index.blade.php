@@ -58,6 +58,10 @@
                                         <i class="fa-solid fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="{{ route('admin.batch-trainers.index',['id' => $batch->id]) }}">
+                                            <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
+                                            Add Trainers
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('admin.batch-students.index',['id' => $batch->id]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             Add Students

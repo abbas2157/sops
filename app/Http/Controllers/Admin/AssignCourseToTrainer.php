@@ -46,6 +46,11 @@ class AssignCourseToTrainer extends Controller
     {
         try {
             DB::beginTransaction();
+            $assign = TrainerCourse::where(['trainer_id' => $request->trainer_id, 'course_id' => $request->course_id, 'course_module' => $request->type])->first();
+            if(!is_null($assign)) {
+                $validator['success'] = 'Course Already Assigned.';
+                return back()->withErrors($validator);
+            }
             $assign = new TrainerCourse;
             $assign->trainer_id = $request->trainer_id;
             $assign->course_id = $request->course_id;
