@@ -40,18 +40,20 @@
                             <td class="align-middle">{{ $course->course_module ?? '' }}</td>
                             <td class="align-middle">{{ $course->assignedby->full_name ?? '' }}</td>
                             <td class="align-middle">{{ $course->created_at->format('M d, Y') ?? '' }}</td>
-                            <td class="align-middle" >
+                            <td class="align-middle">
+                                @if($course->course_module !== 'Intro')
                                 <div>
                                     <a class="btn btn-secondary bg-transparent border-0 text-dark" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa-solid fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="{{ route('trainer.batches',['id' => $course->id]) }}">
+                                        <a class="dropdown-item" href="{{ route('trainer.batches',['id' => $course->course->id]) }}">
                                             <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                             See Batches
                                         </a>
                                     </div>
                                 </div>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

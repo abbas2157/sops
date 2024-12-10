@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Trainer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Assignment,User,Course,TaskResponse, Workshop};
+use App\Models\{Assignment,User,Course,TaskResponse, Workshop, BatchTrainer};
 use App\Models\{Trainee, ModuleStep, Trainer, JoinedCourse, TrainerCourse};
 use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
 
@@ -21,16 +21,25 @@ class DashboardController extends Controller
         if(!is_null($trainer_intro)) {
             $trainer_intro_ids = $trainer_intro->toArray();
         }
+
         $trainer_others = TrainerCourse::where('trainer_id', Auth::user()->trainer->id)->where('course_module', '!=', 'Intro')->pluck('course_id');
         $trainer_others_ids = array();
         if(!is_null($trainer_others)) {
             $trainer_others_ids = $trainer_others->toArray();
         }
         $course_ids = array_merge($trainer_intro_ids,$trainer_others_ids);
+
+        $trainer_batches = BatchTrainer::where('trainer_id', Auth::user()->trainer->id)->whereIn('course_id', $course_ids)->pluck('batch_id');
+        $trainer_batches_ids = array();
+        if(!is_null($trainer_batches)) {
+            $trainer_batches_ids = $trainer_batches->toArray();
+        }
+
         $courses = Course::where('id',$course_id)->count();
         $students = JoinedCourse::whereIn('course_id', $course_ids)->where('is_move',0)->count();
+
         $assignments = Assignment::with('user','step','course')->where('is_move',0)->where('status','Pending')->orderBy('id','DESC')->whereIn('course_id',$trainer_intro_ids)->limit(5)->get();
-        $tasks = TaskResponse::with('batch','course','class','task','user')->where('status','Pending')->whereIn('course_id', $trainer_others_ids)->limit(5)->orderBy('id','DESC')->get();
+        $tasks = TaskResponse::with('batch','course','class','task','user')->where('status','Pending')->whereIn('course_id', $trainer_others_ids)->whereIn('batch_id', $trainer_batches_ids)->limit(5)->orderBy('id','DESC')->get();
         $workshops = Workshop::whereDate('workshop_date', '>=', date('Y-m-d'))->where('trainer_id',Auth::user()->trainer->id)->get();
         return view('trainer.index',compact('courses','students','assignments','tasks','workshops'));
     }

@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="col-md-9 col-12 text-end">
-                        <a href="{{ route('trainer.batches') }}" class="btn create-btn rounded-3 mt-2">Back To Batches<i class="bi bi-funnel"></i></a>
+                        <a href="{{ route('trainer.batches') }}?id={{ request()->id }}" class="btn excel-btn rounded-3 mt-2">Back To Batches </a>
                         <a href="{{ route('trainer.courses') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Courses</a>
                     </div>
                 </div>
