@@ -10,24 +10,24 @@
             <form enctype="multipart/form-data" id="" method="post" action="{{ route('admin.coupons.store') }}">
                 @csrf
                 @method('POST')
-                <div class="form-group">
-                    <label for="exampleFormControlInput1" class="mb-1">Coupon Code <span class="text-danger">*</span></label>
-                    <input type="text" name="code" class="form-control subheading" id="exampleFormControlInput1" placeholder="Code" required/>
-                </div>
-                <div class="form-group mt-2">
-                    <label for="exampleFormControlInput1" class="mb-1">Coupon Use Limit  (optional)</label>
-                    <input type="number" name="limit" class="form-control subheading" id="exampleFormControlInput1" placeholder="Limit (If you want)"/>
-                </div>
-                <div class="form-group mt-2">
-                    <label for="exampleFormControlInput1" class="mb-1">Last Date (optional)</label>
-                    <input type="date" name="last_date" class="form-control subheading" id="exampleFormControlInput1" placeholder="Last Date (If you want)"/>
-                </div>
-                <div class="form-group mt-2">
+                <div class="form-group ">
                     <label class="mb-1">Coupon Type</label>
                     <select class="form-control form-select subheading mt-1" name="type" id="coupon_type">
                         <option>General</option>
                         <option>Course</option>
                     </select>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="exampleFormControlInput1" class="mb-1">Coupon Code <span class="text-danger">*</span></label>
+                    <input type="text" name="code" class="form-control subheading" id="exampleFormControlInput1" placeholder="Code" required/>
+                </div>
+                <div class="form-group mt-2" id="limit-show">
+                    <label for="exampleFormControlInput1" class="mb-1">Coupon Use Limit </label>
+                    <input type="number" name="limit" class="form-control subheading" id="exampleFormControlInput1" placeholder="Limit (If you want)"/>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="exampleFormControlInput1" class="mb-1">Last Date (optional)</label>
+                    <input type="date" name="last_date" class="form-control subheading" id="exampleFormControlInput1" placeholder="Last Date (If you want)"/>
                 </div>
                 <div class="form-group mt-2 d-none" id="course-show">
                     <label class="mb-1">Coupon Name</label>

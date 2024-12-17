@@ -65,7 +65,7 @@
                                 <div class="col-md-9">
                                     <h6 class="mt-2">Add coupon code (optional)</h6>
                                     <div class="password-container">
-                                        <input type="text" id="coupon" name="coupon" class="password-input form-control subheading" placeholder="Enter Coupon" />
+                                        <input type="text" id="coupon" name="coupon" value="{{ old('coupon') }}" class="password-input form-control subheading" placeholder="Enter Coupon" />
                                     </div>
                                 </div>
                                 <div class="col-md-3 pt-3">
@@ -73,14 +73,15 @@
                                         <button class="btn coupon-btn text-white mt-3" id="apply_coupon"> Apply </button>
                                     </div>
                                 </div>
+                                @if ($errors->has('error'))
                                 <div class="col-md-12 mt-1 ms-1">
-                                    <span class="text-danger  fs-6 text-left d-none"></span>
+                                    <span class="text-warning fs-6 text-left">{{ $errors->first('error') }}</span>
                                 </div>
+                                @endif
                                 <div class="col-md-12 mt-1 ms-1">
-                                    <span class="text-success fs-6 text-left d-none"></span>
+                                    <span class="text-warning fs-6 text-left d-none"></span>
                                 </div>
                             </div>
-
                             <div class="row mt-2">
                                 <div class="col-md-6">Total</div>
                                 <div class="col-md-6 text-right">Rs. {{ $course->price ?? '00' }}</div>
@@ -120,10 +121,10 @@
         <script>
             $('#apply_coupon').click(function(){
                 var coupon = $('#coupon').val();
-                $('.text-danger').addClass('d-none');
+                $('.text-warning').addClass('d-none');
                 if(coupon == '') {
-                    $('.text-danger').text('This field is required.');
-                    $('.text-danger').removeClass('d-none');
+                    $('.text-warning').text('This field is required.');
+                    $('.text-warning').removeClass('d-none');
                     return;
                 }
                 var formData = new FormData();
@@ -137,13 +138,13 @@
                     processData: false,
                     success: function(response) {
                         if (response.hasOwnProperty('success')) {
-                            $('.text-success').text(response.success);
-                            $('.text-success').removeClass('d-none');
+                            $('.text-warning').text(response.success);
+                            $('.text-warning').removeClass('d-none');
                             $('.change-continues').attr('href',"{{ route('payments.perform') }}?coupon="+coupon);
                         }
                         else {
-                            $('.text-danger').text(response.error);
-                            $('.text-danger').removeClass('d-none');
+                            $('.text-warning').text(response.error);
+                            $('.text-warning').removeClass('d-none');
                         }
                     },
                     error: function(xhr, status, error) {

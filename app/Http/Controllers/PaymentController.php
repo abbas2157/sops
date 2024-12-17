@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Cookie, Auth};
 use App\Models\{Course, Payment, Coupon, JoinedCourse, Trainee};
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -34,51 +35,69 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        if (!empty(Cookie::get('course'))) {
-            $uuid = Cookie::get('course');
-            Cookie::queue(Cookie::forget('course'));
-            $course = Course::where('uuid',$uuid)->first();
-            if(is_null($course)) {
-                abort(404);
-            }
-            $user = Auth::user();
-            if($request->has('coupon') && !empty($request->coupon)) {
-                $coupon = Coupon::where('code',$request->coupon)->first();
+        try {
+            DB::beginTransaction();
+            if (!empty(Cookie::get('course'))) {
+                $uuid = Cookie::get('course');
+                $course = Course::where('uuid',$uuid)->first();
+                if(is_null($course)) {
+                    abort(404);
+                }
+                $user = Auth::user();
+                if($request->has('coupon') && !empty($request->coupon)) {
+                    $coupon = Coupon::where('code',$request->coupon)->first();
+                    if(!is_null($coupon->limit)) {
+                        if($coupon->limit == 0) {
+                            $validator['error'] = 'Coupon code limit exceeded.';
+                            return back()->withErrors($validator)->withInput();
+                        }
+                        else {
+                            $coupon->limit = $coupon->limit - 1;
+                            $coupon->save();
+                        }
+                    }
+                    $join = JoinedCourse::where(['course_id' => $course->id, 'user_id' => $user->id])->first();
+                    if(is_null($join)) {
+                        $join->course_id = $course->id;
+                        $join->user_id = $user->id;
+        
+                        $trainee = Trainee::where('user_id',$user->id)->first();
+                        if(!is_null($trainee)) {
+                            $join->trainee_id = $trainee->id;
+                        }
 
-                $join = JoinedCourse::where(['course_id' => $course->id, 'user_id' => $user->id])->first();
-                if(is_null($join)) {
-                    $join->course_id = $course->id;
-                    $join->user_id = $user->id;
-    
-                    $trainee = Trainee::where('user_id',$user->id)->first();
-                    if(!is_null($trainee)) {
-                        $join->trainee_id = $trainee->id;
+                        $join->type = 'Intro';
+                        $join->status = 'Processing';
+                        $join->save();
                     }
 
-                    $join->type = 'Intro';
-                    $join->status = 'Processing';
-                    $join->save();
+                    $payment = new Payment;
+                    $payment->user_id = $user->id;
+                    $payment->course_id = $course->id;
+                    $payment->total_price = $course->price;
+                    $payment->gateway = 'Coupon';
+                    $payment->status = 'Coupon';
+                    $payment->coupon_id = $coupon->id;
+                    $payment->save();
                 }
-
-                $payment = new Payment;
-                $payment->user_id = $user->id;
-                $payment->course_id = $course->id;
-                $payment->total_price = $course->price;
-                $payment->gateway = 'Coupon';
-                $payment->status = 'Coupon';
-                $payment->coupon_id = $coupon->id;
-                $payment->save();
+                else {
+                    $payment = new Payment;
+                    $payment->user_id = $user->id;
+                    $payment->course_id = $course->id;
+                    $payment->total_price = $course->price;
+                    $payment->save();
+                }
+                // Cookie::queue(Cookie::forget('course'));
+                // return redirect('trainee');
             }
-            else {
-                $payment = new Payment;
-                $payment->user_id = $user->id;
-                $payment->course_id = $course->id;
-                $payment->total_price = $course->price;
-                $payment->save();
-            }
-            return redirect('trainee');
+            DB::commit();
+            return abort(404);
+        } 
+        catch (\Exception $e) {
+            DB::rollBack();
+            $validator['error'] = $e->getMessage();
+            return back()->withErrors($validator);
         }
-        return abort(404);
     }
 
     /**
@@ -91,10 +110,16 @@ class PaymentController extends Controller
             return response()->json(['error' => 'Oops! The coupon code you entered is invalid. Please check the code and try again.'], 200);
         }
         if(!is_null($coupon->last_date)) {
-            return response()->json(['error' => 'Coupon code expired.'], 200);
+            $date1 = Carbon::parse($coupon->last_date);
+            $date2 = Carbon::parse(date('Y-m-d'));
+            if ($date1->gt($date2)) { 
+                return response()->json(['error' => 'Coupon code date expired.'], 200);
+            }
         }
         if(!is_null($coupon->limit)) {
-            return response()->json(['error' => 'Coupon code exceeded.'], 200);
+            if($coupon->limit == 0) {
+                return response()->json(['error' => 'Coupon code limit exceeded.'], 200);
+            }
         }
         if (!empty(Cookie::get('course'))) {
             $uuid = Cookie::get('course');

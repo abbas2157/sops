@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Coupon;
-use App\Models\Course;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\{Auth,Hash,Mail,DB};
+use App\Models\{Coupon, Course};
 
 class CouponController extends Controller
 {
@@ -36,18 +35,26 @@ class CouponController extends Controller
         $request->validate([
             'code' => 'required|unique:coupons'
         ]);
+        try {
+            DB::beginTransaction();
+            $coupon = new Coupon;
+            $coupon->code = $request->code;
+            $coupon->limit = $request->limit;
+            $coupon->last_date = $request->last_date;
+            $coupon->type = $request->type;
+            $coupon->course_id = $request->course_id;
+            $coupon->created_by = Auth::user()->id;
+            $coupon->save();
+            DB::commit();
 
-        $coupon = new Coupon;
-        $coupon->code = $request->code;
-        $coupon->limit = $request->limit;
-        $coupon->last_date = $request->last_date;
-        $coupon->type = $request->type;
-        $coupon->course_id = $request->course_id;
-        $coupon->created_by = Auth::user()->id;
-        $coupon->save();
-
-        $validator['success'] = 'Coupon Created Successfully';
-        return back()->withErrors($validator);
+            $validator['success'] = 'Coupon Created Successfully';
+            return back()->withErrors($validator);
+        } 
+        catch (\Exception $e) {
+            DB::rollBack();
+            $validator['error'] = $e->getMessage();
+            return back()->withErrors($validator);
+        }
     }
 
     /**
