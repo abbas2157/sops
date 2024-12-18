@@ -25,7 +25,7 @@
                 <div class="form-group fw-bold">
                     <label for="course">Select Module</label>
                     <select class="form-control form-select subheading mt-2" name="type" id="type" required>
-                        <option value="Intro">Intro Module</option>
+                        <option value="Intro" {{ ($course->course->id == request()->course) ? 'selected' : '' }}>Intro Module</option>
                         <option value="Fundamental">Fundamental Module</option>
                         <option value="Full Skill">Full Skill Module</option>
                     </select>

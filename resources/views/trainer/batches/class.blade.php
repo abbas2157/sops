@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="col-md-8 col-12 text-end">
-                    <a href="{{ route('courses.index') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Courses</a>
+                    <a href="{{ route('trainer.courses') }}" class="btn rounded-3 mt-2 excel-btn"> Back to Courses</a>
                 </div>
             </div>
         </div>
