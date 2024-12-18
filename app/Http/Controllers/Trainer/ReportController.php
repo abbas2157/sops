@@ -94,6 +94,7 @@ class ReportController extends Controller
                 }
             }
         }
+        // dd($completion_grade, $assessment_grade, $complete_percenatge, $assessment_pecentage);
         $courses = JoinedCourse::where('user_id',$user->id)->where('is_move',0)->get();
         return view('trainer.reports.index',compact('user', 'courses', 'completion_grade','assessment_grade','complete_percenatge', 'assessment_pecentage'));
     }

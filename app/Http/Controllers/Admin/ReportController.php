@@ -40,7 +40,8 @@ class ReportController extends Controller
     {
         $user = User::where('uuid', $id)->first();
         if(is_null($user)) {
-            abort(404, 'User Not Found');
+            $validator['error'] = 'User Not Found';
+            return back()->withErrors($validator);
         }
         if(request()->has('course') && request()->has('type')) {
             $course_id = request()->course;
@@ -72,7 +73,8 @@ class ReportController extends Controller
         else {
             $course = JoinedCourse::where('user_id',$user->id)->where('is_move',0)->first();
             if(is_null($course)) {
-                abort(404, 'Course Not Found');
+                $validator['error'] = 'Course Not Found. (No joined)';
+                return back()->withErrors($validator);
             }
             $completion_grade = array();
             $assessment_grade = array();
