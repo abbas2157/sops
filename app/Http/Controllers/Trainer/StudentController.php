@@ -37,7 +37,7 @@ class StudentController extends Controller
         $students = array_merge($intro_students_ids, $batch_students_ids);
         if(!empty($students))
         {
-            $students = User::with('trainee')->whereIn('id',$students)->whereIn('type', ['trainee'])->select('id','uuid','name','last_name','email','phone','status','created_at')->get();
+            $students = User::with('trainee')->whereIn('id',$students)->whereIn('type', ['trainee'])->select('id','uuid','name','last_name','email','phone','status','created_at')->orderBy('id','DESC')->paginate(20);
         }
         return view('trainer.students.index',compact('students'));
     }

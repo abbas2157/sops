@@ -13,7 +13,7 @@
                 <i class="bi bi-file-richtext-fill"></i>
                 <p class="pt-1 mb-0">My Courses</p>
             </a>
-            <a href="{{ route('trainer.students') }}" class="nav-item nav-link {{ (request()->is('trainer/students') || request()->is('trainer/students/tasks*') || request()->is('trainer/tasks/remarks*')) ? 'active' : '' }} text-center border-top">
+            <a href="{{ route('trainer.students') }}" class="nav-item nav-link {{ (request()->is('trainer/students') || request()->is('trainer/students/tasks*') || request()->is('trainer/tasks/remarks*') || request()->is('trainer/survey*')) ? 'active' : '' }} text-center border-top">
                 <i class="bi bi-person-vcard-fill"></i>
                 <p class="pt-1 mb-0">Students</p>
             </a>

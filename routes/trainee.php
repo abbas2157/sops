@@ -54,6 +54,9 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::get('/', [App\Http\Controllers\Trainee\ReportsController::class, 'index'])->name('trainee.reports');
             });
             
+            Route::group(['prefix' => 'survey'], function(){
+                Route::get('/', [App\Http\Controllers\Trainee\SurveyController::class, 'index'])->name('trainee.survey');
+            });
         });
     });
 });
