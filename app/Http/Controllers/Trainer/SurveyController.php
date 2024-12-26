@@ -92,9 +92,9 @@ class SurveyController extends Controller
         if(is_null($survey)) {
             $survey = new Survey;
             $survey->user_id = $request->user_id;
-            $survey->added_by = $request->added_by;
+            $survey->added_by = Auth::user()->id;
         }
-        $survey->updated_by = $request->updated_by;
+        $survey->updated_by = Auth::user()->id;
 
         //Collaboration & Teamwork
         if($request->has('WillingnesstoHelpOthers')) {
