@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Trainer;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -20,7 +20,7 @@ class SurveyController extends Controller
         }
         $survey = Survey::where('user_id',$user->id)->first();
         $CollaborationTeamwork = [];
-        if(!is_null($survey->WillingnesstoHelpOthers)) {
+        if(!is_null($survey) && !is_null($survey->WillingnesstoHelpOthers)) {
             $CollaborationTeamwork[] = $survey->WillingnesstoHelpOthers;
             $CollaborationTeamwork[] = $survey->WillingnesstoAcceptHelpfromOthers;
             $CollaborationTeamwork[] = $survey->NoticesWhenOthersAreStrugglingandOffersAssistance;
@@ -29,7 +29,7 @@ class SurveyController extends Controller
         }
 
         $EnglishCommunication = [];
-        if(!is_null($survey->Speaking)) {
+        if(!is_null($survey) && !is_null($survey->Speaking)) {
             $EnglishCommunication[] = $survey->Speaking;
             $EnglishCommunication[] = $survey->Pronunciation;
             $EnglishCommunication[] = $survey->Writing;
@@ -38,7 +38,7 @@ class SurveyController extends Controller
         }
 
         $Autonomy = [];
-        if(!is_null($survey->OrganizesStudyTimeEffectively)) {
+        if(!is_null($survey) && !is_null($survey->OrganizesStudyTimeEffectively)) {
             $Autonomy[] = $survey->OrganizesStudyTimeEffectively;
             $Autonomy[] = $survey->WritesSMARTGoalsandAchievesResults;
             $Autonomy[] = $survey->InvestedinLearningSeeksNewOpportunities;
@@ -47,7 +47,7 @@ class SurveyController extends Controller
         }
 
         $Communication = [];
-        if(!is_null($survey->ConfidentlyCommunicateVerballyinSmallGroups)) {
+        if(!is_null($survey) && !is_null($survey->ConfidentlyCommunicateVerballyinSmallGroups)) {
             $Communication[] = $survey->ConfidentlyCommunicateVerballyinSmallGroups;
             $Communication[] = $survey->ConfidentlyCommunicateVerballyinLargeGroups;
             $Communication[] = $survey->UnderstandsWrittenInstructions;
@@ -56,7 +56,7 @@ class SurveyController extends Controller
         }
 
         $ComputerSkills = [];
-        if(!is_null($survey->CanInstallSoftwarewithLittletoNoInstruction)) {
+        if(!is_null($survey) && !is_null($survey->CanInstallSoftwarewithLittletoNoInstruction)) {
             $ComputerSkills[] = $survey->CanInstallSoftwarewithLittletoNoInstruction;
             $ComputerSkills[] = $survey->CanNavigateInternetwithLittletoNoInstruction;
             $ComputerSkills[] = $survey->CanSearchInternettoFindAnswers;
@@ -65,14 +65,14 @@ class SurveyController extends Controller
         }
 
         $SlackInteraction = [];
-        if(!is_null($survey->ActiveParticipationinChannels)) {
+        if(!is_null($survey) && !is_null($survey->ActiveParticipationinChannels)) {
             $SlackInteraction[] = $survey->ActiveParticipationinChannels;
             $SlackInteraction[] = $survey->TimelyResponsestoMessages;
             $SlackInteraction[] = $survey->ConstructiveFeedbackandSupport;
             $SlackInteraction[] = $survey->EffectiveUseofEmojiandReactions;
             $SlackInteraction[] = $survey->EncouragesInclusiveCommunication;
         }
-        return view('trainer.survey.index',compact('user','survey','CollaborationTeamwork','EnglishCommunication', 'Autonomy', 'Communication', 'ComputerSkills', 'SlackInteraction'));
+        return view('admin.survey.index',compact('user','survey','CollaborationTeamwork','EnglishCommunication', 'Autonomy', 'Communication', 'ComputerSkills', 'SlackInteraction'));
     }
 
     /**

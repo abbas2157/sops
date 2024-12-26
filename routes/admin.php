@@ -73,6 +73,11 @@ Route::group(['middleware' => ['auth']], function() {
             Route::group(['prefix' => 'reports'], function(){
                 Route::get('{uuid}', [App\Http\Controllers\Admin\ReportController::class, 'show'])->name('admin.reports');
             });
+
+            Route::group(['prefix' => 'survey'], function(){
+                Route::get('{id}', [App\Http\Controllers\Admin\SurveyController::class, 'index'])->name('admin.survey');
+                Route::post('store', [App\Http\Controllers\Admin\SurveyController::class, 'store'])->name('admin.survey.store');
+            });
         });
     });
 });

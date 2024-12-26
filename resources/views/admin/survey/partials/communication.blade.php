@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
             </div>
             <div class="modal-body">
-                <form enctype="multipart/form-data" id="" method="post" action="{{ route('trainer.survey.store') }}">
+                <form enctype="multipart/form-data" id="" method="post" action="{{ route('admin.survey.store') }}">
                     @csrf
                     @method('POST')
                     <input type="hidden" name="user_id" value="{{ $user->id ?? '' }}">
