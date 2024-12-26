@@ -1,11 +1,11 @@
 @extends('trainer.layout.app')
 @section('title')
-    <title>General Assessment | SOPS - School of Professional Skills</title>
+    <title>Trainee Survey | SOPS - School of Professional Skills</title>
 @stop
 @section('content')
 <div class="container-fluid px-4 mt-3">
     <div class="border-bottom">
-        <h3 class="all-adjustment pb-2 mb-0">General Assessment</h3>
+        <h3 class="all-adjustment pb-2 mb-0">Trainee Survey</h3>
     </div>
     <div class="row mt-3">
         <div class="col-md-6">
@@ -112,7 +112,7 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script>
-    @if(!is_null($survey) && !is_null($survey->WillingnesstoHelpOthers))
+    @if(!is_null($survey->WillingnesstoHelpOthers))
         Highcharts.chart('CollaborationTeamwork', {
             chart: { polar: true, type: 'line' },
             title: { text: '' },
@@ -150,7 +150,7 @@
         });
     @endif
 
-    @if(!is_null($survey) && !is_null($survey->Speaking))
+    @if(!is_null($survey->Speaking))
         Highcharts.chart('EnglishCommunication', {
             chart: { polar: true, type: 'line' },
             title: { text: '' },
@@ -185,7 +185,7 @@
         });
     @endif
 
-    @if(!is_null($survey) && !is_null($survey->OrganizesStudyTimeEffectively))
+    @if(!is_null($survey->OrganizesStudyTimeEffectively))
         Highcharts.chart('Autonomy', {
             chart: { polar: true, type: 'line' },
             title: { text: '' },
@@ -222,7 +222,7 @@
         });
     @endif
 
-    @if(!is_null($survey) && !is_null($survey->ConfidentlyCommunicateVerballyinSmallGroups))
+    @if(!is_null($survey->ConfidentlyCommunicateVerballyinSmallGroups))
         Highcharts.chart('Communication', {
             chart: { polar: true, type: 'line' },
             title: { text: '' },
@@ -259,7 +259,7 @@
         });
     @endif
 
-    @if(!is_null($survey) && !is_null($survey->CanInstallSoftwarewithLittletoNoInstruction))
+    @if(!is_null($survey->CanInstallSoftwarewithLittletoNoInstruction))
         Highcharts.chart('ComputerSkills', {
             chart: { polar: true, type: 'line' },
             title: { text: '' },
@@ -295,7 +295,7 @@
         });
     @endif
 
-    @if(!is_null($survey) && !is_null($survey->ActiveParticipationinChannels))
+    @if(!is_null($survey->ActiveParticipationinChannels))
         Highcharts.chart('SlackInteraction', {
             chart: { polar: true, type: 'line' },
             title: { text: '' },

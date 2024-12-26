@@ -1,11 +1,11 @@
 @extends('trainee.layout.app')
 @section('title')
-    <title>My Survey | SOPS - School of Professional Skills</title>
+    <title>General Assessment | SOPS - School of Professional Skills</title>
 @stop
 @section('content')
 <div class="container-fluid px-4 mt-3">
     <div class="border-bottom">
-        <h3 class="all-adjustment pb-2 mb-0">My Survey</h3>
+        <h3 class="all-adjustment pb-2 mb-0">General Assessment</h3>
     </div>
     <div class="row mt-3">
         <div class="col-md-6">
@@ -75,7 +75,7 @@
                 <div class="row mb-4">
                     <div class="col-md-12 mt-2">
                         <div class="border-bottom" style="width: 100%;">
-                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Communication <small><a href="javascript:;" data-bs-target="#CommunicationModal" data-bs-toggle="modal">edit</a></small></h3>
+                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Communication</h3>
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                 <div class="row mb-4">
                     <div class="col-md-12 mt-2">
                         <div class="border-bottom" style="width: 100%;">
-                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Slack Interaction <small><a href="javascript:;" data-bs-target="#SlackInteractionModal" data-bs-toggle="modal">edit</a></small></h3>
+                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Slack Interaction</h3>
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script>
-    @if(!is_null($survey->WillingnesstoHelpOthers))
+    @if(!is_null($survey) && !is_null($survey->WillingnesstoHelpOthers))
         Highcharts.chart('CollaborationTeamwork', {
             chart: { polar: true, type: 'line' },
             title: { text: '' },
@@ -144,7 +144,7 @@
         });
     @endif
 
-    @if(!is_null($survey->Speaking))
+    @if(!is_null($survey) && !is_null($survey->Speaking))
         Highcharts.chart('EnglishCommunication', {
             chart: { polar: true, type: 'line' },
             title: { text: '' },
@@ -179,7 +179,7 @@
         });
     @endif
 
-    @if(!is_null($survey->OrganizesStudyTimeEffectively))
+    @if(!is_null($survey) && !is_null($survey->OrganizesStudyTimeEffectively))
         Highcharts.chart('Autonomy', {
             chart: { polar: true, type: 'line' },
             title: { text: '' },
@@ -216,7 +216,7 @@
         });
     @endif
 
-    @if(!is_null($survey->ConfidentlyCommunicateVerballyinSmallGroups))
+    @if(!is_null($survey) && !is_null($survey->ConfidentlyCommunicateVerballyinSmallGroups))
         Highcharts.chart('Communication', {
             chart: { polar: true, type: 'line' },
             title: { text: '' },
@@ -253,7 +253,7 @@
         });
     @endif
 
-    @if(!is_null($survey->CanInstallSoftwarewithLittletoNoInstruction))
+    @if(!is_null($survey) && !is_null($survey->CanInstallSoftwarewithLittletoNoInstruction))
         Highcharts.chart('ComputerSkills', {
             chart: { polar: true, type: 'line' },
             title: { text: '' },
@@ -289,7 +289,7 @@
         });
     @endif
 
-    @if(!is_null($survey->ActiveParticipationinChannels))
+    @if(!is_null($survey) && !is_null($survey->ActiveParticipationinChannels))
         Highcharts.chart('SlackInteraction', {
             chart: { polar: true, type: 'line' },
             title: { text: '' },
