@@ -58,6 +58,10 @@
                                                     <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                     View Intro Assignments
                                                 </a>
+                                                <a class="dropdown-item" href="{{ route('trainer.survey',$user->uuid) }}">
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
+                                                    General Assessment
+                                                </a>
                                                 <a class="dropdown-item" href="{{ route('trainer.students.tasks',$user->uuid) }}?type=fundamental" >
                                                     <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                     View Tasks
@@ -66,10 +70,7 @@
                                                     <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                     Reports
                                                 </a>
-                                                <a class="dropdown-item" href="{{ route('trainer.survey',$user->uuid) }}">
-                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
-                                                    Survey
-                                                </a>
+                                               
                                             </div>
                                         </div>
                                     </td>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Trainee;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Auth, DB};
-use App\Models\{User, Survey};
+use App\Models\{User, Survey, JoinedCourse};
 
 class SurveyController extends Controller
 {
@@ -18,7 +18,26 @@ class SurveyController extends Controller
         if(is_null($user)) {
             abort(404);
         }
-        $survey = Survey::where('user_id',$user->id)->first();
+        $courses = JoinedCourse::with('course')->where('user_id',Auth::user()->id)->where('is_move',0)->whereIn('type',['Fundamental', 'Full Skill'])->get();
+        $course_id = 0;
+        if(!request()->has('course') && $courses->isNotEmpty()) {
+            $course_id = $courses[0]->course_id;
+        }
+        if(request()->has('course') && !empty(request()->course)) {
+            $course_id = request()->course;
+        }
+        if(request()->has('course') && !empty(request()->course) && request()->has('type') && !empty(request()->type)) {
+            $course = JoinedCourse::with('course')->where('user_id',Auth::user()->id)->where('is_move',0)->where('course_id',request()->course)->where('type',request()->type)->first();
+            if(!is_null($course)) {
+                $course_id = $course->course_id;
+            }
+        }
+        if(request()->has('type') && !empty(request()->type)) {
+            $survey = Survey::where('user_id', $user->id)->where('course_id', $course_id)->where('course_module', request()->type)->first();
+        }
+        else {
+            $survey = Survey::where('user_id', $user->id)->where('course_id', $course_id)->first();
+        }
         $CollaborationTeamwork = [];
         if(!is_null($survey) && !is_null($survey->WillingnesstoHelpOthers)) {
             $CollaborationTeamwork[] = $survey->WillingnesstoHelpOthers;
@@ -72,7 +91,7 @@ class SurveyController extends Controller
             $SlackInteraction[] = $survey->EffectiveUseofEmojiandReactions;
             $SlackInteraction[] = $survey->EncouragesInclusiveCommunication;
         }
-        return view('trainee.survey.index',compact('user','survey','CollaborationTeamwork','EnglishCommunication', 'Autonomy', 'Communication', 'ComputerSkills', 'SlackInteraction'));
+        return view('trainee.survey.index',compact('user','courses','course_id','survey','CollaborationTeamwork','EnglishCommunication', 'Autonomy', 'Communication', 'ComputerSkills', 'SlackInteraction'));
     }
 
     /**

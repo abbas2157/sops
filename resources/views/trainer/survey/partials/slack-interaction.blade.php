@@ -11,6 +11,16 @@
                     @csrf
                     @method('POST')
                     <input type="hidden" name="user_id" value="{{ $user->id ?? '' }}">
+                    @if(request()->has('course_id'))
+                        <input type="hidden" name="course_id" id="course_id" value="{{ request()->course_id ?? '' }}">
+                    @else
+                        <input type="hidden" name="course_id" id="course_id" value="{{ ($courses->isNotEmpty()) ? $courses[0]->course_id : '' }}">
+                    @endif
+                    @if(request()->has('type'))
+                        <input type="hidden" name="course_module" id="course_module" value="{{ request()->type ?? '' }}">
+                    @else
+                        <input type="hidden" name="course_module" id="course_module" value="Fundamental">
+                    @endif
                     <div class="form-group">
                         <label for="ActiveParticipationinChannels" class="mb-1" >Active Participation in Channels</label>
                         <select  id="ActiveParticipationinChannels" name="ActiveParticipationinChannels" class="form-select" required>

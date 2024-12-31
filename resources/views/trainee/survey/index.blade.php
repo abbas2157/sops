@@ -7,6 +7,39 @@
     <div class="border-bottom">
         <h3 class="all-adjustment pb-2 mb-0">General Assessment</h3>
     </div>
+    @if($courses->isNotEmpty())
+    <div class="card card-shadow border-0 mt-4 rounded-3 mb-3 p-3">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group fw-bold">
+                    <label for="course">Select Course</label>
+                    <select class="form-control form-select subheading mt-2" name="course" id="course" required>
+                        @if($courses->isNotEmpty())
+                            @foreach($courses->unique('course_id') as $course)
+                                <option value="{{ $course->course->id ?? '' }}" {{ ($course->course->id == request()->course) ? 'selected' : '' }}>{{ $course->course->name ?? '' }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group fw-bold">
+                    <label for="type">Select Module</label>
+                    <select class="form-control form-select subheading mt-2" name="type" id="type" required>
+                        @foreach($courses as $course)
+                            @if($course_id == $course->course->id)
+                                <option value="{{ $course->type ?? '' }}" {{ (request()->type == $course->type) ? 'selected' : '' }}>{{ $course->type ?? '' }} Module</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2 pt-3">
+                <button id="search" class="btn save-btn text-white mt-3">Search</button>
+                <button id="clear" class="btn warning-btn text-white mt-3">Clear</button>
+            </div>
+        </div>
+    </div>
     <div class="row mt-3">
         <div class="col-md-6">
             <div class="card-shadow border rounded align-items-center p-3">
@@ -60,43 +93,68 @@
         </div>
         <div class="col-md-6">
             <div class="card-shadow border rounded align-items-center p-3">
-                <div class="row mb-4">
+                <div class="row mb-2">
                     <div class="col-md-12 mt-2">
                         <div class="border-bottom" style="width: 100%;">
                             <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">English Communication</h3>
                         </div>
                     </div>
                 </div>
-                <figure class="highcharts-figure">
-                    <div id="EnglishCommunication"></div>
-                </figure>
+                <div class="row mb-2">
+                    <div class="col-md-12 mt-2">
+                        <figure class="highcharts-figure">
+                            <div id="EnglishCommunication"></div>
+                        </figure>
+                    </div>
+                </div>
             </div>
             <div class="card-shadow border rounded align-items-center p-3 mt-2">
-                <div class="row mb-4">
+                <div class="row mb-2">
                     <div class="col-md-12 mt-2">
                         <div class="border-bottom" style="width: 100%;">
                             <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Communication</h3>
                         </div>
                     </div>
                 </div>
-                <figure class="highcharts-figure">
-                    <div id="Communication"></div>
-                </figure>
+                <div class="row mb-2">
+                    <div class="col-md-12 mt-2">
+                        <figure class="highcharts-figure">
+                            <div id="Communication"></div>
+                        </figure>
+                    </div>
+                </div>
             </div>
             <div class="card-shadow border rounded align-items-center p-3 mt-2">
-                <div class="row mb-4">
+                <div class="row mb-2">
                     <div class="col-md-12 mt-2">
                         <div class="border-bottom" style="width: 100%;">
                             <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Slack Interaction</h3>
                         </div>
                     </div>
                 </div>
-                <figure class="highcharts-figure">
-                    <div id="SlackInteraction"></div>
-                </figure>
+                <div class="row mb-2">
+                    <div class="col-md-12 mt-2">
+                        <figure class="highcharts-figure">
+                            <div id="SlackInteraction"></div>
+                        </figure>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    @else
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="card-shadow border rounded align-items-center p-3">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mt-2">
+                            No General Assessment Found Yet.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
 @stop
 @section('js')

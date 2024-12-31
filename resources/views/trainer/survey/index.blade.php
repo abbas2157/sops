@@ -7,96 +7,154 @@
     <div class="border-bottom">
         <h3 class="all-adjustment pb-2 mb-0">General Assessment</h3>
     </div>
-    <div class="row mt-3">
-        <div class="col-md-6">
-            <div class="card-shadow border rounded align-items-center p-3">
-                <div class="row mb-2">
-                    <div class="col-md-12 mt-2">
-                        <div class="border-bottom" style="width: 100%;">
-                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Collaboration & Teamwork <small><a href="javascript:;" data-bs-target="#CollaborationTeamworkModal" data-bs-toggle="modal">edit</a> </small></h3>
+    @if($courses->isNotEmpty())
+        <div class="card card-shadow border-0 mt-4 rounded-3 mb-3 p-3">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group fw-bold">
+                        <label for="course">Select Course</label>
+                        <select class="form-control form-select subheading mt-2" name="course" id="course" required>
+                            @if($courses->isNotEmpty())
+                                @foreach($courses->unique('course_id') as $course)
+                                    <option value="{{ $course->course->id ?? '' }}" {{ ($course->course->id == request()->course) ? 'selected' : '' }}>{{ $course->course->name ?? '' }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group fw-bold">
+                        <label for="type">Select Module</label>
+                        <select class="form-control form-select subheading mt-2" name="type" id="type" required>
+                            @foreach($courses as $course)
+                                @if($course_id == $course->course->id)
+                                    <option value="{{ $course->course_module ?? '' }}" {{ (request()->type == $course->course_module) ? 'selected' : '' }}>{{ $course->course_module ?? '' }} Module</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2 pt-3">
+                    <button id="search" class="btn save-btn text-white mt-3">Search</button>
+                    <button id="clear" class="btn warning-btn text-white mt-3">Clear</button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <div class="card-shadow border rounded align-items-center p-3">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mt-2">
+                            <div class="border-bottom" style="width: 100%;">
+                                <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Collaboration & Teamwork <small><a href="javascript:;" data-bs-target="#CollaborationTeamworkModal" data-bs-toggle="modal">edit</a> </small></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mt-2">
+                            <figure class="highcharts-figure">
+                                <div id="CollaborationTeamwork"></div>
+                            </figure>
                         </div>
                     </div>
                 </div>
-                <div class="row mb-2">
-                    <div class="col-md-12 mt-2">
-                        <figure class="highcharts-figure">
-                            <div id="CollaborationTeamwork"></div>
-                        </figure>
+                <div class="card-shadow border rounded align-items-center p-3 mt-2">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mt-2">
+                            <div class="border-bottom" style="width: 100%;">
+                                <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Autonomy <small><a href="javascript:;" data-bs-target="#AutonomyModal" data-bs-toggle="modal">edit</a> </small></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mt-2">
+                            <figure class="highcharts-figure">
+                                <div id="Autonomy"></div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-shadow border rounded align-items-center p-3 mt-2">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mt-2">
+                            <div class="border-bottom" style="width: 100%;">
+                                <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Computer Skills <small><a href="javascript:;" data-bs-target="#ComputerSkillsModal" data-bs-toggle="modal">edit</a> </small></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mt-2">
+                            <figure class="highcharts-figure">
+                                <div id="ComputerSkills"></div>
+                            </figure>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="card-shadow border rounded align-items-center p-3 mt-2">
-                <div class="row mb-2">
-                    <div class="col-md-12 mt-2">
-                        <div class="border-bottom" style="width: 100%;">
-                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Autonomy <small><a href="javascript:;" data-bs-target="#AutonomyModal" data-bs-toggle="modal">edit</a> </small></h3>
+            <div class="col-md-6">
+                <div class="card-shadow border rounded align-items-center p-3">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mt-2">
+                            <div class="border-bottom" style="width: 100%;">
+                                <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">English Communication <small><a href="javascript:;" data-bs-target="#EnglishCommunicationModal" data-bs-toggle="modal">edit</a></small></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mt-2">
+                            <figure class="highcharts-figure">
+                                <div id="EnglishCommunication"></div>
+                            </figure>
                         </div>
                     </div>
                 </div>
-                <div class="row mb-2">
-                    <div class="col-md-12 mt-2">
-                        <figure class="highcharts-figure">
-                            <div id="Autonomy"></div>
-                        </figure>
+                <div class="card-shadow border rounded align-items-center p-3 mt-2">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mt-2">
+                            <div class="border-bottom" style="width: 100%;">
+                                <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Communication <small><a href="javascript:;" data-bs-target="#CommunicationModal" data-bs-toggle="modal">edit</a></small></h3>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="card-shadow border rounded align-items-center p-3 mt-2">
-                <div class="row mb-2">
-                    <div class="col-md-12 mt-2">
-                        <div class="border-bottom" style="width: 100%;">
-                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Computer Skills <small><a href="javascript:;" data-bs-target="#ComputerSkillsModal" data-bs-toggle="modal">edit</a> </small></h3>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mt-2">
+                            <figure class="highcharts-figure">
+                                <div id="Communication"></div>
+                            </figure>
                         </div>
                     </div>
                 </div>
-                <div class="row mb-2">
-                    <div class="col-md-12 mt-2">
-                        <figure class="highcharts-figure">
-                            <div id="ComputerSkills"></div>
-                        </figure>
+                <div class="card-shadow border rounded align-items-center p-3 mt-2">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mt-2">
+                            <div class="border-bottom" style="width: 100%;">
+                                <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Slack Interaction <small><a href="javascript:;" data-bs-target="#SlackInteractionModal" data-bs-toggle="modal">edit</a></small></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mt-2">
+                            <figure class="highcharts-figure">
+                                <div id="SlackInteraction"></div>
+                            </figure>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card-shadow border rounded align-items-center p-3">
-                <div class="row mb-4">
-                    <div class="col-md-12 mt-2">
-                        <div class="border-bottom" style="width: 100%;">
-                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">English Communication <small><a href="javascript:;" data-bs-target="#EnglishCommunicationModal" data-bs-toggle="modal">edit</a></small></h3>
+    @else
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="card-shadow border rounded align-items-center p-3">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mt-2">
+                            No Course Joined Yet
                         </div>
                     </div>
                 </div>
-                <figure class="highcharts-figure">
-                    <div id="EnglishCommunication"></div>
-                </figure>
-            </div>
-            <div class="card-shadow border rounded align-items-center p-3 mt-2">
-                <div class="row mb-4">
-                    <div class="col-md-12 mt-2">
-                        <div class="border-bottom" style="width: 100%;">
-                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Communication <small><a href="javascript:;" data-bs-target="#CommunicationModal" data-bs-toggle="modal">edit</a></small></h3>
-                        </div>
-                    </div>
-                </div>
-                <figure class="highcharts-figure">
-                    <div id="Communication"></div>
-                </figure>
-            </div>
-            <div class="card-shadow border rounded align-items-center p-3 mt-2">
-                <div class="row mb-4">
-                    <div class="col-md-12 mt-2">
-                        <div class="border-bottom" style="width: 100%;">
-                            <h3 class="all-adjustment pb-2 mb-0" style="width: 100%;">Slack Interaction <small><a href="javascript:;" data-bs-target="#SlackInteractionModal" data-bs-toggle="modal">edit</a></small></h3>
-                        </div>
-                    </div>
-                </div>
-                <figure class="highcharts-figure">
-                    <div id="SlackInteraction"></div>
-                </figure>
             </div>
         </div>
-    </div>
+    @endif
 </div>
 @include('trainer.survey.partials.collaboration-teamwork')
 @include('trainer.survey.partials.english-communication')
@@ -334,5 +392,21 @@
     setTimeout(() => {
         $('.highcharts-credits').text('');
     }, 1);
+
+    $( document ).ready(function() {
+        $('#search').click(function(){
+            var url = '?';
+            if ($('#course').val() != '' &&  $('#course').val() != undefined) {
+                url += 'course='+$('#course').val();
+            }
+            if ($('#type').val() != '' &&  $('#type').val() != undefined && $('#type').val() != 'Intro') {
+                url += '&type='+$('#type').val();
+            }
+            window.location.replace('{{ route('trainer.survey',$user->uuid) }}' +  url);
+        })
+    });
+    $(document).on("click", "#clear", function (e) {
+        window.location.replace('{{ route('trainer.survey',$user->uuid) }}');
+    });
 </script>
 @stop

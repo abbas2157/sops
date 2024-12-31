@@ -19,7 +19,7 @@
             </a>
             <a href="{{ route('trainee.survey') }}" class="nav-item nav-link {{ request()->is('trainee/survey*') ? 'active' : '' }} text-center border-top">
                 <i class="bi bi-graph-up"></i>
-                <p class="pt-1 mb-0">My Survey</p>
+                <p class="pt-1 mb-0">General Assessment</p>
             </a>
         </div>
     </nav>

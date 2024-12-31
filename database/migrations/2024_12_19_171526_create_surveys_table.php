@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
+            $table->integer('course_id')->nullable();
+            $table->enum('course_module',['Fundamental','Full Skill'])->nullable();
 
             //Collaboration & Teamwork
             $table->integer('WillingnesstoHelpOthers')->nullable();
