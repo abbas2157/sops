@@ -17,6 +17,10 @@
                 <i class="bi bi-person-vcard-fill"></i>
                 <p class="pt-1 mb-0">Students</p>
             </a>
+            <a href="{{ route('trainer.general-assessment') }}" class="nav-item nav-link {{ request()->is('trainer/general-assessment*') ? 'active' : '' }} text-center border-top">
+                <i class="bi bi-graph-up"></i>
+                <p class="pt-1 mb-0">General Assessment</p>
+            </a>
         </div>
     </nav>
 </div>

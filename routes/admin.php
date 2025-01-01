@@ -78,6 +78,11 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::get('{id}', [App\Http\Controllers\Admin\SurveyController::class, 'index'])->name('admin.survey');
                 Route::post('store', [App\Http\Controllers\Admin\SurveyController::class, 'store'])->name('admin.survey.store');
             });
+
+            Route::group(['prefix' => 'trainer-survey'], function(){
+                Route::get('{id}', [App\Http\Controllers\Admin\TrainerSurveyController::class, 'index'])->name('admin.trainer.survey');
+                Route::post('store', [App\Http\Controllers\Admin\TrainerSurveyController::class, 'store'])->name('admin.trainer.survey.store');
+            });
         });
     });
 });

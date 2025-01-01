@@ -42,6 +42,9 @@ Route::group(['middleware' => ['auth']], function() {
                 Route::post('store', [App\Http\Controllers\Trainer\SurveyController::class, 'store'])->name('trainer.survey.store');
             });
 
+            Route::group(['prefix' => 'general-assessment'], function(){
+                Route::get('/', [App\Http\Controllers\Trainer\GeneralAssessmentController::class, 'index'])->name('trainer.general-assessment');
+            });
             Route::group(['prefix' => 'profile'], function(){
                 Route::get('/', [App\Http\Controllers\Trainer\ProfileController::class, 'create'])->name('trainer.profile');
                 Route::post('perform', [App\Http\Controllers\Trainer\ProfileController::class, 'update'])->name('trainer.profile.perform');

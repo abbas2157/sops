@@ -110,6 +110,10 @@
                                                 <i class="fa-solid fa-ellipsis-v"></i>
                                             </a>
                                             <div class="dropdown-menu p-2 ps-0" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="{{ route('admin.trainer.survey', $train->uuid) }}">
+                                                    <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
+                                                    General Assessment
+                                                </a>
                                                 <a class="dropdown-item" href="{{ route('admin.courses.assign') }}?trainer={{ $train->id ?? '' }}">
                                                     <img src="{{ asset('assets/img/content-right-arrow.svg') }}" class="img-fluid me-1" style="width: 10%;" alt=""/>
                                                     Assign Course
