@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\{Cookie, Auth};
+use Illuminate\Support\Facades\{Cookie, Auth, DB};
 use App\Models\{Course, Payment, Coupon, JoinedCourse, Trainee};
 use Carbon\Carbon;
 
@@ -87,8 +87,8 @@ class PaymentController extends Controller
                     $payment->total_price = $course->price;
                     $payment->save();
                 }
-                // Cookie::queue(Cookie::forget('course'));
-                // return redirect('trainee');
+                Cookie::queue(Cookie::forget('course'));
+                return redirect('trainee');
             }
             DB::commit();
             return abort(404);
