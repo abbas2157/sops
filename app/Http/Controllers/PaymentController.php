@@ -57,7 +57,7 @@ class PaymentController extends Controller
                         }
                     }
                     $join = JoinedCourse::where(['course_id' => $course->id, 'user_id' => $user->id])->first();
-                    if(is_null($join)) {
+                    if(!is_null($join)) {
                         $join->course_id = $course->id;
                         $join->user_id = $user->id;
         
