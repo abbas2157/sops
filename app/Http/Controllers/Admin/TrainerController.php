@@ -18,7 +18,7 @@ class TrainerController extends Controller
      */
     public function index()
     {
-        $trainers = User::with('trainer')->where('type','trainer');
+        $trainers = User::with('trainer')->orderBy('id','desc')->where('type','trainer');
         // if(!$request->has('course') || empty($request->course))
 
         $trainers = $trainers->paginate(20);

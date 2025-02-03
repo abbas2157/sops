@@ -20,7 +20,7 @@ class TraineeController extends Controller
      */
     public function index()
     {
-        $trainees = User::with('u_trainee')->where('type','trainee')->paginate(20);
+        $trainees = User::with('u_trainee')->where('type','trainee')->orderBy('id','desc')->paginate(20);
         // dd($trainees->toArray());
         return view('admin.trainee.index',compact('trainees'));
     }
