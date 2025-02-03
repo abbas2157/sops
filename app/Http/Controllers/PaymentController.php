@@ -36,7 +36,7 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         try {
-            DB::beginTransaction();
+            
             if (!empty(Cookie::get('course'))) {
                 $uuid = Cookie::get('course');
                 $course = Course::where('uuid',$uuid)->first();
@@ -44,6 +44,7 @@ class PaymentController extends Controller
                     abort(404);
                 }
                 $user = Auth::user();
+                DB::beginTransaction();
                 if($request->has('coupon') && !empty($request->coupon)) {
                     $coupon = Coupon::where('code',$request->coupon)->first();
                     if(!is_null($coupon->limit)) {
@@ -89,9 +90,10 @@ class PaymentController extends Controller
                     $payment->save();
                 }
                 Cookie::queue(Cookie::forget('course'));
+                DB::commit();
                 return redirect('trainee');
             }
-            DB::commit();
+            
             return abort(404);
         } 
         catch (\Exception $e) {
