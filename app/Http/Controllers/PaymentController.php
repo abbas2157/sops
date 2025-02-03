@@ -57,19 +57,20 @@ class PaymentController extends Controller
                         }
                     }
                     $join = JoinedCourse::where(['course_id' => $course->id, 'user_id' => $user->id])->first();
-                    if(!is_null($join)) {
-                        $join->course_id = $course->id;
-                        $join->user_id = $user->id;
-        
-                        $trainee = Trainee::where('user_id',$user->id)->first();
-                        if(!is_null($trainee)) {
-                            $join->trainee_id = $trainee->id;
-                        }
-
-                        $join->type = 'Intro';
-                        $join->status = 'Processing';
-                        $join->save();
+                    if(is_null($join)) {
+                        $join = new JoinedCourse;
                     }
+                    $join->course_id = $course->id;
+                    $join->user_id = $user->id;
+    
+                    $trainee = Trainee::where('user_id',$user->id)->first();
+                    if(!is_null($trainee)) {
+                        $join->trainee_id = $trainee->id;
+                    }
+
+                    $join->type = 'Intro';
+                    $join->status = 'Processing';
+                    $join->save();
 
                     $payment = new Payment;
                     $payment->user_id = $user->id;
