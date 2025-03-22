@@ -91,7 +91,9 @@ class AssignmentController extends Controller
                 );
             $trainers = TrainerCourse::where('course_id', $course->id)->get();
             foreach($trainers as $item) {
-                AssignmentSubmissionMailJob::dispatch($item->trainer->user->email, $data);
+                if(!is_null($item->trainer)) {
+                    AssignmentSubmissionMailJob::dispatch($item->trainer->user->email, $data);
+                }
             }
             
             $data['type'] = 'trainee';

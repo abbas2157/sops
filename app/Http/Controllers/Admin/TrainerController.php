@@ -173,7 +173,7 @@ class TrainerController extends Controller
             $trainer->course_id = $request->course_id;
             $trainer->save();
 
-            Mail::to($request->email)->send(new WelcomeEmail($user));
+            // Mail::to($request->email)->send(new WelcomeEmail($user));
             
             DB::commit();
 

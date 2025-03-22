@@ -71,7 +71,6 @@
                             <th class="text-secondary">Email</th>
                             <th class="text-secondary">Phone No</th>
                             <th class="text-secondary">Areas of Expertise</th>
-                            <th class="text-secondary">Assigned Course</th>
                             <th class="text-secondary">Created By</th>
                             <th class="text-secondary">Created at</th>
                             <th class="text-secondary">Status</th>
@@ -88,7 +87,6 @@
                                             class="text-decoration-none">{{ $train->email ?? '' }}</a></td>
                                     <td class="align-middle" style="white-space:nowrap;"><a href="tel:{{ $train->phone ?? '' }}" class="text-decoration-none">{{ $train->phone ?? '' }}</a></td>
                                     <td class="align-middle">{{ $train->trainer->areas_of_expertise ?? '' }}</td>
-                                    <td class="align-middle">{{ $train->trainer->t_course->name ?? '' }}</td>
                                     <td class="align-middle">{{ $train->trainer->createdby->full_name ?? '' }}</td>
                                     <td class="align-middle">{{ $train->created_at->format('M d, Y') ?? '' }}</td>
                                     <td class="align-middle">
